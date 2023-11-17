@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5F6A1FB3-17D7-49A6-8325-CBDA12302242}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>CarRental</RootNamespace>
-    <AssemblyName>CarRental</AssemblyName>
+    <ProjectGuid>{4A6B222E-1067-48DC-9FA3-8F8A2E7CAEDE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CarRental_Business</RootNamespace>
+    <AssemblyName>CarRental_Business</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -39,47 +37,31 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="clsBody.cs" />
+    <Compile Include="clsBooking.cs" />
+    <Compile Include="clsCountry.cs" />
+    <Compile Include="clsCustomer.cs" />
+    <Compile Include="clsDriveType.cs" />
+    <Compile Include="clsFuelType.cs" />
+    <Compile Include="clsMaintenance.cs" />
+    <Compile Include="clsMake.cs" />
+    <Compile Include="clsModel.cs" />
+    <Compile Include="clsPerson.cs" />
+    <Compile Include="clsReturn.cs" />
+    <Compile Include="clsSubModel.cs" />
+    <Compile Include="clsTransaction.cs" />
+    <Compile Include="clsUser.cs" />
+    <Compile Include="clsVehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CarRental_Business\CarRental_Business.csproj">
-      <Project>{4a6b222e-1067-48dc-9fa3-8f8a2e7caede}</Project>
-      <Name>CarRental_Business</Name>
+    <ProjectReference Include="..\CarRental_DataAccess\CarRental_DataAccess.csproj">
+      <Project>{f1c179a5-b73c-44ff-81ea-73d746a966ae}</Project>
+      <Name>CarRental_DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

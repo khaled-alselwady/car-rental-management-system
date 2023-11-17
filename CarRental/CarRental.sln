@@ -5,7 +5,9 @@ VisualStudioVersion = 17.7.34302.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental", "CarRental.csproj", "{5F6A1FB3-17D7-49A6-8325-CBDA12302242}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental_DataAccess", "..\CarRental_DataAccess\CarRental_DataAccess\CarRental_DataAccess.csproj", "{F1C179A5-B73C-44FF-81EA-73D746A966AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental_DataAccess", "..\CarRental_DataAccess\CarRental_DataAccess.csproj", "{F1C179A5-B73C-44FF-81EA-73D746A966AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental_Business", "..\CarRental_Business\CarRental_Business.csproj", "{4A6B222E-1067-48DC-9FA3-8F8A2E7CAEDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{F1C179A5-B73C-44FF-81EA-73D746A966AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1C179A5-B73C-44FF-81EA-73D746A966AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1C179A5-B73C-44FF-81EA-73D746A966AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A6B222E-1067-48DC-9FA3-8F8A2E7CAEDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A6B222E-1067-48DC-9FA3-8F8A2E7CAEDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A6B222E-1067-48DC-9FA3-8F8A2E7CAEDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A6B222E-1067-48DC-9FA3-8F8A2E7CAEDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

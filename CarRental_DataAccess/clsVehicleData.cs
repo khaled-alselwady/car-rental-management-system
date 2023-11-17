@@ -11,11 +11,10 @@ namespace CarRental_DataAccess
     public class clsVehicleData
     {
         public static bool GetVehicleInfoByID(int VehicleID, ref int MakeID, ref int ModelID,
-            ref int SubModelID, ref int BodyID, ref string Vehicle_Display_Name,
-            ref short Year, ref int DriveTypeID, ref string Engine,
-            ref short Engine_CC, ref byte Engine_Cylinders, ref decimal Engine_Liter_Display,
-            ref int FuelTypeID, ref byte NumDoors, ref int Mileage, ref bool IsAvailableForRent,
-            ref decimal RentalPricePerDay)
+            ref int SubModelID, ref int BodyID, ref string Vehicle_Display_Name, ref short Year,
+            ref int DriveTypeID, ref string Engine, ref short Engine_CC, ref byte Engine_Cylinders,
+            ref decimal Engine_Liter_Display, ref int FuelTypeID, ref byte NumDoors,
+            ref int Mileage, ref bool IsAvailableForRent, ref decimal RentalPricePerDay)
         {
             bool IsFound = false;
 
@@ -75,10 +74,10 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static int AddNewVehicle(int MakeID, int ModelID, int SubModelID, int BodyID,
+        public static int AddNewVehicle(int MakeID, int ModelID, int SubModelID, int BodyID, 
             string Vehicle_Display_Name, short Year, int DriveTypeID, string Engine,
-            short Engine_CC, byte Engine_Cylinders, decimal Engine_Liter_Display,
-            int FuelTypeID, byte NumDoors, int Mileage, bool IsAvailableForRent,
+            short Engine_CC, byte Engine_Cylinders, decimal Engine_Liter_Display, 
+            int FuelTypeID, byte NumDoors, int Mileage, bool IsAvailableForRent, 
             decimal RentalPricePerDay)
         {
             // This function will return the new person id if succeeded and -1 if not
@@ -244,11 +243,10 @@ select scope_identity()";
             return VehicleID;
         }
 
-        public static bool UpdateVehicle(int VehicleID, int MakeID, int ModelID,
-            int SubModelID, int BodyID, string Vehicle_Display_Name, short Year,
-            int DriveTypeID, string Engine, short Engine_CC, byte Engine_Cylinders, 
-            decimal Engine_Liter_Display, int FuelTypeID, byte NumDoors, int Mileage, 
-            bool IsAvailableForRent, decimal RentalPricePerDay)
+        public static bool UpdateVehicle(int VehicleID, int MakeID, int ModelID, int SubModelID,
+            int BodyID, string Vehicle_Display_Name, short Year, int DriveTypeID, string Engine,
+            short Engine_CC, byte Engine_Cylinders, decimal Engine_Liter_Display, int FuelTypeID,
+            byte NumDoors, int Mileage, bool IsAvailableForRent, decimal RentalPricePerDay)
         {
             int RowAffected = 0;
 
