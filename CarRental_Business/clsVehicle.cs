@@ -174,5 +174,10 @@ namespace CarRental_Business
         {
             return clsVehicleData.GetAllVehicleDetails();
         }
+
+        public static int GetVehiclesCount()
+        {
+            return clsVehicleData.GetVehiclesCount();
+        }
     }
 }

@@ -309,5 +309,38 @@ where BookingID = @BookingID";
 
             return dt;
         }
+
+        public static int GetBookingCount()
+        {
+            int Count = 0;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"select count(*) from RentalBooking";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+
+                object result = command.ExecuteScalar();
+
+                if (result != null && int.TryParse(result.ToString(), out int Value))
+                {
+                    Count = Value;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return Count;
+        }
     }
 }

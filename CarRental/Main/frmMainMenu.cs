@@ -1,4 +1,5 @@
-﻿using FontAwesome.Sharp;
+﻿using CarRental.Dashboard;
+using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -84,7 +85,7 @@ namespace CarRental.Main
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Form(), sender);
+            OpenChildForm(new frmDashboard(), sender);
         }
 
         private void btnCustomers_Click(object sender, EventArgs e)

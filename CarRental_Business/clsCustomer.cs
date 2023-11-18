@@ -100,5 +100,10 @@ namespace CarRental_Business
         {
             return clsCustomerData.GetAllCustomer();
         }
+
+        public static int GetCustomersCount()
+        {
+            return clsCustomerData.GetCustomersCount();
+        }
     }
 }

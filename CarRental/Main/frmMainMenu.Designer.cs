@@ -33,13 +33,9 @@
             this.panelDesktop = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelTitleBar = new System.Windows.Forms.Panel();
-            this.panelMenu = new System.Windows.Forms.Panel();
-            this.panelLogo = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmsEditProfile = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnSubMenu = new FontAwesome.Sharp.IconButton();
+            this.panelMenu = new System.Windows.Forms.Panel();
+            this.pbUserImage = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.btnLogOut = new FontAwesome.Sharp.IconButton();
             this.btnTransactions = new FontAwesome.Sharp.IconButton();
             this.btnReturn = new FontAwesome.Sharp.IconButton();
@@ -48,18 +44,22 @@
             this.btnUsers = new FontAwesome.Sharp.IconButton();
             this.btnCustomers = new FontAwesome.Sharp.IconButton();
             this.btnDashboard = new FontAwesome.Sharp.IconButton();
+            this.panelLogo = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnBooks = new FontAwesome.Sharp.IconButton();
+            this.cmsEditProfile = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pbUserImage = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.panelTitleBar.SuspendLayout();
             this.panelMenu.SuspendLayout();
-            this.panelLogo.SuspendLayout();
-            this.cmsEditProfile.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbUserImage)).BeginInit();
+            this.panelLogo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.cmsEditProfile.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblUsername
@@ -95,14 +95,14 @@
             // lblTitle
             // 
             this.lblTitle.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblTitle.Location = new System.Drawing.Point(552, 11);
+            this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(79, 25);
+            this.lblTitle.Size = new System.Drawing.Size(1366, 50);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "HOME";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelTitleBar
             // 
@@ -114,6 +114,25 @@
             this.panelTitleBar.Name = "panelTitleBar";
             this.panelTitleBar.Size = new System.Drawing.Size(1366, 50);
             this.panelTitleBar.TabIndex = 11;
+            // 
+            // btnSubMenu
+            // 
+            this.btnSubMenu.BackColor = System.Drawing.Color.Transparent;
+            this.btnSubMenu.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSubMenu.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnSubMenu.FlatAppearance.BorderSize = 0;
+            this.btnSubMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSubMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSubMenu.IconChar = FontAwesome.Sharp.IconChar.Navicon;
+            this.btnSubMenu.IconColor = System.Drawing.Color.Black;
+            this.btnSubMenu.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnSubMenu.IconSize = 44;
+            this.btnSubMenu.Location = new System.Drawing.Point(1329, 0);
+            this.btnSubMenu.Name = "btnSubMenu";
+            this.btnSubMenu.Size = new System.Drawing.Size(37, 50);
+            this.btnSubMenu.TabIndex = 7;
+            this.btnSubMenu.UseVisualStyleBackColor = false;
+            this.btnSubMenu.Click += new System.EventHandler(this.btnSubMenu_Click);
             // 
             // panelMenu
             // 
@@ -136,83 +155,18 @@
             this.panelMenu.Size = new System.Drawing.Size(224, 850);
             this.panelMenu.TabIndex = 10;
             // 
-            // panelLogo
+            // pbUserImage
             // 
-            this.panelLogo.Controls.Add(this.pictureBox2);
-            this.panelLogo.Controls.Add(this.label2);
-            this.panelLogo.Controls.Add(this.label1);
-            this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelLogo.Location = new System.Drawing.Point(0, 0);
-            this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(224, 124);
-            this.panelLogo.TabIndex = 16;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label2.Location = new System.Drawing.Point(127, 65);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 27);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Renatl";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(96, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 33);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Car";
-            // 
-            // cmsEditProfile
-            // 
-            this.cmsEditProfile.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cmsEditProfile.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmsEditProfile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.changePasswordToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.signOutToolStripMenuItem});
-            this.cmsEditProfile.Name = "guna2ContextMenuStrip1";
-            this.cmsEditProfile.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
-            this.cmsEditProfile.RenderStyle.BorderColor = System.Drawing.Color.Gainsboro;
-            this.cmsEditProfile.RenderStyle.ColorTable = null;
-            this.cmsEditProfile.RenderStyle.RoundedEdges = true;
-            this.cmsEditProfile.RenderStyle.SelectionArrowColor = System.Drawing.Color.White;
-            this.cmsEditProfile.RenderStyle.SelectionBackColor = System.Drawing.Color.Gray;
-            this.cmsEditProfile.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
-            this.cmsEditProfile.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
-            this.cmsEditProfile.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.cmsEditProfile.Size = new System.Drawing.Size(222, 124);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(218, 6);
-            // 
-            // btnSubMenu
-            // 
-            this.btnSubMenu.BackColor = System.Drawing.Color.Transparent;
-            this.btnSubMenu.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSubMenu.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnSubMenu.FlatAppearance.BorderSize = 0;
-            this.btnSubMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnSubMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSubMenu.IconChar = FontAwesome.Sharp.IconChar.Navicon;
-            this.btnSubMenu.IconColor = System.Drawing.Color.Black;
-            this.btnSubMenu.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.btnSubMenu.IconSize = 44;
-            this.btnSubMenu.Location = new System.Drawing.Point(1329, 0);
-            this.btnSubMenu.Name = "btnSubMenu";
-            this.btnSubMenu.Size = new System.Drawing.Size(37, 50);
-            this.btnSubMenu.TabIndex = 7;
-            this.btnSubMenu.UseVisualStyleBackColor = false;
-            this.btnSubMenu.Click += new System.EventHandler(this.btnSubMenu_Click);
+            this.pbUserImage.BackColor = System.Drawing.Color.Transparent;
+            this.pbUserImage.FillColor = System.Drawing.Color.Transparent;
+            this.pbUserImage.ImageRotate = 0F;
+            this.pbUserImage.Location = new System.Drawing.Point(3, 784);
+            this.pbUserImage.Name = "pbUserImage";
+            this.pbUserImage.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.pbUserImage.Size = new System.Drawing.Size(64, 63);
+            this.pbUserImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbUserImage.TabIndex = 3;
+            this.pbUserImage.TabStop = false;
             // 
             // btnLogOut
             // 
@@ -390,6 +344,17 @@
             this.btnDashboard.UseVisualStyleBackColor = true;
             this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
             // 
+            // panelLogo
+            // 
+            this.panelLogo.Controls.Add(this.pictureBox2);
+            this.panelLogo.Controls.Add(this.label2);
+            this.panelLogo.Controls.Add(this.label1);
+            this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelLogo.Location = new System.Drawing.Point(0, 0);
+            this.panelLogo.Name = "panelLogo";
+            this.panelLogo.Size = new System.Drawing.Size(224, 124);
+            this.panelLogo.TabIndex = 16;
+            // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
@@ -401,6 +366,28 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 9;
             this.pictureBox2.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Gainsboro;
+            this.label2.Location = new System.Drawing.Point(127, 65);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(82, 27);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Renatl";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(96, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 33);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Car";
             // 
             // btnBooks
             // 
@@ -423,6 +410,27 @@
             this.btnBooks.Text = "  Books";
             this.btnBooks.UseVisualStyleBackColor = true;
             // 
+            // cmsEditProfile
+            // 
+            this.cmsEditProfile.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cmsEditProfile.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmsEditProfile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.changePasswordToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.signOutToolStripMenuItem});
+            this.cmsEditProfile.Name = "guna2ContextMenuStrip1";
+            this.cmsEditProfile.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
+            this.cmsEditProfile.RenderStyle.BorderColor = System.Drawing.Color.Gainsboro;
+            this.cmsEditProfile.RenderStyle.ColorTable = null;
+            this.cmsEditProfile.RenderStyle.RoundedEdges = true;
+            this.cmsEditProfile.RenderStyle.SelectionArrowColor = System.Drawing.Color.White;
+            this.cmsEditProfile.RenderStyle.SelectionBackColor = System.Drawing.Color.Gray;
+            this.cmsEditProfile.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
+            this.cmsEditProfile.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
+            this.cmsEditProfile.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.cmsEditProfile.Size = new System.Drawing.Size(222, 124);
+            // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.ForeColor = System.Drawing.Color.Black;
@@ -441,6 +449,11 @@
             this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(221, 38);
             this.changePasswordToolStripMenuItem.Text = "   Change Password";
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(218, 6);
+            // 
             // signOutToolStripMenuItem
             // 
             this.signOutToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
@@ -449,19 +462,6 @@
             this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
             this.signOutToolStripMenuItem.Size = new System.Drawing.Size(221, 38);
             this.signOutToolStripMenuItem.Text = "   Sign Out";
-            // 
-            // pbUserImage
-            // 
-            this.pbUserImage.BackColor = System.Drawing.Color.Transparent;
-            this.pbUserImage.FillColor = System.Drawing.Color.Transparent;
-            this.pbUserImage.ImageRotate = 0F;
-            this.pbUserImage.Location = new System.Drawing.Point(3, 784);
-            this.pbUserImage.Name = "pbUserImage";
-            this.pbUserImage.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.pbUserImage.Size = new System.Drawing.Size(64, 63);
-            this.pbUserImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbUserImage.TabIndex = 3;
-            this.pbUserImage.TabStop = false;
             // 
             // frmMainMenu
             // 
@@ -478,14 +478,13 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmMainMenu";
             this.panelTitleBar.ResumeLayout(false);
-            this.panelTitleBar.PerformLayout();
             this.panelMenu.ResumeLayout(false);
             this.panelMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbUserImage)).EndInit();
             this.panelLogo.ResumeLayout(false);
             this.panelLogo.PerformLayout();
-            this.cmsEditProfile.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbUserImage)).EndInit();
+            this.cmsEditProfile.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

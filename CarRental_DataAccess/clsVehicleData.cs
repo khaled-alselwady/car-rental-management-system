@@ -517,5 +517,38 @@ where VehicleID = @VehicleID";
 
             return dt;
         }
+
+        public static int GetVehiclesCount()
+        {
+            int Count = 0;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"select count(*) from VehicleDetails";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+
+                object result = command.ExecuteScalar();
+
+                if (result != null && int.TryParse(result.ToString(), out int Value))
+                {
+                    Count = Value;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return Count;
+        }
     }
 }

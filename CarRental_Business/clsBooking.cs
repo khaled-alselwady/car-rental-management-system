@@ -146,5 +146,10 @@ namespace CarRental_Business
         {
             return clsBookingData.GetAllRentalBooking();
         }
+
+        public static int GetBookingCount()
+        {
+            return clsBookingData.GetBookingCount();
+        }
     }
 }

@@ -142,5 +142,10 @@ namespace CarRental_Business
         {
             return clsTransactionData.GetAllRentalTransaction();
         }
+
+        public static int GetTransactionsCount()
+        {
+            return clsTransactionData.GetTransactionsCount();
+        }
     }
 }

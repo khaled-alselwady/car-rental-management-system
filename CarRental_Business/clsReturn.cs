@@ -130,5 +130,10 @@ namespace CarRental_Business
         {
             return clsReturnData.GetAllVehicleReturns();
         }
+
+        public static int GetReturnCount()
+        {
+            return clsReturnData.GetReturnCount();
+        }
     }
 }

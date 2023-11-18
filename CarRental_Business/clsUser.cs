@@ -170,5 +170,10 @@ namespace CarRental_Business
         {
             return clsUserData.GetAllUsers();
         }
+
+        public static int GetUsersCount()
+        {
+            return clsUserData.GetUsersCount();
+        }
     }
 }
