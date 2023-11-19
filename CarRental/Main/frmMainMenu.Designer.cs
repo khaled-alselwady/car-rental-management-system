@@ -429,7 +429,7 @@
             this.cmsEditProfile.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
             this.cmsEditProfile.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
             this.cmsEditProfile.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.cmsEditProfile.Size = new System.Drawing.Size(222, 124);
+            this.cmsEditProfile.Size = new System.Drawing.Size(222, 146);
             // 
             // toolStripMenuItem1
             // 
@@ -457,7 +457,7 @@
             // signOutToolStripMenuItem
             // 
             this.signOutToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
-            this.signOutToolStripMenuItem.Image = global::CarRental.Properties.Resources.sign_out32;
+            this.signOutToolStripMenuItem.Image = global::CarRental.Properties.Resources.Sign_Out_32;
             this.signOutToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
             this.signOutToolStripMenuItem.Size = new System.Drawing.Size(221, 38);

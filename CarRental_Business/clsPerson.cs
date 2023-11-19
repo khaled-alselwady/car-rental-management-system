@@ -13,16 +13,21 @@ namespace CarRental_Business
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
+        public enum enGender { Male = 0, Female = 1 };
+
         public int PersonID { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public byte Gender { get; set; }
+        public enGender Gender { get; set; }
         public int NationalityCountryID { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+
+        public string GenderName => (this.Gender == enGender.Male) ? "Male" : "Female";
+        public clsCountry CountryInfo { get; set; }
 
         public clsPerson()
         {
@@ -41,7 +46,7 @@ namespace CarRental_Business
         }
 
         private clsPerson(int PersonID, string Name, string Address, string Phone,
-            string Email, DateTime DateOfBirth, byte Gender, int NationalityCountryID,
+            string Email, DateTime DateOfBirth, enGender Gender, int NationalityCountryID,
             DateTime CreatedAt, DateTime UpdatedAt)
         {
             this.PersonID = PersonID;
@@ -54,6 +59,7 @@ namespace CarRental_Business
             this.NationalityCountryID = NationalityCountryID;
             this.CreatedAt = CreatedAt;
             this.UpdatedAt = UpdatedAt;
+            this.CountryInfo = clsCountry.Find(NationalityCountryID);
 
             Mode = enMode.Update;
         }
@@ -61,8 +67,7 @@ namespace CarRental_Business
         private bool _AddNewPerson()
         {
             this.PersonID = clsPersonData.AddNewPerson(this.Name, this.Address, this.Phone,
-                this.Email, this.DateOfBirth, this.Gender, this.NationalityCountryID,
-                this.CreatedAt, this.UpdatedAt);
+                this.Email, this.DateOfBirth, (byte)this.Gender, this.NationalityCountryID);
 
             return (this.PersonID != -1);
         }
@@ -70,8 +75,8 @@ namespace CarRental_Business
         private bool _UpdatePerson()
         {
             return clsPersonData.UpdatePerson(this.PersonID, this.Name, this.Address,
-                this.Phone, this.Email, this.DateOfBirth, this.Gender, this.NationalityCountryID,
-                this.CreatedAt, this.UpdatedAt);
+                this.Phone, this.Email, this.DateOfBirth, (byte)this.Gender, this.NationalityCountryID,
+                this.CreatedAt);
         }
 
         public bool Save()
@@ -109,13 +114,13 @@ namespace CarRental_Business
             DateTime UpdatedAt = DateTime.Now;
 
             bool IsFound = clsPersonData.GetPersonInfoByID(PersonID, ref Name, ref Address,
-                ref Phone, ref Email, ref DateOfBirth, ref Gender, ref NationalityCountryID, 
+                ref Phone, ref Email, ref DateOfBirth, ref Gender, ref NationalityCountryID,
                 ref CreatedAt, ref UpdatedAt);
 
             if (IsFound)
             {
                 return new clsPerson(PersonID, Name, Address, Phone, Email,
-                    DateOfBirth, Gender, NationalityCountryID, CreatedAt, UpdatedAt);
+                    DateOfBirth, (enGender)Gender, NationalityCountryID, CreatedAt, UpdatedAt);
             }
             else
             {

@@ -31,41 +31,7 @@ namespace CarRental_Business
 
             Mode = enMode.Update;
         }
-
-        private bool _AddNewCountry()
-        {
-            this.CountryID = clsCountryData.AddNewCountry(this.CountryName);
-
-            return (this.CountryID != -1);
-        }
-
-        private bool _UpdateCountry()
-        {
-            return clsCountryData.UpdateCountry(this.CountryID, this.CountryName);
-        }
-
-        public bool Save()
-        {
-            switch (Mode)
-            {
-                case enMode.AddNew:
-                    if (_AddNewCountry())
-                    {
-                        Mode = enMode.Update;
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-
-                case enMode.Update:
-                    return _UpdateCountry();
-            }
-
-            return false;
-        }
-
+       
         public static clsCountry Find(int CountryID)
         {
             string CountryName = string.Empty;
@@ -82,19 +48,30 @@ namespace CarRental_Business
             }
         }
 
-        public static bool DeleteCountry(int CountryID)
+        public static clsCountry Find(string CountryName)
         {
-            return clsCountryData.DeleteCountry(CountryID);
-        }
+            int CountryID = -1;
 
-        public static bool DoesCountryExist(int CountryID)
-        {
-            return clsCountryData.DoesCountryExist(CountryID);
-        }
+            bool IsFound = clsCountryData.GetCountryInfoByName(CountryName, ref CountryID);
 
+            if (IsFound)
+            {
+                return new clsCountry(CountryID, CountryName);
+            }
+            else
+            {
+                return null;
+            }
+        }
+      
         public static DataTable GetAllCountries()
         {
             return clsCountryData.GetAllCountries();
+        }
+
+        public static DataTable GetAllCountriesName()
+        {
+            return clsCountryData.GetAllCountriesName();
         }
 
     }

@@ -17,7 +17,7 @@ namespace CarRental_DataAccess
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"select * from Customer where CustomerID = @CustomerID";
+            string query = @"select * from Customers where CustomerID = @CustomerID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -64,7 +64,7 @@ namespace CarRental_DataAccess
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"insert into Customer (PersonID, DriverLicenseNumber)
+            string query = @"insert into Customers (PersonID, DriverLicenseNumber)
 values (@PersonID, @DriverLicenseNumber)
 select scope_identity()";
 
@@ -102,7 +102,7 @@ select scope_identity()";
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"Update Customer
+            string query = @"Update Customers
 set PersonID = @PersonID,
 DriverLicenseNumber = @DriverLicenseNumber
 where CustomerID = @CustomerID";
@@ -137,7 +137,7 @@ where CustomerID = @CustomerID";
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"delete Customer where CustomerID = @CustomerID";
+            string query = @"delete Customers where CustomerID = @CustomerID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -167,11 +167,43 @@ where CustomerID = @CustomerID";
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"select found = 1 from Customer where CustomerID = @CustomerID";
+            string query = @"select found = 1 from Customers where CustomerID = @CustomerID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@CustomerID", CustomerID);
+
+            try
+            {
+                connection.Open();
+
+                object result = command.ExecuteScalar();
+
+                IsFound = (result != null);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return IsFound;
+        }
+
+        public static bool DoesDriverLicenseNumberExist(string DriverLicenseNumber)
+        {
+            bool IsFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"select found = 1 from Customers where DriverLicenseNumber = @DriverLicenseNumber";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@DriverLicenseNumber", DriverLicenseNumber);
 
             try
             {
@@ -199,7 +231,7 @@ where CustomerID = @CustomerID";
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"select * from Customer";
+            string query = @"select * from CustomersDetails_View order by CustomerID desc;";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -259,6 +291,41 @@ where CustomerID = @CustomerID";
             }
 
             return Count;
+        }
+
+        public static int GetPersonIDByCustomerID(int CustomerID)
+        {
+            int PersonID = -1;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"select PersonID from Customers where CustomerID = @CustomerID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@CustomerID", CustomerID);
+
+            try
+            {
+                connection.Open();
+
+                object result = command.ExecuteScalar();
+
+                if (result != null && int.TryParse(result.ToString(), out int ID))
+                {
+                    PersonID = ID;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return PersonID;
         }
 
     }

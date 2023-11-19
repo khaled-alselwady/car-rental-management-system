@@ -65,17 +65,17 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static int AddNewPerson(string Name, string Address, string Phone, 
-            string Email, DateTime DateOfBirth, byte Gender, int NationalityCountryID,
-            DateTime CreatedAt, DateTime UpdatedAt)
+        public static int AddNewPerson(string Name, string Address, string Phone,
+            string Email, DateTime DateOfBirth, byte Gender, int NationalityCountryID)
+
         {
             // This function will return the new person id if succeeded and -1 if not
             int PersonID = -1;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"insert into People (Name, Address, Phone, Email, DateOfBirth, Gender, NationalityCountryID, CreatedAt, UpdatedAt)
-values (@Name, @Address, @Phone, @Email, @DateOfBirth, @Gender, @NationalityCountryID, @CreatedAt, @UpdatedAt)
+            string query = @"insert into People (Name, Address, Phone, Email, DateOfBirth, Gender, NationalityCountryID, CreatedAt)
+values (@Name, @Address, @Phone, @Email, @DateOfBirth, @Gender, @NationalityCountryID, @CreatedAt)
 select scope_identity()";
 
             SqlCommand command = new SqlCommand(query, connection);
@@ -87,15 +87,7 @@ select scope_identity()";
             command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
             command.Parameters.AddWithValue("@Gender", Gender);
             command.Parameters.AddWithValue("@NationalityCountryID", NationalityCountryID);
-            command.Parameters.AddWithValue("@CreatedAt", CreatedAt);
-            if (UpdatedAt == DateTime.Now)
-            {
-                command.Parameters.AddWithValue("@UpdatedAt", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@UpdatedAt", UpdatedAt);
-            }
+            command.Parameters.AddWithValue("@CreatedAt", DateTime.Now);
 
             try
             {
@@ -121,8 +113,8 @@ select scope_identity()";
         }
 
         public static bool UpdatePerson(int PersonID, string Name, string Address,
-            string Phone, string Email, DateTime DateOfBirth, byte Gender, 
-            int NationalityCountryID, DateTime CreatedAt, DateTime UpdatedAt)
+            string Phone, string Email, DateTime DateOfBirth, byte Gender,
+            int NationalityCountryID, DateTime CreatedAt)
         {
             int RowAffected = 0;
 
@@ -151,15 +143,8 @@ where PersonID = @PersonID";
             command.Parameters.AddWithValue("@Gender", Gender);
             command.Parameters.AddWithValue("@NationalityCountryID", NationalityCountryID);
             command.Parameters.AddWithValue("@CreatedAt", CreatedAt);
-            if (UpdatedAt == DateTime.Now)
-            {
-                command.Parameters.AddWithValue("@UpdatedAt", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@UpdatedAt", UpdatedAt);
-            }
-
+            command.Parameters.AddWithValue("@UpdatedAt", DateTime.Now);
+            
             try
             {
                 connection.Open();
