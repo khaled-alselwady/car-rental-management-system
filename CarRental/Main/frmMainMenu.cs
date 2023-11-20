@@ -23,9 +23,13 @@ namespace CarRental.Main
 
         private Form _ActiveForm;
 
-        public frmMainMenu()
+        private Form _frmLoginForm;
+
+        public frmMainMenu(Form frmLoginForm)
         {
             InitializeComponent();
+
+            this._frmLoginForm = frmLoginForm;
         }
 
         private void ActivateButton(object btnSender)
@@ -125,7 +129,9 @@ namespace CarRental.Main
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Form(), sender);
+            clsGlobal.CurrentUser = null;
+            _frmLoginForm.Show();
+            this.Close();
         }
 
         private void btnSubMenu_Click(object sender, EventArgs e)
@@ -162,19 +168,26 @@ namespace CarRental.Main
 
             OpenChildForm(new frmDashboard(), _CurrentButton);
 
-            //if (clsGlobal.CurrentUser.ImagePath != "")
-            //{
-            //    pbUserImage.ImageLocation = clsGlobal.CurrentUser.ImagePath;
-            //}
-            //else
-            //{
-            //    if (clsGlobal.CurrentUser.Gender == clsPerson.enGender.Male)
-            //        pbUserImage.Image = Resources.DefaultMale;
-            //    else
-            //        pbUserImage.Image = Resources.DefaultFemale;
-            //}
+            if (clsGlobal.CurrentUser.ImagePath != "")
+            {
+                pbUserImage.ImageLocation = clsGlobal.CurrentUser.ImagePath;
+            }
+            else
+            {
+                if (clsGlobal.CurrentUser.Gender == clsPerson.enGender.Male)
+                    pbUserImage.Image = Resources.DefaultMale;
+                else
+                    pbUserImage.Image = Resources.DefaultFemale;
+            }
 
-            //lblUsername.Text = clsGlobal.CurrentUser.Username;
-        }        
+            lblUsername.Text = clsGlobal.CurrentUser.Username;
+        }
+
+        private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clsGlobal.CurrentUser = null;
+            _frmLoginForm.Show();
+            this.Close();
+        }
     }
 }
