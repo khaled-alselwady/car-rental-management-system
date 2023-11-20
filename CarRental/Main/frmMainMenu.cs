@@ -1,5 +1,9 @@
 ﻿using CarRental.Customers;
 using CarRental.Dashboard;
+using CarRental.GlobalClasses;
+using CarRental.Properties;
+using CarRental.Users;
+using CarRental_Business;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
@@ -73,7 +77,7 @@ namespace CarRental.Main
             this.panelDesktop.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
-           
+
             if (childForm.Tag != null)
             {
                 lblTitle.Text = childForm.Tag.ToString();
@@ -96,7 +100,7 @@ namespace CarRental.Main
 
         private void btnUsers_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Form(), sender);
+            OpenChildForm(new frmListUsers(), sender);
         }
 
         private void btnVehicles_Click(object sender, EventArgs e)
@@ -134,5 +138,43 @@ namespace CarRental.Main
             // Show the context menu at the calculated location
             cmsEditProfile.Show(location);
         }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmShowUserDetails ShowUserDetails = new frmShowUserDetails(1, false);
+            ShowUserDetails.ShowDialog();
+        }
+
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmChangePassword ChangePassword = new frmChangePassword(1, false);
+            ChangePassword.ShowDialog();
+        }
+
+        private void frmMainMenu_Load(object sender, EventArgs e)
+        {
+            _CurrentButton = btnDashboard;
+
+            _CurrentButton.BackColor = Color.WhiteSmoke;
+            _CurrentButton.IconColor = Color.FromArgb(60, 60, 60);
+            _CurrentButton.ForeColor = Color.FromArgb(60, 60, 60);
+            _CurrentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+            OpenChildForm(new frmDashboard(), _CurrentButton);
+
+            //if (clsGlobal.CurrentUser.ImagePath != "")
+            //{
+            //    pbUserImage.ImageLocation = clsGlobal.CurrentUser.ImagePath;
+            //}
+            //else
+            //{
+            //    if (clsGlobal.CurrentUser.Gender == clsPerson.enGender.Male)
+            //        pbUserImage.Image = Resources.DefaultMale;
+            //    else
+            //        pbUserImage.Image = Resources.DefaultFemale;
+            //}
+
+            //lblUsername.Text = clsGlobal.CurrentUser.Username;
+        }        
     }
 }

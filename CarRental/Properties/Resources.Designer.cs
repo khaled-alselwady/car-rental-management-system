@@ -63,6 +63,16 @@ namespace CarRental.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap active_user {
+            get {
+                object obj = ResourceManager.GetObject("active-user", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Add_Person_40 {
             get {
                 object obj = ResourceManager.GetObject("Add Person 40", resourceCulture);
@@ -123,6 +133,16 @@ namespace CarRental.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap confirm_password {
+            get {
+                object obj = ResourceManager.GetObject("confirm-password", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Country_32 {
             get {
                 object obj = ResourceManager.GetObject("Country 32", resourceCulture);
@@ -146,6 +166,26 @@ namespace CarRental.Properties {
         internal static System.Drawing.Bitmap Customers {
             get {
                 object obj = ResourceManager.GetObject("Customers", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DefaultFemale {
+            get {
+                object obj = ResourceManager.GetObject("DefaultFemale", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DefaultMale {
+            get {
+                object obj = ResourceManager.GetObject("DefaultMale", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,6 +233,16 @@ namespace CarRental.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap inactive_user {
+            get {
+                object obj = ResourceManager.GetObject("inactive-user", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap IssueDrivingLicense_32 {
             get {
                 object obj = ResourceManager.GetObject("IssueDrivingLicense 32", resourceCulture);
@@ -233,6 +283,46 @@ namespace CarRental.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap password {
+            get {
+                object obj = ResourceManager.GetObject("password", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Password_32 {
+            get {
+                object obj = ResourceManager.GetObject("Password 32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap password_login {
+            get {
+                object obj = ResourceManager.GetObject("password-login", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap password1 {
+            get {
+                object obj = ResourceManager.GetObject("password1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap password32 {
             get {
                 object obj = ResourceManager.GetObject("password32", resourceCulture);
@@ -266,6 +356,16 @@ namespace CarRental.Properties {
         internal static System.Drawing.Bitmap Phone_32 {
             get {
                 object obj = ResourceManager.GetObject("Phone 32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Question_32 {
+            get {
+                object obj = ResourceManager.GetObject("Question 32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -333,9 +433,29 @@ namespace CarRental.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap username_login {
+            get {
+                object obj = ResourceManager.GetObject("username-login", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap users1 {
             get {
                 object obj = ResourceManager.GetObject("users1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap usersList {
+            get {
+                object obj = ResourceManager.GetObject("usersList", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

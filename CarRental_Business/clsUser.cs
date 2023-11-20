@@ -8,17 +8,29 @@ using System.Threading.Tasks;
 
 namespace CarRental_Business
 {
-    public class clsUser
+    public class clsUser : clsPerson
     {
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
+        public enum enPermissions
+        {
+            All = -1,
+            ManageCustomers = 1,
+            ManageUsers = 2,
+            ManageVehicles = 4,
+            ManageBooking = 8,
+            ManageReturn = 16,
+            ManageTransactions = 32
+        }
         public int UserID { get; set; }
-        public int PersonID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public int Permissions { get; set; }
         public string SecurityQuestion { get; set; }
         public string SecurityAnswer { get; set; }
+        public string ImagePath { get; set; }
+        public bool IsActive { get; set; }
 
         public clsUser()
         {
@@ -26,41 +38,70 @@ namespace CarRental_Business
             this.PersonID = -1;
             this.Username = string.Empty;
             this.Password = string.Empty;
+            this.Permissions = -1;
             this.SecurityQuestion = string.Empty;
             this.SecurityAnswer = string.Empty;
+            this.ImagePath = string.Empty;
+            this.IsActive = false;
 
             Mode = enMode.AddNew;
         }
 
-        private clsUser(int UserID, int PersonID, string Username, string Password, 
-            string SecurityQuestion, string SecurityAnswer)
+        private clsUser(int PersonID, string Name, string Address, string Phone,
+            string Email, DateTime DateOfBirth, enGender Gender, int NationalityCountryID,
+            DateTime CreatedAt, DateTime UpdatedAt, int UserID, string Username, string Password,
+            int Permissions, string SecurityQuestion, string SecurityAnswer,
+            string ImagePath, bool IsActive)
         {
+            base.PersonID = PersonID;
+            base.Name = Name;
+            base.Address = Address;
+            base.Phone = Phone;
+            base.Email = Email;
+            base.DateOfBirth = DateOfBirth;
+            base.Gender = Gender;
+            base.NationalityCountryID = NationalityCountryID;
+            base.CreatedAt = CreatedAt;
+            base.UpdatedAt = UpdatedAt;
+            base.CountryInfo = clsCountry.Find(NationalityCountryID);
+
             this.UserID = UserID;
-            this.PersonID = PersonID;
             this.Username = Username;
             this.Password = Password;
+            this.Permissions = Permissions;
             this.SecurityQuestion = SecurityQuestion;
             this.SecurityAnswer = SecurityAnswer;
+            this.ImagePath = ImagePath;
+            this.IsActive = IsActive;
 
             Mode = enMode.Update;
         }
 
         private bool _AddNewUser()
         {
-            this.UserID = clsUserData.AddNewUser(this.PersonID, this.Username,
-                this.Password, this.SecurityQuestion, this.SecurityAnswer);
+            this.UserID = clsUserData.AddNewUser(this.PersonID, this.Username, this.Password,
+                this.Permissions, this.SecurityQuestion, this.SecurityAnswer, this.ImagePath,
+                this.IsActive);
 
             return (this.UserID != -1);
         }
 
         private bool _UpdateUser()
         {
-            return clsUserData.UpdateUser(this.UserID, this.PersonID, this.Username,
-                this.Password, this.SecurityQuestion, this.SecurityAnswer);
+            return clsUserData.UpdateUser(this.UserID, this.PersonID, this.Username, this.Password,
+                this.Permissions, this.SecurityQuestion, this.SecurityAnswer, this.ImagePath,
+                this.IsActive);
         }
 
         public bool Save()
         {
+            base.Mode = (clsPerson.enMode)Mode;
+
+            if (!base.Save())
+            {
+                return false;
+            }
+
             switch (Mode)
             {
                 case enMode.AddNew:
@@ -81,21 +122,39 @@ namespace CarRental_Business
             return false;
         }
 
+        private static int _GetPersonIDByUserID(int UserID)
+        {
+            return clsUserData.GetPersonIDByUserID(UserID);
+        }
+
         public static clsUser Find(int UserID)
         {
             int PersonID = -1;
             string Username = string.Empty;
             string Password = string.Empty;
+            int Permissions = -1;
             string SecurityQuestion = string.Empty;
             string SecurityAnswer = string.Empty;
+            string ImagePath = string.Empty;
+            bool IsActive = false;
 
             bool IsFound = clsUserData.GetUserInfoByID(UserID, ref PersonID, ref Username,
-                ref Password, ref SecurityQuestion, ref SecurityAnswer);
+                ref Password, ref Permissions, ref SecurityQuestion, ref SecurityAnswer,
+                ref ImagePath, ref IsActive);
 
             if (IsFound)
             {
-                return new clsUser(UserID, PersonID, Username, Password, SecurityQuestion,
-                    SecurityAnswer);
+                clsPerson Person = clsPerson.Find(PersonID);
+
+                if (Person == null)
+                {
+                    return null;
+                }
+
+                return new clsUser(Person.PersonID, Person.Name, Person.Address, Person.Phone,
+                    Person.Email, Person.DateOfBirth, Person.Gender, Person.NationalityCountryID,
+                    Person.CreatedAt, Person.UpdatedAt, UserID, Username, Password, Permissions,
+                    SecurityQuestion, SecurityAnswer, ImagePath, IsActive);
             }
             else
             {
@@ -108,16 +167,29 @@ namespace CarRental_Business
             int UserID = -1;
             int PersonID = -1;
             string Password = string.Empty;
+            int Permissions = -1;
             string SecurityQuestion = string.Empty;
             string SecurityAnswer = string.Empty;
+            string ImagePath = string.Empty;
+            bool IsActive = false;
 
-            bool IsFound = clsUserData.GetUserInfoByUsername(ref UserID, ref PersonID,
-                Username, ref Password, ref SecurityQuestion, ref SecurityAnswer);
+            bool IsFound = clsUserData.GetUserInfoByUsername(ref UserID, ref PersonID, Username,
+                ref Password, ref Permissions, ref SecurityQuestion, ref SecurityAnswer,
+                ref ImagePath, ref IsActive);
 
             if (IsFound)
             {
-                return new clsUser(UserID, PersonID, Username, Password, SecurityQuestion,
-                    SecurityAnswer);
+                clsPerson Person = clsPerson.Find(PersonID);
+
+                if (Person == null)
+                {
+                    return null;
+                }
+
+                return new clsUser(Person.PersonID, Person.Name, Person.Address, Person.Phone,
+                    Person.Email, Person.DateOfBirth, Person.Gender, Person.NationalityCountryID,
+                    Person.CreatedAt, Person.UpdatedAt, UserID, Username, Password, Permissions,
+                    SecurityQuestion, SecurityAnswer, ImagePath, IsActive);
             }
             else
             {
@@ -129,16 +201,29 @@ namespace CarRental_Business
         {
             int UserID = -1;
             int PersonID = -1;
+            int Permissions = -1;
             string SecurityQuestion = string.Empty;
             string SecurityAnswer = string.Empty;
+            string ImagePath = string.Empty;
+            bool IsActive = false;
 
             bool IsFound = clsUserData.GetUserInfoByUsernameAndPassword(ref UserID, ref PersonID,
-                Username, Password, ref SecurityQuestion, ref SecurityAnswer);
+                Username, Password, ref Permissions, ref SecurityQuestion, ref SecurityAnswer,
+                ref ImagePath, ref IsActive);
 
             if (IsFound)
             {
-                return new clsUser(UserID, PersonID, Username, Password,
-                    SecurityQuestion, SecurityAnswer);
+                clsPerson Person = clsPerson.Find(PersonID);
+
+                if (Person == null)
+                {
+                    return null;
+                }
+
+                return new clsUser(Person.PersonID, Person.Name, Person.Address, Person.Phone,
+                    Person.Email, Person.DateOfBirth, Person.Gender, Person.NationalityCountryID,
+                    Person.CreatedAt, Person.UpdatedAt, UserID, Username, Password, Permissions,
+                    SecurityQuestion, SecurityAnswer, ImagePath, IsActive);
             }
             else
             {
@@ -148,7 +233,19 @@ namespace CarRental_Business
 
         public static bool DeleteUser(int UserID)
         {
-            return clsUserData.DeleteUser(UserID);
+            int PersonID = _GetPersonIDByUserID(UserID);
+
+            if (PersonID == -1)
+            {
+                return false;
+            }
+
+            if (clsUserData.DeleteUser(UserID))
+            {
+                return clsPerson.DeletePerson(PersonID);
+            }
+
+            return false;
         }
 
         public static bool DoesUserExist(int UserID)
@@ -174,6 +271,16 @@ namespace CarRental_Business
         public static int GetUsersCount()
         {
             return clsUserData.GetUsersCount();
+        }
+
+        public bool ChangePassword(string NewPassword)
+        {
+            return ChangePassword(this.UserID, NewPassword);
+        }
+
+        public static bool ChangePassword(int UserID, string NewPassword)
+        {
+            return clsUserData.ChangePassword(UserID, NewPassword);
         }
     }
 }

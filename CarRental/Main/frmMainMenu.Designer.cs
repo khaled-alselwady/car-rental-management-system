@@ -429,7 +429,7 @@
             this.cmsEditProfile.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
             this.cmsEditProfile.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
             this.cmsEditProfile.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.cmsEditProfile.Size = new System.Drawing.Size(222, 146);
+            this.cmsEditProfile.Size = new System.Drawing.Size(222, 124);
             // 
             // toolStripMenuItem1
             // 
@@ -439,6 +439,7 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(221, 38);
             this.toolStripMenuItem1.Text = "   Current User Info";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // changePasswordToolStripMenuItem
             // 
@@ -448,6 +449,7 @@
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
             this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(221, 38);
             this.changePasswordToolStripMenuItem.Text = "   Change Password";
+            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -477,6 +479,7 @@
             this.Name = "frmMainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmMainMenu";
+            this.Load += new System.EventHandler(this.frmMainMenu_Load);
             this.panelTitleBar.ResumeLayout(false);
             this.panelMenu.ResumeLayout(false);
             this.panelMenu.PerformLayout();

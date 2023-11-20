@@ -96,6 +96,8 @@
       <DependentUpon>frmDashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalClasses\clsFormat.cs" />
+    <Compile Include="GlobalClasses\clsGlobal.cs" />
+    <Compile Include="GlobalClasses\clsUtil.cs" />
     <Compile Include="GlobalClasses\clsValidation.cs" />
     <Compile Include="Main\frmMainMenu.cs">
       <SubType>Form</SubType>
@@ -111,6 +113,36 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Users\frmAddEditUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\frmAddEditUser.Designer.cs">
+      <DependentUpon>frmAddEditUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\frmChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\frmChangePassword.Designer.cs">
+      <DependentUpon>frmChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\frmListUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\frmListUsers.Designer.cs">
+      <DependentUpon>frmListUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\frmShowUserDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\frmShowUserDetails.Designer.cs">
+      <DependentUpon>frmShowUserDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\UserControls\ucUserCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Users\UserControls\ucUserCard.Designer.cs">
+      <DependentUpon>ucUserCard.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Customers\frmAddEditCustomer.resx">
       <DependentUpon>frmAddEditCustomer.cs</DependentUpon>
     </EmbeddedResource>
@@ -139,6 +171,21 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\frmAddEditUser.resx">
+      <DependentUpon>frmAddEditUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\frmChangePassword.resx">
+      <DependentUpon>frmChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\frmListUsers.resx">
+      <DependentUpon>frmListUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\frmShowUserDetails.resx">
+      <DependentUpon>frmShowUserDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\UserControls\ucUserCard.resx">
+      <DependentUpon>ucUserCard.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -251,6 +298,42 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\customerList.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\username-login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Question 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\active-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inactive-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DefaultMale.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DefaultFemale.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\confirm-password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\password1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Password 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\password-login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\usersList.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
