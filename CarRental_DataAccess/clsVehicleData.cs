@@ -11,16 +11,16 @@ namespace CarRental_DataAccess
     public class clsVehicleData
     {
         public static bool GetVehicleInfoByID(int VehicleID, ref int MakeID, ref int ModelID,
-            ref int SubModelID, ref int BodyID, ref string Vehicle_Display_Name, ref short Year,
-            ref int DriveTypeID, ref string Engine, ref short Engine_CC, ref byte Engine_Cylinders,
-            ref decimal Engine_Liter_Display, ref int FuelTypeID, ref byte NumDoors,
-            ref int Mileage, ref bool IsAvailableForRent, ref decimal RentalPricePerDay)
+            ref int SubModelID, ref int BodyID, ref string VehicleName, ref string PlateNumber,
+            ref short Year, ref int DriveTypeID, ref string Engine, ref int FuelTypeID,
+            ref byte NumberDoors, ref int Mileage, ref decimal RentalPricePerDay,
+            ref bool IsAvailableForRent)
         {
             bool IsFound = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"select * from VehicleDetails where VehicleID = @VehicleID";
+            string query = @"select * from Vehicles where VehicleID = @VehicleID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -37,22 +37,20 @@ namespace CarRental_DataAccess
                     // The record was found
                     IsFound = true;
 
-                    MakeID = (reader["MakeID"] != DBNull.Value) ? (int)reader["MakeID"] : 0;
-                    ModelID = (reader["ModelID"] != DBNull.Value) ? (int)reader["ModelID"] : 0;
-                    SubModelID = (reader["SubModelID"] != DBNull.Value) ? (int)reader["SubModelID"] : 0;
-                    BodyID = (reader["BodyID"] != DBNull.Value) ? (int)reader["BodyID"] : 0;
-                    Vehicle_Display_Name = (reader["Vehicle_Display_Name"] != DBNull.Value) ? (string)reader["Vehicle_Display_Name"] : string.Empty;
-                    Year = (reader["Year"] != DBNull.Value) ? (short)reader["Year"] : (short)0;
-                    DriveTypeID = (reader["DriveTypeID"] != DBNull.Value) ? (int)reader["DriveTypeID"] : 0;
-                    Engine = (reader["Engine"] != DBNull.Value) ? (string)reader["Engine"] : string.Empty;
-                    Engine_CC = (reader["Engine_CC"] != DBNull.Value) ? (short)reader["Engine_CC"] : (short)0;
-                    Engine_Cylinders = (reader["Engine_Cylinders"] != DBNull.Value) ? (byte)reader["Engine_Cylinders"] : (byte)0;
-                    Engine_Liter_Display = (reader["Engine_Liter_Display"] != DBNull.Value) ? (decimal)reader["Engine_Liter_Display"] : 0M;
-                    FuelTypeID = (reader["FuelTypeID"] != DBNull.Value) ? (int)reader["FuelTypeID"] : 0;
-                    NumDoors = (reader["NumDoors"] != DBNull.Value) ? (byte)reader["NumDoors"] : (byte)0;
-                    Mileage = (reader["Mileage"] != DBNull.Value) ? (int)reader["Mileage"] : 0;
-                    IsAvailableForRent = (reader["IsAvailableForRent"] != DBNull.Value) ? (bool)reader["IsAvailableForRent"] : false;
-                    RentalPricePerDay = (reader["RentalPricePerDay"] != DBNull.Value) ? (decimal)reader["RentalPricePerDay"] : 0M;
+                    MakeID = (int)reader["MakeID"];
+                    ModelID = (int)reader["ModelID"];
+                    SubModelID = (int)reader["SubModelID"];
+                    BodyID = (int)reader["BodyID"];
+                    VehicleName = (string)reader["VehicleName"];
+                    PlateNumber = (string)reader["PlateNumber"];
+                    Year = (short)reader["Year"];
+                    DriveTypeID = (int)reader["DriveTypeID"];
+                    Engine = (string)reader["Engine"];
+                    FuelTypeID = (int)reader["FuelTypeID"];
+                    NumberDoors = (byte)reader["NumberDoors"];
+                    Mileage = (int)reader["Mileage"];
+                    RentalPricePerDay = (decimal)reader["RentalPricePerDay"];
+                    IsAvailableForRent = (bool)reader["IsAvailableForRent"];
                 }
                 else
                 {
@@ -74,151 +72,36 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static int AddNewVehicle(int MakeID, int ModelID, int SubModelID, int BodyID, 
-            string Vehicle_Display_Name, short Year, int DriveTypeID, string Engine,
-            short Engine_CC, byte Engine_Cylinders, decimal Engine_Liter_Display, 
-            int FuelTypeID, byte NumDoors, int Mileage, bool IsAvailableForRent, 
-            decimal RentalPricePerDay)
+        public static int AddNewVehicle(int MakeID, int ModelID, int SubModelID, int BodyID,
+            string VehicleName, string PlateNumber, short Year, int DriveTypeID, string Engine,
+            int FuelTypeID, byte NumberDoors, int Mileage, decimal RentalPricePerDay,
+            bool IsAvailableForRent)
         {
             // This function will return the new person id if succeeded and -1 if not
             int VehicleID = -1;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"insert into VehicleDetails (MakeID, ModelID, SubModelID, BodyID, Vehicle_Display_Name, Year, DriveTypeID, Engine, Engine_CC, Engine_Cylinders, Engine_Liter_Display, FuelTypeID, NumDoors, Mileage, IsAvailableForRent, RentalPricePerDay)
-values (@MakeID, @ModelID, @SubModelID, @BodyID, @Vehicle_Display_Name, @Year, @DriveTypeID, @Engine, @Engine_CC, @Engine_Cylinders, @Engine_Liter_Display, @FuelTypeID, @NumDoors, @Mileage, @IsAvailableForRent, @RentalPricePerDay)
+            string query = @"insert into Vehicles (MakeID, ModelID, SubModelID, BodyID, VehicleName, PlateNumber, Year, DriveTypeID, Engine, FuelTypeID, NumberDoors, Mileage, RentalPricePerDay, IsAvailableForRent)
+values (@MakeID, @ModelID, @SubModelID, @BodyID, @VehicleName, @PlateNumber, @Year, @DriveTypeID, @Engine, @FuelTypeID, @NumberDoors, @Mileage, @RentalPricePerDay, @IsAvailableForRent)
 select scope_identity()";
 
             SqlCommand command = new SqlCommand(query, connection);
 
-            if (MakeID <= 0)
-            {
-                command.Parameters.AddWithValue("@MakeID", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@MakeID", MakeID);
-            }
-            if (ModelID <= 0)
-            {
-                command.Parameters.AddWithValue("@ModelID", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@ModelID", ModelID);
-            }
-            if (SubModelID <= 0)
-            {
-                command.Parameters.AddWithValue("@SubModelID", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@SubModelID", SubModelID);
-            }
-            if (BodyID <= 0)
-            {
-                command.Parameters.AddWithValue("@BodyID", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@BodyID", BodyID);
-            }
-            if (string.IsNullOrWhiteSpace(Vehicle_Display_Name))
-            {
-                command.Parameters.AddWithValue("@Vehicle_Display_Name", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@Vehicle_Display_Name", Vehicle_Display_Name);
-            }
-            if (Year <= 0)
-            {
-                command.Parameters.AddWithValue("@Year", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@Year", Year);
-            }
-            if (DriveTypeID <= 0)
-            {
-                command.Parameters.AddWithValue("@DriveTypeID", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@DriveTypeID", DriveTypeID);
-            }
-            if (string.IsNullOrWhiteSpace(Engine))
-            {
-                command.Parameters.AddWithValue("@Engine", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@Engine", Engine);
-            }
-            if (Engine_CC <= 0)
-            {
-                command.Parameters.AddWithValue("@Engine_CC", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@Engine_CC", Engine_CC);
-            }
-            if (Engine_Cylinders <= 0)
-            {
-                command.Parameters.AddWithValue("@Engine_Cylinders", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@Engine_Cylinders", Engine_Cylinders);
-            }
-            if (Engine_Liter_Display <= 0)
-            {
-                command.Parameters.AddWithValue("@Engine_Liter_Display", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@Engine_Liter_Display", Engine_Liter_Display);
-            }
-            if (FuelTypeID <= 0)
-            {
-                command.Parameters.AddWithValue("@FuelTypeID", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@FuelTypeID", FuelTypeID);
-            }
-            if (NumDoors <= 0)
-            {
-                command.Parameters.AddWithValue("@NumDoors", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@NumDoors", NumDoors);
-            }
-            if (Mileage <= 0)
-            {
-                command.Parameters.AddWithValue("@Mileage", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@Mileage", Mileage);
-            }
-            if (!IsAvailableForRent)
-            {
-                command.Parameters.AddWithValue("@IsAvailableForRent", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@IsAvailableForRent", IsAvailableForRent);
-            }
-            if (RentalPricePerDay <= 0)
-            {
-                command.Parameters.AddWithValue("@RentalPricePerDay", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@RentalPricePerDay", RentalPricePerDay);
-            }
+            command.Parameters.AddWithValue("@MakeID", MakeID);
+            command.Parameters.AddWithValue("@ModelID", ModelID);
+            command.Parameters.AddWithValue("@SubModelID", SubModelID);
+            command.Parameters.AddWithValue("@BodyID", BodyID);
+            command.Parameters.AddWithValue("@VehicleName", VehicleName);
+            command.Parameters.AddWithValue("@PlateNumber", PlateNumber);
+            command.Parameters.AddWithValue("@Year", Year);
+            command.Parameters.AddWithValue("@DriveTypeID", DriveTypeID);
+            command.Parameters.AddWithValue("@Engine", Engine);
+            command.Parameters.AddWithValue("@FuelTypeID", FuelTypeID);
+            command.Parameters.AddWithValue("@NumberDoors", NumberDoors);
+            command.Parameters.AddWithValue("@Mileage", Mileage);
+            command.Parameters.AddWithValue("@RentalPricePerDay", RentalPricePerDay);
+            command.Parameters.AddWithValue("@IsAvailableForRent", IsAvailableForRent);
 
             try
             {
@@ -244,164 +127,48 @@ select scope_identity()";
         }
 
         public static bool UpdateVehicle(int VehicleID, int MakeID, int ModelID, int SubModelID,
-            int BodyID, string Vehicle_Display_Name, short Year, int DriveTypeID, string Engine,
-            short Engine_CC, byte Engine_Cylinders, decimal Engine_Liter_Display, int FuelTypeID,
-            byte NumDoors, int Mileage, bool IsAvailableForRent, decimal RentalPricePerDay)
+            int BodyID, string VehicleName, string PlateNumber, short Year, int DriveTypeID,
+            string Engine, int FuelTypeID, byte NumberDoors, int Mileage, decimal RentalPricePerDay, 
+            bool IsAvailableForRent)
         {
             int RowAffected = 0;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"Update VehicleDetails
+            string query = @"Update Vehicles
 set MakeID = @MakeID,
 ModelID = @ModelID,
 SubModelID = @SubModelID,
 BodyID = @BodyID,
-Vehicle_Display_Name = @Vehicle_Display_Name,
+VehicleName = @VehicleName,
+PlateNumber = @PlateNumber,
 Year = @Year,
 DriveTypeID = @DriveTypeID,
 Engine = @Engine,
-Engine_CC = @Engine_CC,
-Engine_Cylinders = @Engine_Cylinders,
-Engine_Liter_Display = @Engine_Liter_Display,
 FuelTypeID = @FuelTypeID,
-NumDoors = @NumDoors,
+NumberDoors = @NumberDoors,
 Mileage = @Mileage,
-IsAvailableForRent = @IsAvailableForRent,
-RentalPricePerDay = @RentalPricePerDay
+RentalPricePerDay = @RentalPricePerDay,
+IsAvailableForRent = @IsAvailableForRent
 where VehicleID = @VehicleID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@VehicleID", VehicleID);
-            if (MakeID <= 0)
-            {
-                command.Parameters.AddWithValue("@MakeID", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@MakeID", MakeID);
-            }
-            if (ModelID <= 0)
-            {
-                command.Parameters.AddWithValue("@ModelID", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@ModelID", ModelID);
-            }
-            if (SubModelID <= 0)
-            {
-                command.Parameters.AddWithValue("@SubModelID", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@SubModelID", SubModelID);
-            }
-            if (BodyID <= 0)
-            {
-                command.Parameters.AddWithValue("@BodyID", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@BodyID", BodyID);
-            }
-            if (string.IsNullOrWhiteSpace(Vehicle_Display_Name))
-            {
-                command.Parameters.AddWithValue("@Vehicle_Display_Name", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@Vehicle_Display_Name", Vehicle_Display_Name);
-            }
-            if (Year <= 0)
-            {
-                command.Parameters.AddWithValue("@Year", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@Year", Year);
-            }
-            if (DriveTypeID <= 0)
-            {
-                command.Parameters.AddWithValue("@DriveTypeID", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@DriveTypeID", DriveTypeID);
-            }
-            if (string.IsNullOrWhiteSpace(Engine))
-            {
-                command.Parameters.AddWithValue("@Engine", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@Engine", Engine);
-            }
-            if (Engine_CC <= 0)
-            {
-                command.Parameters.AddWithValue("@Engine_CC", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@Engine_CC", Engine_CC);
-            }
-            if (Engine_Cylinders <= 0)
-            {
-                command.Parameters.AddWithValue("@Engine_Cylinders", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@Engine_Cylinders", Engine_Cylinders);
-            }
-            if (Engine_Liter_Display <= 0)
-            {
-                command.Parameters.AddWithValue("@Engine_Liter_Display", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@Engine_Liter_Display", Engine_Liter_Display);
-            }
-            if (FuelTypeID <= 0)
-            {
-                command.Parameters.AddWithValue("@FuelTypeID", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@FuelTypeID", FuelTypeID);
-            }
-            if (NumDoors <= 0)
-            {
-                command.Parameters.AddWithValue("@NumDoors", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@NumDoors", NumDoors);
-            }
-            if (Mileage <= 0)
-            {
-                command.Parameters.AddWithValue("@Mileage", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@Mileage", Mileage);
-            }
-            if (!IsAvailableForRent)
-            {
-                command.Parameters.AddWithValue("@IsAvailableForRent", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@IsAvailableForRent", IsAvailableForRent);
-            }
-            if (RentalPricePerDay <= 0)
-            {
-                command.Parameters.AddWithValue("@RentalPricePerDay", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@RentalPricePerDay", RentalPricePerDay);
-            }
+            command.Parameters.AddWithValue("@MakeID", MakeID);
+            command.Parameters.AddWithValue("@ModelID", ModelID);
+            command.Parameters.AddWithValue("@SubModelID", SubModelID);
+            command.Parameters.AddWithValue("@BodyID", BodyID);
+            command.Parameters.AddWithValue("@VehicleName", VehicleName);
+            command.Parameters.AddWithValue("@PlateNumber", PlateNumber);
+            command.Parameters.AddWithValue("@Year", Year);
+            command.Parameters.AddWithValue("@DriveTypeID", DriveTypeID);
+            command.Parameters.AddWithValue("@Engine", Engine);
+            command.Parameters.AddWithValue("@FuelTypeID", FuelTypeID);
+            command.Parameters.AddWithValue("@NumberDoors", NumberDoors);
+            command.Parameters.AddWithValue("@Mileage", Mileage);
+            command.Parameters.AddWithValue("@RentalPricePerDay", RentalPricePerDay);
+            command.Parameters.AddWithValue("@IsAvailableForRent", IsAvailableForRent);
 
             try
             {
@@ -427,7 +194,7 @@ where VehicleID = @VehicleID";
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"delete VehicleDetails where VehicleID = @VehicleID";
+            string query = @"delete Vehicles where VehicleID = @VehicleID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -457,7 +224,7 @@ where VehicleID = @VehicleID";
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"select found = 1 from VehicleDetails where VehicleID = @VehicleID";
+            string query = @"select found = 1 from Vehicles where VehicleID = @VehicleID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -483,13 +250,13 @@ where VehicleID = @VehicleID";
             return IsFound;
         }
 
-        public static DataTable GetAllVehicleDetails()
+        public static DataTable GetAllVehicles()
         {
             DataTable dt = new DataTable();
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"select * from VehicleDetails";
+            string query = @"select * from Vehicles";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -524,7 +291,7 @@ where VehicleID = @VehicleID";
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"select count(*) from VehicleDetails";
+            string query = @"select count(*) from Vehicles";
 
             SqlCommand command = new SqlCommand(query, connection);
 

@@ -18,18 +18,16 @@ namespace CarRental_Business
         public int ModelID { get; set; }
         public int SubModelID { get; set; }
         public int BodyID { get; set; }
-        public string Vehicle_Display_Name { get; set; }
+        public string VehicleName { get; set; }
+        public string PlateNumber { get; set; }
         public short Year { get; set; }
         public int DriveTypeID { get; set; }
         public string Engine { get; set; }
-        public short Engine_CC { get; set; }
-        public byte Engine_Cylinders { get; set; }
-        public decimal Engine_Liter_Display { get; set; }
         public int FuelTypeID { get; set; }
-        public byte NumDoors { get; set; }
+        public byte NumberDoors { get; set; }
         public int Mileage { get; set; }
-        public bool IsAvailableForRent { get; set; }
         public decimal RentalPricePerDay { get; set; }
+        public bool IsAvailableForRent { get; set; }
 
         public clsVehicle()
         {
@@ -38,45 +36,40 @@ namespace CarRental_Business
             this.ModelID = -1;
             this.SubModelID = -1;
             this.BodyID = -1;
-            this.Vehicle_Display_Name = string.Empty;
+            this.VehicleName = string.Empty;
+            this.PlateNumber = string.Empty;
             this.Year = -1;
             this.DriveTypeID = -1;
             this.Engine = string.Empty;
-            this.Engine_CC = -1;
-            this.Engine_Cylinders = 0;
-            this.Engine_Liter_Display = -1M;
             this.FuelTypeID = -1;
-            this.NumDoors = 0;
+            this.NumberDoors = 0;
             this.Mileage = -1;
-            this.IsAvailableForRent = false;
             this.RentalPricePerDay = -1M;
+            this.IsAvailableForRent = false;
 
             Mode = enMode.AddNew;
         }
 
         private clsVehicle(int VehicleID, int MakeID, int ModelID, int SubModelID, int BodyID,
-            string Vehicle_Display_Name, short Year, int DriveTypeID, string Engine,
-            short Engine_CC, byte Engine_Cylinders, decimal Engine_Liter_Display,
-            int FuelTypeID, byte NumDoors, int Mileage, bool IsAvailableForRent, 
-            decimal RentalPricePerDay)
+            string VehicleName, string PlateNumber, short Year, int DriveTypeID, string Engine,
+            int FuelTypeID, byte NumberDoors, int Mileage, decimal RentalPricePerDay,
+            bool IsAvailableForRent)
         {
             this.VehicleID = VehicleID;
             this.MakeID = MakeID;
             this.ModelID = ModelID;
             this.SubModelID = SubModelID;
             this.BodyID = BodyID;
-            this.Vehicle_Display_Name = Vehicle_Display_Name;
+            this.VehicleName = VehicleName;
+            this.PlateNumber = PlateNumber;
             this.Year = Year;
             this.DriveTypeID = DriveTypeID;
             this.Engine = Engine;
-            this.Engine_CC = Engine_CC;
-            this.Engine_Cylinders = Engine_Cylinders;
-            this.Engine_Liter_Display = Engine_Liter_Display;
             this.FuelTypeID = FuelTypeID;
-            this.NumDoors = NumDoors;
+            this.NumberDoors = NumberDoors;
             this.Mileage = Mileage;
-            this.IsAvailableForRent = IsAvailableForRent;
             this.RentalPricePerDay = RentalPricePerDay;
+            this.IsAvailableForRent = IsAvailableForRent;
 
             Mode = enMode.Update;
         }
@@ -84,20 +77,19 @@ namespace CarRental_Business
         private bool _AddNewVehicle()
         {
             this.VehicleID = clsVehicleData.AddNewVehicle(this.MakeID, this.ModelID, this.SubModelID,
-                this.BodyID, this.Vehicle_Display_Name, this.Year, this.DriveTypeID, this.Engine,
-                this.Engine_CC, this.Engine_Cylinders, this.Engine_Liter_Display, this.FuelTypeID,
-                this.NumDoors, this.Mileage, this.IsAvailableForRent, this.RentalPricePerDay);
+                this.BodyID, this.VehicleName, this.PlateNumber, this.Year, this.DriveTypeID,
+                this.Engine, this.FuelTypeID, this.NumberDoors, this.Mileage, this.RentalPricePerDay,
+                this.IsAvailableForRent);
 
             return (this.VehicleID != -1);
         }
 
         private bool _UpdateVehicle()
         {
-            return clsVehicleData.UpdateVehicle(this.VehicleID, this.MakeID, this.ModelID, 
-                this.SubModelID, this.BodyID, this.Vehicle_Display_Name, this.Year, this.DriveTypeID,
-                this.Engine, this.Engine_CC, this.Engine_Cylinders, this.Engine_Liter_Display,
-                this.FuelTypeID, this.NumDoors, this.Mileage, this.IsAvailableForRent,
-                this.RentalPricePerDay);
+            return clsVehicleData.UpdateVehicle(this.VehicleID, this.MakeID, this.ModelID,
+                this.SubModelID, this.BodyID, this.VehicleName, this.PlateNumber, this.Year, 
+                this.DriveTypeID, this.Engine, this.FuelTypeID, this.NumberDoors, this.Mileage,
+                this.RentalPricePerDay, this.IsAvailableForRent);
         }
 
         public bool Save()
@@ -128,31 +120,27 @@ namespace CarRental_Business
             int ModelID = -1;
             int SubModelID = -1;
             int BodyID = -1;
-            string Vehicle_Display_Name = string.Empty;
+            string VehicleName = string.Empty;
+            string PlateNumber = string.Empty;
             short Year = -1;
             int DriveTypeID = -1;
             string Engine = string.Empty;
-            short Engine_CC = -1;
-            byte Engine_Cylinders = 0;
-            decimal Engine_Liter_Display = -1M;
             int FuelTypeID = -1;
-            byte NumDoors = 0;
+            byte NumberDoors = 0;
             int Mileage = -1;
-            bool IsAvailableForRent = false;
             decimal RentalPricePerDay = -1M;
+            bool IsAvailableForRent = false;
 
             bool IsFound = clsVehicleData.GetVehicleInfoByID(VehicleID, ref MakeID, ref ModelID,
-                ref SubModelID, ref BodyID, ref Vehicle_Display_Name, ref Year, ref DriveTypeID,
-                ref Engine, ref Engine_CC, ref Engine_Cylinders, ref Engine_Liter_Display,
-                ref FuelTypeID, ref NumDoors, ref Mileage, ref IsAvailableForRent, 
-                ref RentalPricePerDay);
+                ref SubModelID, ref BodyID, ref VehicleName, ref PlateNumber, ref Year,
+                ref DriveTypeID, ref Engine, ref FuelTypeID, ref NumberDoors, ref Mileage,
+                ref RentalPricePerDay, ref IsAvailableForRent);
 
             if (IsFound)
             {
-                return new clsVehicle(VehicleID, MakeID, ModelID, SubModelID, BodyID, 
-                    Vehicle_Display_Name, Year, DriveTypeID, Engine, Engine_CC,
-                    Engine_Cylinders, Engine_Liter_Display, FuelTypeID, NumDoors,
-                    Mileage, IsAvailableForRent, RentalPricePerDay);
+                return new clsVehicle(VehicleID, MakeID, ModelID, SubModelID, BodyID, VehicleName,
+                    PlateNumber, Year, DriveTypeID, Engine, FuelTypeID, NumberDoors, Mileage,
+                    RentalPricePerDay, IsAvailableForRent);
             }
             else
             {
@@ -170,9 +158,9 @@ namespace CarRental_Business
             return clsVehicleData.DoesVehicleExist(VehicleID);
         }
 
-        public static DataTable GetAllVehicleDetails()
+        public static DataTable GetAllVehicles()
         {
-            return clsVehicleData.GetAllVehicleDetails();
+            return clsVehicleData.GetAllVehicles();
         }
 
         public static int GetVehiclesCount()
