@@ -55,6 +55,51 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
+        public static bool GetFuelTypeInfoByName(string FuelTypeName, ref int FuelTypeID)
+        {
+            bool IsFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"select * from FuelTypes where FuelTypeName = @FuelTypeName";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@FuelTypeName", FuelTypeName);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    // The record was found
+                    IsFound = true;
+
+                    FuelTypeID = (int)reader["FuelTypeID"];
+                }
+                else
+                {
+                    // The record was not found
+                    IsFound = false;
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return IsFound;
+        }
+
         public static int AddNewFuelType(string FuelTypeName)
         {
             // This function will return the new person id if succeeded and -1 if not
@@ -195,6 +240,41 @@ where FuelTypeID = @FuelTypeID";
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
             string query = @"select * from FuelTypes";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dt;
+        }
+
+        public static DataTable GetAllFuelTypesName()
+        {
+            DataTable dt = new DataTable();
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"select distinct FuelTypeName from FuelTypes order by FuelTypeName";
 
             SqlCommand command = new SqlCommand(query, connection);
 

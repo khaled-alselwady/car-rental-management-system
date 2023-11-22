@@ -121,13 +121,15 @@ namespace CarRental.Customers.UserControls
             if (OnCustomerSelected != null)
             {
                 // Raise the event with a parameter
-                RaiseOnCustomerSelected(CustomerID);
+                RaiseOnCustomerSelected(ucCustomerCard1.CustomerID);
             }
         }
 
         private void btnAddNew_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This feature is not implemented yet!");
+            frmAddEditCustomer AddNewCustomer = new frmAddEditCustomer();
+            AddNewCustomer.GetCustomerIDByDelegate += LoadCustomerInfo;
+            AddNewCustomer.ShowDialog();
         }
 
         public void FilterFocus()

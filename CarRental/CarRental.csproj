@@ -149,6 +149,54 @@
     <Compile Include="Users\UserControls\ucUserCard.Designer.cs">
       <DependentUpon>ucUserCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vehicles\frmAddEditVehicle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vehicles\frmAddEditVehicle.Designer.cs">
+      <DependentUpon>frmAddEditVehicle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vehicles\frmListVehicles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vehicles\frmListVehicles.Designer.cs">
+      <DependentUpon>frmListVehicles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vehicles\frmShowVehicleDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vehicles\frmShowVehicleDetails.Designer.cs">
+      <DependentUpon>frmShowVehicleDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vehicles\frmShowVehicleMaintenanceHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vehicles\frmShowVehicleMaintenanceHistory.Designer.cs">
+      <DependentUpon>frmShowVehicleMaintenanceHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vehicles\frmVehicleMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vehicles\frmVehicleMaintenance.Designer.cs">
+      <DependentUpon>frmVehicleMaintenance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vehicles\UserControls\ucShowVehicleHistory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vehicles\UserControls\ucShowVehicleHistory.Designer.cs">
+      <DependentUpon>ucShowVehicleHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vehicles\UserControls\ucVehicleCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vehicles\UserControls\ucVehicleCard.Designer.cs">
+      <DependentUpon>ucVehicleCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vehicles\UserControls\ucVehicleCardWithFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vehicles\UserControls\ucVehicleCardWithFilter.Designer.cs">
+      <DependentUpon>ucVehicleCardWithFilter.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Customers\frmAddEditCustomer.resx">
       <DependentUpon>frmAddEditCustomer.cs</DependentUpon>
     </EmbeddedResource>
@@ -195,6 +243,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Users\UserControls\ucUserCard.resx">
       <DependentUpon>ucUserCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vehicles\frmAddEditVehicle.resx">
+      <DependentUpon>frmAddEditVehicle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vehicles\frmListVehicles.resx">
+      <DependentUpon>frmListVehicles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vehicles\frmShowVehicleDetails.resx">
+      <DependentUpon>frmShowVehicleDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vehicles\frmShowVehicleMaintenanceHistory.resx">
+      <DependentUpon>frmShowVehicleMaintenanceHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vehicles\frmVehicleMaintenance.resx">
+      <DependentUpon>frmVehicleMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vehicles\UserControls\ucShowVehicleHistory.resx">
+      <DependentUpon>ucShowVehicleHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vehicles\UserControls\ucVehicleCard.resx">
+      <DependentUpon>ucVehicleCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vehicles\UserControls\ucVehicleCardWithFilter.resx">
+      <DependentUpon>ucVehicleCardWithFilter.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -346,6 +418,93 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\car-rent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\car-name32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maintenance.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\car-name321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\car-driver-type32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\car-fuel-type32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\car-engine32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rental-price-per-day32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\car-door.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plate-number32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mileage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\year32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sub-model.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\model.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\body.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\available-car32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unavailable-car32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search-car48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search-car32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-car32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vehilcesList.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-car40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vehicle-details32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\car-Edit32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\car-delete32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Application Types 512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maintenance48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maintenance-vehicle48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maintenance-vehicle32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

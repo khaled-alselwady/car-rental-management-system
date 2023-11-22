@@ -3,6 +3,7 @@ using CarRental.Dashboard;
 using CarRental.GlobalClasses;
 using CarRental.Properties;
 using CarRental.Users;
+using CarRental.Vehicles;
 using CarRental_Business;
 using FontAwesome.Sharp;
 using System;
@@ -109,7 +110,7 @@ namespace CarRental.Main
 
         private void btnVehicles_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Form(), sender);
+            OpenChildForm(new frmListVehicles(), sender);
         }
 
         private void btnBooking_Click(object sender, EventArgs e)
@@ -147,13 +148,13 @@ namespace CarRental.Main
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmShowUserDetails ShowUserDetails = new frmShowUserDetails(1, false);
+            frmShowUserDetails ShowUserDetails = new frmShowUserDetails(clsGlobal.CurrentUser.UserID, false);
             ShowUserDetails.ShowDialog();
         }
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmChangePassword ChangePassword = new frmChangePassword(1, false);
+            frmChangePassword ChangePassword = new frmChangePassword(clsGlobal.CurrentUser.UserID, false);
             ChangePassword.ShowDialog();
         }
 

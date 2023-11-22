@@ -17,7 +17,9 @@ namespace CarRental_Business
         public int VehicleID { get; set; }
         public string Description { get; set; }
         public DateTime MaintenanceDate { get; set; }
-        public decimal Cost { get; set; }
+        public float Cost { get; set; }
+
+        public clsVehicle VehicleInfo { get; set; }
 
         public clsMaintenance()
         {
@@ -25,19 +27,21 @@ namespace CarRental_Business
             this.VehicleID = -1;
             this.Description = string.Empty;
             this.MaintenanceDate = DateTime.Now;
-            this.Cost = -1M;
+            this.Cost = -1f;
 
             Mode = enMode.AddNew;
         }
 
         private clsMaintenance(int MaintenanceID, int VehicleID, string Description,
-            DateTime MaintenanceDate, decimal Cost)
+            DateTime MaintenanceDate, float Cost)
         {
             this.MaintenanceID = MaintenanceID;
             this.VehicleID = VehicleID;
             this.Description = Description;
             this.MaintenanceDate = MaintenanceDate;
             this.Cost = Cost;
+
+            this.VehicleInfo = clsVehicle.Find(VehicleID);
 
             Mode = enMode.Update;
         }
@@ -81,7 +85,7 @@ namespace CarRental_Business
             int VehicleID = -1;
             string Description = string.Empty;
             DateTime MaintenanceDate = DateTime.Now;
-            decimal Cost = -1M;
+            float Cost = -1f;
 
             bool IsFound = clsMaintenanceData.GetMaintenanceInfoByID(MaintenanceID, ref VehicleID, ref Description, ref MaintenanceDate, ref Cost);
 
@@ -108,6 +112,11 @@ namespace CarRental_Business
         public static DataTable GetAllMaintenance()
         {
             return clsMaintenanceData.GetAllMaintenance();
+        }
+
+        public static DataTable GetVehicleMaintenanceHistory(int VehicleID)
+        {
+            return clsMaintenanceData.GetVehicleMaintenanceHistory(VehicleID);
         }
     }
 }

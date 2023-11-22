@@ -56,6 +56,52 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
+        public static bool GetModelInfoByName(string ModelName, ref int ModelID, ref int MakeID)
+        {
+            bool IsFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"select * from MakeModels where ModelName = @ModelName";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@ModelName", ModelName);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    // The record was found
+                    IsFound = true;
+
+                    ModelID = (int)reader["ModelID"];
+                    MakeID = (int)reader["MakeID"];
+                }
+                else
+                {
+                    // The record was not found
+                    IsFound = false;
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return IsFound;
+        }
+
         public static int AddNewModel(int MakeID, string ModelName)
         {
             // This function will return the new person id if succeeded and -1 if not
@@ -192,7 +238,7 @@ where ModelID = @ModelID";
             return IsFound;
         }
 
-        public static DataTable GetAllMakeModels()
+        public static DataTable GetAllModels()
         {
             DataTable dt = new DataTable();
 
@@ -226,6 +272,42 @@ where ModelID = @ModelID";
 
             return dt;
         }
+
+        public static DataTable GetAllModelsName()
+        {
+            DataTable dt = new DataTable();
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"select distinct ModelName from MakeModels order by ModelName";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dt;
+        }
+
     }
 }
 

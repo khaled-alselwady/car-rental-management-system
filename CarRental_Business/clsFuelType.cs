@@ -82,6 +82,22 @@ namespace CarRental_Business
             }
         }
 
+        public static clsFuelType Find(string FuelTypeName)
+        {
+            int FuelTypeID = -1;
+
+            bool IsFound = clsFuelTypeData.GetFuelTypeInfoByName(FuelTypeName, ref FuelTypeID);
+
+            if (IsFound)
+            {
+                return new clsFuelType(FuelTypeID, FuelTypeName);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static bool DeleteFuelType(int FuelTypeID)
         {
             return clsFuelTypeData.DeleteFuelType(FuelTypeID);
@@ -95,6 +111,11 @@ namespace CarRental_Business
         public static DataTable GetAllFuelTypes()
         {
             return clsFuelTypeData.GetAllFuelTypes();
+        }
+
+        public static DataTable GetAllFuelTypesName()
+        {
+            return clsFuelTypeData.GetAllFuelTypesName();
         }
     }
 }

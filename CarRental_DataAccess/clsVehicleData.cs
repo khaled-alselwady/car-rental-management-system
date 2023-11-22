@@ -13,7 +13,7 @@ namespace CarRental_DataAccess
         public static bool GetVehicleInfoByID(int VehicleID, ref int MakeID, ref int ModelID,
             ref int SubModelID, ref int BodyID, ref string VehicleName, ref string PlateNumber,
             ref short Year, ref int DriveTypeID, ref string Engine, ref int FuelTypeID,
-            ref byte NumberDoors, ref int Mileage, ref decimal RentalPricePerDay,
+            ref byte NumberDoors, ref int Mileage, ref float RentalPricePerDay,
             ref bool IsAvailableForRent)
         {
             bool IsFound = false;
@@ -49,7 +49,7 @@ namespace CarRental_DataAccess
                     FuelTypeID = (int)reader["FuelTypeID"];
                     NumberDoors = (byte)reader["NumberDoors"];
                     Mileage = (int)reader["Mileage"];
-                    RentalPricePerDay = (decimal)reader["RentalPricePerDay"];
+                    RentalPricePerDay = Convert.ToSingle(reader["RentalPricePerDay"]);
                     IsAvailableForRent = (bool)reader["IsAvailableForRent"];
                 }
                 else
@@ -74,7 +74,7 @@ namespace CarRental_DataAccess
 
         public static int AddNewVehicle(int MakeID, int ModelID, int SubModelID, int BodyID,
             string VehicleName, string PlateNumber, short Year, int DriveTypeID, string Engine,
-            int FuelTypeID, byte NumberDoors, int Mileage, decimal RentalPricePerDay,
+            int FuelTypeID, byte NumberDoors, int Mileage, float RentalPricePerDay,
             bool IsAvailableForRent)
         {
             // This function will return the new person id if succeeded and -1 if not
@@ -128,7 +128,7 @@ select scope_identity()";
 
         public static bool UpdateVehicle(int VehicleID, int MakeID, int ModelID, int SubModelID,
             int BodyID, string VehicleName, string PlateNumber, short Year, int DriveTypeID,
-            string Engine, int FuelTypeID, byte NumberDoors, int Mileage, decimal RentalPricePerDay, 
+            string Engine, int FuelTypeID, byte NumberDoors, int Mileage, float RentalPricePerDay,
             bool IsAvailableForRent)
         {
             int RowAffected = 0;
@@ -250,13 +250,53 @@ where VehicleID = @VehicleID";
             return IsFound;
         }
 
+        public static bool DoesPlateNumberExist(string PlateNumber)
+        {
+            bool IsFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"select found = 1 from Vehicles where PlateNumber = @PlateNumber";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@PlateNumber", PlateNumber);
+
+            try
+            {
+                connection.Open();
+
+                object result = command.ExecuteScalar();
+
+                IsFound = (result != null);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return IsFound;
+        }
+
         public static DataTable GetAllVehicles()
         {
             DataTable dt = new DataTable();
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"select * from Vehicles";
+            string query = @"SELECT        Vehicles.VehicleID, Vehicles.VehicleName, Makes.Make, MakeModels.ModelName, Vehicles.PlateNumber, Vehicles.Year, FuelTypes.FuelTypeName, DriveTypes.DriveTypeName, Vehicles.Mileage, 
+                         Vehicles.RentalPricePerDay, Vehicles.IsAvailableForRent
+FROM            Vehicles INNER JOIN
+                         Makes ON Vehicles.MakeID = Makes.MakeID INNER JOIN
+                         MakeModels ON Vehicles.ModelID = MakeModels.ModelID INNER JOIN
+                         Bodies ON Vehicles.BodyID = Bodies.BodyID INNER JOIN
+                         DriveTypes ON Vehicles.DriveTypeID = DriveTypes.DriveTypeID INNER JOIN
+                         FuelTypes ON Vehicles.FuelTypeID = FuelTypes.FuelTypeID
+						 order by VehicleID desc";
 
             SqlCommand command = new SqlCommand(query, connection);
 

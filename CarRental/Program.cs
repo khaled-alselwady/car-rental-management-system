@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using CarRental.Customers;
 using CarRental.Login;
 using CarRental.Main;
+using CarRental.Vehicles;
 
 namespace CarRental
 {

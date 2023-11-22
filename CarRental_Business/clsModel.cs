@@ -86,6 +86,23 @@ namespace CarRental_Business
             }
         }
 
+        public static clsModel Find(string ModelName)
+        {
+            int MakeID = -1;
+            int ModelID = -1;
+
+            bool IsFound = clsModelData.GetModelInfoByName(ModelName, ref ModelID, ref MakeID);
+
+            if (IsFound)
+            {
+                return new clsModel(ModelID, MakeID, ModelName);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static bool DeleteModel(int ModelID)
         {
             return clsModelData.DeleteModel(ModelID);
@@ -96,9 +113,14 @@ namespace CarRental_Business
             return clsModelData.DoesModelExist(ModelID);
         }
 
-        public static DataTable GetAllMakeModels()
+        public static DataTable GetAllModels()
         {
-            return clsModelData.GetAllMakeModels();
+            return clsModelData.GetAllModels();
+        }
+
+        public static DataTable GetAllModelsName()
+        {
+            return clsModelData.GetAllModelsName();
         }
     }
 }

@@ -55,6 +55,51 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
+        public static bool GetBodyInfoByName(string BodyName, ref int BodyID)
+        {
+            bool IsFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"select * from Bodies where BodyName = @BodyName";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@BodyName", BodyName);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    // The record was found
+                    IsFound = true;
+
+                    BodyID = (int)reader["BodyID"];
+                }
+                else
+                {
+                    // The record was not found
+                    IsFound = false;
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return IsFound;
+        }
+
         public static int AddNewBody(string BodyName)
         {
             // This function will return the new person id if succeeded and -1 if not
@@ -195,6 +240,41 @@ where BodyID = @BodyID";
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
             string query = @"select * from Bodies";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dt;
+        }
+
+        public static DataTable GetAllBodiesName()
+        {
+            DataTable dt = new DataTable();
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"select distinct BodyName from Bodies order by BodyName";
 
             SqlCommand command = new SqlCommand(query, connection);
 

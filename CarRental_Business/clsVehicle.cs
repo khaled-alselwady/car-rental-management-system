@@ -26,8 +26,15 @@ namespace CarRental_Business
         public int FuelTypeID { get; set; }
         public byte NumberDoors { get; set; }
         public int Mileage { get; set; }
-        public decimal RentalPricePerDay { get; set; }
+        public float RentalPricePerDay { get; set; }
         public bool IsAvailableForRent { get; set; }
+
+        public clsMake MakeInfo { get; set; }
+        public clsModel ModelInfo { get; set; }
+        public clsSubModel SubModelInfo { get; set; }
+        public clsBody BodyInfo { get; set; }
+        public clsDriveType DriverTypeInfo { get; set; }
+        public clsFuelType FuelTypeInfo { get; set; }
 
         public clsVehicle()
         {
@@ -44,7 +51,7 @@ namespace CarRental_Business
             this.FuelTypeID = -1;
             this.NumberDoors = 0;
             this.Mileage = -1;
-            this.RentalPricePerDay = -1M;
+            this.RentalPricePerDay = -1f;
             this.IsAvailableForRent = false;
 
             Mode = enMode.AddNew;
@@ -52,7 +59,7 @@ namespace CarRental_Business
 
         private clsVehicle(int VehicleID, int MakeID, int ModelID, int SubModelID, int BodyID,
             string VehicleName, string PlateNumber, short Year, int DriveTypeID, string Engine,
-            int FuelTypeID, byte NumberDoors, int Mileage, decimal RentalPricePerDay,
+            int FuelTypeID, byte NumberDoors, int Mileage, float RentalPricePerDay,
             bool IsAvailableForRent)
         {
             this.VehicleID = VehicleID;
@@ -71,6 +78,13 @@ namespace CarRental_Business
             this.RentalPricePerDay = RentalPricePerDay;
             this.IsAvailableForRent = IsAvailableForRent;
 
+            this.MakeInfo = clsMake.Find(MakeID);
+            this.ModelInfo = clsModel.Find(ModelID);
+            this.SubModelInfo = clsSubModel.Find(SubModelID);
+            this.BodyInfo = clsBody.Find(BodyID);
+            this.DriverTypeInfo = clsDriveType.Find(DriveTypeID);
+            this.FuelTypeInfo = clsFuelType.Find(FuelTypeID);
+
             Mode = enMode.Update;
         }
 
@@ -87,7 +101,7 @@ namespace CarRental_Business
         private bool _UpdateVehicle()
         {
             return clsVehicleData.UpdateVehicle(this.VehicleID, this.MakeID, this.ModelID,
-                this.SubModelID, this.BodyID, this.VehicleName, this.PlateNumber, this.Year, 
+                this.SubModelID, this.BodyID, this.VehicleName, this.PlateNumber, this.Year,
                 this.DriveTypeID, this.Engine, this.FuelTypeID, this.NumberDoors, this.Mileage,
                 this.RentalPricePerDay, this.IsAvailableForRent);
         }
@@ -128,7 +142,7 @@ namespace CarRental_Business
             int FuelTypeID = -1;
             byte NumberDoors = 0;
             int Mileage = -1;
-            decimal RentalPricePerDay = -1M;
+            float RentalPricePerDay = -1f;
             bool IsAvailableForRent = false;
 
             bool IsFound = clsVehicleData.GetVehicleInfoByID(VehicleID, ref MakeID, ref ModelID,
@@ -158,6 +172,11 @@ namespace CarRental_Business
             return clsVehicleData.DoesVehicleExist(VehicleID);
         }
 
+        public static bool DoesPlateNumberExist(string PlateNumber)
+        {
+            return clsVehicleData.DoesPlateNumberExist(PlateNumber);
+        }
+
         public static DataTable GetAllVehicles()
         {
             return clsVehicleData.GetAllVehicles();
@@ -167,5 +186,25 @@ namespace CarRental_Business
         {
             return clsVehicleData.GetVehiclesCount();
         }
+
+        public int Maintenance(string Description, DateTime MaintenanceDate, float Cost)
+        {        
+            // this method will add Maintenance record to DB and return MaintenanceID
+
+            clsMaintenance Maintenance = new clsMaintenance();
+
+            Maintenance.VehicleID = this.VehicleID;
+            Maintenance.Description = Description;
+            Maintenance.MaintenanceDate = MaintenanceDate;
+            Maintenance.Cost = Cost;
+
+            if (!Maintenance.Save())
+            {
+                return -1;
+            }
+
+            return Maintenance.MaintenanceID;
+        }
+
     }
 }

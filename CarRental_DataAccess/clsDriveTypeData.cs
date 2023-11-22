@@ -55,6 +55,51 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
+        public static bool GetDriveTypeInfoByName(string DriveTypeName, ref int DriveTypeID)
+        {
+            bool IsFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"select * from DriveTypes where DriveTypeName = @DriveTypeName";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@DriveTypeName", DriveTypeName);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    // The record was found
+                    IsFound = true;
+
+                    DriveTypeID = (int)reader["DriveTypeID"];
+                }
+                else
+                {
+                    // The record was not found
+                    IsFound = false;
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return IsFound;
+        }
+
         public static int AddNewDriveType(string DriveTypeName)
         {
             // This function will return the new person id if succeeded and -1 if not
@@ -195,6 +240,41 @@ where DriveTypeID = @DriveTypeID";
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
             string query = @"select * from DriveTypes";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dt;
+        }
+
+        public static DataTable GetAllDriveTypesName()
+        {
+            DataTable dt = new DataTable();
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"select distinct DriveTypeName from DriveTypes order by DriveTypeName";
 
             SqlCommand command = new SqlCommand(query, connection);
 

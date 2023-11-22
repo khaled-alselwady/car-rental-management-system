@@ -83,6 +83,22 @@ namespace CarRental_Business
             }
         }
 
+        public static clsBody Find(string BodyName)
+        {
+            int BodyID = -1;
+
+            bool IsFound = clsBodyData.GetBodyInfoByName(BodyName, ref BodyID);
+
+            if (IsFound)
+            {
+                return new clsBody(BodyID, BodyName);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static bool DeleteBody(int BodyID)
         {
             return clsBodyData.DeleteBody(BodyID);
@@ -96,6 +112,11 @@ namespace CarRental_Business
         public static DataTable GetAllBodies()
         {
             return clsBodyData.GetAllBodies();
+        }
+
+        public static DataTable GetAllBodiesName()
+        {
+            return clsBodyData.GetAllBodiesName();
         }
 
     }

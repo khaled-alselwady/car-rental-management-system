@@ -82,6 +82,22 @@ namespace CarRental_Business
             }
         }
 
+        public static clsMake Find(string MakeName)
+        {
+            int MakeID = -1;
+
+            bool IsFound = clsMakeData.GetMakeInfoByName(MakeName, ref MakeID);
+
+            if (IsFound)
+            {
+                return new clsMake(MakeID, MakeName);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static bool DeleteMake(int MakeID)
         {
             return clsMakeData.DeleteMake(MakeID);
@@ -95,6 +111,11 @@ namespace CarRental_Business
         public static DataTable GetAllMakes()
         {
             return clsMakeData.GetAllMakes();
+        }
+
+        public static DataTable GetAllMakesName()
+        {
+            return clsMakeData.GetAllMakesName();
         }
     }
 }

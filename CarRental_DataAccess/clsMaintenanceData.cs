@@ -10,7 +10,8 @@ namespace CarRental_DataAccess
 {
     public class clsMaintenanceData
     {
-        public static bool GetMaintenanceInfoByID(int MaintenanceID, ref int VehicleID, ref string Description, ref DateTime MaintenanceDate, ref decimal Cost)
+        public static bool GetMaintenanceInfoByID(int MaintenanceID, ref int VehicleID,
+            ref string Description, ref DateTime MaintenanceDate, ref float Cost)
         {
             bool IsFound = false;
 
@@ -36,7 +37,7 @@ namespace CarRental_DataAccess
                     VehicleID = (int)reader["VehicleID"];
                     Description = (string)reader["Description"];
                     MaintenanceDate = (DateTime)reader["MaintenanceDate"];
-                    Cost = (decimal)reader["Cost"];
+                    Cost = Convert.ToSingle(reader["Cost"]);
                 }
                 else
                 {
@@ -58,7 +59,8 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static int AddNewMaintenance(int VehicleID, string Description, DateTime MaintenanceDate, decimal Cost)
+        public static int AddNewMaintenance(int VehicleID, string Description,
+            DateTime MaintenanceDate, float Cost)
         {
             // This function will return the new person id if succeeded and -1 if not
             int MaintenanceID = -1;
@@ -99,7 +101,8 @@ select scope_identity()";
             return MaintenanceID;
         }
 
-        public static bool UpdateMaintenance(int MaintenanceID, int VehicleID, string Description, DateTime MaintenanceDate, decimal Cost)
+        public static bool UpdateMaintenance(int MaintenanceID, int VehicleID,
+            string Description, DateTime MaintenanceDate, float Cost)
         {
             int RowAffected = 0;
 
@@ -209,6 +212,46 @@ where MaintenanceID = @MaintenanceID";
             string query = @"select * from Maintenance";
 
             SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dt;
+        }
+
+        public static DataTable GetVehicleMaintenanceHistory(int VehicleID)
+        {
+            DataTable dt = new DataTable();
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"SELECT        Maintenance.MaintenanceID, Maintenance.VehicleID, Vehicles.VehicleName, Maintenance.MaintenanceDate, Maintenance.Description, Maintenance.Cost, Vehicles.IsAvailableForRent
+FROM            Vehicles INNER JOIN
+                         Maintenance ON Vehicles.VehicleID = Maintenance.VehicleID
+						 where Maintenance.VehicleID = @VehicleID
+                         order by Maintenance.MaintenanceDate desc";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@VehicleID", VehicleID);
 
             try
             {

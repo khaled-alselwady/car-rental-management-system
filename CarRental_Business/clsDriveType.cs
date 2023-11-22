@@ -82,6 +82,22 @@ namespace CarRental_Business
             }
         }
 
+        public static clsDriveType Find(string DriveTypeName)
+        {
+            int DriveTypeID = -1;
+
+            bool IsFound = clsDriveTypeData.GetDriveTypeInfoByName(DriveTypeName, ref DriveTypeID);
+
+            if (IsFound)
+            {
+                return new clsDriveType(DriveTypeID, DriveTypeName);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static bool DeleteDriveType(int DriveTypeID)
         {
             return clsDriveTypeData.DeleteDriveType(DriveTypeID);
@@ -95,6 +111,11 @@ namespace CarRental_Business
         public static DataTable GetAllDriveTypes()
         {
             return clsDriveTypeData.GetAllDriveTypes();
+        }
+
+        public static DataTable GetAllDriveTypesName()
+        {
+            return clsDriveTypeData.GetAllDriveTypesName();
         }
     }
 }

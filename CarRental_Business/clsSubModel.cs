@@ -87,6 +87,24 @@ namespace CarRental_Business
             }
         }
 
+        public static clsSubModel Find(string SubModelName)
+        {
+            int ModelID = -1;
+            int SubModelID = -1;
+
+            bool IsFound = clsSubModelData.GetSubModelInfoByName(SubModelName, ref SubModelID,
+                ref ModelID);
+
+            if (IsFound)
+            {
+                return new clsSubModel(SubModelID, ModelID, SubModelName);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static bool DeleteSubModel(int SubModelID)
         {
             return clsSubModelData.DeleteSubModel(SubModelID);
@@ -100,6 +118,11 @@ namespace CarRental_Business
         public static DataTable GetAllSubModels()
         {
             return clsSubModelData.GetAllSubModels();
+        }
+
+        public static DataTable GetAllSubModelsName()
+        {
+            return clsSubModelData.GetAllSubModelsName();
         }
     }
 }

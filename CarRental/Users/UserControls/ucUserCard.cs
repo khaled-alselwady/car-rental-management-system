@@ -50,6 +50,8 @@ namespace CarRental.Users.UserControls
             lblUsername.Text = "[????]";
             lblIsActive.Text = "[????]";
 
+            pbIsActive.Image = Resources.Question_32;
+
             llEditUserInfo.Enabled = false;
         }
 

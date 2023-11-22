@@ -57,6 +57,53 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
+        public static bool GetSubModelInfoByName(string SubModelName, ref int SubModelID,
+            ref int ModelID)
+        {
+            bool IsFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"select * from SubModels where SubModelName = @SubModelName";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@SubModelName", SubModelName);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    // The record was found
+                    IsFound = true;
+
+                    SubModelID = (int)reader["SubModelID"];
+                    ModelID = (int)reader["ModelID"];
+                }
+                else
+                {
+                    // The record was not found
+                    IsFound = false;
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return IsFound;
+        }
+
         public static int AddNewSubModel(int ModelID, string SubModelName)
         {
             // This function will return the new person id if succeeded and -1 if not
@@ -227,5 +274,41 @@ where SubModelID = @SubModelID";
 
             return dt;
         }
+
+        public static DataTable GetAllSubModelsName()
+        {
+            DataTable dt = new DataTable();
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"select distinct SubModelName from SubModels order by SubModelName";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dt;
+        }
+
     }
 }
