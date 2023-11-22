@@ -16,111 +16,112 @@ namespace CarRental_DataAccess
         {
             bool IsFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select * from People where PersonID = @PersonID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@PersonID", PersonID);
-
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    // The record was found
-                    IsFound = true;
+                    connection.Open();
 
-                    Name = (string)reader["Name"];
-                    Address = (string)reader["Address"];
-                    Phone = (string)reader["Phone"];
-                    Email = (string)reader["Email"];
-                    DateOfBirth = (DateTime)reader["DateOfBirth"];
-                    Gender = (byte)reader["Gender"];
-                    NationalityCountryID = (int)reader["NationalityCountryID"];
-                    CreatedAt = (DateTime)reader["CreatedAt"];
-                    UpdatedAt = (reader["UpdatedAt"] != DBNull.Value) ? (DateTime)reader["UpdatedAt"] : DateTime.Now;
-                }
-                else
-                {
-                    // The record was not found
-                    IsFound = false;
-                }
+                    string query = @"select * from People where PersonID = @PersonID";
 
-                reader.Close();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@PersonID", PersonID);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                IsFound = true;
+
+                                Name = (string)reader["Name"];
+                                Address = (string)reader["Address"];
+                                Phone = (string)reader["Phone"];
+                                Email = (string)reader["Email"];
+                                DateOfBirth = (DateTime)reader["DateOfBirth"];
+                                Gender = (byte)reader["Gender"];
+                                NationalityCountryID = (int)reader["NationalityCountryID"];
+                                CreatedAt = (DateTime)reader["CreatedAt"];
+                                UpdatedAt = (reader["UpdatedAt"] != DBNull.Value) ? (DateTime)reader["UpdatedAt"] : DateTime.Now;
+                            }
+                            else
+                            {
+                                // The record was not found
+                                IsFound = false;
+                            }
+                        }
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 IsFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return IsFound;
         }
 
-        public static int AddNewPerson(string Name, string Address, string Phone,
-            string Email, DateTime DateOfBirth, byte Gender, int NationalityCountryID)
+        public static int AddNewPerson(string Name, string Address, string Phone, string Email,
+            DateTime DateOfBirth, byte Gender, int NationalityCountryID)
 
         {
             // This function will return the new person id if succeeded and -1 if not
             int PersonID = -1;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"insert into People (Name, Address, Phone, Email, DateOfBirth, Gender, NationalityCountryID, CreatedAt)
-values (@Name, @Address, @Phone, @Email, @DateOfBirth, @Gender, @NationalityCountryID, @CreatedAt)
-select scope_identity()";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@Name", Name);
-            command.Parameters.AddWithValue("@Address", Address);
-            command.Parameters.AddWithValue("@Phone", Phone);
-            command.Parameters.AddWithValue("@Email", Email);
-            command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
-            command.Parameters.AddWithValue("@Gender", Gender);
-            command.Parameters.AddWithValue("@NationalityCountryID", NationalityCountryID);
-            command.Parameters.AddWithValue("@CreatedAt", DateTime.Now);
-
             try
             {
-                connection.Open();
-
-                object result = command.ExecuteScalar();
-
-                if (result != null && int.TryParse(result.ToString(), out int InsertID))
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    PersonID = InsertID;
+                    connection.Open();
+
+                    string query = @"insert into People (Name, Address, Phone, Email, DateOfBirth, Gender, NationalityCountryID, CreatedAt, UpdatedAt)
+values (@Name, @Address, @Phone, @Email, @DateOfBirth, @Gender, @NationalityCountryID, @CreatedAt, @UpdatedAt)
+select scope_identity()";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Name", Name);
+                        command.Parameters.AddWithValue("@Address", Address);
+                        command.Parameters.AddWithValue("@Phone", Phone);
+                        command.Parameters.AddWithValue("@Email", Email);
+                        command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
+                        command.Parameters.AddWithValue("@Gender", Gender);
+                        command.Parameters.AddWithValue("@NationalityCountryID", NationalityCountryID);
+                        command.Parameters.AddWithValue("@CreatedAt", DateTime.Now);
+                        command.Parameters.AddWithValue("@UpdatedAt", DateTime.Now);
+                       
+
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int InsertID))
+                        {
+                            PersonID = InsertID;
+                        }
+                    }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return PersonID;
         }
 
-        public static bool UpdatePerson(int PersonID, string Name, string Address,
-            string Phone, string Email, DateTime DateOfBirth, byte Gender,
-            int NationalityCountryID, DateTime CreatedAt)
+        public static bool UpdatePerson(int PersonID, string Name, string Address, string Phone,
+            string Email, DateTime DateOfBirth, byte Gender, int NationalityCountryID,
+            DateTime CreatedAt)
         {
             int RowAffected = 0;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-            string query = @"Update People
+                    string query = @"Update People
 set Name = @Name,
 Address = @Address,
 Phone = @Phone,
@@ -132,32 +133,27 @@ CreatedAt = @CreatedAt,
 UpdatedAt = @UpdatedAt
 where PersonID = @PersonID";
 
-            SqlCommand command = new SqlCommand(query, connection);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@PersonID", PersonID);
+                        command.Parameters.AddWithValue("@Name", Name);
+                        command.Parameters.AddWithValue("@Address", Address);
+                        command.Parameters.AddWithValue("@Phone", Phone);
+                        command.Parameters.AddWithValue("@Email", Email);
+                        command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
+                        command.Parameters.AddWithValue("@Gender", Gender);
+                        command.Parameters.AddWithValue("@NationalityCountryID", NationalityCountryID);
+                        command.Parameters.AddWithValue("@CreatedAt", CreatedAt);
+                        command.Parameters.AddWithValue("@UpdatedAt", DateTime.Now);
 
-            command.Parameters.AddWithValue("@PersonID", PersonID);
-            command.Parameters.AddWithValue("@Name", Name);
-            command.Parameters.AddWithValue("@Address", Address);
-            command.Parameters.AddWithValue("@Phone", Phone);
-            command.Parameters.AddWithValue("@Email", Email);
-            command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
-            command.Parameters.AddWithValue("@Gender", Gender);
-            command.Parameters.AddWithValue("@NationalityCountryID", NationalityCountryID);
-            command.Parameters.AddWithValue("@CreatedAt", CreatedAt);
-            command.Parameters.AddWithValue("@UpdatedAt", DateTime.Now);
-            
-            try
-            {
-                connection.Open();
 
-                RowAffected = command.ExecuteNonQuery();
+                        RowAffected = command.ExecuteNonQuery();
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return (RowAffected > 0);
@@ -167,27 +163,25 @@ where PersonID = @PersonID";
         {
             int RowAffected = 0;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"delete People where PersonID = @PersonID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@PersonID", PersonID);
-
             try
             {
-                connection.Open();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-                RowAffected = command.ExecuteNonQuery();
+                    string query = @"delete People where PersonID = @PersonID";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@PersonID", PersonID);
+
+                        RowAffected = command.ExecuteNonQuery();
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return (RowAffected > 0);
@@ -197,29 +191,27 @@ where PersonID = @PersonID";
         {
             bool IsFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select found = 1 from People where PersonID = @PersonID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@PersonID", PersonID);
-
             try
             {
-                connection.Open();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-                object result = command.ExecuteScalar();
+                    string query = @"select found = 1 from People where PersonID = @PersonID";
 
-                IsFound = (result != null);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@PersonID", PersonID);
+
+                        object result = command.ExecuteScalar();
+
+                        IsFound = (result != null);
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 IsFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return IsFound;
@@ -229,32 +221,29 @@ where PersonID = @PersonID";
         {
             DataTable dt = new DataTable();
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select * from People";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    dt.Load(reader);
+                    connection.Open();
+
+                    string query = @"select * from People";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
                 }
-
-                reader.Close();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return dt;

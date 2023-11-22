@@ -15,90 +15,83 @@ namespace CarRental_DataAccess
         {
             bool IsFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select * from SubModels where SubModelID = @SubModelID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@SubModelID", SubModelID);
-
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    // The record was found
-                    IsFound = true;
+                    connection.Open();
 
-                    ModelID = (int)reader["ModelID"];
-                    SubModelName = (string)reader["SubModelName"];
-                }
-                else
-                {
-                    // The record was not found
-                    IsFound = false;
-                }
+                    string query = @"select * from SubModels where SubModelID = @SubModelID";
 
-                reader.Close();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@SubModelID", SubModelID);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                IsFound = true;
+
+                                ModelID = (int)reader["ModelID"];
+                                SubModelName = (string)reader["SubModelName"];
+                            }
+                            else
+                            {
+                                // The record was not found
+                                IsFound = false;
+                            }
+                        }
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 IsFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return IsFound;
         }
 
-        public static bool GetSubModelInfoByName(string SubModelName, ref int SubModelID,
-            ref int ModelID)
+        public static bool GetSubModelInfoByName(string SubModelName, ref int SubModelID, ref int ModelID)
         {
             bool IsFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select * from SubModels where SubModelName = @SubModelName";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@SubModelName", SubModelName);
-
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    // The record was found
-                    IsFound = true;
+                    connection.Open();
 
-                    SubModelID = (int)reader["SubModelID"];
-                    ModelID = (int)reader["ModelID"];
-                }
-                else
-                {
-                    // The record was not found
-                    IsFound = false;
-                }
+                    string query = @"SELECT * FROM SubModels WHERE SubModelName = @SubModelName";
 
-                reader.Close();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@SubModelName", SubModelName);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                IsFound = true;
+
+                                SubModelID = (int)reader["SubModelID"];
+                                ModelID = (int)reader["ModelID"];
+                            }
+                            else
+                            {
+                                // The record was not found
+                                IsFound = false;
+                            }
+                        }
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 IsFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return IsFound;
@@ -109,35 +102,33 @@ namespace CarRental_DataAccess
             // This function will return the new person id if succeeded and -1 if not
             int SubModelID = -1;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-            string query = @"insert into SubModels (ModelID, SubModelName)
+                    string query = @"insert into SubModels (ModelID, SubModelName)
 values (@ModelID, @SubModelName)
 select scope_identity()";
 
-            SqlCommand command = new SqlCommand(query, connection);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@ModelID", ModelID);
+                        command.Parameters.AddWithValue("@SubModelName", SubModelName);
 
-            command.Parameters.AddWithValue("@ModelID", ModelID);
-            command.Parameters.AddWithValue("@SubModelName", SubModelName);
+                        object result = command.ExecuteScalar();
 
-            try
-            {
-                connection.Open();
-
-                object result = command.ExecuteScalar();
-
-                if (result != null && int.TryParse(result.ToString(), out int InsertID))
-                {
-                    SubModelID = InsertID;
+                        if (result != null && int.TryParse(result.ToString(), out int InsertID))
+                        {
+                            SubModelID = InsertID;
+                        }
+                    }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return SubModelID;
@@ -147,32 +138,30 @@ select scope_identity()";
         {
             int RowAffected = 0;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-            string query = @"Update SubModels
+                    string query = @"Update SubModels
 set ModelID = @ModelID,
 SubModelName = @SubModelName
 where SubModelID = @SubModelID";
 
-            SqlCommand command = new SqlCommand(query, connection);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@SubModelID", SubModelID);
+                        command.Parameters.AddWithValue("@ModelID", ModelID);
+                        command.Parameters.AddWithValue("@SubModelName", SubModelName);
 
-            command.Parameters.AddWithValue("@SubModelID", SubModelID);
-            command.Parameters.AddWithValue("@ModelID", ModelID);
-            command.Parameters.AddWithValue("@SubModelName", SubModelName);
-
-            try
-            {
-                connection.Open();
-
-                RowAffected = command.ExecuteNonQuery();
+                        RowAffected = command.ExecuteNonQuery();
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return (RowAffected > 0);
@@ -182,27 +171,25 @@ where SubModelID = @SubModelID";
         {
             int RowAffected = 0;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"delete SubModels where SubModelID = @SubModelID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@SubModelID", SubModelID);
-
             try
             {
-                connection.Open();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-                RowAffected = command.ExecuteNonQuery();
+                    string query = @"delete SubModels where SubModelID = @SubModelID";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@SubModelID", SubModelID);
+
+                        RowAffected = command.ExecuteNonQuery();
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return (RowAffected > 0);
@@ -212,29 +199,27 @@ where SubModelID = @SubModelID";
         {
             bool IsFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select found = 1 from SubModels where SubModelID = @SubModelID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@SubModelID", SubModelID);
-
             try
             {
-                connection.Open();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-                object result = command.ExecuteScalar();
+                    string query = @"select found = 1 from SubModels where SubModelID = @SubModelID";
 
-                IsFound = (result != null);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@SubModelID", SubModelID);
+
+                        object result = command.ExecuteScalar();
+
+                        IsFound = (result != null);
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 IsFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return IsFound;
@@ -244,32 +229,29 @@ where SubModelID = @SubModelID";
         {
             DataTable dt = new DataTable();
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select * from SubModels";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    dt.Load(reader);
+                    connection.Open();
+
+                    string query = @"select * from SubModels";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
                 }
-
-                reader.Close();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return dt;
@@ -279,36 +261,32 @@ where SubModelID = @SubModelID";
         {
             DataTable dt = new DataTable();
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select distinct SubModelName from SubModels order by SubModelName";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    dt.Load(reader);
+                    connection.Open();
+
+                    string query = @"SELECT DISTINCT SubModelName FROM SubModels ORDER BY SubModelName";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
                 }
-
-                reader.Close();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-
-            }
-            finally
-            {
-                connection.Close();
+                
             }
 
             return dt;
         }
-
     }
 }

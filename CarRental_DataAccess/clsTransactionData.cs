@@ -12,140 +12,134 @@ namespace CarRental_DataAccess
     {
         public static bool GetTransactionInfoByID(int TransactionID, ref int BookingID,
             ref int ReturnID, ref string PaymentDetails, ref decimal PaidInitialTotalDueAmount,
-            ref decimal ActualTotalDueAmount, ref decimal TotalRemaining,
+            ref decimal ActualTotalDueAmount, ref decimal TotalRemaining, 
             ref decimal TotalRefundedAmount, ref DateTime TransactionDate,
             ref DateTime UpdatedTransactionDate)
         {
             bool IsFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select * from RentalTransaction where TransactionID = @TransactionID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@TransactionID", TransactionID);
-
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    // The record was found
-                    IsFound = true;
+                    connection.Open();
 
-                    BookingID = (int)reader["BookingID"];
-                    ReturnID = (reader["ReturnID"] != DBNull.Value) ? (int)reader["ReturnID"] : 0;
-                    PaymentDetails = (string)reader["PaymentDetails"];
-                    PaidInitialTotalDueAmount = (decimal)reader["PaidInitialTotalDueAmount"];
-                    ActualTotalDueAmount = (reader["ActualTotalDueAmount"] != DBNull.Value) ? (decimal)reader["ActualTotalDueAmount"] : 0M;
-                    TotalRemaining = (reader["TotalRemaining"] != DBNull.Value) ? (decimal)reader["TotalRemaining"] : 0M;
-                    TotalRefundedAmount = (reader["TotalRefundedAmount"] != DBNull.Value) ? (decimal)reader["TotalRefundedAmount"] : 0M;
-                    TransactionDate = (DateTime)reader["TransactionDate"];
-                    UpdatedTransactionDate = (reader["UpdatedTransactionDate"] != DBNull.Value) ? (DateTime)reader["UpdatedTransactionDate"] : DateTime.Now;
-                }
-                else
-                {
-                    // The record was not found
-                    IsFound = false;
-                }
+                    string query = @"select * from RentalTransaction where TransactionID = @TransactionID";
 
-                reader.Close();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@TransactionID", TransactionID);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                IsFound = true;
+
+                                BookingID = (int)reader["BookingID"];
+                                ReturnID = (reader["ReturnID"] != DBNull.Value) ? (int)reader["ReturnID"] : 0;
+                                PaymentDetails = (string)reader["PaymentDetails"];
+                                PaidInitialTotalDueAmount = (decimal)reader["PaidInitialTotalDueAmount"];
+                                ActualTotalDueAmount = (reader["ActualTotalDueAmount"] != DBNull.Value) ? (decimal)reader["ActualTotalDueAmount"] : 0M;
+                                TotalRemaining = (reader["TotalRemaining"] != DBNull.Value) ? (decimal)reader["TotalRemaining"] : 0M;
+                                TotalRefundedAmount = (reader["TotalRefundedAmount"] != DBNull.Value) ? (decimal)reader["TotalRefundedAmount"] : 0M;
+                                TransactionDate = (DateTime)reader["TransactionDate"];
+                                UpdatedTransactionDate = (reader["UpdatedTransactionDate"] != DBNull.Value) ? (DateTime)reader["UpdatedTransactionDate"] : DateTime.Now;
+                            }
+                            else
+                            {
+                                // The record was not found
+                                IsFound = false;
+                            }
+                        }
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 IsFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return IsFound;
         }
 
         public static int AddNewTransaction(int BookingID, int ReturnID, string PaymentDetails,
-            decimal PaidInitialTotalDueAmount, decimal ActualTotalDueAmount,
-            decimal TotalRemaining, decimal TotalRefundedAmount, DateTime TransactionDate, 
-            DateTime UpdatedTransactionDate)
+            decimal PaidInitialTotalDueAmount, decimal ActualTotalDueAmount, decimal TotalRemaining,
+            decimal TotalRefundedAmount, DateTime TransactionDate, DateTime UpdatedTransactionDate)
         {
             // This function will return the new person id if succeeded and -1 if not
             int TransactionID = -1;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-            string query = @"insert into RentalTransaction (BookingID, ReturnID, PaymentDetails, PaidInitialTotalDueAmount, ActualTotalDueAmount, TotalRemaining, TotalRefundedAmount, TransactionDate, UpdatedTransactionDate)
+                    string query = @"insert into RentalTransaction (BookingID, ReturnID, PaymentDetails, PaidInitialTotalDueAmount, ActualTotalDueAmount, TotalRemaining, TotalRefundedAmount, TransactionDate, UpdatedTransactionDate)
 values (@BookingID, @ReturnID, @PaymentDetails, @PaidInitialTotalDueAmount, @ActualTotalDueAmount, @TotalRemaining, @TotalRefundedAmount, @TransactionDate, @UpdatedTransactionDate)
 select scope_identity()";
 
-            SqlCommand command = new SqlCommand(query, connection);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@BookingID", BookingID);
+                        if (ReturnID <= 0)
+                        {
+                            command.Parameters.AddWithValue("@ReturnID", DBNull.Value);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@ReturnID", ReturnID);
+                        }
+                        command.Parameters.AddWithValue("@PaymentDetails", PaymentDetails);
+                        command.Parameters.AddWithValue("@PaidInitialTotalDueAmount", PaidInitialTotalDueAmount);
+                        if (ActualTotalDueAmount <= 0)
+                        {
+                            command.Parameters.AddWithValue("@ActualTotalDueAmount", DBNull.Value);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@ActualTotalDueAmount", ActualTotalDueAmount);
+                        }
+                        if (TotalRemaining <= 0)
+                        {
+                            command.Parameters.AddWithValue("@TotalRemaining", DBNull.Value);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@TotalRemaining", TotalRemaining);
+                        }
+                        if (TotalRefundedAmount <= 0)
+                        {
+                            command.Parameters.AddWithValue("@TotalRefundedAmount", DBNull.Value);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@TotalRefundedAmount", TotalRefundedAmount);
+                        }
+                        command.Parameters.AddWithValue("@TransactionDate", TransactionDate);
+                        if (UpdatedTransactionDate == DateTime.Now)
+                        {
+                            command.Parameters.AddWithValue("@UpdatedTransactionDate", DBNull.Value);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@UpdatedTransactionDate", UpdatedTransactionDate);
+                        }
 
-            command.Parameters.AddWithValue("@BookingID", BookingID);
-            if (ReturnID <= 0)
-            {
-                command.Parameters.AddWithValue("@ReturnID", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@ReturnID", ReturnID);
-            }
-            command.Parameters.AddWithValue("@PaymentDetails", PaymentDetails);
-            command.Parameters.AddWithValue("@PaidInitialTotalDueAmount", PaidInitialTotalDueAmount);
-            if (ActualTotalDueAmount <= 0)
-            {
-                command.Parameters.AddWithValue("@ActualTotalDueAmount", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@ActualTotalDueAmount", ActualTotalDueAmount);
-            }
-            if (TotalRemaining <= 0)
-            {
-                command.Parameters.AddWithValue("@TotalRemaining", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@TotalRemaining", TotalRemaining);
-            }
-            if (TotalRefundedAmount <= 0)
-            {
-                command.Parameters.AddWithValue("@TotalRefundedAmount", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@TotalRefundedAmount", TotalRefundedAmount);
-            }
-            command.Parameters.AddWithValue("@TransactionDate", TransactionDate);
-            if (UpdatedTransactionDate == DateTime.Now)
-            {
-                command.Parameters.AddWithValue("@UpdatedTransactionDate", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@UpdatedTransactionDate", UpdatedTransactionDate);
-            }
+                        object result = command.ExecuteScalar();
 
-            try
-            {
-                connection.Open();
-
-                object result = command.ExecuteScalar();
-
-                if (result != null && int.TryParse(result.ToString(), out int InsertID))
-                {
-                    TransactionID = InsertID;
+                        if (result != null && int.TryParse(result.ToString(), out int InsertID))
+                        {
+                            TransactionID = InsertID;
+                        }
+                    }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return TransactionID;
@@ -158,9 +152,13 @@ select scope_identity()";
         {
             int RowAffected = 0;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-            string query = @"Update RentalTransaction
+                    string query = @"Update RentalTransaction
 set BookingID = @BookingID,
 ReturnID = @ReturnID,
 PaymentDetails = @PaymentDetails,
@@ -172,67 +170,61 @@ TransactionDate = @TransactionDate,
 UpdatedTransactionDate = @UpdatedTransactionDate
 where TransactionID = @TransactionID";
 
-            SqlCommand command = new SqlCommand(query, connection);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@TransactionID", TransactionID);
+                        command.Parameters.AddWithValue("@BookingID", BookingID);
+                        if (ReturnID <= 0)
+                        {
+                            command.Parameters.AddWithValue("@ReturnID", DBNull.Value);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@ReturnID", ReturnID);
+                        }
+                        command.Parameters.AddWithValue("@PaymentDetails", PaymentDetails);
+                        command.Parameters.AddWithValue("@PaidInitialTotalDueAmount", PaidInitialTotalDueAmount);
+                        if (ActualTotalDueAmount <= 0)
+                        {
+                            command.Parameters.AddWithValue("@ActualTotalDueAmount", DBNull.Value);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@ActualTotalDueAmount", ActualTotalDueAmount);
+                        }
+                        if (TotalRemaining <= 0)
+                        {
+                            command.Parameters.AddWithValue("@TotalRemaining", DBNull.Value);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@TotalRemaining", TotalRemaining);
+                        }
+                        if (TotalRefundedAmount <= 0)
+                        {
+                            command.Parameters.AddWithValue("@TotalRefundedAmount", DBNull.Value);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@TotalRefundedAmount", TotalRefundedAmount);
+                        }
+                        command.Parameters.AddWithValue("@TransactionDate", TransactionDate);
+                        if (UpdatedTransactionDate == DateTime.Now)
+                        {
+                            command.Parameters.AddWithValue("@UpdatedTransactionDate", DBNull.Value);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@UpdatedTransactionDate", UpdatedTransactionDate);
+                        }
 
-            command.Parameters.AddWithValue("@TransactionID", TransactionID);
-            command.Parameters.AddWithValue("@BookingID", BookingID);
-            if (ReturnID <= 0)
-            {
-                command.Parameters.AddWithValue("@ReturnID", DBNull.Value);
+                        RowAffected = command.ExecuteNonQuery();
+                    }
+                }
             }
-            else
-            {
-                command.Parameters.AddWithValue("@ReturnID", ReturnID);
-            }
-            command.Parameters.AddWithValue("@PaymentDetails", PaymentDetails);
-            command.Parameters.AddWithValue("@PaidInitialTotalDueAmount", PaidInitialTotalDueAmount);
-            if (ActualTotalDueAmount <= 0)
-            {
-                command.Parameters.AddWithValue("@ActualTotalDueAmount", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@ActualTotalDueAmount", ActualTotalDueAmount);
-            }
-            if (TotalRemaining <= 0)
-            {
-                command.Parameters.AddWithValue("@TotalRemaining", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@TotalRemaining", TotalRemaining);
-            }
-            if (TotalRefundedAmount <= 0)
-            {
-                command.Parameters.AddWithValue("@TotalRefundedAmount", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@TotalRefundedAmount", TotalRefundedAmount);
-            }
-            command.Parameters.AddWithValue("@TransactionDate", TransactionDate);
-            if (UpdatedTransactionDate == DateTime.Now)
-            {
-                command.Parameters.AddWithValue("@UpdatedTransactionDate", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@UpdatedTransactionDate", UpdatedTransactionDate);
-            }
-
-            try
-            {
-                connection.Open();
-
-                RowAffected = command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return (RowAffected > 0);
@@ -242,27 +234,25 @@ where TransactionID = @TransactionID";
         {
             int RowAffected = 0;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"delete RentalTransaction where TransactionID = @TransactionID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@TransactionID", TransactionID);
-
             try
             {
-                connection.Open();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-                RowAffected = command.ExecuteNonQuery();
+                    string query = @"delete RentalTransaction where TransactionID = @TransactionID";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@TransactionID", TransactionID);
+
+                        RowAffected = command.ExecuteNonQuery();
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return (RowAffected > 0);
@@ -272,29 +262,27 @@ where TransactionID = @TransactionID";
         {
             bool IsFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select found = 1 from RentalTransaction where TransactionID = @TransactionID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@TransactionID", TransactionID);
-
             try
             {
-                connection.Open();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-                object result = command.ExecuteScalar();
+                    string query = @"select found = 1 from RentalTransaction where TransactionID = @TransactionID";
 
-                IsFound = (result != null);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@TransactionID", TransactionID);
+
+                        object result = command.ExecuteScalar();
+
+                        IsFound = (result != null);
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 IsFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return IsFound;
@@ -304,32 +292,29 @@ where TransactionID = @TransactionID";
         {
             DataTable dt = new DataTable();
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select * from RentalTransaction";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    dt.Load(reader);
+                    connection.Open();
+
+                    string query = @"select * from RentalTransaction";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
                 }
-
-                reader.Close();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return dt;
@@ -339,31 +324,29 @@ where TransactionID = @TransactionID";
         {
             int Count = 0;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select count(*) from RentalTransaction";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
             try
             {
-                connection.Open();
-
-                object result = command.ExecuteScalar();
-
-                if (result != null && int.TryParse(result.ToString(), out int Value))
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    Count = Value;
+                    connection.Open();
+
+                    string query = @"SELECT COUNT(*) FROM RentalTransaction";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int Value))
+                        {
+                            Count = Value;
+                        }
+                    }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-
-            }
-            finally
-            {
-                connection.Close();
-            }
+                
+            }           
 
             return Count;
         }

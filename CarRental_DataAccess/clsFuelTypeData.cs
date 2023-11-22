@@ -14,42 +14,39 @@ namespace CarRental_DataAccess
         {
             bool IsFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select * from FuelTypes where FuelTypeID = @FuelTypeID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@FuelTypeID", FuelTypeID);
-
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    // The record was found
-                    IsFound = true;
+                    connection.Open();
 
-                    FuelTypeName = (string)reader["FuelTypeName"];
-                }
-                else
-                {
-                    // The record was not found
-                    IsFound = false;
-                }
+                    string query = @"select * from FuelTypes where FuelTypeID = @FuelTypeID";
 
-                reader.Close();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@FuelTypeID", FuelTypeID);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                IsFound = true;
+
+                                FuelTypeName = (string)reader["FuelTypeName"];
+                            }
+                            else
+                            {
+                                // The record was not found
+                                IsFound = false;
+                            }
+                        }
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 IsFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return IsFound;
@@ -59,43 +56,39 @@ namespace CarRental_DataAccess
         {
             bool IsFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select * from FuelTypes where FuelTypeName = @FuelTypeName";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@FuelTypeName", FuelTypeName);
-
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    // The record was found
-                    IsFound = true;
+                    connection.Open();
 
-                    FuelTypeID = (int)reader["FuelTypeID"];
-                }
-                else
-                {
-                    // The record was not found
-                    IsFound = false;
-                }
+                    string query = @"select * from FuelTypes where FuelTypeName = @FuelTypeName";
 
-                reader.Close();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@FuelTypeName", FuelTypeName);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                IsFound = true;
+                                FuelTypeID = (int)reader["FuelTypeID"];
+                            }
+                            else
+                            {
+                                // The record was not found
+                                IsFound = false;
+                            }
+                        }
+                    }
+                }
             }
-            catch (Exception ex)
-            {
+            catch (SqlException ex)
+            {                
                 IsFound = false;
-            }
-            finally
-            {
-                connection.Close();
-            }
+            }            
 
             return IsFound;
         }
@@ -105,36 +98,33 @@ namespace CarRental_DataAccess
             // This function will return the new person id if succeeded and -1 if not
             int FuelTypeID = -1;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-            string query = @"insert into FuelTypes (FuelTypeName)
+                    string query = @"insert into FuelTypes (FuelTypeName)
 values (@FuelTypeName)
 select scope_identity()";
 
-            SqlCommand command = new SqlCommand(query, connection);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@FuelTypeName", FuelTypeName);
 
-            command.Parameters.AddWithValue("@FuelTypeName", FuelTypeName);
+                        object result = command.ExecuteScalar();
 
-            try
-            {
-                connection.Open();
-
-                object result = command.ExecuteScalar();
-
-                if (result != null && int.TryParse(result.ToString(), out int InsertID))
-                {
-                    FuelTypeID = InsertID;
+                        if (result != null && int.TryParse(result.ToString(), out int InsertID))
+                        {
+                            FuelTypeID = InsertID;
+                        }
+                    }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
             }
-            finally
-            {
-                connection.Close();
-            }
-
             return FuelTypeID;
         }
 
@@ -142,30 +132,28 @@ select scope_identity()";
         {
             int RowAffected = 0;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-            string query = @"Update FuelTypes
+                    string query = @"Update FuelTypes
 set FuelTypeName = @FuelTypeName
 where FuelTypeID = @FuelTypeID";
 
-            SqlCommand command = new SqlCommand(query, connection);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@FuelTypeID", FuelTypeID);
+                        command.Parameters.AddWithValue("@FuelTypeName", FuelTypeName);
 
-            command.Parameters.AddWithValue("@FuelTypeID", FuelTypeID);
-            command.Parameters.AddWithValue("@FuelTypeName", FuelTypeName);
-
-            try
-            {
-                connection.Open();
-
-                RowAffected = command.ExecuteNonQuery();
+                        RowAffected = command.ExecuteNonQuery();
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return (RowAffected > 0);
@@ -175,27 +163,25 @@ where FuelTypeID = @FuelTypeID";
         {
             int RowAffected = 0;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"delete FuelTypes where FuelTypeID = @FuelTypeID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@FuelTypeID", FuelTypeID);
-
             try
             {
-                connection.Open();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-                RowAffected = command.ExecuteNonQuery();
+                    string query = @"delete FuelTypes where FuelTypeID = @FuelTypeID";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@FuelTypeID", FuelTypeID);
+
+                        RowAffected = command.ExecuteNonQuery();
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return (RowAffected > 0);
@@ -205,29 +191,27 @@ where FuelTypeID = @FuelTypeID";
         {
             bool IsFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select found = 1 from FuelTypes where FuelTypeID = @FuelTypeID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@FuelTypeID", FuelTypeID);
-
             try
             {
-                connection.Open();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-                object result = command.ExecuteScalar();
+                    string query = @"select found = 1 from FuelTypes where FuelTypeID = @FuelTypeID";
 
-                IsFound = (result != null);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@FuelTypeID", FuelTypeID);
+
+                        object result = command.ExecuteScalar();
+
+                        IsFound = (result != null);
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 IsFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return IsFound;
@@ -237,32 +221,29 @@ where FuelTypeID = @FuelTypeID";
         {
             DataTable dt = new DataTable();
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select * from FuelTypes";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    dt.Load(reader);
+                    connection.Open();
+
+                    string query = @"select * from FuelTypes";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
                 }
-
-                reader.Close();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return dt;
@@ -272,32 +253,29 @@ where FuelTypeID = @FuelTypeID";
         {
             DataTable dt = new DataTable();
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select distinct FuelTypeName from FuelTypes order by FuelTypeName";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    dt.Load(reader);
+                    connection.Open();
+
+                    string query = @"select distinct FuelTypeName from FuelTypes order by FuelTypeName";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
                 }
-
-                reader.Close();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-
-            }
-            finally
-            {
-                connection.Close();
+                
             }
 
             return dt;

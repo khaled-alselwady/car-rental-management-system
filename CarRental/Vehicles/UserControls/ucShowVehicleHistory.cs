@@ -92,5 +92,10 @@ namespace CarRental.Vehicles.UserControls
 
             _RefreshMaintenanceHistoryList();
         }
+
+        private void cmsEditProfile_Opening(object sender, CancelEventArgs e)
+        {
+            cmsEditProfile.Enabled = (dgvVehicleMaintenanceHistoryList.Rows.Count > 0);
+        }
     }
 }

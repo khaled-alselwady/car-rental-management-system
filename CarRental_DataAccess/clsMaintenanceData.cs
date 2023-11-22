@@ -15,45 +15,42 @@ namespace CarRental_DataAccess
         {
             bool IsFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select * from Maintenance where MaintenanceID = @MaintenanceID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@MaintenanceID", MaintenanceID);
-
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    // The record was found
-                    IsFound = true;
+                    connection.Open();
 
-                    VehicleID = (int)reader["VehicleID"];
-                    Description = (string)reader["Description"];
-                    MaintenanceDate = (DateTime)reader["MaintenanceDate"];
-                    Cost = Convert.ToSingle(reader["Cost"]);
-                }
-                else
-                {
-                    // The record was not found
-                    IsFound = false;
-                }
+                    string query = @"select * from Maintenance where MaintenanceID = @MaintenanceID";
 
-                reader.Close();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@MaintenanceID", MaintenanceID);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                IsFound = true;
+
+                                VehicleID = (int)reader["VehicleID"];
+                                Description = (string)reader["Description"];
+                                MaintenanceDate = (DateTime)reader["MaintenanceDate"];
+                                Cost = Convert.ToSingle(reader["Cost"]);
+                            }
+                            else
+                            {
+                                // The record was not found
+                                IsFound = false;
+                            }
+                        }
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 IsFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return IsFound;
@@ -65,39 +62,36 @@ namespace CarRental_DataAccess
             // This function will return the new person id if succeeded and -1 if not
             int MaintenanceID = -1;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-            string query = @"insert into Maintenance (VehicleID, Description, MaintenanceDate, Cost)
+                    string query = @"insert into Maintenance (VehicleID, Description, MaintenanceDate, Cost)
 values (@VehicleID, @Description, @MaintenanceDate, @Cost)
 select scope_identity()";
 
-            SqlCommand command = new SqlCommand(query, connection);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@VehicleID", VehicleID);
+                        command.Parameters.AddWithValue("@Description", Description);
+                        command.Parameters.AddWithValue("@MaintenanceDate", MaintenanceDate);
+                        command.Parameters.AddWithValue("@Cost", Cost);
 
-            command.Parameters.AddWithValue("@VehicleID", VehicleID);
-            command.Parameters.AddWithValue("@Description", Description);
-            command.Parameters.AddWithValue("@MaintenanceDate", MaintenanceDate);
-            command.Parameters.AddWithValue("@Cost", Cost);
+                        object result = command.ExecuteScalar();
 
-            try
-            {
-                connection.Open();
-
-                object result = command.ExecuteScalar();
-
-                if (result != null && int.TryParse(result.ToString(), out int InsertID))
-                {
-                    MaintenanceID = InsertID;
+                        if (result != null && int.TryParse(result.ToString(), out int InsertID))
+                        {
+                            MaintenanceID = InsertID;
+                        }
+                    }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
             }
-            finally
-            {
-                connection.Close();
-            }
-
             return MaintenanceID;
         }
 
@@ -106,36 +100,34 @@ select scope_identity()";
         {
             int RowAffected = 0;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-            string query = @"Update Maintenance
+                    string query = @"Update Maintenance
 set VehicleID = @VehicleID,
 Description = @Description,
 MaintenanceDate = @MaintenanceDate,
 Cost = @Cost
 where MaintenanceID = @MaintenanceID";
 
-            SqlCommand command = new SqlCommand(query, connection);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@MaintenanceID", MaintenanceID);
+                        command.Parameters.AddWithValue("@VehicleID", VehicleID);
+                        command.Parameters.AddWithValue("@Description", Description);
+                        command.Parameters.AddWithValue("@MaintenanceDate", MaintenanceDate);
+                        command.Parameters.AddWithValue("@Cost", Cost);
 
-            command.Parameters.AddWithValue("@MaintenanceID", MaintenanceID);
-            command.Parameters.AddWithValue("@VehicleID", VehicleID);
-            command.Parameters.AddWithValue("@Description", Description);
-            command.Parameters.AddWithValue("@MaintenanceDate", MaintenanceDate);
-            command.Parameters.AddWithValue("@Cost", Cost);
-
-            try
-            {
-                connection.Open();
-
-                RowAffected = command.ExecuteNonQuery();
+                        RowAffected = command.ExecuteNonQuery();
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return (RowAffected > 0);
@@ -145,27 +137,25 @@ where MaintenanceID = @MaintenanceID";
         {
             int RowAffected = 0;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"delete Maintenance where MaintenanceID = @MaintenanceID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@MaintenanceID", MaintenanceID);
-
             try
             {
-                connection.Open();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-                RowAffected = command.ExecuteNonQuery();
+                    string query = @"delete Maintenance where MaintenanceID = @MaintenanceID";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@MaintenanceID", MaintenanceID);
+
+                        RowAffected = command.ExecuteNonQuery();
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return (RowAffected > 0);
@@ -175,29 +165,27 @@ where MaintenanceID = @MaintenanceID";
         {
             bool IsFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select found = 1 from Maintenance where MaintenanceID = @MaintenanceID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@MaintenanceID", MaintenanceID);
-
             try
             {
-                connection.Open();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-                object result = command.ExecuteScalar();
+                    string query = @"select found = 1 from Maintenance where MaintenanceID = @MaintenanceID";
 
-                IsFound = (result != null);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@MaintenanceID", MaintenanceID);
+
+                        object result = command.ExecuteScalar();
+
+                        IsFound = (result != null);
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 IsFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return IsFound;
@@ -207,32 +195,29 @@ where MaintenanceID = @MaintenanceID";
         {
             DataTable dt = new DataTable();
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select * from Maintenance";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    dt.Load(reader);
+                    connection.Open();
+
+                    string query = @"select * from Maintenance";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
                 }
-
-                reader.Close();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return dt;
@@ -242,41 +227,38 @@ where MaintenanceID = @MaintenanceID";
         {
             DataTable dt = new DataTable();
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"SELECT        Maintenance.MaintenanceID, Maintenance.VehicleID, Vehicles.VehicleName, Maintenance.MaintenanceDate, Maintenance.Description, Maintenance.Cost, Vehicles.IsAvailableForRent
-FROM            Vehicles INNER JOIN
-                         Maintenance ON Vehicles.VehicleID = Maintenance.VehicleID
-						 where Maintenance.VehicleID = @VehicleID
-                         order by Maintenance.MaintenanceDate desc";
-
-            SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@VehicleID", VehicleID);
-
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    dt.Load(reader);
+                    connection.Open();
+
+                    string query = @"SELECT Maintenance.MaintenanceID, Maintenance.VehicleID, Vehicles.VehicleName, Maintenance.MaintenanceDate, Maintenance.Description, Maintenance.Cost, Vehicles.IsAvailableForRent
+                            FROM Vehicles
+                            INNER JOIN Maintenance ON Vehicles.VehicleID = Maintenance.VehicleID
+                            WHERE Maintenance.VehicleID = @VehicleID
+                            ORDER BY Maintenance.MaintenanceDate DESC";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@VehicleID", VehicleID);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
                 }
-
-                reader.Close();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-
-            }
-            finally
-            {
-                connection.Close();
+                
             }
 
             return dt;
         }
-
     }
 }

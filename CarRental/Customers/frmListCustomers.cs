@@ -64,7 +64,7 @@ namespace CarRental.Customers
 
         private void _RefreshCustomersList()
         {
-            _dtAllCustomers = clsCustomer.GetAllCustomer();
+            _dtAllCustomers = clsCustomer.GetAllCustomers();
             dgvCustomersList.DataSource = _dtAllCustomers;
             lblNumberOfRecords.Text = dgvCustomersList.Rows.Count.ToString();
 

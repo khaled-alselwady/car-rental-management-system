@@ -147,9 +147,9 @@ namespace CarRental_Business
             return clsCustomerData.DoesDriverLicenseNumberExist(DriverLicenseNumber);
         }
 
-        public static DataTable GetAllCustomer()
+        public static DataTable GetAllCustomers()
         {
-            return clsCustomerData.GetAllCustomer();
+            return clsCustomerData.GetAllCustomers();
         }
 
         public static int GetCustomersCount()

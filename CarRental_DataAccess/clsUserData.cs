@@ -16,49 +16,46 @@ namespace CarRental_DataAccess
         {
             bool IsFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select * from Users where UserID = @UserID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@UserID", UserID);
-
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    // The record was found
-                    IsFound = true;
+                    connection.Open();
 
-                    PersonID = (int)reader["PersonID"];
-                    Username = (string)reader["Username"];
-                    Password = (string)reader["Password"];
-                    Permissions = (int)reader["Permissions"];
-                    SecurityQuestion = (reader["SecurityQuestion"] != DBNull.Value) ? (string)reader["SecurityQuestion"] : string.Empty;
-                    SecurityAnswer = (reader["SecurityAnswer"] != DBNull.Value) ? (string)reader["SecurityAnswer"] : string.Empty;
-                    ImagePath = (reader["ImagePath"] != DBNull.Value) ? (string)reader["ImagePath"] : string.Empty;
-                    IsActive = (bool)reader["IsActive"];
-                }
-                else
-                {
-                    // The record was not found
-                    IsFound = false;
-                }
+                    string query = @"select * from Users where UserID = @UserID";
 
-                reader.Close();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@UserID", UserID);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                IsFound = true;
+
+                                PersonID = (int)reader["PersonID"];
+                                Username = (string)reader["Username"];
+                                Password = (string)reader["Password"];
+                                Permissions = (int)reader["Permissions"];
+                                SecurityQuestion = (reader["SecurityQuestion"] != DBNull.Value) ? (string)reader["SecurityQuestion"] : string.Empty;
+                                SecurityAnswer = (reader["SecurityAnswer"] != DBNull.Value) ? (string)reader["SecurityAnswer"] : string.Empty;
+                                ImagePath = (reader["ImagePath"] != DBNull.Value) ? (string)reader["ImagePath"] : string.Empty;
+                                IsActive = (bool)reader["IsActive"];
+                            }
+                            else
+                            {
+                                // The record was not found
+                                IsFound = false;
+                            }
+                        }
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 IsFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return IsFound;
@@ -70,49 +67,46 @@ namespace CarRental_DataAccess
         {
             bool IsFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select * from Users where Username = @Username";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@Username", Username);
-
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    // The record was found
-                    IsFound = true;
+                    connection.Open();
 
-                    UserID = (int)reader["UserID"];
-                    PersonID = (int)reader["PersonID"];
-                    Password = (string)reader["Password"];
-                    Permissions = (int)reader["Permissions"];
-                    SecurityQuestion = (reader["SecurityQuestion"] != DBNull.Value) ? (string)reader["SecurityQuestion"] : string.Empty;
-                    SecurityAnswer = (reader["SecurityAnswer"] != DBNull.Value) ? (string)reader["SecurityAnswer"] : string.Empty;
-                    ImagePath = (reader["ImagePath"] != DBNull.Value) ? (string)reader["ImagePath"] : string.Empty;
-                    IsActive = (bool)reader["IsActive"];
-                }
-                else
-                {
-                    // The record was not found
-                    IsFound = false;
-                }
+                    string query = @"select * from Users where Username = @Username COLLATE SQL_Latin1_General_CP1_CS_AS";
 
-                reader.Close();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Username", Username);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                IsFound = true;
+
+                                UserID = (int)reader["UserID"];
+                                PersonID = (int)reader["PersonID"];
+                                Password = (string)reader["Password"];
+                                Permissions = (int)reader["Permissions"];
+                                SecurityQuestion = (reader["SecurityQuestion"] != DBNull.Value) ? (string)reader["SecurityQuestion"] : string.Empty;
+                                SecurityAnswer = (reader["SecurityAnswer"] != DBNull.Value) ? (string)reader["SecurityAnswer"] : string.Empty;
+                                ImagePath = (reader["ImagePath"] != DBNull.Value) ? (string)reader["ImagePath"] : string.Empty;
+                                IsActive = (bool)reader["IsActive"];
+                            }
+                            else
+                            {
+                                // The record was not found
+                                IsFound = false;
+                            }
+                        }
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 IsFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return IsFound;
@@ -124,122 +118,116 @@ namespace CarRental_DataAccess
         {
             bool IsFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select * from Users where Username = @Username AND Password = @Password";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@Username", Username);
-
-            command.Parameters.AddWithValue("@Password", Password);
-
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    // The record was found
-                    IsFound = true;
+                    connection.Open();
 
-                    UserID = (int)reader["UserID"];
-                    PersonID = (int)reader["PersonID"];
-                    Permissions = (int)reader["Permissions"];
-                    SecurityQuestion = (reader["SecurityQuestion"] != DBNull.Value) ? (string)reader["SecurityQuestion"] : string.Empty;
-                    SecurityAnswer = (reader["SecurityAnswer"] != DBNull.Value) ? (string)reader["SecurityAnswer"] : string.Empty;
-                    ImagePath = (reader["ImagePath"] != DBNull.Value) ? (string)reader["ImagePath"] : string.Empty;
-                    IsActive = (bool)reader["IsActive"];
-                }
-                else
-                {
-                    // The record was not found
-                    IsFound = false;
-                }
+                    string query = @"select * from Users where Username = @Username COLLATE SQL_Latin1_General_CP1_CS_AS AND Password = @Password COLLATE SQL_Latin1_General_CP1_CS_AS";
 
-                reader.Close();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Username", Username);
+                        command.Parameters.AddWithValue("@Password", Password);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                IsFound = true;
+
+                                UserID = (int)reader["UserID"];
+                                PersonID = (int)reader["PersonID"];
+                                Permissions = (int)reader["Permissions"];
+                                SecurityQuestion = (reader["SecurityQuestion"] != DBNull.Value) ? (string)reader["SecurityQuestion"] : string.Empty;
+                                SecurityAnswer = (reader["SecurityAnswer"] != DBNull.Value) ? (string)reader["SecurityAnswer"] : string.Empty;
+                                ImagePath = (reader["ImagePath"] != DBNull.Value) ? (string)reader["ImagePath"] : string.Empty;
+                                IsActive = (bool)reader["IsActive"];
+                            }
+                            else
+                            {
+                                // The record was not found
+                                IsFound = false;
+                            }
+                        }
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 IsFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return IsFound;
         }
 
-        public static int AddNewUser(int PersonID, string Username, string Password, int Permissions,
-            string SecurityQuestion, string SecurityAnswer, string ImagePath, bool IsActive)
+        public static int AddNewUser(int PersonID, string Username, string Password,
+            int Permissions, string SecurityQuestion, string SecurityAnswer, string ImagePath,
+            bool IsActive)
         {
             // This function will return the new person id if succeeded and -1 if not
             int UserID = -1;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-            string query = @"if not Exists (select found = 1 from Users where Username = @Username)
+                    string query = @"if not Exists (select found = 1 from Users where Username = @Username)
 begin
 insert into Users (PersonID, Username, Password, Permissions, SecurityQuestion, SecurityAnswer, ImagePath, IsActive)
 values (@PersonID, @Username, @Password, @Permissions, @SecurityQuestion, @SecurityAnswer, @ImagePath, @IsActive)
 select scope_identity()
 end";
 
-            SqlCommand command = new SqlCommand(query, connection);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@PersonID", PersonID);
+                        command.Parameters.AddWithValue("@Username", Username);
+                        command.Parameters.AddWithValue("@Password", Password);
+                        command.Parameters.AddWithValue("@Permissions", Permissions);
+                        if (string.IsNullOrWhiteSpace(SecurityQuestion))
+                        {
+                            command.Parameters.AddWithValue("@SecurityQuestion", DBNull.Value);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@SecurityQuestion", SecurityQuestion);
+                        }
+                        if (string.IsNullOrWhiteSpace(SecurityAnswer))
+                        {
+                            command.Parameters.AddWithValue("@SecurityAnswer", DBNull.Value);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@SecurityAnswer", SecurityAnswer);
+                        }
+                        if (string.IsNullOrWhiteSpace(ImagePath))
+                        {
+                            command.Parameters.AddWithValue("@ImagePath", DBNull.Value);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@ImagePath", ImagePath);
+                        }
+                        command.Parameters.AddWithValue("@IsActive", IsActive);
 
-            command.Parameters.AddWithValue("@PersonID", PersonID);
-            command.Parameters.AddWithValue("@Username", Username);
-            command.Parameters.AddWithValue("@Password", Password);
-            command.Parameters.AddWithValue("@Permissions", Permissions);
-            if (string.IsNullOrWhiteSpace(SecurityQuestion))
-            {
-                command.Parameters.AddWithValue("@SecurityQuestion", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@SecurityQuestion", SecurityQuestion);
-            }
-            if (string.IsNullOrWhiteSpace(SecurityAnswer))
-            {
-                command.Parameters.AddWithValue("@SecurityAnswer", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@SecurityAnswer", SecurityAnswer);
-            }
-            if (string.IsNullOrWhiteSpace(ImagePath))
-            {
-                command.Parameters.AddWithValue("@ImagePath", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@ImagePath", ImagePath);
-            }
-            command.Parameters.AddWithValue("@IsActive", IsActive);
+                        object result = command.ExecuteScalar();
 
-            try
-            {
-                connection.Open();
-
-                object result = command.ExecuteScalar();
-
-                if (result != null && int.TryParse(result.ToString(), out int InsertID))
-                {
-                    UserID = InsertID;
+                        if (result != null && int.TryParse(result.ToString(), out int InsertID))
+                        {
+                            UserID = InsertID;
+                        }
+                    }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
             }
-            finally
-            {
-                connection.Close();
-            }
-
             return UserID;
         }
 
@@ -249,9 +237,13 @@ end";
         {
             int RowAffected = 0;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-            string query = @"Update Users
+                    string query = @"Update Users
 set PersonID = @PersonID,
 Username = @Username,
 Password = @Password,
@@ -262,52 +254,46 @@ ImagePath = @ImagePath,
 IsActive = @IsActive
 where UserID = @UserID";
 
-            SqlCommand command = new SqlCommand(query, connection);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@UserID", UserID);
+                        command.Parameters.AddWithValue("@PersonID", PersonID);
+                        command.Parameters.AddWithValue("@Username", Username);
+                        command.Parameters.AddWithValue("@Password", Password);
+                        command.Parameters.AddWithValue("@Permissions", Permissions);
+                        if (string.IsNullOrWhiteSpace(SecurityQuestion))
+                        {
+                            command.Parameters.AddWithValue("@SecurityQuestion", DBNull.Value);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@SecurityQuestion", SecurityQuestion);
+                        }
+                        if (string.IsNullOrWhiteSpace(SecurityAnswer))
+                        {
+                            command.Parameters.AddWithValue("@SecurityAnswer", DBNull.Value);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@SecurityAnswer", SecurityAnswer);
+                        }
+                        if (string.IsNullOrWhiteSpace(ImagePath))
+                        {
+                            command.Parameters.AddWithValue("@ImagePath", DBNull.Value);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@ImagePath", ImagePath);
+                        }
+                        command.Parameters.AddWithValue("@IsActive", IsActive);
 
-            command.Parameters.AddWithValue("@UserID", UserID);
-            command.Parameters.AddWithValue("@PersonID", PersonID);
-            command.Parameters.AddWithValue("@Username", Username);
-            command.Parameters.AddWithValue("@Password", Password);
-            command.Parameters.AddWithValue("@Permissions", Permissions);
-            if (string.IsNullOrWhiteSpace(SecurityQuestion))
-            {
-                command.Parameters.AddWithValue("@SecurityQuestion", DBNull.Value);
+                        RowAffected = command.ExecuteNonQuery();
+                    }
+                }
             }
-            else
-            {
-                command.Parameters.AddWithValue("@SecurityQuestion", SecurityQuestion);
-            }
-            if (string.IsNullOrWhiteSpace(SecurityAnswer))
-            {
-                command.Parameters.AddWithValue("@SecurityAnswer", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@SecurityAnswer", SecurityAnswer);
-            }
-            if (string.IsNullOrWhiteSpace(ImagePath))
-            {
-                command.Parameters.AddWithValue("@ImagePath", DBNull.Value);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@ImagePath", ImagePath);
-            }
-            command.Parameters.AddWithValue("@IsActive", IsActive);
-
-            try
-            {
-                connection.Open();
-
-                RowAffected = command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return (RowAffected > 0);
@@ -317,27 +303,25 @@ where UserID = @UserID";
         {
             int RowAffected = 0;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"delete Users where UserID = @UserID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@UserID", UserID);
-
             try
             {
-                connection.Open();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-                RowAffected = command.ExecuteNonQuery();
+                    string query = @"delete Users where UserID = @UserID";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@UserID", UserID);
+
+                        RowAffected = command.ExecuteNonQuery();
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return (RowAffected > 0);
@@ -347,29 +331,27 @@ where UserID = @UserID";
         {
             bool IsFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select found = 1 from Users where UserID = @UserID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@UserID", UserID);
-
             try
             {
-                connection.Open();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-                object result = command.ExecuteScalar();
+                    string query = @"select found = 1 from Users where UserID = @UserID";
 
-                IsFound = (result != null);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@UserID", UserID);
+
+                        object result = command.ExecuteScalar();
+
+                        IsFound = (result != null);
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 IsFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return IsFound;
@@ -379,29 +361,27 @@ where UserID = @UserID";
         {
             bool IsFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select found = 1 from Users where Username = @Username";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@Username", Username);
-
             try
             {
-                connection.Open();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-                object result = command.ExecuteScalar();
+                    string query = @"select found = 1 from Users where Username = @Username";
 
-                IsFound = (result != null);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Username", Username);
+
+                        object result = command.ExecuteScalar();
+
+                        IsFound = (result != null);
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 IsFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return IsFound;
@@ -411,31 +391,28 @@ where UserID = @UserID";
         {
             bool IsFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select found = 1 from Users where Username = @Username and Password = @Password";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@Username", Username);
-
-            command.Parameters.AddWithValue("@Password", Password);
-
             try
             {
-                connection.Open();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-                object result = command.ExecuteScalar();
+                    string query = @"select found = 1 from Users where Username = @Username and Password = @Password";
 
-                IsFound = (result != null);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Username", Username);
+                        command.Parameters.AddWithValue("@Password", Password);
+
+                        object result = command.ExecuteScalar();
+
+                        IsFound = (result != null);
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 IsFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return IsFound;
@@ -445,32 +422,29 @@ where UserID = @UserID";
         {
             DataTable dt = new DataTable();
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select * from UsersDetails_View order by UserID desc";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    dt.Load(reader);
+                    connection.Open();
+
+                    string query = @"select * from UsersDetails_View order by UserID desc";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
                 }
-
-                reader.Close();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return dt;
@@ -480,30 +454,28 @@ where UserID = @UserID";
         {
             int Count = 0;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select count(*) from Users";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
             try
             {
-                connection.Open();
-
-                object result = command.ExecuteScalar();
-
-                if (result != null && int.TryParse(result.ToString(), out int Value))
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    Count = Value;
+                    connection.Open();
+
+                    string query = @"select count(*) from Users";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int Value))
+                        {
+                            Count = Value;
+                        }
+                    }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return Count;
@@ -513,34 +485,31 @@ where UserID = @UserID";
         {
             int PersonID = -1;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select PersonID from Users where UserID = @UserID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@UserID", UserID);
-
             try
             {
-                connection.Open();
-
-                object result = command.ExecuteScalar();
-
-                if (result != null && int.TryParse(result.ToString(), out int ID))
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    PersonID = ID;
+                    connection.Open();
+
+                    string query = @"select PersonID from Users where UserID = @UserID";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@UserID", UserID);
+
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int ID))
+                        {
+                            PersonID = ID;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
 
             }
-            finally
-            {
-                connection.Close();
-            }
-
             return PersonID;
         }
 
@@ -548,34 +517,31 @@ where UserID = @UserID";
         {
             int AffectedRows = 0;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"update users 
-                             set Password = @Password
-                             where UserID = @UserID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@Password", NewPassword);
-            command.Parameters.AddWithValue("UserID", UserID);
-
             try
             {
-                connection.Open();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-                AffectedRows = command.ExecuteNonQuery();
+                    string query = @"update users 
+                     set Password = @Password
+                     where UserID = @UserID";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Password", NewPassword);
+                        command.Parameters.AddWithValue("UserID", UserID);
+
+                        AffectedRows = command.ExecuteNonQuery();
+                    }
+                }
             }
             catch (Exception ex)
             {
 
             }
-            finally
-            {
-                connection.Close();
-            }
 
             return (AffectedRows > 0);
         }
-
     }
 }

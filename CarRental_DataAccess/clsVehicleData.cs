@@ -18,55 +18,52 @@ namespace CarRental_DataAccess
         {
             bool IsFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select * from Vehicles where VehicleID = @VehicleID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@VehicleID", VehicleID);
-
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    // The record was found
-                    IsFound = true;
+                    connection.Open();
 
-                    MakeID = (int)reader["MakeID"];
-                    ModelID = (int)reader["ModelID"];
-                    SubModelID = (int)reader["SubModelID"];
-                    BodyID = (int)reader["BodyID"];
-                    VehicleName = (string)reader["VehicleName"];
-                    PlateNumber = (string)reader["PlateNumber"];
-                    Year = (short)reader["Year"];
-                    DriveTypeID = (int)reader["DriveTypeID"];
-                    Engine = (string)reader["Engine"];
-                    FuelTypeID = (int)reader["FuelTypeID"];
-                    NumberDoors = (byte)reader["NumberDoors"];
-                    Mileage = (int)reader["Mileage"];
-                    RentalPricePerDay = Convert.ToSingle(reader["RentalPricePerDay"]);
-                    IsAvailableForRent = (bool)reader["IsAvailableForRent"];
-                }
-                else
-                {
-                    // The record was not found
-                    IsFound = false;
-                }
+                    string query = @"select * from Vehicles where VehicleID = @VehicleID";
 
-                reader.Close();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@VehicleID", VehicleID);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                IsFound = true;
+
+                                MakeID = (int)reader["MakeID"];
+                                ModelID = (int)reader["ModelID"];
+                                SubModelID = (int)reader["SubModelID"];
+                                BodyID = (int)reader["BodyID"];
+                                VehicleName = (string)reader["VehicleName"];
+                                PlateNumber = (string)reader["PlateNumber"];
+                                Year = (short)reader["Year"];
+                                DriveTypeID = (int)reader["DriveTypeID"];
+                                Engine = (string)reader["Engine"];
+                                FuelTypeID = (int)reader["FuelTypeID"];
+                                NumberDoors = (byte)reader["NumberDoors"];
+                                Mileage = (int)reader["Mileage"];
+                                RentalPricePerDay = Convert.ToSingle(reader["RentalPricePerDay"]);
+                                IsAvailableForRent = (bool)reader["IsAvailableForRent"];
+                            }
+                            else
+                            {
+                                // The record was not found
+                                IsFound = false;
+                            }
+                        }
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 IsFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return IsFound;
@@ -80,47 +77,45 @@ namespace CarRental_DataAccess
             // This function will return the new person id if succeeded and -1 if not
             int VehicleID = -1;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-            string query = @"insert into Vehicles (MakeID, ModelID, SubModelID, BodyID, VehicleName, PlateNumber, Year, DriveTypeID, Engine, FuelTypeID, NumberDoors, Mileage, RentalPricePerDay, IsAvailableForRent)
+                    string query = @"insert into Vehicles (MakeID, ModelID, SubModelID, BodyID, VehicleName, PlateNumber, Year, DriveTypeID, Engine, FuelTypeID, NumberDoors, Mileage, RentalPricePerDay, IsAvailableForRent)
 values (@MakeID, @ModelID, @SubModelID, @BodyID, @VehicleName, @PlateNumber, @Year, @DriveTypeID, @Engine, @FuelTypeID, @NumberDoors, @Mileage, @RentalPricePerDay, @IsAvailableForRent)
 select scope_identity()";
 
-            SqlCommand command = new SqlCommand(query, connection);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@MakeID", MakeID);
+                        command.Parameters.AddWithValue("@ModelID", ModelID);
+                        command.Parameters.AddWithValue("@SubModelID", SubModelID);
+                        command.Parameters.AddWithValue("@BodyID", BodyID);
+                        command.Parameters.AddWithValue("@VehicleName", VehicleName);
+                        command.Parameters.AddWithValue("@PlateNumber", PlateNumber);
+                        command.Parameters.AddWithValue("@Year", Year);
+                        command.Parameters.AddWithValue("@DriveTypeID", DriveTypeID);
+                        command.Parameters.AddWithValue("@Engine", Engine);
+                        command.Parameters.AddWithValue("@FuelTypeID", FuelTypeID);
+                        command.Parameters.AddWithValue("@NumberDoors", NumberDoors);
+                        command.Parameters.AddWithValue("@Mileage", Mileage);
+                        command.Parameters.AddWithValue("@RentalPricePerDay", RentalPricePerDay);
+                        command.Parameters.AddWithValue("@IsAvailableForRent", IsAvailableForRent);
 
-            command.Parameters.AddWithValue("@MakeID", MakeID);
-            command.Parameters.AddWithValue("@ModelID", ModelID);
-            command.Parameters.AddWithValue("@SubModelID", SubModelID);
-            command.Parameters.AddWithValue("@BodyID", BodyID);
-            command.Parameters.AddWithValue("@VehicleName", VehicleName);
-            command.Parameters.AddWithValue("@PlateNumber", PlateNumber);
-            command.Parameters.AddWithValue("@Year", Year);
-            command.Parameters.AddWithValue("@DriveTypeID", DriveTypeID);
-            command.Parameters.AddWithValue("@Engine", Engine);
-            command.Parameters.AddWithValue("@FuelTypeID", FuelTypeID);
-            command.Parameters.AddWithValue("@NumberDoors", NumberDoors);
-            command.Parameters.AddWithValue("@Mileage", Mileage);
-            command.Parameters.AddWithValue("@RentalPricePerDay", RentalPricePerDay);
-            command.Parameters.AddWithValue("@IsAvailableForRent", IsAvailableForRent);
+                        object result = command.ExecuteScalar();
 
-            try
-            {
-                connection.Open();
-
-                object result = command.ExecuteScalar();
-
-                if (result != null && int.TryParse(result.ToString(), out int InsertID))
-                {
-                    VehicleID = InsertID;
+                        if (result != null && int.TryParse(result.ToString(), out int InsertID))
+                        {
+                            VehicleID = InsertID;
+                        }
+                    }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return VehicleID;
@@ -133,9 +128,13 @@ select scope_identity()";
         {
             int RowAffected = 0;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-            string query = @"Update Vehicles
+                    string query = @"Update Vehicles
 set MakeID = @MakeID,
 ModelID = @ModelID,
 SubModelID = @SubModelID,
@@ -152,37 +151,31 @@ RentalPricePerDay = @RentalPricePerDay,
 IsAvailableForRent = @IsAvailableForRent
 where VehicleID = @VehicleID";
 
-            SqlCommand command = new SqlCommand(query, connection);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@VehicleID", VehicleID);
+                        command.Parameters.AddWithValue("@MakeID", MakeID);
+                        command.Parameters.AddWithValue("@ModelID", ModelID);
+                        command.Parameters.AddWithValue("@SubModelID", SubModelID);
+                        command.Parameters.AddWithValue("@BodyID", BodyID);
+                        command.Parameters.AddWithValue("@VehicleName", VehicleName);
+                        command.Parameters.AddWithValue("@PlateNumber", PlateNumber);
+                        command.Parameters.AddWithValue("@Year", Year);
+                        command.Parameters.AddWithValue("@DriveTypeID", DriveTypeID);
+                        command.Parameters.AddWithValue("@Engine", Engine);
+                        command.Parameters.AddWithValue("@FuelTypeID", FuelTypeID);
+                        command.Parameters.AddWithValue("@NumberDoors", NumberDoors);
+                        command.Parameters.AddWithValue("@Mileage", Mileage);
+                        command.Parameters.AddWithValue("@RentalPricePerDay", RentalPricePerDay);
+                        command.Parameters.AddWithValue("@IsAvailableForRent", IsAvailableForRent);
 
-            command.Parameters.AddWithValue("@VehicleID", VehicleID);
-            command.Parameters.AddWithValue("@MakeID", MakeID);
-            command.Parameters.AddWithValue("@ModelID", ModelID);
-            command.Parameters.AddWithValue("@SubModelID", SubModelID);
-            command.Parameters.AddWithValue("@BodyID", BodyID);
-            command.Parameters.AddWithValue("@VehicleName", VehicleName);
-            command.Parameters.AddWithValue("@PlateNumber", PlateNumber);
-            command.Parameters.AddWithValue("@Year", Year);
-            command.Parameters.AddWithValue("@DriveTypeID", DriveTypeID);
-            command.Parameters.AddWithValue("@Engine", Engine);
-            command.Parameters.AddWithValue("@FuelTypeID", FuelTypeID);
-            command.Parameters.AddWithValue("@NumberDoors", NumberDoors);
-            command.Parameters.AddWithValue("@Mileage", Mileage);
-            command.Parameters.AddWithValue("@RentalPricePerDay", RentalPricePerDay);
-            command.Parameters.AddWithValue("@IsAvailableForRent", IsAvailableForRent);
-
-            try
-            {
-                connection.Open();
-
-                RowAffected = command.ExecuteNonQuery();
+                        RowAffected = command.ExecuteNonQuery();
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return (RowAffected > 0);
@@ -192,27 +185,25 @@ where VehicleID = @VehicleID";
         {
             int RowAffected = 0;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"delete Vehicles where VehicleID = @VehicleID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@VehicleID", VehicleID);
-
             try
             {
-                connection.Open();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-                RowAffected = command.ExecuteNonQuery();
+                    string query = @"delete Vehicles where VehicleID = @VehicleID";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@VehicleID", VehicleID);
+
+                        RowAffected = command.ExecuteNonQuery();
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return (RowAffected > 0);
@@ -222,29 +213,27 @@ where VehicleID = @VehicleID";
         {
             bool IsFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select found = 1 from Vehicles where VehicleID = @VehicleID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@VehicleID", VehicleID);
-
             try
             {
-                connection.Open();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-                object result = command.ExecuteScalar();
+                    string query = @"select found = 1 from Vehicles where VehicleID = @VehicleID";
 
-                IsFound = (result != null);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@VehicleID", VehicleID);
+
+                        object result = command.ExecuteScalar();
+
+                        IsFound = (result != null);
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 IsFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return IsFound;
@@ -254,29 +243,27 @@ where VehicleID = @VehicleID";
         {
             bool IsFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select found = 1 from Vehicles where PlateNumber = @PlateNumber";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@PlateNumber", PlateNumber);
-
             try
             {
-                connection.Open();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
 
-                object result = command.ExecuteScalar();
+                    string query = @"SELECT found = 1 FROM Vehicles WHERE PlateNumber = @PlateNumber";
 
-                IsFound = (result != null);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@PlateNumber", PlateNumber);
+
+                        object result = command.ExecuteScalar();
+
+                        IsFound = (result != null);
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 IsFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return IsFound;
@@ -286,40 +273,29 @@ where VehicleID = @VehicleID";
         {
             DataTable dt = new DataTable();
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"SELECT        Vehicles.VehicleID, Vehicles.VehicleName, Makes.Make, MakeModels.ModelName, Vehicles.PlateNumber, Vehicles.Year, FuelTypes.FuelTypeName, DriveTypes.DriveTypeName, Vehicles.Mileage, 
-                         Vehicles.RentalPricePerDay, Vehicles.IsAvailableForRent
-FROM            Vehicles INNER JOIN
-                         Makes ON Vehicles.MakeID = Makes.MakeID INNER JOIN
-                         MakeModels ON Vehicles.ModelID = MakeModels.ModelID INNER JOIN
-                         Bodies ON Vehicles.BodyID = Bodies.BodyID INNER JOIN
-                         DriveTypes ON Vehicles.DriveTypeID = DriveTypes.DriveTypeID INNER JOIN
-                         FuelTypes ON Vehicles.FuelTypeID = FuelTypes.FuelTypeID
-						 order by VehicleID desc";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    dt.Load(reader);
+                    connection.Open();
+
+                    string query = @"select * from VehiclesDetails_View order by VehicleID desc";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
                 }
-
-                reader.Close();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return dt;
@@ -329,30 +305,28 @@ FROM            Vehicles INNER JOIN
         {
             int Count = 0;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"select count(*) from Vehicles";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
             try
             {
-                connection.Open();
-
-                object result = command.ExecuteScalar();
-
-                if (result != null && int.TryParse(result.ToString(), out int Value))
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    Count = Value;
+                    connection.Open();
+
+                    string query = @"SELECT COUNT(*) FROM Vehicles";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int Value))
+                        {
+                            Count = Value;
+                        }
+                    }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return Count;
