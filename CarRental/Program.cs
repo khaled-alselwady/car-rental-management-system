@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CarRental.Booking;
 using CarRental.Customers;
 using CarRental.Login;
 using CarRental.Main;

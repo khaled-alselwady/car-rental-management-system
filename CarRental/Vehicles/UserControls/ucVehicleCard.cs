@@ -19,7 +19,7 @@ namespace CarRental.Vehicles.UserControls
         private clsVehicle _Vehicle;
 
         public int VehicleID => _VehicleID;
-        public clsVehicle Vehicle => _Vehicle;
+        public clsVehicle VehicleInfo => _Vehicle;
 
         public ucVehicleCard()
         {

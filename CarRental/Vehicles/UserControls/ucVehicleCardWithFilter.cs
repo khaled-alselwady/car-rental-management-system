@@ -1,4 +1,5 @@
-﻿using CarRental.Customers.UserControls;
+﻿using CarRental.Customers;
+using CarRental.Customers.UserControls;
 using CarRental_Business;
 using System;
 using System.Collections.Generic;
@@ -68,7 +69,7 @@ namespace CarRental.Vehicles.UserControls
         }
 
         public int VehicleID => ucVehicleCard1.VehicleID;
-        public clsVehicle SelectedVehicleInfo => ucVehicleCard1.Vehicle;
+        public clsVehicle SelectedVehicleInfo => ucVehicleCard1.VehicleInfo;
 
         private void txtFilterValue_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -136,5 +137,11 @@ namespace CarRental.Vehicles.UserControls
             ucVehicleCard1.Reset();
         }
 
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {
+            frmAddEditVehicle AddNewVehicle = new frmAddEditVehicle();
+            AddNewVehicle.GetVehicleIDByDelegate += LoadVehicleInfo;
+            AddNewVehicle.Show();
+        }
     }
 }

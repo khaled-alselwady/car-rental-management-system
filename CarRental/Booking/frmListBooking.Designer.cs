@@ -1,6 +1,6 @@
-﻿namespace CarRental.Customers
+﻿namespace CarRental.Booking
 {
-    partial class frmListCustomers
+    partial class frmListBooking
     {
         /// <summary>
         /// Required designer variable.
@@ -31,32 +31,28 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dgvCustomersList = new System.Windows.Forms.DataGridView();
+            this.dgvBookingList = new System.Windows.Forms.DataGridView();
             this.cmsEditProfile = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
-            this.ShowCustomerDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.EditCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cbCountry = new System.Windows.Forms.ComboBox();
+            this.ShowBookingDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.lblNumberOfRecords = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cbFilter = new System.Windows.Forms.ComboBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.cbGender = new System.Windows.Forms.ComboBox();
+            this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.pbImage = new System.Windows.Forms.PictureBox();
-            this.btnAddNewCustomer = new System.Windows.Forms.Button();
-            this.ShowCustomerBookingHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCustomersList)).BeginInit();
+            this.btnAddNewBooking = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBookingList)).BeginInit();
             this.cmsEditProfile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
             // 
-            // dgvCustomersList
+            // dgvBookingList
             // 
-            this.dgvCustomersList.AllowUserToAddRows = false;
-            this.dgvCustomersList.AllowUserToDeleteRows = false;
-            this.dgvCustomersList.AllowUserToResizeRows = false;
-            this.dgvCustomersList.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvBookingList.AllowUserToAddRows = false;
+            this.dgvBookingList.AllowUserToDeleteRows = false;
+            this.dgvBookingList.AllowUserToResizeRows = false;
+            this.dgvBookingList.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -64,9 +60,9 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCustomersList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvCustomersList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCustomersList.ContextMenuStrip = this.cmsEditProfile;
+            this.dgvBookingList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvBookingList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBookingList.ContextMenuStrip = this.cmsEditProfile;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -74,13 +70,13 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCustomersList.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvCustomersList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvCustomersList.Location = new System.Drawing.Point(13, 260);
-            this.dgvCustomersList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dgvCustomersList.MultiSelect = false;
-            this.dgvCustomersList.Name = "dgvCustomersList";
-            this.dgvCustomersList.ReadOnly = true;
+            this.dgvBookingList.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvBookingList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvBookingList.Location = new System.Drawing.Point(15, 277);
+            this.dgvBookingList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgvBookingList.MultiSelect = false;
+            this.dgvBookingList.Name = "dgvBookingList";
+            this.dgvBookingList.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -88,22 +84,19 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCustomersList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvCustomersList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCustomersList.Size = new System.Drawing.Size(1340, 467);
-            this.dgvCustomersList.TabIndex = 170;
-            this.dgvCustomersList.TabStop = false;
-            this.dgvCustomersList.DoubleClick += new System.EventHandler(this.dgvCustomersList_DoubleClick);
+            this.dgvBookingList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvBookingList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvBookingList.Size = new System.Drawing.Size(1340, 467);
+            this.dgvBookingList.TabIndex = 180;
+            this.dgvBookingList.TabStop = false;
+            this.dgvBookingList.DoubleClick += new System.EventHandler(this.dgvBookingList_DoubleClick);
             // 
             // cmsEditProfile
             // 
             this.cmsEditProfile.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cmsEditProfile.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmsEditProfile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ShowCustomerDetailsToolStripMenuItem1,
-            this.EditCustomerToolStripMenuItem,
-            this.DeleteToolStripMenuItem,
-            this.ShowCustomerBookingHistoryToolStripMenuItem});
+            this.ShowBookingDetailsToolStripMenuItem1});
             this.cmsEditProfile.Name = "guna2ContextMenuStrip1";
             this.cmsEditProfile.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.cmsEditProfile.RenderStyle.BorderColor = System.Drawing.Color.Gainsboro;
@@ -114,66 +107,37 @@
             this.cmsEditProfile.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
             this.cmsEditProfile.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
             this.cmsEditProfile.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.cmsEditProfile.Size = new System.Drawing.Size(320, 178);
+            this.cmsEditProfile.Size = new System.Drawing.Size(252, 42);
+            this.cmsEditProfile.Opening += new System.ComponentModel.CancelEventHandler(this.cmsEditProfile_Opening);
             // 
-            // ShowCustomerDetailsToolStripMenuItem1
+            // ShowBookingDetailsToolStripMenuItem1
             // 
-            this.ShowCustomerDetailsToolStripMenuItem1.ForeColor = System.Drawing.Color.Black;
-            this.ShowCustomerDetailsToolStripMenuItem1.Image = global::CarRental.Properties.Resources.person_details32;
-            this.ShowCustomerDetailsToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.ShowCustomerDetailsToolStripMenuItem1.Name = "ShowCustomerDetailsToolStripMenuItem1";
-            this.ShowCustomerDetailsToolStripMenuItem1.Size = new System.Drawing.Size(319, 38);
-            this.ShowCustomerDetailsToolStripMenuItem1.Text = "   Show Customer Details";
-            this.ShowCustomerDetailsToolStripMenuItem1.Click += new System.EventHandler(this.ShowCustomerDetailsToolStripMenuItem1_Click);
-            // 
-            // EditCustomerToolStripMenuItem
-            // 
-            this.EditCustomerToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
-            this.EditCustomerToolStripMenuItem.Image = global::CarRental.Properties.Resources.edit_32;
-            this.EditCustomerToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.EditCustomerToolStripMenuItem.Name = "EditCustomerToolStripMenuItem";
-            this.EditCustomerToolStripMenuItem.Size = new System.Drawing.Size(319, 38);
-            this.EditCustomerToolStripMenuItem.Text = "   Edit";
-            this.EditCustomerToolStripMenuItem.Click += new System.EventHandler(this.EditCustomerToolStripMenuItem_Click);
-            // 
-            // DeleteToolStripMenuItem
-            // 
-            this.DeleteToolStripMenuItem.Image = global::CarRental.Properties.Resources.Delete_32;
-            this.DeleteToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem";
-            this.DeleteToolStripMenuItem.Size = new System.Drawing.Size(319, 38);
-            this.DeleteToolStripMenuItem.Text = "   Delete";
-            this.DeleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
-            // 
-            // cbCountry
-            // 
-            this.cbCountry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCountry.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbCountry.FormattingEnabled = true;
-            this.cbCountry.Location = new System.Drawing.Point(319, 224);
-            this.cbCountry.Name = "cbCountry";
-            this.cbCountry.Size = new System.Drawing.Size(213, 28);
-            this.cbCountry.TabIndex = 169;
-            this.cbCountry.SelectedIndexChanged += new System.EventHandler(this.cbCountry_SelectedIndexChanged);
+            this.ShowBookingDetailsToolStripMenuItem1.ForeColor = System.Drawing.Color.Black;
+            this.ShowBookingDetailsToolStripMenuItem1.Image = global::CarRental.Properties.Resources.person_details32;
+            this.ShowBookingDetailsToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ShowBookingDetailsToolStripMenuItem1.Name = "ShowBookingDetailsToolStripMenuItem1";
+            this.ShowBookingDetailsToolStripMenuItem1.Size = new System.Drawing.Size(251, 38);
+            this.ShowBookingDetailsToolStripMenuItem1.Text = "   Show Booking Details";
+            this.ShowBookingDetailsToolStripMenuItem1.Click += new System.EventHandler(this.ShowBookingDetailsToolStripMenuItem1_Click);
             // 
             // lblNumberOfRecords
             // 
             this.lblNumberOfRecords.AutoSize = true;
             this.lblNumberOfRecords.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumberOfRecords.Location = new System.Drawing.Point(113, 732);
+            this.lblNumberOfRecords.Location = new System.Drawing.Point(115, 749);
             this.lblNumberOfRecords.Name = "lblNumberOfRecords";
             this.lblNumberOfRecords.Size = new System.Drawing.Size(27, 20);
-            this.lblNumberOfRecords.TabIndex = 165;
+            this.lblNumberOfRecords.TabIndex = 177;
             this.lblNumberOfRecords.Text = "??";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(10, 732);
+            this.label2.Location = new System.Drawing.Point(12, 749);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(96, 20);
-            this.label2.TabIndex = 164;
+            this.label2.TabIndex = 176;
             this.label2.Text = "# Records:";
             // 
             // cbFilter
@@ -183,28 +147,29 @@
             this.cbFilter.FormattingEnabled = true;
             this.cbFilter.Items.AddRange(new object[] {
             "None",
+            "Booking ID",
             "Customer ID",
-            "Name",
-            "License Number",
-            "Gender",
-            "Phone",
-            "Email",
-            "Country"});
-            this.cbFilter.Location = new System.Drawing.Point(97, 225);
+            "Customer Name",
+            "Vehicle ID",
+            "Start Date",
+            "End Date",
+            "Pickup Location",
+            "Drop Off Locatioin"});
+            this.cbFilter.Location = new System.Drawing.Point(99, 242);
             this.cbFilter.Name = "cbFilter";
             this.cbFilter.Size = new System.Drawing.Size(210, 28);
-            this.cbFilter.TabIndex = 162;
+            this.cbFilter.TabIndex = 174;
             this.cbFilter.SelectedIndexChanged += new System.EventHandler(this.cbFilter_SelectedIndexChanged);
             // 
             // txtSearch
             // 
             this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(319, 225);
+            this.txtSearch.Location = new System.Drawing.Point(321, 242);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(256, 26);
-            this.txtSearch.TabIndex = 161;
+            this.txtSearch.TabIndex = 173;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
             // 
@@ -212,84 +177,70 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 230);
+            this.label1.Location = new System.Drawing.Point(11, 247);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 20);
-            this.label1.TabIndex = 160;
+            this.label1.TabIndex = 172;
             this.label1.Text = "Filter By:";
             // 
-            // cbGender
+            // dtpDate
             // 
-            this.cbGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbGender.FormattingEnabled = true;
-            this.cbGender.Items.AddRange(new object[] {
-            "All",
-            "Male",
-            "Female"});
-            this.cbGender.Location = new System.Drawing.Point(319, 224);
-            this.cbGender.Name = "cbGender";
-            this.cbGender.Size = new System.Drawing.Size(113, 28);
-            this.cbGender.TabIndex = 163;
-            this.cbGender.SelectedIndexChanged += new System.EventHandler(this.cbGender_SelectedIndexChanged);
+            this.dtpDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDate.Location = new System.Drawing.Point(321, 242);
+            this.dtpDate.Name = "dtpDate";
+            this.dtpDate.Size = new System.Drawing.Size(146, 26);
+            this.dtpDate.TabIndex = 182;
+            this.dtpDate.Visible = false;
+            this.dtpDate.ValueChanged += new System.EventHandler(this.dtpDate_ValueChanged);
             // 
             // pbImage
             // 
             this.pbImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbImage.Image = global::CarRental.Properties.Resources.customerList;
             this.pbImage.InitialImage = null;
-            this.pbImage.Location = new System.Drawing.Point(504, 14);
+            this.pbImage.Location = new System.Drawing.Point(506, 31);
             this.pbImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pbImage.Name = "pbImage";
             this.pbImage.Size = new System.Drawing.Size(306, 189);
             this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbImage.TabIndex = 166;
+            this.pbImage.TabIndex = 178;
             this.pbImage.TabStop = false;
             // 
-            // btnAddNewCustomer
+            // btnAddNewBooking
             // 
-            this.btnAddNewCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddNewCustomer.Image = global::CarRental.Properties.Resources.Add_Person_40;
-            this.btnAddNewCustomer.Location = new System.Drawing.Point(1282, 199);
-            this.btnAddNewCustomer.Name = "btnAddNewCustomer";
-            this.btnAddNewCustomer.Size = new System.Drawing.Size(70, 55);
-            this.btnAddNewCustomer.TabIndex = 171;
-            this.btnAddNewCustomer.UseVisualStyleBackColor = true;
-            this.btnAddNewCustomer.Click += new System.EventHandler(this.btnAddNewCustomer_Click);
+            this.btnAddNewBooking.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddNewBooking.Image = global::CarRental.Properties.Resources.add_booking48;
+            this.btnAddNewBooking.Location = new System.Drawing.Point(1284, 216);
+            this.btnAddNewBooking.Name = "btnAddNewBooking";
+            this.btnAddNewBooking.Size = new System.Drawing.Size(70, 55);
+            this.btnAddNewBooking.TabIndex = 181;
+            this.btnAddNewBooking.UseVisualStyleBackColor = true;
+            this.btnAddNewBooking.Click += new System.EventHandler(this.btnAddNewBooking_Click);
             // 
-            // ShowCustomerBookingHistoryToolStripMenuItem
-            // 
-            this.ShowCustomerBookingHistoryToolStripMenuItem.Image = global::CarRental.Properties.Resources.Calendar_32;
-            this.ShowCustomerBookingHistoryToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.ShowCustomerBookingHistoryToolStripMenuItem.Name = "ShowCustomerBookingHistoryToolStripMenuItem";
-            this.ShowCustomerBookingHistoryToolStripMenuItem.Size = new System.Drawing.Size(319, 38);
-            this.ShowCustomerBookingHistoryToolStripMenuItem.Text = "   Show Customer Booking History";
-            this.ShowCustomerBookingHistoryToolStripMenuItem.Click += new System.EventHandler(this.ShowCustomerBookingHistoryToolStripMenuItem_Click);
-            // 
-            // frmListCustomers
+            // frmListBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1366, 800);
-            this.Controls.Add(this.dgvCustomersList);
+            this.Controls.Add(this.dtpDate);
+            this.Controls.Add(this.dgvBookingList);
             this.Controls.Add(this.pbImage);
-            this.Controls.Add(this.btnAddNewCustomer);
-            this.Controls.Add(this.cbCountry);
+            this.Controls.Add(this.btnAddNewBooking);
             this.Controls.Add(this.lblNumberOfRecords);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cbFilter);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.cbGender);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmListCustomers";
+            this.Name = "frmListBooking";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Tag = "Manage Customers";
-            this.Text = "frmListCustomers";
-            this.Load += new System.EventHandler(this.frmListCustomers_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCustomersList)).EndInit();
+            this.Tag = "Manage Booking";
+            this.Text = "frmListBooking";
+            this.Load += new System.EventHandler(this.frmListBooking_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBookingList)).EndInit();
             this.cmsEditProfile.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             this.ResumeLayout(false);
@@ -299,20 +250,16 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvCustomersList;
+        private System.Windows.Forms.DataGridView dgvBookingList;
+        private Guna.UI2.WinForms.Guna2ContextMenuStrip cmsEditProfile;
+        private System.Windows.Forms.ToolStripMenuItem ShowBookingDetailsToolStripMenuItem1;
         private System.Windows.Forms.PictureBox pbImage;
-        private System.Windows.Forms.Button btnAddNewCustomer;
-        private System.Windows.Forms.ComboBox cbCountry;
+        private System.Windows.Forms.Button btnAddNewBooking;
         private System.Windows.Forms.Label lblNumberOfRecords;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbFilter;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cbGender;
-        private Guna.UI2.WinForms.Guna2ContextMenuStrip cmsEditProfile;
-        private System.Windows.Forms.ToolStripMenuItem ShowCustomerDetailsToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem EditCustomerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem DeleteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ShowCustomerBookingHistoryToolStripMenuItem;
+        private System.Windows.Forms.DateTimePicker dtpDate;
     }
 }

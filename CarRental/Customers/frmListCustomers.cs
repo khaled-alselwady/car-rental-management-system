@@ -1,4 +1,5 @@
-﻿using CarRental_Business;
+﻿using CarRental.Booking;
+using CarRental_Business;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -221,7 +222,9 @@ namespace CarRental.Customers
 
         private void ShowCustomerDetailsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmShowCustomerDetails ShowCustomerDetails = new frmShowCustomerDetails(_GetCustomerIDFromDGV());
+            frmShowCustomerDetails ShowCustomerDetails =
+                new frmShowCustomerDetails(_GetCustomerIDFromDGV());
+
             ShowCustomerDetails.ShowDialog();
 
             _RefreshCustomersList();
@@ -263,8 +266,20 @@ namespace CarRental.Customers
 
         private void dgvCustomersList_DoubleClick(object sender, EventArgs e)
         {
-            frmShowCustomerDetails ShowCustomerDetails = new frmShowCustomerDetails(_GetCustomerIDFromDGV());
+            frmShowCustomerDetails ShowCustomerDetails =
+                new frmShowCustomerDetails(_GetCustomerIDFromDGV());
+
             ShowCustomerDetails.ShowDialog();
+
+            _RefreshCustomersList();
+        }
+
+        private void ShowCustomerBookingHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmShowCustomerBookingHistory ShowCustomerBookingHistory =
+                new frmShowCustomerBookingHistory(_GetCustomerIDFromDGV());
+
+            ShowCustomerBookingHistory.ShowDialog();
 
             _RefreshCustomersList();
         }

@@ -1,4 +1,5 @@
-﻿using CarRental.Customers;
+﻿using CarRental.Booking;
+using CarRental.Customers;
 using CarRental.Dashboard;
 using CarRental.GlobalClasses;
 using CarRental.Properties;
@@ -115,7 +116,7 @@ namespace CarRental.Main
 
         private void btnBooking_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Form(), sender);
+            OpenChildForm(new frmListBooking(), sender);
         }
 
         private void btnReturn_Click(object sender, EventArgs e)

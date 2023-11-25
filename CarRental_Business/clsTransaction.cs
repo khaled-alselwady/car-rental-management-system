@@ -17,10 +17,10 @@ namespace CarRental_Business
         public int BookingID { get; set; }
         public int ReturnID { get; set; }
         public string PaymentDetails { get; set; }
-        public decimal PaidInitialTotalDueAmount { get; set; }
-        public decimal ActualTotalDueAmount { get; set; }
-        public decimal TotalRemaining { get; set; }
-        public decimal TotalRefundedAmount { get; set; }
+        public float PaidInitialTotalDueAmount { get; set; }
+        public float ActualTotalDueAmount { get; set; }
+        public float TotalRemaining { get; set; }
+        public float TotalRefundedAmount { get; set; }
         public DateTime TransactionDate { get; set; }
         public DateTime UpdatedTransactionDate { get; set; }
 
@@ -30,10 +30,10 @@ namespace CarRental_Business
             this.BookingID = -1;
             this.ReturnID = -1;
             this.PaymentDetails = string.Empty;
-            this.PaidInitialTotalDueAmount = -1M;
-            this.ActualTotalDueAmount = -1M;
-            this.TotalRemaining = -1M;
-            this.TotalRefundedAmount = -1M;
+            this.PaidInitialTotalDueAmount = -1f;
+            this.ActualTotalDueAmount = -1f;
+            this.TotalRemaining = -1f;
+            this.TotalRefundedAmount = -1f;
             this.TransactionDate = DateTime.Now;
             this.UpdatedTransactionDate = DateTime.Now;
 
@@ -41,8 +41,8 @@ namespace CarRental_Business
         }
 
         private clsTransaction(int TransactionID, int BookingID, int ReturnID, string PaymentDetails,
-            decimal PaidInitialTotalDueAmount, decimal ActualTotalDueAmount,
-            decimal TotalRemaining, decimal TotalRefundedAmount, DateTime TransactionDate,
+            float PaidInitialTotalDueAmount, float ActualTotalDueAmount,
+            float TotalRemaining, float TotalRefundedAmount, DateTime TransactionDate,
             DateTime UpdatedTransactionDate)
         {
             this.TransactionID = TransactionID;
@@ -61,20 +61,16 @@ namespace CarRental_Business
 
         private bool _AddNewTransaction()
         {
-            this.TransactionID = clsTransactionData.AddNewTransaction(this.BookingID, this.ReturnID,
-                this.PaymentDetails, this.PaidInitialTotalDueAmount, this.ActualTotalDueAmount, 
-                this.TotalRemaining, this.TotalRefundedAmount, this.TransactionDate,
-                this.UpdatedTransactionDate);
+            this.TransactionID = clsTransactionData.AddNewTransaction(this.BookingID,
+                this.PaymentDetails, this.PaidInitialTotalDueAmount);
 
             return (this.TransactionID != -1);
         }
 
         private bool _UpdateTransaction()
         {
-            return clsTransactionData.UpdateTransaction(this.TransactionID, this.BookingID,
-                this.ReturnID, this.PaymentDetails, this.PaidInitialTotalDueAmount,
-                this.ActualTotalDueAmount, this.TotalRemaining, this.TotalRefundedAmount,
-                this.TransactionDate, this.UpdatedTransactionDate);
+            return clsTransactionData.UpdateTransaction(this.TransactionID,
+                this.ReturnID, this.ActualTotalDueAmount, this.TotalRefundedAmount);
         }
 
         public bool Save()
@@ -104,16 +100,16 @@ namespace CarRental_Business
             int BookingID = -1;
             int ReturnID = -1;
             string PaymentDetails = string.Empty;
-            decimal PaidInitialTotalDueAmount = -1M;
-            decimal ActualTotalDueAmount = -1M;
-            decimal TotalRemaining = -1M;
-            decimal TotalRefundedAmount = -1M;
+            float PaidInitialTotalDueAmount = -1f;
+            float ActualTotalDueAmount = -1f;
+            float TotalRemaining = -1f;
+            float TotalRefundedAmount = -1f;
             DateTime TransactionDate = DateTime.Now;
             DateTime UpdatedTransactionDate = DateTime.Now;
 
             bool IsFound = clsTransactionData.GetTransactionInfoByID(TransactionID, ref BookingID,
                 ref ReturnID, ref PaymentDetails, ref PaidInitialTotalDueAmount,
-                ref ActualTotalDueAmount, ref TotalRemaining, ref TotalRefundedAmount, 
+                ref ActualTotalDueAmount, ref TotalRemaining, ref TotalRefundedAmount,
                 ref TransactionDate, ref UpdatedTransactionDate);
 
             if (IsFound)

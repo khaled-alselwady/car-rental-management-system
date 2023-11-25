@@ -32,9 +32,9 @@
             this.ucVehicleCard1 = new CarRental.Vehicles.UserControls.ucVehicleCard();
             this.gbFilters = new System.Windows.Forms.GroupBox();
             this.label22 = new System.Windows.Forms.Label();
-            this.txtFilterValue = new System.Windows.Forms.TextBox();
             this.btnAddNew = new System.Windows.Forms.Button();
             this.btnFind = new System.Windows.Forms.Button();
+            this.txtFilterValue = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.gbFilters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -74,17 +74,6 @@
             this.label22.TabIndex = 114;
             this.label22.Text = "Vehicle ID:";
             // 
-            // txtFilterValue
-            // 
-            this.txtFilterValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtFilterValue.Location = new System.Drawing.Point(133, 29);
-            this.txtFilterValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtFilterValue.Name = "txtFilterValue";
-            this.txtFilterValue.Size = new System.Drawing.Size(214, 26);
-            this.txtFilterValue.TabIndex = 17;
-            this.txtFilterValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFilterValue_KeyPress);
-            this.txtFilterValue.Validating += new System.ComponentModel.CancelEventHandler(this.txtFilterValue_Validating);
-            // 
             // btnAddNew
             // 
             this.btnAddNew.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -97,6 +86,7 @@
             this.btnAddNew.Size = new System.Drawing.Size(44, 37);
             this.btnAddNew.TabIndex = 20;
             this.btnAddNew.UseVisualStyleBackColor = true;
+            this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
             // 
             // btnFind
             // 
@@ -108,6 +98,17 @@
             this.btnFind.TabIndex = 18;
             this.btnFind.UseVisualStyleBackColor = true;
             this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
+            // 
+            // txtFilterValue
+            // 
+            this.txtFilterValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtFilterValue.Location = new System.Drawing.Point(133, 29);
+            this.txtFilterValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtFilterValue.Name = "txtFilterValue";
+            this.txtFilterValue.Size = new System.Drawing.Size(214, 26);
+            this.txtFilterValue.TabIndex = 17;
+            this.txtFilterValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFilterValue_KeyPress);
+            this.txtFilterValue.Validating += new System.ComponentModel.CancelEventHandler(this.txtFilterValue_Validating);
             // 
             // errorProvider1
             // 
