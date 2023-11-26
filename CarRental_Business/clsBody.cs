@@ -14,18 +14,18 @@ namespace CarRental_Business
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
-        public int BodyID { get; set; }
+        public int? BodyID { get; set; }
         public string BodyName { get; set; }
 
         public clsBody()
         {
-            this.BodyID = -1;
+            this.BodyID = null;
             this.BodyName = string.Empty;
 
             Mode = enMode.AddNew;
         }
 
-        private clsBody(int BodyID, string BodyName)
+        private clsBody(int? BodyID, string BodyName)
         {
             this.BodyID = BodyID;
             this.BodyName = BodyName;
@@ -37,7 +37,7 @@ namespace CarRental_Business
         {
             this.BodyID = clsBodyData.AddNewBody(this.BodyName);
 
-            return (this.BodyID != -1);
+            return (this.BodyID.HasValue);
         }
 
         private bool _UpdateBody()
@@ -67,7 +67,7 @@ namespace CarRental_Business
             return false;
         }
 
-        public static clsBody Find(int BodyID)
+        public static clsBody Find(int? BodyID)
         {
             string BodyName = string.Empty;
 
@@ -85,7 +85,7 @@ namespace CarRental_Business
 
         public static clsBody Find(string BodyName)
         {
-            int BodyID = -1;
+            int? BodyID = null;
 
             bool IsFound = clsBodyData.GetBodyInfoByName(BodyName, ref BodyID);
 
@@ -99,12 +99,12 @@ namespace CarRental_Business
             }
         }
 
-        public static bool DeleteBody(int BodyID)
+        public static bool DeleteBody(int? BodyID)
         {
             return clsBodyData.DeleteBody(BodyID);
         }
 
-        public static bool DoesBodyExist(int BodyID)
+        public static bool DoesBodyExist(int? BodyID)
         {
             return clsBodyData.DoesBodyExist(BodyID);
         }

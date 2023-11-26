@@ -23,7 +23,7 @@ namespace CarRental_Business
             ManageReturn = 16,
             ManageTransactions = 32
         }
-        public int UserID { get; set; }
+        public int? UserID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public int Permissions { get; set; }
@@ -34,22 +34,22 @@ namespace CarRental_Business
 
         public clsUser()
         {
-            this.UserID = -1;
-            this.PersonID = -1;
+            this.UserID = null;
+            this.PersonID = null;
             this.Username = string.Empty;
             this.Password = string.Empty;
             this.Permissions = -1;
-            this.SecurityQuestion = string.Empty;
-            this.SecurityAnswer = string.Empty;
-            this.ImagePath = string.Empty;
+            this.SecurityQuestion = null;
+            this.SecurityAnswer = null;
+            this.ImagePath = null;
             this.IsActive = false;
 
             Mode = enMode.AddNew;
         }
 
-        private clsUser(int PersonID, string Name, string Address, string Phone,
+        private clsUser(int? PersonID, string Name, string Address, string Phone,
             string Email, DateTime DateOfBirth, enGender Gender, int NationalityCountryID,
-            DateTime CreatedAt, DateTime UpdatedAt, int UserID, string Username, string Password,
+            DateTime CreatedAt, DateTime? UpdatedAt, int? UserID, string Username, string Password,
             int Permissions, string SecurityQuestion, string SecurityAnswer,
             string ImagePath, bool IsActive)
         {
@@ -83,7 +83,7 @@ namespace CarRental_Business
                 this.Permissions, this.SecurityQuestion, this.SecurityAnswer, this.ImagePath,
                 this.IsActive);
 
-            return (this.UserID != -1);
+            return (this.UserID.HasValue);
         }
 
         private bool _UpdateUser()
@@ -122,20 +122,20 @@ namespace CarRental_Business
             return false;
         }
 
-        private static int _GetPersonIDByUserID(int UserID)
+        private static int? _GetPersonIDByUserID(int? UserID)
         {
             return clsUserData.GetPersonIDByUserID(UserID);
         }
 
-        public static clsUser Find(int UserID)
+        public static clsUser Find(int? UserID)
         {
-            int PersonID = -1;
+            int? PersonID = null;
             string Username = string.Empty;
             string Password = string.Empty;
             int Permissions = -1;
-            string SecurityQuestion = string.Empty;
-            string SecurityAnswer = string.Empty;
-            string ImagePath = string.Empty;
+            string SecurityQuestion = null;
+            string SecurityAnswer = null;
+            string ImagePath = null;
             bool IsActive = false;
 
             bool IsFound = clsUserData.GetUserInfoByID(UserID, ref PersonID, ref Username,
@@ -164,13 +164,13 @@ namespace CarRental_Business
 
         public static clsUser Find(string Username)
         {
-            int UserID = -1;
-            int PersonID = -1;
+            int? UserID = null;
+            int? PersonID = null;
             string Password = string.Empty;
             int Permissions = -1;
-            string SecurityQuestion = string.Empty;
-            string SecurityAnswer = string.Empty;
-            string ImagePath = string.Empty;
+            string SecurityQuestion = null;
+            string SecurityAnswer = null;
+            string ImagePath = null;
             bool IsActive = false;
 
             bool IsFound = clsUserData.GetUserInfoByUsername(ref UserID, ref PersonID, Username,
@@ -199,12 +199,12 @@ namespace CarRental_Business
 
         public static clsUser Find(string Username, string Password)
         {
-            int UserID = -1;
-            int PersonID = -1;
+            int? UserID = null;
+            int? PersonID = null;
             int Permissions = -1;
-            string SecurityQuestion = string.Empty;
-            string SecurityAnswer = string.Empty;
-            string ImagePath = string.Empty;
+            string SecurityQuestion = null;
+            string SecurityAnswer = null;
+            string ImagePath = null;
             bool IsActive = false;
 
             bool IsFound = clsUserData.GetUserInfoByUsernameAndPassword(ref UserID, ref PersonID,
@@ -231,11 +231,11 @@ namespace CarRental_Business
             }
         }
 
-        public static bool DeleteUser(int UserID)
+        public static bool DeleteUser(int? UserID)
         {
-            int PersonID = _GetPersonIDByUserID(UserID);
+            int? PersonID = _GetPersonIDByUserID(UserID);
 
-            if (PersonID == -1)
+            if (!PersonID.HasValue)
             {
                 return false;
             }
@@ -248,7 +248,7 @@ namespace CarRental_Business
             return false;
         }
 
-        public static bool DoesUserExist(int UserID)
+        public static bool DoesUserExist(int? UserID)
         {
             return clsUserData.DoesUserExist(UserID);
         }
@@ -278,7 +278,7 @@ namespace CarRental_Business
             return ChangePassword(this.UserID, NewPassword);
         }
 
-        public static bool ChangePassword(int UserID, string NewPassword)
+        public static bool ChangePassword(int? UserID, string NewPassword)
         {
             return clsUserData.ChangePassword(UserID, NewPassword);
         }

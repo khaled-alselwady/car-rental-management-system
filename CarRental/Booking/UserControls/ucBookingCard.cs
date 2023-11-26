@@ -14,16 +14,16 @@ namespace CarRental.Booking.UserControls
 {
     public partial class ucBookingCard : UserControl
     {
-        private int _BookingID = -1;
+        private int? _BookingID = null;
         private clsBooking _Booking;
 
-        public int BookingID => _BookingID;
+        public int? BookingID => _BookingID;
         public clsBooking BookingInfo => _Booking;
 
-        public int CustomerID => ucSelectedCustomerAndVehicleCard1.CustomerID;
+        public int? CustomerID => ucSelectedCustomerAndVehicleCard1.CustomerID;
         public clsCustomer CustomerInfo => ucSelectedCustomerAndVehicleCard1.SelectedCustomerInfo;
 
-        public int VehicleID => ucSelectedCustomerAndVehicleCard1.VehicleID;
+        public int? VehicleID => ucSelectedCustomerAndVehicleCard1.VehicleID;
         public clsVehicle VehicleInfo => ucSelectedCustomerAndVehicleCard1.SelectedVehicleInfo;
 
         public ucBookingCard()
@@ -39,7 +39,7 @@ namespace CarRental.Booking.UserControls
             lblStartDate.Text = clsFormat.DateToShort(_Booking.RentalStartDate);
             lblEndDate.Text = clsFormat.DateToShort(_Booking.RentalEndDate);
             lblInitialRentalDays.Text = _Booking.InitialRentalDays.ToString();
-            lblInitialTotalDueAmount.Text = _Booking.InitialTotalDueAmount.ToString("N");
+            lblInitialTotalDueAmount.Text = _Booking.InitialTotalDueAmount?.ToString("N");
             lblPickUpLocation.Text = _Booking.PickupLocation;
             lblDropOffLocation.Text = _Booking.DropoffLocation;
             lblInitialCheckNotes.Text = string.IsNullOrWhiteSpace(_Booking.InitialCheckNotes) ? "No Notes" : _Booking.InitialCheckNotes;
@@ -47,7 +47,7 @@ namespace CarRental.Booking.UserControls
 
         public void Reset()
         {
-            _BookingID = -1;
+            _BookingID = null;    
             _Booking = null;
 
             lblBookingID.Text = "[????]";
@@ -59,13 +59,13 @@ namespace CarRental.Booking.UserControls
             lblDropOffLocation.Text = "[????]";
         }
 
-        public void LoadBookingInfo(int BookingID)
+        public void LoadBookingInfo(int? BookingID)
         {
             _BookingID = BookingID;
 
-            if (_BookingID == -1)
+            if (!_BookingID.HasValue)
             {
-                MessageBox.Show("There is no booking with ID = -1", "Missing Booking",
+                MessageBox.Show("There is no booking", "Missing Booking",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 return;

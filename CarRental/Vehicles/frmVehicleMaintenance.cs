@@ -18,9 +18,9 @@ namespace CarRental.Vehicles
     {
         public Action RefreshInfoInDGV;
 
-        private int _MaintenanceID = -1;
+        private int? _MaintenanceID = null;
 
-        private int _SelectedVehicleID = -1;
+        private int? _SelectedVehicleID = null;
 
         public frmVehicleMaintenance()
         {
@@ -92,7 +92,7 @@ namespace CarRental.Vehicles
         {
             _SelectedVehicleID = e.VehicleID;
 
-            if (_SelectedVehicleID == -1)
+            if (!_SelectedVehicleID.HasValue)
             {
                 btnSave.Enabled = false;
                 llShowVehicleMaintenanceHistory.Enabled = false;
@@ -125,7 +125,7 @@ namespace CarRental.Vehicles
                 Maintenance(txtDescription.Text.Trim(), dtpMaintenanceDate.Value,
                             Convert.ToSingle(txtCost.Text.Trim()));
 
-            if (_MaintenanceID == -1)
+            if (!_MaintenanceID.HasValue)
             {
                 MessageBox.Show("Failed to maintain vehicle", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);

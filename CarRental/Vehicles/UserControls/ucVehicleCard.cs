@@ -15,10 +15,10 @@ namespace CarRental.Vehicles.UserControls
 {
     public partial class ucVehicleCard : UserControl
     {
-        private int _VehicleID = -1;
+        private int? _VehicleID = null;
         private clsVehicle _Vehicle;
 
-        public int VehicleID => _VehicleID;
+        public int? VehicleID => _VehicleID;
         public clsVehicle VehicleInfo => _Vehicle;
 
         public ucVehicleCard()
@@ -50,7 +50,7 @@ namespace CarRental.Vehicles.UserControls
 
         public void Reset()
         {
-            _VehicleID = -1;
+            _VehicleID = null;
             _Vehicle = null;
 
             llEditVehicleInfo.Enabled = false;
@@ -74,13 +74,13 @@ namespace CarRental.Vehicles.UserControls
             pbIsAvailable.Image = Resources.Question_32;
         }
 
-        public void LoadVehicleInfo(int VehicleID)
+        public void LoadVehicleInfo(int? VehicleID)
         {
             _VehicleID = VehicleID;
 
-            if (VehicleID == -1)
+            if (!VehicleID.HasValue)
             {
-                MessageBox.Show("There is no vehicle with id = -1", "Missing Vehicle",
+                MessageBox.Show("There is no vehicle", "Missing Vehicle",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 Reset();

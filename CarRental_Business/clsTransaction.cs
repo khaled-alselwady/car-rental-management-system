@@ -13,37 +13,37 @@ namespace CarRental_Business
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
-        public int TransactionID { get; set; }
-        public int BookingID { get; set; }
-        public int ReturnID { get; set; }
+        public int? TransactionID { get; set; }
+        public int? BookingID { get; set; }
+        public int? ReturnID { get; set; }
         public string PaymentDetails { get; set; }
         public float PaidInitialTotalDueAmount { get; set; }
-        public float ActualTotalDueAmount { get; set; }
-        public float TotalRemaining { get; set; }
-        public float TotalRefundedAmount { get; set; }
+        public float? ActualTotalDueAmount { get; set; }
+        public float? TotalRemaining { get; set; }
+        public float? TotalRefundedAmount { get; set; }
         public DateTime TransactionDate { get; set; }
-        public DateTime UpdatedTransactionDate { get; set; }
+        public DateTime? UpdatedTransactionDate { get; set; }
 
         public clsTransaction()
         {
-            this.TransactionID = -1;
-            this.BookingID = -1;
-            this.ReturnID = -1;
+            this.TransactionID = null;
+            this.BookingID = null;
+            this.ReturnID = null;
             this.PaymentDetails = string.Empty;
             this.PaidInitialTotalDueAmount = -1f;
-            this.ActualTotalDueAmount = -1f;
-            this.TotalRemaining = -1f;
-            this.TotalRefundedAmount = -1f;
+            this.ActualTotalDueAmount = null;
+            this.TotalRemaining = null;
+            this.TotalRefundedAmount = null;
             this.TransactionDate = DateTime.Now;
-            this.UpdatedTransactionDate = DateTime.Now;
+            this.UpdatedTransactionDate = null;
 
             Mode = enMode.AddNew;
         }
 
-        private clsTransaction(int TransactionID, int BookingID, int ReturnID, string PaymentDetails,
-            float PaidInitialTotalDueAmount, float ActualTotalDueAmount,
-            float TotalRemaining, float TotalRefundedAmount, DateTime TransactionDate,
-            DateTime UpdatedTransactionDate)
+        private clsTransaction(int? TransactionID, int? BookingID, int? ReturnID, string PaymentDetails,
+            float PaidInitialTotalDueAmount, float? ActualTotalDueAmount,
+            float? TotalRemaining, float? TotalRefundedAmount, DateTime TransactionDate,
+            DateTime? UpdatedTransactionDate)
         {
             this.TransactionID = TransactionID;
             this.BookingID = BookingID;
@@ -64,7 +64,7 @@ namespace CarRental_Business
             this.TransactionID = clsTransactionData.AddNewTransaction(this.BookingID,
                 this.PaymentDetails, this.PaidInitialTotalDueAmount);
 
-            return (this.TransactionID != -1);
+            return (this.TransactionID.HasValue);
         }
 
         private bool _UpdateTransaction()
@@ -95,17 +95,17 @@ namespace CarRental_Business
             return false;
         }
 
-        public static clsTransaction Find(int TransactionID)
+        public static clsTransaction Find(int? TransactionID)
         {
-            int BookingID = -1;
-            int ReturnID = -1;
+            int? BookingID = null;
+            int? ReturnID = null;
             string PaymentDetails = string.Empty;
             float PaidInitialTotalDueAmount = -1f;
-            float ActualTotalDueAmount = -1f;
-            float TotalRemaining = -1f;
-            float TotalRefundedAmount = -1f;
+            float? ActualTotalDueAmount = null;
+            float? TotalRemaining = null;
+            float? TotalRefundedAmount = null;
             DateTime TransactionDate = DateTime.Now;
-            DateTime UpdatedTransactionDate = DateTime.Now;
+            DateTime? UpdatedTransactionDate = null;
 
             bool IsFound = clsTransactionData.GetTransactionInfoByID(TransactionID, ref BookingID,
                 ref ReturnID, ref PaymentDetails, ref PaidInitialTotalDueAmount,
@@ -124,12 +124,12 @@ namespace CarRental_Business
             }
         }
 
-        public static bool DeleteTransaction(int TransactionID)
+        public static bool DeleteTransaction(int? TransactionID)
         {
             return clsTransactionData.DeleteTransaction(TransactionID);
         }
 
-        public static bool DoesTransactionExist(int TransactionID)
+        public static bool DoesTransactionExist(int? TransactionID)
         {
             return clsTransactionData.DoesTransactionExist(TransactionID);
         }

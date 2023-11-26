@@ -10,7 +10,7 @@ namespace CarRental_DataAccess
 {
     public class clsUserData
     {
-        public static bool GetUserInfoByID(int UserID, ref int PersonID, ref string Username,
+        public static bool GetUserInfoByID(int? UserID, ref int? PersonID, ref string Username,
             ref string Password, ref int Permissions, ref string SecurityQuestion,
             ref string SecurityAnswer, ref string ImagePath, ref bool IsActive)
         {
@@ -35,13 +35,13 @@ namespace CarRental_DataAccess
                                 // The record was found
                                 IsFound = true;
 
-                                PersonID = (int)reader["PersonID"];
+                                PersonID = (reader["PersonID"] != DBNull.Value) ? (int?)reader["PersonID"] : null;
                                 Username = (string)reader["Username"];
                                 Password = (string)reader["Password"];
                                 Permissions = (int)reader["Permissions"];
-                                SecurityQuestion = (reader["SecurityQuestion"] != DBNull.Value) ? (string)reader["SecurityQuestion"] : string.Empty;
-                                SecurityAnswer = (reader["SecurityAnswer"] != DBNull.Value) ? (string)reader["SecurityAnswer"] : string.Empty;
-                                ImagePath = (reader["ImagePath"] != DBNull.Value) ? (string)reader["ImagePath"] : string.Empty;
+                                SecurityQuestion = (reader["SecurityQuestion"] != DBNull.Value) ? (string)reader["SecurityQuestion"] : null;
+                                SecurityAnswer = (reader["SecurityAnswer"] != DBNull.Value) ? (string)reader["SecurityAnswer"] : null;
+                                ImagePath = (reader["ImagePath"] != DBNull.Value) ? (string)reader["ImagePath"] : null;
                                 IsActive = (bool)reader["IsActive"];
                             }
                             else
@@ -61,7 +61,7 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static bool GetUserInfoByUsername(ref int UserID, ref int PersonID, string Username,
+        public static bool GetUserInfoByUsername(ref int? UserID, ref int? PersonID, string Username,
             ref string Password, ref int Permissions, ref string SecurityQuestion,
             ref string SecurityAnswer, ref string ImagePath, ref bool IsActive)
         {
@@ -86,13 +86,13 @@ namespace CarRental_DataAccess
                                 // The record was found
                                 IsFound = true;
 
-                                UserID = (int)reader["UserID"];
-                                PersonID = (int)reader["PersonID"];
+                                UserID = (reader["UserID"] != DBNull.Value) ? (int?)reader["UserID"] : null;
+                                PersonID = (reader["PersonID"] != DBNull.Value) ? (int?)reader["PersonID"] : null;
                                 Password = (string)reader["Password"];
                                 Permissions = (int)reader["Permissions"];
-                                SecurityQuestion = (reader["SecurityQuestion"] != DBNull.Value) ? (string)reader["SecurityQuestion"] : string.Empty;
-                                SecurityAnswer = (reader["SecurityAnswer"] != DBNull.Value) ? (string)reader["SecurityAnswer"] : string.Empty;
-                                ImagePath = (reader["ImagePath"] != DBNull.Value) ? (string)reader["ImagePath"] : string.Empty;
+                                SecurityQuestion = (reader["SecurityQuestion"] != DBNull.Value) ? (string)reader["SecurityQuestion"] : null;
+                                SecurityAnswer = (reader["SecurityAnswer"] != DBNull.Value) ? (string)reader["SecurityAnswer"] : null;
+                                ImagePath = (reader["ImagePath"] != DBNull.Value) ? (string)reader["ImagePath"] : null;
                                 IsActive = (bool)reader["IsActive"];
                             }
                             else
@@ -112,7 +112,7 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static bool GetUserInfoByUsernameAndPassword(ref int UserID, ref int PersonID,
+        public static bool GetUserInfoByUsernameAndPassword(ref int? UserID, ref int? PersonID,
             string Username, string Password, ref int Permissions, ref string SecurityQuestion,
             ref string SecurityAnswer, ref string ImagePath, ref bool IsActive)
         {
@@ -138,12 +138,12 @@ namespace CarRental_DataAccess
                                 // The record was found
                                 IsFound = true;
 
-                                UserID = (int)reader["UserID"];
-                                PersonID = (int)reader["PersonID"];
+                                UserID = (reader["UserID"] != DBNull.Value) ? (int?)reader["UserID"] : null;
+                                PersonID = (reader["PersonID"] != DBNull.Value) ? (int?)reader["PersonID"] : null;
                                 Permissions = (int)reader["Permissions"];
-                                SecurityQuestion = (reader["SecurityQuestion"] != DBNull.Value) ? (string)reader["SecurityQuestion"] : string.Empty;
-                                SecurityAnswer = (reader["SecurityAnswer"] != DBNull.Value) ? (string)reader["SecurityAnswer"] : string.Empty;
-                                ImagePath = (reader["ImagePath"] != DBNull.Value) ? (string)reader["ImagePath"] : string.Empty;
+                                SecurityQuestion = (reader["SecurityQuestion"] != DBNull.Value) ? (string)reader["SecurityQuestion"] : null;
+                                SecurityAnswer = (reader["SecurityAnswer"] != DBNull.Value) ? (string)reader["SecurityAnswer"] : null;
+                                ImagePath = (reader["ImagePath"] != DBNull.Value) ? (string)reader["ImagePath"] : null;
                                 IsActive = (bool)reader["IsActive"];
                             }
                             else
@@ -163,12 +163,12 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static int AddNewUser(int PersonID, string Username, string Password,
+        public static int? AddNewUser(int? PersonID, string Username, string Password,
             int Permissions, string SecurityQuestion, string SecurityAnswer, string ImagePath,
             bool IsActive)
         {
-            // This function will return the new person id if succeeded and -1 if not
-            int UserID = -1;
+            // This function will return the new person id if succeeded and null if not
+            int? UserID = null;
 
             try
             {
@@ -185,34 +185,13 @@ end";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@PersonID", PersonID);
+                        command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@Username", Username);
                         command.Parameters.AddWithValue("@Password", Password);
                         command.Parameters.AddWithValue("@Permissions", Permissions);
-                        if (string.IsNullOrWhiteSpace(SecurityQuestion))
-                        {
-                            command.Parameters.AddWithValue("@SecurityQuestion", DBNull.Value);
-                        }
-                        else
-                        {
-                            command.Parameters.AddWithValue("@SecurityQuestion", SecurityQuestion);
-                        }
-                        if (string.IsNullOrWhiteSpace(SecurityAnswer))
-                        {
-                            command.Parameters.AddWithValue("@SecurityAnswer", DBNull.Value);
-                        }
-                        else
-                        {
-                            command.Parameters.AddWithValue("@SecurityAnswer", SecurityAnswer);
-                        }
-                        if (string.IsNullOrWhiteSpace(ImagePath))
-                        {
-                            command.Parameters.AddWithValue("@ImagePath", DBNull.Value);
-                        }
-                        else
-                        {
-                            command.Parameters.AddWithValue("@ImagePath", ImagePath);
-                        }
+                        command.Parameters.AddWithValue("@SecurityQuestion", (object)SecurityQuestion ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@SecurityAnswer", (object)SecurityAnswer ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@ImagePath", (object)ImagePath ?? DBNull.Value);
                         command.Parameters.AddWithValue("@IsActive", IsActive);
 
                         object result = command.ExecuteScalar();
@@ -231,7 +210,7 @@ end";
             return UserID;
         }
 
-        public static bool UpdateUser(int UserID, int PersonID, string Username, string Password,
+        public static bool UpdateUser(int? UserID, int? PersonID, string Username, string Password,
             int Permissions, string SecurityQuestion, string SecurityAnswer, string ImagePath,
             bool IsActive)
         {
@@ -256,35 +235,14 @@ where UserID = @UserID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@UserID", UserID);
-                        command.Parameters.AddWithValue("@PersonID", PersonID);
+                        command.Parameters.AddWithValue("@UserID", (object)UserID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@Username", Username);
                         command.Parameters.AddWithValue("@Password", Password);
                         command.Parameters.AddWithValue("@Permissions", Permissions);
-                        if (string.IsNullOrWhiteSpace(SecurityQuestion))
-                        {
-                            command.Parameters.AddWithValue("@SecurityQuestion", DBNull.Value);
-                        }
-                        else
-                        {
-                            command.Parameters.AddWithValue("@SecurityQuestion", SecurityQuestion);
-                        }
-                        if (string.IsNullOrWhiteSpace(SecurityAnswer))
-                        {
-                            command.Parameters.AddWithValue("@SecurityAnswer", DBNull.Value);
-                        }
-                        else
-                        {
-                            command.Parameters.AddWithValue("@SecurityAnswer", SecurityAnswer);
-                        }
-                        if (string.IsNullOrWhiteSpace(ImagePath))
-                        {
-                            command.Parameters.AddWithValue("@ImagePath", DBNull.Value);
-                        }
-                        else
-                        {
-                            command.Parameters.AddWithValue("@ImagePath", ImagePath);
-                        }
+                        command.Parameters.AddWithValue("@SecurityQuestion", (object)SecurityQuestion ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@SecurityAnswer", (object)SecurityAnswer ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@ImagePath", (object)ImagePath ?? DBNull.Value);
                         command.Parameters.AddWithValue("@IsActive", IsActive);
 
                         RowAffected = command.ExecuteNonQuery();
@@ -299,7 +257,7 @@ where UserID = @UserID";
             return (RowAffected > 0);
         }
 
-        public static bool DeleteUser(int UserID)
+        public static bool DeleteUser(int? UserID)
         {
             int RowAffected = 0;
 
@@ -313,7 +271,7 @@ where UserID = @UserID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@UserID", UserID);
+                        command.Parameters.AddWithValue("@UserID", (object)UserID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
                     }
@@ -327,7 +285,7 @@ where UserID = @UserID";
             return (RowAffected > 0);
         }
 
-        public static bool DoesUserExist(int UserID)
+        public static bool DoesUserExist(int? UserID)
         {
             bool IsFound = false;
 
@@ -341,7 +299,7 @@ where UserID = @UserID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@UserID", UserID);
+                        command.Parameters.AddWithValue("@UserID", (object)UserID ?? DBNull.Value);
 
                         object result = command.ExecuteScalar();
 
@@ -481,9 +439,9 @@ where UserID = @UserID";
             return Count;
         }
 
-        public static int GetPersonIDByUserID(int UserID)
+        public static int? GetPersonIDByUserID(int? UserID)
         {
-            int PersonID = -1;
+            int? PersonID = null;
 
             try
             {
@@ -495,7 +453,7 @@ where UserID = @UserID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@UserID", UserID);
+                        command.Parameters.AddWithValue("@UserID", (object)UserID ?? DBNull.Value);
 
                         object result = command.ExecuteScalar();
 
@@ -513,7 +471,7 @@ where UserID = @UserID";
             return PersonID;
         }
 
-        public static bool ChangePassword(int UserID, string NewPassword)
+        public static bool ChangePassword(int? UserID, string NewPassword)
         {
             int AffectedRows = 0;
 
@@ -530,7 +488,7 @@ where UserID = @UserID";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@Password", NewPassword);
-                        command.Parameters.AddWithValue("UserID", UserID);
+                        command.Parameters.AddWithValue("UserID", (object)UserID ?? DBNull.Value);
 
                         AffectedRows = command.ExecuteNonQuery();
                     }

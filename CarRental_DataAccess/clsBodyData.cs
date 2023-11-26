@@ -10,7 +10,7 @@ namespace CarRental_DataAccess
 {
     public class clsBodyData
     {
-        public static bool GetBodyInfoByID(int BodyID, ref string BodyName)
+        public static bool GetBodyInfoByID(int? BodyID, ref string BodyName)
         {
             bool IsFound = false;
 
@@ -24,7 +24,7 @@ namespace CarRental_DataAccess
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@BodyID", BodyID);
+                        command.Parameters.AddWithValue("@BodyID", (object)BodyID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -52,7 +52,7 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static bool GetBodyInfoByName(string BodyName, ref int BodyID)
+        public static bool GetBodyInfoByName(string BodyName, ref int? BodyID)
         {
             bool IsFound = false;
 
@@ -75,7 +75,7 @@ namespace CarRental_DataAccess
                                 // The record was found
                                 IsFound = true;
 
-                                BodyID = (int)reader["BodyID"];
+                                BodyID = (reader["BodyID"] != DBNull.Value) ? (int?)reader["BodyID"] : null;
                             }
                             else
                             {
@@ -94,10 +94,10 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static int AddNewBody(string BodyName)
+        public static int? AddNewBody(string BodyName)
         {
-            // This function will return the new person id if succeeded and -1 if not
-            int BodyID = -1;
+            // This function will return the new person id if succeeded and null if not
+            int? BodyID = null;
 
             try
             {
@@ -114,6 +114,7 @@ select scope_identity()";
                         command.Parameters.AddWithValue("@BodyName", BodyName);
 
                         object result = command.ExecuteScalar();
+
                         if (result != null && int.TryParse(result.ToString(), out int InsertID))
                         {
                             BodyID = InsertID;
@@ -123,12 +124,13 @@ select scope_identity()";
             }
             catch (SqlException ex)
             {
-                
+
             }
+
             return BodyID;
         }
 
-        public static bool UpdateBody(int BodyID, string BodyName)
+        public static bool UpdateBody(int? BodyID, string BodyName)
         {
             int RowAffected = 0;
 
@@ -144,7 +146,7 @@ where BodyID = @BodyID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@BodyID", BodyID);
+                        command.Parameters.AddWithValue("@BodyID", (object)BodyID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@BodyName", BodyName);
 
                         RowAffected = command.ExecuteNonQuery();
@@ -153,13 +155,13 @@ where BodyID = @BodyID";
             }
             catch (SqlException ex)
             {
-               
+
             }
 
             return (RowAffected > 0);
         }
 
-        public static bool DeleteBody(int BodyID)
+        public static bool DeleteBody(int? BodyID)
         {
             int RowAffected = 0;
 
@@ -173,7 +175,7 @@ where BodyID = @BodyID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@BodyID", BodyID);
+                        command.Parameters.AddWithValue("@BodyID", (object)BodyID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
                     }
@@ -181,13 +183,13 @@ where BodyID = @BodyID";
             }
             catch (SqlException ex)
             {
-                
+
             }
 
             return (RowAffected > 0);
         }
 
-        public static bool DoesBodyExist(int BodyID)
+        public static bool DoesBodyExist(int? BodyID)
         {
             bool IsFound = false;
 
@@ -201,7 +203,7 @@ where BodyID = @BodyID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@BodyID", BodyID);
+                        command.Parameters.AddWithValue("@BodyID", (object)BodyID ?? DBNull.Value);
 
                         object result = command.ExecuteScalar();
 
@@ -209,9 +211,8 @@ where BodyID = @BodyID";
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-
                 IsFound = false;
             }
 
@@ -242,7 +243,7 @@ where BodyID = @BodyID";
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
             }
@@ -276,7 +277,7 @@ where BodyID = @BodyID";
             }
             catch (SqlException ex)
             {
-                
+
             }
 
             return dt;

@@ -13,38 +13,38 @@ namespace CarRental_Business
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
-        public int BookingID { get; set; } // not allow null
-        public int CustomerID { get; set; } // not allow null
-        public int VehicleID { get; set; } // not allow null
-        public DateTime RentalStartDate { get; set; } // not allow null
-        public DateTime RentalEndDate { get; set; } // not allow null
-        public int InitialRentalDays { get; set; } // allow null
-        public string PickupLocation { get; set; } // not allow null
-        public string DropoffLocation { get; set; } // not allow null
-        public float RentalPricePerDay { get; set; } // not allow null
-        public float InitialTotalDueAmount { get; set; } // allow null
-        public string InitialCheckNotes { get; set; } // allow null
+        public int? BookingID { get; set; }
+        public int? CustomerID { get; set; }
+        public int? VehicleID { get; set; }
+        public DateTime RentalStartDate { get; set; }
+        public DateTime RentalEndDate { get; set; }
+        public int? InitialRentalDays { get; set; }
+        public string PickupLocation { get; set; }
+        public string DropoffLocation { get; set; }
+        public float RentalPricePerDay { get; set; }
+        public float? InitialTotalDueAmount { get; set; }
+        public string InitialCheckNotes { get; set; }
 
         public clsBooking()
         {
-            this.BookingID = -1;
-            this.CustomerID = -1;
-            this.VehicleID = -1;
+            this.BookingID = null;
+            this.CustomerID = null;
+            this.VehicleID = null;
             this.RentalStartDate = DateTime.Now;
             this.RentalEndDate = DateTime.Now.AddDays(1);
-            this.InitialRentalDays = -1;
+            this.InitialRentalDays = null;
             this.PickupLocation = string.Empty;
             this.DropoffLocation = string.Empty;
             this.RentalPricePerDay = -1f;
-            this.InitialTotalDueAmount = -1f;
-            this.InitialCheckNotes = string.Empty;
+            this.InitialTotalDueAmount = null;
+            this.InitialCheckNotes = null;
 
             Mode = enMode.AddNew;
         }
 
-        private clsBooking(int BookingID, int CustomerID, int VehicleID, DateTime RentalStartDate,
-            DateTime RentalEndDate, int InitialRentalDays, string PickupLocation,
-            string DropoffLocation, float RentalPricePerDay, float InitialTotalDueAmount,
+        private clsBooking(int? BookingID, int? CustomerID, int? VehicleID, DateTime RentalStartDate,
+            DateTime RentalEndDate, int? InitialRentalDays, string PickupLocation,
+            string DropoffLocation, float RentalPricePerDay, float? InitialTotalDueAmount,
             string InitialCheckNotes)
         {
             this.BookingID = BookingID;
@@ -69,7 +69,7 @@ namespace CarRental_Business
                  this.DropoffLocation, this.RentalPricePerDay, this.InitialCheckNotes);
 
 
-            return (this.BookingID != -1);
+            return (this.BookingID.HasValue);
         }
 
         private bool _UpdateBooking()
@@ -101,18 +101,18 @@ namespace CarRental_Business
             return false;
         }
 
-        public static clsBooking Find(int BookingID)
+        public static clsBooking Find(int? BookingID)
         {
-            int CustomerID = -1;
-            int VehicleID = -1;
+            int? CustomerID = null;
+            int? VehicleID = null;
             DateTime RentalStartDate = DateTime.Now;
             DateTime RentalEndDate = DateTime.Now.AddDays(1);
-            int InitialRentalDays = -1;
+            int? InitialRentalDays = null;
             string PickupLocation = string.Empty;
             string DropoffLocation = string.Empty;
             float RentalPricePerDay = -1f;
-            float InitialTotalDueAmount = -1f;
-            string InitialCheckNotes = string.Empty;
+            float? InitialTotalDueAmount = null;
+            string InitialCheckNotes = null;
 
             bool IsFound = clsBookingData.GetBookingInfoByID(BookingID, ref CustomerID,
                 ref VehicleID, ref RentalStartDate, ref RentalEndDate, ref InitialRentalDays,
@@ -131,12 +131,12 @@ namespace CarRental_Business
             }
         }
 
-        public static bool DeleteBooking(int BookingID)
+        public static bool DeleteBooking(int? BookingID)
         {
             return clsBookingData.DeleteBooking(BookingID);
         }
 
-        public static bool DoesBookingExist(int BookingID)
+        public static bool DoesBookingExist(int? BookingID)
         {
             return clsBookingData.DoesBookingExist(BookingID);
         }
@@ -167,7 +167,7 @@ namespace CarRental_Business
             return Transaction.TransactionID;
         }
 
-        public static DataTable GetBookingHistoryByCustomerID(int CustomerID)
+        public static DataTable GetBookingHistoryByCustomerID(int? CustomerID)
         {
             return clsBookingData.GetBookingHistoryByCustomerID(CustomerID);
         }

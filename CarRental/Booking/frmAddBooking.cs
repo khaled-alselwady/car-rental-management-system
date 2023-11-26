@@ -59,7 +59,7 @@ namespace CarRental.Booking
             ucSelectedCustomerAndVehicleWithFilter1.SendVehicleID += _FillBookingInfoOnSelectedVehicle;
         }
 
-        private void _FillBookingInfoOnSelectedCustomer(int CustomerID)
+        private void _FillBookingInfoOnSelectedCustomer(int? CustomerID)
         {
             clsCustomer Customer = clsCustomer.Find(CustomerID);
 
@@ -73,14 +73,14 @@ namespace CarRental.Booking
 
             lblCustomerID.Text = Customer.CustomerID.ToString();
 
-            if (ucSelectedCustomerAndVehicleWithFilter1.VehicleID != -1)
+            if (ucSelectedCustomerAndVehicleWithFilter1.VehicleID.HasValue)
             {
                 // here I already choose the vehicle, so I enable the btnBook
                 btnBook.Enabled = true;
             }
         }
 
-        private void _FillBookingInfoOnSelectedVehicle(int VehicleID)
+        private void _FillBookingInfoOnSelectedVehicle(int? VehicleID)
         {
             clsVehicle Vehicle = clsVehicle.Find(VehicleID);
 

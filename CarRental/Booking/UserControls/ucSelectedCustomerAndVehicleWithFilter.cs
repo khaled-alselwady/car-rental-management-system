@@ -15,14 +15,14 @@ namespace CarRental.Booking.UserControls
 {
     public partial class ucSelectedCustomerAndVehicleWithFilter : UserControl
     {
-        public Action<int> SendCustomerID;
-        public Action<int> SendVehicleID;
+        public Action<int?> SendCustomerID;
+        public Action<int?> SendVehicleID;
 
-        private int _SelectedCustomerID = -1;
-        private int _SelectedVehicleID = -1;
+        private int? _SelectedCustomerID = null;
+        private int? _SelectedVehicleID = null;
 
-        public int CustomerID => ucCustomerCardWithFilter1.CustomerID;
-        public int VehicleID => ucVehicleCardWithFilter1.VehicleID;
+        public int? CustomerID => ucCustomerCardWithFilter1.CustomerID;
+        public int? VehicleID => ucVehicleCardWithFilter1.VehicleID;
 
         public clsCustomer SelectedCustomerInfo => ucCustomerCardWithFilter1.SelectedCustomerInfo;
         public clsVehicle SelectedVehicleInfo => ucVehicleCardWithFilter1.SelectedVehicleInfo;
@@ -47,7 +47,7 @@ namespace CarRental.Booking.UserControls
 
         private bool _IsMemberCorrect()
         {
-            if (_SelectedCustomerID == -1)
+            if (!_SelectedCustomerID.HasValue)
             {
                 tcSelectCustomerVehicle.SelectedTab = tpSelectCustomer;
 
@@ -101,11 +101,11 @@ namespace CarRental.Booking.UserControls
         {
             _SelectedCustomerID = e.CustomerID;
 
-            if (_SelectedCustomerID == -1)
+            if (!_SelectedCustomerID.HasValue)
             {
                 btnNext.Enabled = false;
 
-                SendCustomerID?.Invoke(-1);
+                SendCustomerID?.Invoke(null);
                 return;
             }
 
@@ -118,9 +118,9 @@ namespace CarRental.Booking.UserControls
         {
             _SelectedVehicleID = e.VehicleID;
 
-            if (_SelectedVehicleID == -1)
+            if (!_SelectedVehicleID.HasValue)
             {
-                SendVehicleID?.Invoke(-1); // to disable btnBook in the frmAddBooking
+                SendVehicleID?.Invoke(null); // to disable btnBook in the frmAddBooking
                 return;
             }
 

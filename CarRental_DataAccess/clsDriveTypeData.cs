@@ -10,7 +10,7 @@ namespace CarRental_DataAccess
 {
     public class clsDriveTypeData
     {
-        public static bool GetDriveTypeInfoByID(int DriveTypeID, ref string DriveTypeName)
+        public static bool GetDriveTypeInfoByID(int? DriveTypeID, ref string DriveTypeName)
         {
             bool IsFound = false;
 
@@ -24,7 +24,7 @@ namespace CarRental_DataAccess
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@DriveTypeID", DriveTypeID);
+                        command.Parameters.AddWithValue("@DriveTypeID", (object)DriveTypeID != DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -52,7 +52,7 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static bool GetDriveTypeInfoByName(string driveTypeName, ref int driveTypeID)
+        public static bool GetDriveTypeInfoByName(string driveTypeName, ref int? driveTypeID)
         {
             bool isFound = false;
 
@@ -74,7 +74,7 @@ namespace CarRental_DataAccess
                             {
                                 // The record was found
                                 isFound = true;
-                                driveTypeID = (int)reader["DriveTypeID"];
+                                driveTypeID = (reader["DriveTypeID"] != DBNull.Value) ? (int?)reader["DriveTypeID"] : null;
                             }
                             else
                             {
@@ -93,10 +93,10 @@ namespace CarRental_DataAccess
             return isFound;
         }
 
-        public static int AddNewDriveType(string DriveTypeName)
+        public static int? AddNewDriveType(string DriveTypeName)
         {
-            // This function will return the new person id if succeeded and -1 if not
-            int DriveTypeID = -1;
+            // This function will return the new person id if succeeded and null if not
+            int? DriveTypeID = null;
 
             try
             {
@@ -128,7 +128,7 @@ select scope_identity()";
             return DriveTypeID;
         }
 
-        public static bool UpdateDriveType(int DriveTypeID, string DriveTypeName)
+        public static bool UpdateDriveType(int? DriveTypeID, string DriveTypeName)
         {
             int RowAffected = 0;
 
@@ -144,7 +144,7 @@ where DriveTypeID = @DriveTypeID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@DriveTypeID", DriveTypeID);
+                        command.Parameters.AddWithValue("@DriveTypeID", (object)DriveTypeID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@DriveTypeName", DriveTypeName);
 
                         RowAffected = command.ExecuteNonQuery();
@@ -159,7 +159,7 @@ where DriveTypeID = @DriveTypeID";
             return (RowAffected > 0);
         }
 
-        public static bool DeleteDriveType(int DriveTypeID)
+        public static bool DeleteDriveType(int? DriveTypeID)
         {
             int RowAffected = 0;
 
@@ -173,7 +173,7 @@ where DriveTypeID = @DriveTypeID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@DriveTypeID", DriveTypeID);
+                        command.Parameters.AddWithValue("@DriveTypeID", (object)DriveTypeID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
                     }
@@ -187,7 +187,7 @@ where DriveTypeID = @DriveTypeID";
             return (RowAffected > 0);
         }
 
-        public static bool DoesDriveTypeExist(int DriveTypeID)
+        public static bool DoesDriveTypeExist(int? DriveTypeID)
         {
             bool IsFound = false;
 
@@ -201,7 +201,7 @@ where DriveTypeID = @DriveTypeID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@DriveTypeID", DriveTypeID);
+                        command.Parameters.AddWithValue("@DriveTypeID", (object)DriveTypeID ?? DBNull.Value);
 
                         object result = command.ExecuteScalar();
 

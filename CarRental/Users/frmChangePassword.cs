@@ -13,12 +13,12 @@ namespace CarRental.Users
 {
     public partial class frmChangePassword : Form
     {
-        private int _UserID = -1;
+        private int? _UserID = null;
         private clsUser _User;
 
         private bool _EditEnabled = false;
 
-        public frmChangePassword(int UserID, bool EditEnabled = true)
+        public frmChangePassword(int? UserID, bool EditEnabled = true)
         {
             InitializeComponent();
 

@@ -15,7 +15,7 @@ namespace CarRental.Booking.UserControls
     {
         private DataTable _dtAllBookingHistory;
 
-        private int _CustomerID = -1;
+        private int? _CustomerID = null;
 
         public ucCustomerBookingHistory()
         {

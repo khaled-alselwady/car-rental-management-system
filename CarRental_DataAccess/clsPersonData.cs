@@ -10,9 +10,9 @@ namespace CarRental_DataAccess
 {
     public class clsPersonData
     {
-        public static bool GetPersonInfoByID(int PersonID, ref string Name, ref string Address,
+        public static bool GetPersonInfoByID(int? PersonID, ref string Name, ref string Address,
             ref string Phone, ref string Email, ref DateTime DateOfBirth, ref byte Gender,
-            ref int NationalityCountryID, ref DateTime CreatedAt, ref DateTime UpdatedAt)
+            ref int NationalityCountryID, ref DateTime CreatedAt, ref DateTime? UpdatedAt)
         {
             bool IsFound = false;
 
@@ -43,7 +43,7 @@ namespace CarRental_DataAccess
                                 Gender = (byte)reader["Gender"];
                                 NationalityCountryID = (int)reader["NationalityCountryID"];
                                 CreatedAt = (DateTime)reader["CreatedAt"];
-                                UpdatedAt = (reader["UpdatedAt"] != DBNull.Value) ? (DateTime)reader["UpdatedAt"] : DateTime.Now;
+                                UpdatedAt = (reader["UpdatedAt"] != DBNull.Value) ? (DateTime?)reader["UpdatedAt"] : null;
                             }
                             else
                             {
@@ -62,12 +62,12 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static int AddNewPerson(string Name, string Address, string Phone, string Email,
+        public static int? AddNewPerson(string Name, string Address, string Phone, string Email,
             DateTime DateOfBirth, byte Gender, int NationalityCountryID)
 
         {
-            // This function will return the new person id if succeeded and -1 if not
-            int PersonID = -1;
+            // This function will return the new person id if succeeded and null if not
+            int? PersonID = null;
 
             try
             {
@@ -109,7 +109,7 @@ select scope_identity()";
             return PersonID;
         }
 
-        public static bool UpdatePerson(int PersonID, string Name, string Address, string Phone,
+        public static bool UpdatePerson(int? PersonID, string Name, string Address, string Phone,
             string Email, DateTime DateOfBirth, byte Gender, int NationalityCountryID,
             DateTime CreatedAt)
         {
@@ -135,7 +135,7 @@ where PersonID = @PersonID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@PersonID", PersonID);
+                        command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@Name", Name);
                         command.Parameters.AddWithValue("@Address", Address);
                         command.Parameters.AddWithValue("@Phone", Phone);
@@ -159,7 +159,7 @@ where PersonID = @PersonID";
             return (RowAffected > 0);
         }
 
-        public static bool DeletePerson(int PersonID)
+        public static bool DeletePerson(int? PersonID)
         {
             int RowAffected = 0;
 
@@ -173,7 +173,7 @@ where PersonID = @PersonID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@PersonID", PersonID);
+                        command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
                     }
@@ -187,7 +187,7 @@ where PersonID = @PersonID";
             return (RowAffected > 0);
         }
 
-        public static bool DoesPersonExist(int PersonID)
+        public static bool DoesPersonExist(int? PersonID)
         {
             bool IsFound = false;
 
@@ -201,7 +201,7 @@ where PersonID = @PersonID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@PersonID", PersonID);
+                        command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
 
                         object result = command.ExecuteScalar();
 

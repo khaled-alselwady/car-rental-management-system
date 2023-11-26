@@ -10,7 +10,7 @@ namespace CarRental_DataAccess
 {
     public class clsSubModelData
     {
-        public static bool GetSubModelInfoByID(int SubModelID, ref int ModelID,
+        public static bool GetSubModelInfoByID(int? SubModelID, ref int ModelID,
             ref string SubModelName)
         {
             bool IsFound = false;
@@ -25,7 +25,7 @@ namespace CarRental_DataAccess
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@SubModelID", SubModelID);
+                        command.Parameters.AddWithValue("@SubModelID", (object)SubModelID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -54,7 +54,7 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static bool GetSubModelInfoByName(string SubModelName, ref int SubModelID, ref int ModelID)
+        public static bool GetSubModelInfoByName(string SubModelName, ref int? SubModelID, ref int ModelID)
         {
             bool IsFound = false;
 
@@ -77,7 +77,7 @@ namespace CarRental_DataAccess
                                 // The record was found
                                 IsFound = true;
 
-                                SubModelID = (int)reader["SubModelID"];
+                                SubModelID = (reader["SubModelID"] != DBNull.Value) ? (int?)reader["SubModelID"] : null;
                                 ModelID = (int)reader["ModelID"];
                             }
                             else
@@ -97,10 +97,10 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static int AddNewSubModel(int ModelID, string SubModelName)
+        public static int? AddNewSubModel(int ModelID, string SubModelName)
         {
-            // This function will return the new person id if succeeded and -1 if not
-            int SubModelID = -1;
+            // This function will return the new person id if succeeded and null if not
+            int? SubModelID = null;
 
             try
             {
@@ -134,7 +134,7 @@ select scope_identity()";
             return SubModelID;
         }
 
-        public static bool UpdateSubModel(int SubModelID, int ModelID, string SubModelName)
+        public static bool UpdateSubModel(int? SubModelID, int ModelID, string SubModelName)
         {
             int RowAffected = 0;
 
@@ -151,7 +151,7 @@ where SubModelID = @SubModelID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@SubModelID", SubModelID);
+                        command.Parameters.AddWithValue("@SubModelID", (object)SubModelID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@ModelID", ModelID);
                         command.Parameters.AddWithValue("@SubModelName", SubModelName);
 
@@ -167,7 +167,7 @@ where SubModelID = @SubModelID";
             return (RowAffected > 0);
         }
 
-        public static bool DeleteSubModel(int SubModelID)
+        public static bool DeleteSubModel(int? SubModelID)
         {
             int RowAffected = 0;
 
@@ -181,7 +181,7 @@ where SubModelID = @SubModelID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@SubModelID", SubModelID);
+                        command.Parameters.AddWithValue("@SubModelID", (object)SubModelID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
                     }
@@ -195,7 +195,7 @@ where SubModelID = @SubModelID";
             return (RowAffected > 0);
         }
 
-        public static bool DoesSubModelExist(int SubModelID)
+        public static bool DoesSubModelExist(int? SubModelID)
         {
             bool IsFound = false;
 
@@ -209,7 +209,7 @@ where SubModelID = @SubModelID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@SubModelID", SubModelID);
+                        command.Parameters.AddWithValue("@SubModelID", (object)SubModelID ?? DBNull.Value);
 
                         object result = command.ExecuteScalar();
 

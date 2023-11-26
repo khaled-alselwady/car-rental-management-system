@@ -13,18 +13,18 @@ namespace CarRental_Business
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
-        public int CountryID { get; set; }
+        public int? CountryID { get; set; }
         public string CountryName { get; set; }
 
         public clsCountry()
         {
-            this.CountryID = -1;
+            this.CountryID = null;
             this.CountryName = string.Empty;
 
             Mode = enMode.AddNew;
         }
 
-        private clsCountry(int CountryID, string CountryName)
+        private clsCountry(int? CountryID, string CountryName)
         {
             this.CountryID = CountryID;
             this.CountryName = CountryName;
@@ -50,7 +50,7 @@ namespace CarRental_Business
 
         public static clsCountry Find(string CountryName)
         {
-            int CountryID = -1;
+            int? CountryID = null;
 
             bool IsFound = clsCountryData.GetCountryInfoByName(CountryName, ref CountryID);
 

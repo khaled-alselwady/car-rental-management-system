@@ -13,18 +13,18 @@ namespace CarRental_Business
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
-        public int MakeID { get; set; }
+        public int? MakeID { get; set; }
         public string Make { get; set; }
 
         public clsMake()
         {
-            this.MakeID = -1;
+            this.MakeID = null;
             this.Make = string.Empty;
 
             Mode = enMode.AddNew;
         }
 
-        private clsMake(int MakeID, string Make)
+        private clsMake(int? MakeID, string Make)
         {
             this.MakeID = MakeID;
             this.Make = Make;
@@ -36,7 +36,7 @@ namespace CarRental_Business
         {
             this.MakeID = clsMakeData.AddNewMake(this.Make);
 
-            return (this.MakeID != -1);
+            return (this.MakeID.HasValue);
         }
 
         private bool _UpdateMake()
@@ -66,7 +66,7 @@ namespace CarRental_Business
             return false;
         }
 
-        public static clsMake Find(int MakeID)
+        public static clsMake Find(int? MakeID)
         {
             string Make = string.Empty;
 
@@ -84,7 +84,7 @@ namespace CarRental_Business
 
         public static clsMake Find(string MakeName)
         {
-            int MakeID = -1;
+            int? MakeID = null;
 
             bool IsFound = clsMakeData.GetMakeInfoByName(MakeName, ref MakeID);
 
@@ -98,12 +98,12 @@ namespace CarRental_Business
             }
         }
 
-        public static bool DeleteMake(int MakeID)
+        public static bool DeleteMake(int? MakeID)
         {
             return clsMakeData.DeleteMake(MakeID);
         }
 
-        public static bool DoesMakeExist(int MakeID)
+        public static bool DoesMakeExist(int? MakeID)
         {
             return clsMakeData.DoesMakeExist(MakeID);
         }

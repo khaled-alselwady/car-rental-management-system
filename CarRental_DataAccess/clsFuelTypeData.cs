@@ -10,7 +10,7 @@ namespace CarRental_DataAccess
 {
     public class clsFuelTypeData
     {
-        public static bool GetFuelTypeInfoByID(int FuelTypeID, ref string FuelTypeName)
+        public static bool GetFuelTypeInfoByID(int? FuelTypeID, ref string FuelTypeName)
         {
             bool IsFound = false;
 
@@ -24,7 +24,7 @@ namespace CarRental_DataAccess
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@FuelTypeID", FuelTypeID);
+                        command.Parameters.AddWithValue("@FuelTypeID", (object)FuelTypeID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -52,7 +52,7 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static bool GetFuelTypeInfoByName(string FuelTypeName, ref int FuelTypeID)
+        public static bool GetFuelTypeInfoByName(string FuelTypeName, ref int? FuelTypeID)
         {
             bool IsFound = false;
 
@@ -74,7 +74,7 @@ namespace CarRental_DataAccess
                             {
                                 // The record was found
                                 IsFound = true;
-                                FuelTypeID = (int)reader["FuelTypeID"];
+                                FuelTypeID = (reader["FuelTypeID"] != DBNull.Value) ? (int?)reader["FuelTypeID"] : null;
                             }
                             else
                             {
@@ -86,17 +86,17 @@ namespace CarRental_DataAccess
                 }
             }
             catch (SqlException ex)
-            {                
+            {
                 IsFound = false;
-            }            
+            }
 
             return IsFound;
         }
 
-        public static int AddNewFuelType(string FuelTypeName)
+        public static int? AddNewFuelType(string FuelTypeName)
         {
-            // This function will return the new person id if succeeded and -1 if not
-            int FuelTypeID = -1;
+            // This function will return the new person id if succeeded and null if not
+            int? FuelTypeID = null;
 
             try
             {
@@ -128,7 +128,7 @@ select scope_identity()";
             return FuelTypeID;
         }
 
-        public static bool UpdateFuelType(int FuelTypeID, string FuelTypeName)
+        public static bool UpdateFuelType(int? FuelTypeID, string FuelTypeName)
         {
             int RowAffected = 0;
 
@@ -144,7 +144,7 @@ where FuelTypeID = @FuelTypeID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@FuelTypeID", FuelTypeID);
+                        command.Parameters.AddWithValue("@FuelTypeID", (object)FuelTypeID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@FuelTypeName", FuelTypeName);
 
                         RowAffected = command.ExecuteNonQuery();
@@ -159,7 +159,7 @@ where FuelTypeID = @FuelTypeID";
             return (RowAffected > 0);
         }
 
-        public static bool DeleteFuelType(int FuelTypeID)
+        public static bool DeleteFuelType(int? FuelTypeID)
         {
             int RowAffected = 0;
 
@@ -173,7 +173,7 @@ where FuelTypeID = @FuelTypeID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@FuelTypeID", FuelTypeID);
+                        command.Parameters.AddWithValue("@FuelTypeID", (object)FuelTypeID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
                     }
@@ -187,7 +187,7 @@ where FuelTypeID = @FuelTypeID";
             return (RowAffected > 0);
         }
 
-        public static bool DoesFuelTypeExist(int FuelTypeID)
+        public static bool DoesFuelTypeExist(int? FuelTypeID)
         {
             bool IsFound = false;
 
@@ -201,7 +201,7 @@ where FuelTypeID = @FuelTypeID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@FuelTypeID", FuelTypeID);
+                        command.Parameters.AddWithValue("@FuelTypeID", (object)FuelTypeID ?? DBNull.Value);
 
                         object result = command.ExecuteScalar();
 
@@ -275,7 +275,7 @@ where FuelTypeID = @FuelTypeID";
             }
             catch (SqlException ex)
             {
-                
+
             }
 
             return dt;

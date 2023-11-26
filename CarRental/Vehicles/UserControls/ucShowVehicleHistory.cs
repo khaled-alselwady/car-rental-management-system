@@ -15,7 +15,7 @@ namespace CarRental.Vehicles.UserControls
     {
         private DataTable _dtAllVehicleMaintenanceHistory;
 
-        private int _VehicleID = -1;
+        private int? _VehicleID = null;
 
         public ucShowVehicleHistory()
         {
@@ -59,7 +59,7 @@ namespace CarRental.Vehicles.UserControls
             return (int)dgvVehicleMaintenanceHistoryList.CurrentRow.Cells["MaintenanceID"].Value;
         }
 
-        public void LoadVehicleMaintenanceHistoryInfo(int VehicleID)
+        public void LoadVehicleMaintenanceHistoryInfo(int? VehicleID)
         {
             this._VehicleID = VehicleID;
             _RefreshMaintenanceHistoryList();

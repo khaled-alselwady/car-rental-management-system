@@ -13,20 +13,20 @@ namespace CarRental_Business
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
-        public int SubModelID { get; set; }
+        public int? SubModelID { get; set; }
         public int ModelID { get; set; }
         public string SubModelName { get; set; }
 
         public clsSubModel()
         {
-            this.SubModelID = -1;
+            this.SubModelID = null;
             this.ModelID = -1;
             this.SubModelName = string.Empty;
 
             Mode = enMode.AddNew;
         }
 
-        private clsSubModel(int SubModelID, int ModelID, string SubModelName)
+        private clsSubModel(int? SubModelID, int ModelID, string SubModelName)
         {
             this.SubModelID = SubModelID;
             this.ModelID = ModelID;
@@ -39,7 +39,7 @@ namespace CarRental_Business
         {
             this.SubModelID = clsSubModelData.AddNewSubModel(this.ModelID, this.SubModelName);
 
-            return (this.SubModelID != -1);
+            return (this.SubModelID.HasValue);
         }
 
         private bool _UpdateSubModel()
@@ -69,7 +69,7 @@ namespace CarRental_Business
             return false;
         }
 
-        public static clsSubModel Find(int SubModelID)
+        public static clsSubModel Find(int? SubModelID)
         {
             int ModelID = -1;
             string SubModelName = string.Empty;
@@ -89,8 +89,8 @@ namespace CarRental_Business
 
         public static clsSubModel Find(string SubModelName)
         {
+            int? SubModelID = null;
             int ModelID = -1;
-            int SubModelID = -1;
 
             bool IsFound = clsSubModelData.GetSubModelInfoByName(SubModelName, ref SubModelID,
                 ref ModelID);
@@ -105,12 +105,12 @@ namespace CarRental_Business
             }
         }
 
-        public static bool DeleteSubModel(int SubModelID)
+        public static bool DeleteSubModel(int? SubModelID)
         {
             return clsSubModelData.DeleteSubModel(SubModelID);
         }
 
-        public static bool DoesSubModelExist(int SubModelID)
+        public static bool DoesSubModelExist(int? SubModelID)
         {
             return clsSubModelData.DoesSubModelExist(SubModelID);
         }

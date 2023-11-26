@@ -21,9 +21,9 @@ namespace CarRental.Customers.UserControls
         #region Declare Event
         public class CustomerSelectedEventArgs : EventArgs
         {
-            public int CustomerID { get; }
+            public int? CustomerID { get; }
 
-            public CustomerSelectedEventArgs(int customerID)
+            public CustomerSelectedEventArgs(int? customerID)
             {
                 this.CustomerID = customerID;
             }
@@ -31,7 +31,7 @@ namespace CarRental.Customers.UserControls
 
         public event EventHandler<CustomerSelectedEventArgs> OnCustomerSelected;
 
-        public void RaiseOnCustomerSelected(int CustomerID)
+        public void RaiseOnCustomerSelected(int? CustomerID)
         {
             RaiseOnCustomerSelected(new CustomerSelectedEventArgs(CustomerID));
         }
@@ -66,7 +66,7 @@ namespace CarRental.Customers.UserControls
             }
         }
 
-        public int CustomerID => ucCustomerCard1.CustomerID;
+        public int? CustomerID => ucCustomerCard1.CustomerID;
         public clsCustomer SelectedCustomerInfo => ucCustomerCard1.CustomerInfo;
 
         private void txtFilterValue_KeyPress(object sender, KeyPressEventArgs e)
@@ -113,7 +113,7 @@ namespace CarRental.Customers.UserControls
             txtFilterValue.Focus();
         }
 
-        public void LoadCustomerInfo(int CustomerID)
+        public void LoadCustomerInfo(int? CustomerID)
         {
             txtFilterValue.Text = CustomerID.ToString();
             ucCustomerCard1.LoadCustomerInfo(CustomerID);

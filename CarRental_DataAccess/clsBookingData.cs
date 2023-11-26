@@ -10,10 +10,10 @@ namespace CarRental_DataAccess
 {
     public class clsBookingData
     {
-        public static bool GetBookingInfoByID(int BookingID, ref int CustomerID, ref int VehicleID,
-            ref DateTime RentalStartDate, ref DateTime RentalEndDate, ref int InitialRentalDays,
+        public static bool GetBookingInfoByID(int? BookingID, ref int? CustomerID, ref int? VehicleID,
+            ref DateTime RentalStartDate, ref DateTime RentalEndDate, ref int? InitialRentalDays,
             ref string PickupLocation, ref string DropoffLocation, ref float RentalPricePerDay,
-            ref float InitialTotalDueAmount, ref string InitialCheckNotes)
+            ref float? InitialTotalDueAmount, ref string InitialCheckNotes)
         {
             bool IsFound = false;
 
@@ -27,7 +27,7 @@ namespace CarRental_DataAccess
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@BookingID", BookingID);
+                        command.Parameters.AddWithValue("@BookingID", (object)BookingID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -37,8 +37,8 @@ namespace CarRental_DataAccess
                                 IsFound = true;
 
                                 // un nullable columns
-                                CustomerID = (int)reader["CustomerID"];
-                                VehicleID = (int)reader["VehicleID"];
+                                CustomerID = (reader["CustomerID"] != DBNull.Value) ? (int?)reader["CustomerID"] : null;
+                                VehicleID = (reader["VehicleID"] != DBNull.Value) ? (int?)reader["VehicleID"] : null;
                                 RentalStartDate = (DateTime)reader["RentalStartDate"];
                                 RentalEndDate = (DateTime)reader["RentalEndDate"];
                                 PickupLocation = (string)reader["PickupLocation"];
@@ -46,9 +46,9 @@ namespace CarRental_DataAccess
                                 RentalPricePerDay = Convert.ToSingle(reader["RentalPricePerDay"]);
 
                                 // nullable columns
-                                InitialRentalDays = (reader["InitialRentalDays"] != DBNull.Value) ? (int)reader["InitialRentalDays"] : 0;
-                                InitialTotalDueAmount = (reader["InitialTotalDueAmount"] != DBNull.Value) ? Convert.ToSingle(reader["InitialTotalDueAmount"]) : 0f;
-                                InitialCheckNotes = (reader["InitialCheckNotes"] != DBNull.Value) ? (string)reader["InitialCheckNotes"] : string.Empty;
+                                InitialRentalDays = (reader["InitialRentalDays"] != DBNull.Value) ? (int?)reader["InitialRentalDays"] : null;
+                                InitialTotalDueAmount = (reader["InitialTotalDueAmount"] != DBNull.Value) ? (float?)Convert.ToSingle(reader["InitialTotalDueAmount"]) : null;
+                                InitialCheckNotes = (reader["InitialCheckNotes"] != DBNull.Value) ? (string)reader["InitialCheckNotes"] : null;
                             }
                             else
                             {
@@ -67,13 +67,13 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static int AddNewBooking(int CustomerID, int VehicleID, DateTime RentalStartDate,
+        public static int? AddNewBooking(int? CustomerID, int? VehicleID, DateTime RentalStartDate,
             DateTime RentalEndDate, string PickupLocation, string DropoffLocation,
              float RentalPricePerDay, string InitialCheckNotes)
 
         {
-            // This function will return the new person id if succeeded and -1 if not
-            int BookingID = -1;
+            // This function will return the new person id if succeeded and null if not
+            int? BookingID = null;
 
             try
             {
@@ -93,8 +93,8 @@ select scope_identity()";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         // un nullable columns
-                        command.Parameters.AddWithValue("@CustomerID", CustomerID);
-                        command.Parameters.AddWithValue("@VehicleID", VehicleID);
+                        command.Parameters.AddWithValue("@CustomerID", (object)CustomerID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@VehicleID", (object)VehicleID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@RentalStartDate", RentalStartDate);
                         command.Parameters.AddWithValue("@RentalEndDate", RentalEndDate);
                         command.Parameters.AddWithValue("@PickupLocation", PickupLocation);
@@ -102,14 +102,7 @@ select scope_identity()";
                         command.Parameters.AddWithValue("@RentalPricePerDay", RentalPricePerDay);
 
                         // nullable columns
-                        if (string.IsNullOrWhiteSpace(InitialCheckNotes))
-                        {
-                            command.Parameters.AddWithValue("@InitialCheckNotes", DBNull.Value);
-                        }
-                        else
-                        {
-                            command.Parameters.AddWithValue("@InitialCheckNotes", InitialCheckNotes);
-                        }
+                        command.Parameters.AddWithValue("@InitialCheckNotes", (object)InitialCheckNotes ?? DBNull.Value);
 
                         object result = command.ExecuteScalar();
 
@@ -128,7 +121,7 @@ select scope_identity()";
             return BookingID;
         }
 
-        public static bool UpdateBooking(int BookingID, int CustomerID, int VehicleID,
+        public static bool UpdateBooking(int? BookingID, int? CustomerID, int? VehicleID,
             DateTime RentalStartDate, DateTime RentalEndDate, string PickupLocation,
              string DropoffLocation, float RentalPricePerDay, string InitialCheckNotes)
 
@@ -154,9 +147,9 @@ where BookingID = @BookingID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@BookingID", BookingID);
-                        command.Parameters.AddWithValue("@CustomerID", CustomerID);
-                        command.Parameters.AddWithValue("@VehicleID", VehicleID);
+                        command.Parameters.AddWithValue("@BookingID", (object)BookingID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@CustomerID", (object)CustomerID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@VehicleID", (object)VehicleID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@RentalStartDate", RentalStartDate);
                         command.Parameters.AddWithValue("@RentalEndDate", RentalEndDate);
                         command.Parameters.AddWithValue("@PickupLocation", PickupLocation);
@@ -184,7 +177,7 @@ where BookingID = @BookingID";
             return (RowAffected > 0);
         }
 
-        public static bool DeleteBooking(int BookingID)
+        public static bool DeleteBooking(int? BookingID)
         {
             int RowAffected = 0;
 
@@ -198,7 +191,7 @@ where BookingID = @BookingID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@BookingID", BookingID);
+                        command.Parameters.AddWithValue("@BookingID", (object)BookingID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
                     }
@@ -212,7 +205,7 @@ where BookingID = @BookingID";
             return (RowAffected > 0);
         }
 
-        public static bool DoesBookingExist(int BookingID)
+        public static bool DoesBookingExist(int? BookingID)
         {
             bool IsFound = false;
 
@@ -226,7 +219,7 @@ where BookingID = @BookingID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@BookingID", BookingID);
+                        command.Parameters.AddWithValue("@BookingID", (object)BookingID ?? DBNull.Value);
 
                         object result = command.ExecuteScalar();
 
@@ -305,7 +298,7 @@ where BookingID = @BookingID";
             return Count;
         }
 
-        public static DataTable GetBookingHistoryByCustomerID(int CustomerID)
+        public static DataTable GetBookingHistoryByCustomerID(int? CustomerID)
         {
             DataTable dt = new DataTable();
 
@@ -319,7 +312,7 @@ where BookingID = @BookingID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@CustomerID", CustomerID);
+                        command.Parameters.AddWithValue("@CustomerID", (object)CustomerID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {

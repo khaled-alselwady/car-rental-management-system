@@ -13,7 +13,7 @@ namespace CarRental_Business
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
-        public int VehicleID { get; set; }
+        public int? VehicleID { get; set; }
         public int MakeID { get; set; }
         public int ModelID { get; set; }
         public int SubModelID { get; set; }
@@ -38,7 +38,7 @@ namespace CarRental_Business
 
         public clsVehicle()
         {
-            this.VehicleID = -1;
+            this.VehicleID = null;
             this.MakeID = -1;
             this.ModelID = -1;
             this.SubModelID = -1;
@@ -57,7 +57,7 @@ namespace CarRental_Business
             Mode = enMode.AddNew;
         }
 
-        private clsVehicle(int VehicleID, int MakeID, int ModelID, int SubModelID, int BodyID,
+        private clsVehicle(int? VehicleID, int MakeID, int ModelID, int SubModelID, int BodyID,
             string VehicleName, string PlateNumber, short Year, int DriveTypeID, string Engine,
             int FuelTypeID, byte NumberDoors, int Mileage, float RentalPricePerDay,
             bool IsAvailableForRent)
@@ -95,7 +95,7 @@ namespace CarRental_Business
                 this.Engine, this.FuelTypeID, this.NumberDoors, this.Mileage, this.RentalPricePerDay,
                 this.IsAvailableForRent);
 
-            return (this.VehicleID != -1);
+            return (this.VehicleID.HasValue);
         }
 
         private bool _UpdateVehicle()
@@ -128,7 +128,7 @@ namespace CarRental_Business
             return false;
         }
 
-        public static clsVehicle Find(int VehicleID)
+        public static clsVehicle Find(int? VehicleID)
         {
             int MakeID = -1;
             int ModelID = -1;
@@ -162,12 +162,12 @@ namespace CarRental_Business
             }
         }
 
-        public static bool DeleteVehicle(int VehicleID)
+        public static bool DeleteVehicle(int? VehicleID)
         {
             return clsVehicleData.DeleteVehicle(VehicleID);
         }
 
-        public static bool DoesVehicleExist(int VehicleID)
+        public static bool DoesVehicleExist(int? VehicleID)
         {
             return clsVehicleData.DoesVehicleExist(VehicleID);
         }
@@ -187,7 +187,7 @@ namespace CarRental_Business
             return clsVehicleData.GetVehiclesCount();
         }
 
-        public int Maintenance(string Description, DateTime MaintenanceDate, float Cost)
+        public int? Maintenance(string Description, DateTime MaintenanceDate, float Cost)
         {        
             // this method will add Maintenance record to DB and return MaintenanceID
 
@@ -200,7 +200,7 @@ namespace CarRental_Business
 
             if (!Maintenance.Save())
             {
-                return -1;
+                return null;
             }
 
             return Maintenance.MaintenanceID;

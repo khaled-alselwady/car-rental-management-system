@@ -10,7 +10,7 @@ namespace CarRental_DataAccess
 {
     public class clsMaintenanceData
     {
-        public static bool GetMaintenanceInfoByID(int MaintenanceID, ref int VehicleID,
+        public static bool GetMaintenanceInfoByID(int? MaintenanceID, ref int? VehicleID,
             ref string Description, ref DateTime MaintenanceDate, ref float Cost)
         {
             bool IsFound = false;
@@ -34,7 +34,7 @@ namespace CarRental_DataAccess
                                 // The record was found
                                 IsFound = true;
 
-                                VehicleID = (int)reader["VehicleID"];
+                                VehicleID = (reader["VehicleID"] != DBNull.Value) ? (int?)reader["VehicleID"] : null;
                                 Description = (string)reader["Description"];
                                 MaintenanceDate = (DateTime)reader["MaintenanceDate"];
                                 Cost = Convert.ToSingle(reader["Cost"]);
@@ -56,11 +56,11 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static int AddNewMaintenance(int VehicleID, string Description,
+        public static int? AddNewMaintenance(int? VehicleID, string Description,
             DateTime MaintenanceDate, float Cost)
         {
-            // This function will return the new person id if succeeded and -1 if not
-            int MaintenanceID = -1;
+            // This function will return the new person id if succeeded and null if not
+            int? MaintenanceID = null;
 
             try
             {
@@ -74,7 +74,7 @@ select scope_identity()";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@VehicleID", VehicleID);
+                        command.Parameters.AddWithValue("@VehicleID", (object)VehicleID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@Description", Description);
                         command.Parameters.AddWithValue("@MaintenanceDate", MaintenanceDate);
                         command.Parameters.AddWithValue("@Cost", Cost);
@@ -95,7 +95,7 @@ select scope_identity()";
             return MaintenanceID;
         }
 
-        public static bool UpdateMaintenance(int MaintenanceID, int VehicleID,
+        public static bool UpdateMaintenance(int? MaintenanceID, int? VehicleID,
             string Description, DateTime MaintenanceDate, float Cost)
         {
             int RowAffected = 0;
@@ -115,8 +115,8 @@ where MaintenanceID = @MaintenanceID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@MaintenanceID", MaintenanceID);
-                        command.Parameters.AddWithValue("@VehicleID", VehicleID);
+                        command.Parameters.AddWithValue("@MaintenanceID", (object)MaintenanceID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@VehicleID", (object)VehicleID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@Description", Description);
                         command.Parameters.AddWithValue("@MaintenanceDate", MaintenanceDate);
                         command.Parameters.AddWithValue("@Cost", Cost);
@@ -133,7 +133,7 @@ where MaintenanceID = @MaintenanceID";
             return (RowAffected > 0);
         }
 
-        public static bool DeleteMaintenance(int MaintenanceID)
+        public static bool DeleteMaintenance(int? MaintenanceID)
         {
             int RowAffected = 0;
 
@@ -147,7 +147,7 @@ where MaintenanceID = @MaintenanceID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@MaintenanceID", MaintenanceID);
+                        command.Parameters.AddWithValue("@MaintenanceID", (object)MaintenanceID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
                     }
@@ -161,7 +161,7 @@ where MaintenanceID = @MaintenanceID";
             return (RowAffected > 0);
         }
 
-        public static bool DoesMaintenanceExist(int MaintenanceID)
+        public static bool DoesMaintenanceExist(int? MaintenanceID)
         {
             bool IsFound = false;
 
@@ -175,7 +175,7 @@ where MaintenanceID = @MaintenanceID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@MaintenanceID", MaintenanceID);
+                        command.Parameters.AddWithValue("@MaintenanceID", (object)MaintenanceID ?? DBNull.Value);
 
                         object result = command.ExecuteScalar();
 
@@ -223,7 +223,7 @@ where MaintenanceID = @MaintenanceID";
             return dt;
         }
 
-        public static DataTable GetVehicleMaintenanceHistory(int VehicleID)
+        public static DataTable GetVehicleMaintenanceHistory(int? VehicleID)
         {
             DataTable dt = new DataTable();
 
@@ -241,7 +241,7 @@ where MaintenanceID = @MaintenanceID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@VehicleID", VehicleID);
+                        command.Parameters.AddWithValue("@VehicleID", (object)VehicleID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {

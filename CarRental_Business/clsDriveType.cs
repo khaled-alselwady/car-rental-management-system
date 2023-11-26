@@ -13,18 +13,18 @@ namespace CarRental_Business
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
-        public int DriveTypeID { get; set; }
+        public int? DriveTypeID { get; set; }
         public string DriveTypeName { get; set; }
 
         public clsDriveType()
         {
-            this.DriveTypeID = -1;
+            this.DriveTypeID = null;
             this.DriveTypeName = string.Empty;
 
             Mode = enMode.AddNew;
         }
 
-        private clsDriveType(int DriveTypeID, string DriveTypeName)
+        private clsDriveType(int? DriveTypeID, string DriveTypeName)
         {
             this.DriveTypeID = DriveTypeID;
             this.DriveTypeName = DriveTypeName;
@@ -36,7 +36,7 @@ namespace CarRental_Business
         {
             this.DriveTypeID = clsDriveTypeData.AddNewDriveType(this.DriveTypeName);
 
-            return (this.DriveTypeID != -1);
+            return (this.DriveTypeID.HasValue);
         }
 
         private bool _UpdateDriveType()
@@ -66,7 +66,7 @@ namespace CarRental_Business
             return false;
         }
 
-        public static clsDriveType Find(int DriveTypeID)
+        public static clsDriveType Find(int? DriveTypeID)
         {
             string DriveTypeName = string.Empty;
 
@@ -84,7 +84,7 @@ namespace CarRental_Business
 
         public static clsDriveType Find(string DriveTypeName)
         {
-            int DriveTypeID = -1;
+            int? DriveTypeID = null;
 
             bool IsFound = clsDriveTypeData.GetDriveTypeInfoByName(DriveTypeName, ref DriveTypeID);
 
@@ -98,12 +98,12 @@ namespace CarRental_Business
             }
         }
 
-        public static bool DeleteDriveType(int DriveTypeID)
+        public static bool DeleteDriveType(int? DriveTypeID)
         {
             return clsDriveTypeData.DeleteDriveType(DriveTypeID);
         }
 
-        public static bool DoesDriveTypeExist(int DriveTypeID)
+        public static bool DoesDriveTypeExist(int? DriveTypeID)
         {
             return clsDriveTypeData.DoesDriveTypeExist(DriveTypeID);
         }

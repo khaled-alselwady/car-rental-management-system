@@ -10,7 +10,7 @@ namespace CarRental_DataAccess
 {
     public class clsMakeData
     {
-        public static bool GetMakeInfoByID(int MakeID, ref string Make)
+        public static bool GetMakeInfoByID(int? MakeID, ref string Make)
         {
             bool IsFound = false;
 
@@ -52,7 +52,7 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static bool GetMakeInfoByName(string Make, ref int MakeID)
+        public static bool GetMakeInfoByName(string Make, ref int? MakeID)
         {
             bool IsFound = false;
 
@@ -74,7 +74,7 @@ namespace CarRental_DataAccess
                             {
                                 // The record was found
                                 IsFound = true;
-                                MakeID = (int)reader["MakeID"];
+                                MakeID = (reader["MakeID"] != DBNull.Value) ? (int?)reader["MakeID"] : null;
                             }
                             else
                             {
@@ -93,10 +93,10 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static int AddNewMake(string Make)
+        public static int? AddNewMake(string Make)
         {
-            // This function will return the new person id if succeeded and -1 if not
-            int MakeID = -1;
+            // This function will return the new person id if succeeded and null if not
+            int? MakeID = null;
 
             try
             {
@@ -128,7 +128,7 @@ select scope_identity()";
             return MakeID;
         }
 
-        public static bool UpdateMake(int MakeID, string Make)
+        public static bool UpdateMake(int? MakeID, string Make)
         {
             int RowAffected = 0;
 
@@ -144,7 +144,7 @@ where MakeID = @MakeID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@MakeID", MakeID);
+                        command.Parameters.AddWithValue("@MakeID", (object)MakeID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@Make", Make);
 
                         RowAffected = command.ExecuteNonQuery();
@@ -159,7 +159,7 @@ where MakeID = @MakeID";
             return (RowAffected > 0);
         }
 
-        public static bool DeleteMake(int MakeID)
+        public static bool DeleteMake(int? MakeID)
         {
             int RowAffected = 0;
 
@@ -173,7 +173,7 @@ where MakeID = @MakeID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@MakeID", MakeID);
+                        command.Parameters.AddWithValue("@MakeID", (object)MakeID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
                     }
@@ -187,7 +187,7 @@ where MakeID = @MakeID";
             return (RowAffected > 0);
         }
 
-        public static bool DoesMakeExist(int MakeID)
+        public static bool DoesMakeExist(int? MakeID)
         {
             bool IsFound = false;
 
@@ -201,7 +201,7 @@ where MakeID = @MakeID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@MakeID", MakeID);
+                        command.Parameters.AddWithValue("@MakeID", (object)MakeID ?? DBNull.Value);
 
                         object result = command.ExecuteScalar();
 

@@ -15,13 +15,13 @@ namespace CarRental.Customers
 {
     public partial class frmAddEditCustomer : Form
     {
-        public Action<int> GetCustomerIDByDelegate;
+        public Action<int?> GetCustomerIDByDelegate;
         public Action RefreshCustomerInfo;
 
         public enum enMode { AddNew, Update };
         private enMode _Mode = enMode.AddNew;
 
-        private int _CustomerID = -1;
+        private int? _CustomerID = null;
         private clsCustomer _Customer;
 
         public frmAddEditCustomer()
@@ -31,7 +31,7 @@ namespace CarRental.Customers
             _Mode = enMode.AddNew;
         }
 
-        public frmAddEditCustomer(int CustomerID)
+        public frmAddEditCustomer(int? CustomerID)
         {
             InitializeComponent();
 
@@ -125,7 +125,7 @@ namespace CarRental.Customers
             _Customer.DriverLicenseNumber = txtLicenseNo.Text.Trim();
             _Customer.Gender = (rbMale.Checked) ? clsPerson.enGender.Male : clsPerson.enGender.Female;
             _Customer.DateOfBirth = dtpDateOfBirth.Value;
-            _Customer.NationalityCountryID = clsCountry.Find(cbCountry.Text).CountryID;
+            _Customer.NationalityCountryID = clsCountry.Find(cbCountry.Text).CountryID ?? -1;
         }
 
         private void _SaveCustomer()

@@ -12,7 +12,7 @@ namespace CarRental.Users
 {
     public partial class frmShowUserDetails : Form
     {
-        public frmShowUserDetails(int UserID, bool EditEnabled = true)
+        public frmShowUserDetails(int? UserID, bool EditEnabled = true)
         {
             InitializeComponent();
 

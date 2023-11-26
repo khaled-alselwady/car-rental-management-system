@@ -10,7 +10,7 @@ namespace CarRental_DataAccess
 {
     public class clsModelData
     {
-        public static bool GetModelInfoByID(int ModelID, ref int MakeID, ref string ModelName)
+        public static bool GetModelInfoByID(int? ModelID, ref int MakeID, ref string ModelName)
         {
             bool IsFound = false;
 
@@ -24,7 +24,7 @@ namespace CarRental_DataAccess
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@ModelID", ModelID);
+                        command.Parameters.AddWithValue("@ModelID", (object)ModelID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -53,7 +53,7 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static bool GetModelInfoByName(string ModelName, ref int ModelID, ref int MakeID)
+        public static bool GetModelInfoByName(string ModelName, ref int? ModelID, ref int MakeID)
         {
             bool IsFound = false;
 
@@ -76,7 +76,7 @@ namespace CarRental_DataAccess
                                 // The record was found
                                 IsFound = true;
 
-                                ModelID = (int)reader["ModelID"];
+                                ModelID = (reader["ModelID"] != DBNull.Value) ? (int?)reader["ModelID"] : null;
                                 MakeID = (int)reader["MakeID"];
                             }
                             else
@@ -96,10 +96,10 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static int AddNewModel(int MakeID, string ModelName)
+        public static int? AddNewModel(int MakeID, string ModelName)
         {
-            // This function will return the new person id if succeeded and -1 if not
-            int ModelID = -1;
+            // This function will return the new person id if succeeded and null if not
+            int? ModelID = null;
 
             try
             {
@@ -132,7 +132,7 @@ select scope_identity()";
             return ModelID;
         }
 
-        public static bool UpdateModel(int ModelID, int MakeID, string ModelName)
+        public static bool UpdateModel(int? ModelID, int MakeID, string ModelName)
         {
             int RowAffected = 0;
 
@@ -149,7 +149,7 @@ where ModelID = @ModelID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@ModelID", ModelID);
+                        command.Parameters.AddWithValue("@ModelID", (object)ModelID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@MakeID", MakeID);
                         command.Parameters.AddWithValue("@ModelName", ModelName);
 
@@ -165,7 +165,7 @@ where ModelID = @ModelID";
             return (RowAffected > 0);
         }
 
-        public static bool DeleteModel(int ModelID)
+        public static bool DeleteModel(int? ModelID)
         {
             int RowAffected = 0;
 
@@ -179,7 +179,7 @@ where ModelID = @ModelID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@ModelID", ModelID);
+                        command.Parameters.AddWithValue("@ModelID", (object)ModelID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
                     }
@@ -193,7 +193,7 @@ where ModelID = @ModelID";
             return (RowAffected > 0);
         }
 
-        public static bool DoesModelExist(int ModelID)
+        public static bool DoesModelExist(int? ModelID)
         {
             bool IsFound = false;
 
@@ -207,7 +207,7 @@ where ModelID = @ModelID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@ModelID", ModelID);
+                        command.Parameters.AddWithValue("@ModelID", (object)ModelID ?? DBNull.Value);
 
                         object result = command.ExecuteScalar();
 
@@ -281,9 +281,9 @@ where ModelID = @ModelID";
             }
             catch (SqlException ex)
             {
-               
+
             }
-            
+
             return dt;
         }
     }

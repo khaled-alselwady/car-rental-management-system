@@ -10,7 +10,7 @@ namespace CarRental_DataAccess
 {
     public class clsVehicleData
     {
-        public static bool GetVehicleInfoByID(int VehicleID, ref int MakeID, ref int ModelID,
+        public static bool GetVehicleInfoByID(int? VehicleID, ref int MakeID, ref int ModelID,
             ref int SubModelID, ref int BodyID, ref string VehicleName, ref string PlateNumber,
             ref short Year, ref int DriveTypeID, ref string Engine, ref int FuelTypeID,
             ref byte NumberDoors, ref int Mileage, ref float RentalPricePerDay,
@@ -28,7 +28,7 @@ namespace CarRental_DataAccess
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@VehicleID", VehicleID);
+                        command.Parameters.AddWithValue("@VehicleID", (object)VehicleID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -69,13 +69,13 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static int AddNewVehicle(int MakeID, int ModelID, int SubModelID, int BodyID,
+        public static int? AddNewVehicle(int MakeID, int ModelID, int SubModelID, int BodyID,
             string VehicleName, string PlateNumber, short Year, int DriveTypeID, string Engine,
             int FuelTypeID, byte NumberDoors, int Mileage, float RentalPricePerDay,
             bool IsAvailableForRent)
         {
-            // This function will return the new person id if succeeded and -1 if not
-            int VehicleID = -1;
+            // This function will return the new person id if succeeded and null if not
+            int? VehicleID = null;
 
             try
             {
@@ -121,7 +121,7 @@ select scope_identity()";
             return VehicleID;
         }
 
-        public static bool UpdateVehicle(int VehicleID, int MakeID, int ModelID, int SubModelID,
+        public static bool UpdateVehicle(int? VehicleID, int MakeID, int ModelID, int SubModelID,
             int BodyID, string VehicleName, string PlateNumber, short Year, int DriveTypeID,
             string Engine, int FuelTypeID, byte NumberDoors, int Mileage, float RentalPricePerDay,
             bool IsAvailableForRent)
@@ -153,7 +153,7 @@ where VehicleID = @VehicleID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@VehicleID", VehicleID);
+                        command.Parameters.AddWithValue("@VehicleID", (object)VehicleID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@MakeID", MakeID);
                         command.Parameters.AddWithValue("@ModelID", ModelID);
                         command.Parameters.AddWithValue("@SubModelID", SubModelID);
@@ -181,7 +181,7 @@ where VehicleID = @VehicleID";
             return (RowAffected > 0);
         }
 
-        public static bool DeleteVehicle(int VehicleID)
+        public static bool DeleteVehicle(int? VehicleID)
         {
             int RowAffected = 0;
 
@@ -195,7 +195,7 @@ where VehicleID = @VehicleID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@VehicleID", VehicleID);
+                        command.Parameters.AddWithValue("@VehicleID", (object)VehicleID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
                     }
@@ -209,7 +209,7 @@ where VehicleID = @VehicleID";
             return (RowAffected > 0);
         }
 
-        public static bool DoesVehicleExist(int VehicleID)
+        public static bool DoesVehicleExist(int? VehicleID)
         {
             bool IsFound = false;
 
@@ -223,7 +223,7 @@ where VehicleID = @VehicleID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@VehicleID", VehicleID);
+                        command.Parameters.AddWithValue("@VehicleID", (object)VehicleID ?? DBNull.Value);
 
                         object result = command.ExecuteScalar();
 

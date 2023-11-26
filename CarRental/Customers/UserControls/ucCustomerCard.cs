@@ -15,10 +15,10 @@ namespace CarRental.Customers.UserControls
     public partial class ucCustomerCard : UserControl
     {
 
-        private int _CustomerID = -1;
+        private int? _CustomerID = null;
         private clsCustomer _Customer;
 
-        public int CustomerID => _CustomerID;
+        public int? CustomerID => _CustomerID;
         public clsCustomer CustomerInfo => _Customer;
 
         public ucCustomerCard()
@@ -28,7 +28,7 @@ namespace CarRental.Customers.UserControls
 
         public void Reset()
         {
-            _CustomerID = -1;
+            _CustomerID = null;
             _Customer = null;
 
             ucPersonCard1.Reset();
@@ -49,13 +49,13 @@ namespace CarRental.Customers.UserControls
             lblDriverLicenseNumber.Text = _Customer.DriverLicenseNumber;
         }
 
-        public void LoadCustomerInfo(int CustomerID)
+        public void LoadCustomerInfo(int? CustomerID)
         {
             _CustomerID = CustomerID;
 
-            if (_CustomerID == -1)
+            if (!_CustomerID.HasValue)
             {
-                MessageBox.Show("There is no member with id = -1", "Missing Member",
+                MessageBox.Show("There is no member", "Missing Member",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 Reset();

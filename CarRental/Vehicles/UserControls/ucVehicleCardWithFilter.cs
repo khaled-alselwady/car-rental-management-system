@@ -23,9 +23,9 @@ namespace CarRental.Vehicles.UserControls
         #region Declare Event
         public class VehicleSelectedEventArgs : EventArgs
         {
-            public int VehicleID { get; }
+            public int? VehicleID { get; }
 
-            public VehicleSelectedEventArgs(int vehicleID)
+            public VehicleSelectedEventArgs(int? vehicleID)
             {
                 this.VehicleID = vehicleID;
             }
@@ -33,7 +33,7 @@ namespace CarRental.Vehicles.UserControls
 
         public event EventHandler<VehicleSelectedEventArgs> OnVehicleSelected;
 
-        public void RaiseOnVehicleSelected(int VehicleID)
+        public void RaiseOnVehicleSelected(int? VehicleID)
         {
             RaiseOnVehicleSelected(new VehicleSelectedEventArgs(VehicleID));
         }
@@ -68,7 +68,7 @@ namespace CarRental.Vehicles.UserControls
             }
         }
 
-        public int VehicleID => ucVehicleCard1.VehicleID;
+        public int? VehicleID => ucVehicleCard1.VehicleID;
         public clsVehicle SelectedVehicleInfo => ucVehicleCard1.VehicleInfo;
 
         private void txtFilterValue_KeyPress(object sender, KeyPressEventArgs e)
@@ -115,7 +115,7 @@ namespace CarRental.Vehicles.UserControls
             txtFilterValue.Focus();
         }
 
-        public void LoadVehicleInfo(int VehicleID)
+        public void LoadVehicleInfo(int? VehicleID)
         {
             txtFilterValue.Text = VehicleID.ToString();
             ucVehicleCard1.LoadVehicleInfo(VehicleID);

@@ -13,20 +13,20 @@ namespace CarRental_Business
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
-        public int ModelID { get; set; }
+        public int? ModelID { get; set; }
         public int MakeID { get; set; }
         public string ModelName { get; set; }
 
         public clsModel()
         {
-            this.ModelID = -1;
+            this.ModelID = null;
             this.MakeID = -1;
             this.ModelName = string.Empty;
 
             Mode = enMode.AddNew;
         }
 
-        private clsModel(int ModelID, int MakeID, string ModelName)
+        private clsModel(int? ModelID, int MakeID, string ModelName)
         {
             this.ModelID = ModelID;
             this.MakeID = MakeID;
@@ -39,7 +39,7 @@ namespace CarRental_Business
         {
             this.ModelID = clsModelData.AddNewModel(this.MakeID, this.ModelName);
 
-            return (this.ModelID != -1);
+            return (this.ModelID.HasValue);
         }
 
         private bool _UpdateModel()
@@ -69,7 +69,7 @@ namespace CarRental_Business
             return false;
         }
 
-        public static clsModel Find(int ModelID)
+        public static clsModel Find(int? ModelID)
         {
             int MakeID = -1;
             string ModelName = string.Empty;
@@ -89,7 +89,7 @@ namespace CarRental_Business
         public static clsModel Find(string ModelName)
         {
             int MakeID = -1;
-            int ModelID = -1;
+            int? ModelID = null;
 
             bool IsFound = clsModelData.GetModelInfoByName(ModelName, ref ModelID, ref MakeID);
 
@@ -103,12 +103,12 @@ namespace CarRental_Business
             }
         }
 
-        public static bool DeleteModel(int ModelID)
+        public static bool DeleteModel(int? ModelID)
         {
             return clsModelData.DeleteModel(ModelID);
         }
 
-        public static bool DoesModelExist(int ModelID)
+        public static bool DoesModelExist(int? ModelID)
         {
             return clsModelData.DoesModelExist(ModelID);
         }

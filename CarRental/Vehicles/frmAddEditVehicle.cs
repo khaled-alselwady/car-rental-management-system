@@ -16,13 +16,13 @@ namespace CarRental.Vehicles
 {
     public partial class frmAddEditVehicle : Form
     {
-        public Action<int> GetVehicleIDByDelegate;
+        public Action<int?> GetVehicleIDByDelegate;
         public Action RefreshVehicleInfo;
 
         public enum enMode { AddNew, Update };
         private enMode _Mode = enMode.AddNew;
 
-        private int _VehicleID = -1;
+        private int? _VehicleID = null;
         private clsVehicle _Vehicle;
 
         public frmAddEditVehicle()
@@ -32,7 +32,7 @@ namespace CarRental.Vehicles
             _Mode = enMode.AddNew;
         }
 
-        public frmAddEditVehicle(int VehicleID)
+        public frmAddEditVehicle(int? VehicleID)
         {
             InitializeComponent();
 
@@ -178,15 +178,15 @@ namespace CarRental.Vehicles
 
         }
 
-        private void _FillCustomerObjectWithFieldsData()
+        private void _FillVehicleObjectWithFieldsData()
         {
             _Vehicle.VehicleName = txtVehicleName.Text.Trim();
-            _Vehicle.MakeID = clsMake.Find(cbMake.Text).MakeID;
-            _Vehicle.ModelID = clsModel.Find(cbModel.Text).ModelID;
-            _Vehicle.SubModelID = clsSubModel.Find(cbSubModel.Text).SubModelID;
-            _Vehicle.BodyID = clsBody.Find(cbBody.Text).BodyID;
-            _Vehicle.DriveTypeID = clsDriveType.Find(cbDriverType.Text).DriveTypeID;
-            _Vehicle.FuelTypeID = clsFuelType.Find(cbFuelType.Text).FuelTypeID;
+            _Vehicle.MakeID = clsMake.Find(cbMake.Text).MakeID ?? -1;
+            _Vehicle.ModelID = clsModel.Find(cbModel.Text).ModelID ?? -1;
+            _Vehicle.SubModelID = clsSubModel.Find(cbSubModel.Text).SubModelID ?? -1;
+            _Vehicle.BodyID = clsBody.Find(cbBody.Text).BodyID ?? -1;
+            _Vehicle.DriveTypeID = clsDriveType.Find(cbDriverType.Text).DriveTypeID ?? -1;
+            _Vehicle.FuelTypeID = clsFuelType.Find(cbFuelType.Text).FuelTypeID ?? -1;
             _Vehicle.Engine = txtEngine.Text.Trim();
             _Vehicle.RentalPricePerDay = Convert.ToSingle(txtRentalPricePerDay.Text.Trim());
             _Vehicle.NumberDoors = (byte)numaricNumberDoors.Value;
@@ -198,7 +198,7 @@ namespace CarRental.Vehicles
 
         private void _SaveCustomer()
         {
-            _FillCustomerObjectWithFieldsData();
+            _FillVehicleObjectWithFieldsData();
 
             if (_Vehicle.Save())
             {

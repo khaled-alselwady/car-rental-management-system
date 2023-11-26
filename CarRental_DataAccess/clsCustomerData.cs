@@ -10,7 +10,7 @@ namespace CarRental_DataAccess
 {
     public class clsCustomerData
     {
-        public static bool GetCustomerInfoByID(int CustomerID, ref int PersonID,
+        public static bool GetCustomerInfoByID(int? CustomerID, ref int? PersonID,
             ref string DriverLicenseNumber)
         {
             bool IsFound = false;
@@ -25,7 +25,7 @@ namespace CarRental_DataAccess
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@CustomerID", CustomerID);
+                        command.Parameters.AddWithValue("@CustomerID", (object)CustomerID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -54,10 +54,10 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static int AddNewCustomer(int PersonID, string DriverLicenseNumber)
+        public static int? AddNewCustomer(int? PersonID, string DriverLicenseNumber)
         {
-            // This function will return the new person id if succeeded and -1 if not
-            int CustomerID = -1;
+            // This function will return the new person id if succeeded and null if not
+            int? CustomerID = null;
 
             try
             {
@@ -90,7 +90,7 @@ select scope_identity()";
             return CustomerID;
         }
 
-        public static bool UpdateCustomer(int CustomerID, int PersonID, string DriverLicenseNumber)
+        public static bool UpdateCustomer(int? CustomerID, int? PersonID, string DriverLicenseNumber)
         {
             int RowAffected = 0;
 
@@ -107,7 +107,7 @@ where CustomerID = @CustomerID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@CustomerID", CustomerID);
+                        command.Parameters.AddWithValue("@CustomerID", (object)CustomerID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@PersonID", PersonID);
                         command.Parameters.AddWithValue("@DriverLicenseNumber", DriverLicenseNumber);
 
@@ -123,7 +123,7 @@ where CustomerID = @CustomerID";
             return (RowAffected > 0);
         }
 
-        public static bool DeleteCustomer(int CustomerID)
+        public static bool DeleteCustomer(int? CustomerID)
         {
             int RowAffected = 0;
 
@@ -137,7 +137,7 @@ where CustomerID = @CustomerID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@CustomerID", CustomerID);
+                        command.Parameters.AddWithValue("@CustomerID", (object)CustomerID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
                     }
@@ -151,7 +151,7 @@ where CustomerID = @CustomerID";
             return (RowAffected > 0);
         }
 
-        public static bool DoesCustomerExist(int CustomerID)
+        public static bool DoesCustomerExist(int? CustomerID)
         {
             bool IsFound = false;
 
@@ -165,7 +165,7 @@ where CustomerID = @CustomerID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@CustomerID", CustomerID);
+                        command.Parameters.AddWithValue("@CustomerID", (object)CustomerID ?? DBNull.Value);
 
                         object result = command.ExecuteScalar();
 
@@ -203,7 +203,7 @@ where CustomerID = @CustomerID";
                     }
                 }
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 IsFound = false;
             }
@@ -268,15 +268,15 @@ where CustomerID = @CustomerID";
             }
             catch (SqlException ex)
             {
-                
+
             }
 
             return Count;
         }
 
-        public static int GetPersonIDByCustomerID(int CustomerID)
+        public static int? GetPersonIDByCustomerID(int? CustomerID)
         {
-            int PersonID = -1;
+            int? PersonID = null;
 
             try
             {
@@ -288,7 +288,7 @@ where CustomerID = @CustomerID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@CustomerID", CustomerID);
+                        command.Parameters.AddWithValue("@CustomerID", (object)CustomerID ?? DBNull.Value);
 
                         object result = command.ExecuteScalar();
 
@@ -301,7 +301,7 @@ where CustomerID = @CustomerID";
             }
             catch (SqlException ex)
             {
-                
+
             }
 
             return PersonID;

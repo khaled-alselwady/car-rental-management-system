@@ -10,11 +10,11 @@ namespace CarRental_DataAccess
 {
     public class clsTransactionData
     {
-        public static bool GetTransactionInfoByID(int TransactionID, ref int BookingID,
-            ref int ReturnID, ref string PaymentDetails, ref float PaidInitialTotalDueAmount,
-            ref float ActualTotalDueAmount, ref float TotalRemaining,
-            ref float TotalRefundedAmount, ref DateTime TransactionDate,
-            ref DateTime UpdatedTransactionDate)
+        public static bool GetTransactionInfoByID(int? TransactionID, ref int? BookingID,
+            ref int? ReturnID, ref string PaymentDetails, ref float PaidInitialTotalDueAmount,
+            ref float? ActualTotalDueAmount, ref float? TotalRemaining,
+            ref float? TotalRefundedAmount, ref DateTime TransactionDate,
+            ref DateTime? UpdatedTransactionDate)
         {
             bool IsFound = false;
 
@@ -37,15 +37,15 @@ namespace CarRental_DataAccess
                                 // The record was found
                                 IsFound = true;
 
-                                BookingID = (int)reader["BookingID"];
-                                ReturnID = (reader["ReturnID"] != DBNull.Value) ? (int)reader["ReturnID"] : 0;
+                                BookingID = (reader["BookingID"] != DBNull.Value) ? (int?)reader["BookingID"] : null;
+                                ReturnID = (reader["ReturnID"] != DBNull.Value) ? (int?)reader["ReturnID"] : null;
                                 PaymentDetails = (string)reader["PaymentDetails"];
                                 PaidInitialTotalDueAmount = Convert.ToSingle(reader["PaidInitialTotalDueAmount"]);
-                                ActualTotalDueAmount = (reader["ActualTotalDueAmount"] != DBNull.Value) ? Convert.ToSingle(reader["ActualTotalDueAmount"]) : 0f;
-                                TotalRemaining = (reader["TotalRemaining"] != DBNull.Value) ? Convert.ToSingle(reader["TotalRemaining"]) : 0f;
-                                TotalRefundedAmount = (reader["TotalRefundedAmount"] != DBNull.Value) ? Convert.ToSingle(reader["TotalRefundedAmount"]) : 0f;
+                                ActualTotalDueAmount = (reader["ActualTotalDueAmount"] != DBNull.Value) ? (float?)Convert.ToSingle(reader["ActualTotalDueAmount"]) : null;
+                                TotalRemaining = (reader["TotalRemaining"] != DBNull.Value) ? (float?)Convert.ToSingle(reader["TotalRemaining"]) : null;
+                                TotalRefundedAmount = (reader["TotalRefundedAmount"] != DBNull.Value) ? (float?)Convert.ToSingle(reader["TotalRefundedAmount"]) : null;
                                 TransactionDate = (DateTime)reader["TransactionDate"];
-                                UpdatedTransactionDate = (reader["UpdatedTransactionDate"] != DBNull.Value) ? (DateTime)reader["UpdatedTransactionDate"] : DateTime.Now;
+                                UpdatedTransactionDate = (reader["UpdatedTransactionDate"] != DBNull.Value) ? (DateTime?)reader["UpdatedTransactionDate"] : null;
                             }
                             else
                             {
@@ -64,12 +64,12 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static int AddNewTransaction(int BookingID, string PaymentDetails,
+        public static int? AddNewTransaction(int? BookingID, string PaymentDetails,
             float PaidInitialTotalDueAmount)
 
         {
-            // This function will return the new person id if succeeded and -1 if not
-            int TransactionID = -1;
+            // This function will return the new person id if succeeded and null if not
+            int? TransactionID = null;
 
             try
             {
@@ -83,7 +83,7 @@ select scope_identity()";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@BookingID", BookingID);
+                        command.Parameters.AddWithValue("@BookingID", (object)BookingID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@PaymentDetails", PaymentDetails);
                         command.Parameters.AddWithValue("@PaidInitialTotalDueAmount", PaidInitialTotalDueAmount);
                         command.Parameters.AddWithValue("@TransactionDate", DateTime.Now);
@@ -105,8 +105,8 @@ select scope_identity()";
             return TransactionID;
         }
 
-        public static bool UpdateTransaction(int TransactionID, int ReturnID,
-            float ActualTotalDueAmount, float TotalRefundedAmount)
+        public static bool UpdateTransaction(int? TransactionID, int? ReturnID,
+            float? ActualTotalDueAmount, float? TotalRefundedAmount)
         {
             int RowAffected = 0;
 
@@ -126,10 +126,10 @@ where TransactionID = @TransactionID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@TransactionID", TransactionID);
-                        command.Parameters.AddWithValue("@ReturnID", ReturnID);
-                        command.Parameters.AddWithValue("@ActualTotalDueAmount", ActualTotalDueAmount);
-                        command.Parameters.AddWithValue("@TotalRefundedAmount", TotalRefundedAmount);
+                        command.Parameters.AddWithValue("@TransactionID", (object)TransactionID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@ReturnID", (object)ReturnID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@ActualTotalDueAmount", (object)ActualTotalDueAmount ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@TotalRefundedAmount", (object)TotalRefundedAmount ?? DBNull.Value);
                         command.Parameters.AddWithValue("@UpdatedTransactionDate", DateTime.Now);
 
                         RowAffected = command.ExecuteNonQuery();
@@ -144,7 +144,7 @@ where TransactionID = @TransactionID";
             return (RowAffected > 0);
         }
 
-        public static bool DeleteTransaction(int TransactionID)
+        public static bool DeleteTransaction(int? TransactionID)
         {
             int RowAffected = 0;
 
@@ -158,7 +158,7 @@ where TransactionID = @TransactionID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@TransactionID", TransactionID);
+                        command.Parameters.AddWithValue("@TransactionID", (object)TransactionID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
                     }
@@ -172,7 +172,7 @@ where TransactionID = @TransactionID";
             return (RowAffected > 0);
         }
 
-        public static bool DoesTransactionExist(int TransactionID)
+        public static bool DoesTransactionExist(int? TransactionID)
         {
             bool IsFound = false;
 
@@ -186,7 +186,7 @@ where TransactionID = @TransactionID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@TransactionID", TransactionID);
+                        command.Parameters.AddWithValue("@TransactionID", (object)TransactionID ?? DBNull.Value);
 
                         object result = command.ExecuteScalar();
 

@@ -12,7 +12,7 @@ namespace CarRental.Vehicles
 {
     public partial class frmShowVehicleMaintenanceHistory : Form
     {
-        public frmShowVehicleMaintenanceHistory(int VehicleID)
+        public frmShowVehicleMaintenanceHistory(int? VehicleID)
         {
             InitializeComponent();
 

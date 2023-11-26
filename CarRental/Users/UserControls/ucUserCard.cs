@@ -15,10 +15,10 @@ namespace CarRental.Users.UserControls
 {
     public partial class ucUserCard : UserControl
     {
-        private int _UserID = -1;
+        private int? _UserID = null;
         private clsUser _User;
 
-        public int UserID => _UserID;
+        public int? UserID => _UserID;
         public clsUser User => _User;
 
         private bool _EditEnabled = false;
@@ -41,7 +41,7 @@ namespace CarRental.Users.UserControls
 
         public void Reset()
         {
-            _UserID = -1;
+            _UserID = null;
             _User = null;
 
             ucPersonCard1.Reset();
@@ -57,7 +57,7 @@ namespace CarRental.Users.UserControls
 
         private void _LoadUserImage()
         {
-            if (_User.ImagePath != "")
+            if (_User.ImagePath != null)
             {
                 if (File.Exists(_User.ImagePath))
                     pbUserImage.ImageLocation = _User.ImagePath;
@@ -80,7 +80,7 @@ namespace CarRental.Users.UserControls
 
             ucPersonCard1.LoadPersonInfo(_User.PersonID);
 
-            lblUserID.Text = _User.UserID.ToString();
+            lblUserID.Text = _User.UserID?.ToString();
             lblUsername.Text = _User.Username;
             lblIsActive.Text = _User.IsActive ? "Yes" : "No";
             pbIsActive.Image = _User.IsActive ? Resources.active_user : Resources.inactive_user;
@@ -88,13 +88,13 @@ namespace CarRental.Users.UserControls
             _LoadUserImage();
         }
 
-        public void LoadUserInfo(int UserID)
+        public void LoadUserInfo(int? UserID)
         {
             _UserID = UserID;
 
-            if (_UserID == -1)
+            if (!_UserID.HasValue)
             {
-                MessageBox.Show("There is no user with id = -1", "Missing Member",
+                MessageBox.Show("There is no user", "Missing Member",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 Reset();

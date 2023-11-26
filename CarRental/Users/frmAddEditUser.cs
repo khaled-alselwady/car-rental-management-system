@@ -16,13 +16,13 @@ namespace CarRental.Users
 {
     public partial class frmAddEditUser : Form
     {
-        public Action<int> GetUserIDByDelegate;
+        public Action<int?> GetUserIDByDelegate;
         public Action RefreshUserInfo;
 
         public enum enMode { AddNew, Update };
         private enMode _Mode = enMode.AddNew;
 
-        private int _UserID = -1;
+        private int? _UserID = null;
         private clsUser _User;
 
         public frmAddEditUser()
@@ -32,7 +32,7 @@ namespace CarRental.Users
             _Mode = enMode.AddNew;
         }
 
-        public frmAddEditUser(int UserID)
+        public frmAddEditUser(int? UserID)
         {
             InitializeComponent();
 

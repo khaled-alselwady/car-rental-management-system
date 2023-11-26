@@ -10,7 +10,7 @@ namespace CarRental_DataAccess
 {
     public class clsCountryData
     {
-        public static bool GetCountryInfoByID(int CountryID, ref string CountryName)
+        public static bool GetCountryInfoByID(int? CountryID, ref string CountryName)
         {
             bool IsFound = false;
 
@@ -24,7 +24,7 @@ namespace CarRental_DataAccess
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@CountryID", CountryID);
+                        command.Parameters.AddWithValue("@CountryID", (object)CountryID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -52,7 +52,7 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static bool GetCountryInfoByName(string CountryName, ref int CountryID)
+        public static bool GetCountryInfoByName(string CountryName, ref int? CountryID)
         {
             bool IsFound = false;
 
@@ -75,7 +75,7 @@ namespace CarRental_DataAccess
                                 // The record was found
                                 IsFound = true;
 
-                                CountryID = (int)reader["CountryID"];
+                                CountryID = (reader["CountryID"] != DBNull.Value) ? (int?)reader["CountryID"] : null;
                             }
                             else
                             {
@@ -150,7 +150,7 @@ namespace CarRental_DataAccess
                     }
                 }
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
 
             }

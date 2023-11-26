@@ -16,10 +16,10 @@ namespace CarRental.People.UserControls
     public partial class ucPersonCard : UserControl
     {
 
-        private int _PersonID = -1;
+        private int? _PersonID = null;
         private clsPerson _Person;
 
-        public int PersonID => _PersonID;
+        public int? PersonID => _PersonID;
         public clsPerson PersonInfo => _Person;
 
         public ucPersonCard()
@@ -38,12 +38,12 @@ namespace CarRental.People.UserControls
             lblPhone.Text = _Person.Phone;
             lblCountry.Text = _Person.CountryInfo.CountryName;
             lblCreatedAt.Text = _Person.CreatedAt.ToString("dd/MMM/yyyy hh:mm tt");
-            lblUpdatedAt.Text = _Person.UpdatedAt.ToString("dd/MMM/yyyy hh:mm tt");
+            lblUpdatedAt.Text = _Person.UpdatedAt?.ToString("dd/MMM/yyyy hh:mm tt");
         }
 
         public void Reset()
         {
-            _PersonID = -1;
+            _PersonID = null;
             _Person = null;
 
             lblPersonID.Text = "[????]";
@@ -58,13 +58,13 @@ namespace CarRental.People.UserControls
             lblUpdatedAt.Text = "[????]";
         }
 
-        public void LoadPersonInfo(int PersonID)
+        public void LoadPersonInfo(int? PersonID)
         {
             _PersonID = PersonID;
 
-            if (PersonID == -1)
+            if (!PersonID.HasValue)
             {
-                MessageBox.Show("There is no person with id = -1", "Missing Member",
+                MessageBox.Show("There is no person", "Missing Member",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 Reset();

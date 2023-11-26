@@ -13,21 +13,21 @@ namespace CarRental_Business
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
-        public int CustomerID { get; set; }
+        public int? CustomerID { get; set; }
         public string DriverLicenseNumber { get; set; }
 
         public clsCustomer()
         {
-            this.CustomerID = -1;
-            this.PersonID = -1;
+            this.CustomerID = null;
+            this.PersonID = null;
             this.DriverLicenseNumber = string.Empty;
 
             Mode = enMode.AddNew;
         }
 
-        private clsCustomer(int PersonID, string Name, string Address, string Phone,
+        private clsCustomer(int? PersonID, string Name, string Address, string Phone,
             string Email, DateTime DateOfBirth, enGender Gender, int NationalityCountryID,
-            DateTime CreatedAt, DateTime UpdatedAt, int CustomerID, string DriverLicenseNumber)
+            DateTime CreatedAt, DateTime? UpdatedAt, int? CustomerID, string DriverLicenseNumber)
         {
             base.PersonID = PersonID;
             base.Name = Name;
@@ -49,14 +49,16 @@ namespace CarRental_Business
 
         private bool _AddNewCustomer()
         {
-            this.CustomerID = clsCustomerData.AddNewCustomer(this.PersonID, this.DriverLicenseNumber);
+            this.CustomerID = clsCustomerData.AddNewCustomer(this.PersonID,
+                this.DriverLicenseNumber);
 
-            return (this.CustomerID != -1);
+            return (this.CustomerID.HasValue);
         }
 
         private bool _UpdateCustomer()
         {
-            return clsCustomerData.UpdateCustomer(this.CustomerID, this.PersonID, this.DriverLicenseNumber);
+            return clsCustomerData.UpdateCustomer(this.CustomerID, 
+                this.PersonID, this.DriverLicenseNumber);
         }
 
         public bool Save()
@@ -88,14 +90,14 @@ namespace CarRental_Business
             return false;
         }
 
-        private static int _GetPersonIDByCustomerID(int CustomerID)
+        private static int? _GetPersonIDByCustomerID(int? CustomerID)
         {
             return clsCustomerData.GetPersonIDByCustomerID(CustomerID);
         }
 
-        public static clsCustomer Find(int CustomerID)
+        public static clsCustomer Find(int? CustomerID)
         {
-            int PersonID = -1;
+            int? PersonID = null;
             string DriverLicenseNumber = string.Empty;
 
             bool IsFound = clsCustomerData.GetCustomerInfoByID
@@ -120,11 +122,11 @@ namespace CarRental_Business
             }
         }
 
-        public static bool DeleteCustomer(int CustomerID)
+        public static bool DeleteCustomer(int? CustomerID)
         {
-            int PersonID = _GetPersonIDByCustomerID(CustomerID);
+            int? PersonID = _GetPersonIDByCustomerID(CustomerID);
 
-            if (PersonID == -1)
+            if (!PersonID.HasValue)
             {
                 return false;
             }
@@ -137,7 +139,7 @@ namespace CarRental_Business
             return false;
         }
 
-        public static bool DoesCustomerExist(int CustomerID)
+        public static bool DoesCustomerExist(int? CustomerID)
         {
             return clsCustomerData.DoesCustomerExist(CustomerID);
         }

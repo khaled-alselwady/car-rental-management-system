@@ -13,8 +13,8 @@ namespace CarRental_Business
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
-        public int MaintenanceID { get; set; }
-        public int VehicleID { get; set; }
+        public int? MaintenanceID { get; set; }
+        public int? VehicleID { get; set; }
         public string Description { get; set; }
         public DateTime MaintenanceDate { get; set; }
         public float Cost { get; set; }
@@ -23,8 +23,8 @@ namespace CarRental_Business
 
         public clsMaintenance()
         {
-            this.MaintenanceID = -1;
-            this.VehicleID = -1;
+            this.MaintenanceID = null;
+            this.VehicleID = null;
             this.Description = string.Empty;
             this.MaintenanceDate = DateTime.Now;
             this.Cost = -1f;
@@ -32,7 +32,7 @@ namespace CarRental_Business
             Mode = enMode.AddNew;
         }
 
-        private clsMaintenance(int MaintenanceID, int VehicleID, string Description,
+        private clsMaintenance(int? MaintenanceID, int? VehicleID, string Description,
             DateTime MaintenanceDate, float Cost)
         {
             this.MaintenanceID = MaintenanceID;
@@ -50,7 +50,7 @@ namespace CarRental_Business
         {
             this.MaintenanceID = clsMaintenanceData.AddNewMaintenance(this.VehicleID, this.Description, this.MaintenanceDate, this.Cost);
 
-            return (this.MaintenanceID != -1);
+            return (this.MaintenanceID.HasValue);
         }
 
         private bool _UpdateMaintenance()
@@ -80,9 +80,9 @@ namespace CarRental_Business
             return false;
         }
 
-        public static clsMaintenance Find(int MaintenanceID)
+        public static clsMaintenance Find(int? MaintenanceID)
         {
-            int VehicleID = -1;
+            int? VehicleID = null;
             string Description = string.Empty;
             DateTime MaintenanceDate = DateTime.Now;
             float Cost = -1f;
@@ -99,12 +99,12 @@ namespace CarRental_Business
             }
         }
 
-        public static bool DeleteMaintenance(int MaintenanceID)
+        public static bool DeleteMaintenance(int? MaintenanceID)
         {
             return clsMaintenanceData.DeleteMaintenance(MaintenanceID);
         }
 
-        public static bool DoesMaintenanceExist(int MaintenanceID)
+        public static bool DoesMaintenanceExist(int? MaintenanceID)
         {
             return clsMaintenanceData.DoesMaintenanceExist(MaintenanceID);
         }
@@ -114,7 +114,7 @@ namespace CarRental_Business
             return clsMaintenanceData.GetAllMaintenance();
         }
 
-        public static DataTable GetVehicleMaintenanceHistory(int VehicleID)
+        public static DataTable GetVehicleMaintenanceHistory(int? VehicleID)
         {
             return clsMaintenanceData.GetVehicleMaintenanceHistory(VehicleID);
         }

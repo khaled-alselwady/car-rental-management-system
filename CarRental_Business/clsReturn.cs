@@ -13,32 +13,32 @@ namespace CarRental_Business
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
-        public int ReturnID { get; set; }
+        public int? ReturnID { get; set; }
         public DateTime ActualReturnDate { get; set; }
-        public int ActualRentalDays { get; set; }
+        public int? ActualRentalDays { get; set; }
         public short Mileage { get; set; }
-        public int ConsumedMileage { get; set; }
+        public int? ConsumedMileage { get; set; }
         public string FinalCheckNotes { get; set; }
-        public decimal AdditionalCharges { get; set; }
-        public decimal ActualTotalDueAmount { get; set; }
+        public float AdditionalCharges { get; set; }
+        public float? ActualTotalDueAmount { get; set; }
 
         public clsReturn()
         {
-            this.ReturnID = -1;
+            this.ReturnID = null;
             this.ActualReturnDate = DateTime.Now;
-            this.ActualRentalDays = -1;
+            this.ActualRentalDays = null;
             this.Mileage = -1;
-            this.ConsumedMileage = -1;
+            this.ConsumedMileage = null;
             this.FinalCheckNotes = string.Empty;
-            this.AdditionalCharges = -1M;
-            this.ActualTotalDueAmount = -1M;
+            this.AdditionalCharges = -1f;
+            this.ActualTotalDueAmount = null;
 
             Mode = enMode.AddNew;
         }
 
-        private clsReturn(int ReturnID, DateTime ActualReturnDate, int ActualRentalDays, 
-            short Mileage, int ConsumedMileage, string FinalCheckNotes, decimal AdditionalCharges,
-            decimal ActualTotalDueAmount)
+        private clsReturn(int? ReturnID, DateTime ActualReturnDate, int? ActualRentalDays, 
+            short Mileage, int? ConsumedMileage, string FinalCheckNotes, float AdditionalCharges,
+            float? ActualTotalDueAmount)
         {
             this.ReturnID = ReturnID;
             this.ActualReturnDate = ActualReturnDate;
@@ -58,7 +58,7 @@ namespace CarRental_Business
                 this.ActualRentalDays, this.Mileage, this.ConsumedMileage, this.FinalCheckNotes,
                 this.AdditionalCharges, this.ActualTotalDueAmount);
 
-            return (this.ReturnID != -1);
+            return (this.ReturnID.HasValue);
         }
 
         private bool _UpdateReturn()
@@ -90,15 +90,15 @@ namespace CarRental_Business
             return false;
         }
 
-        public static clsReturn Find(int ReturnID)
+        public static clsReturn Find(int? ReturnID)
         {
             DateTime ActualReturnDate = DateTime.Now;
-            int ActualRentalDays = -1;
+            int? ActualRentalDays = null;
             short Mileage = -1;
-            int ConsumedMileage = -1;
+            int? ConsumedMileage = null;
             string FinalCheckNotes = string.Empty;
-            decimal AdditionalCharges = -1M;
-            decimal ActualTotalDueAmount = -1M;
+            float AdditionalCharges = -1f;
+            float? ActualTotalDueAmount = null;
 
             bool IsFound = clsReturnData.GetReturnInfoByID(ReturnID, ref ActualReturnDate,
                 ref ActualRentalDays, ref Mileage, ref ConsumedMileage, ref FinalCheckNotes,
@@ -116,12 +116,12 @@ namespace CarRental_Business
             }
         }
 
-        public static bool DeleteReturn(int ReturnID)
+        public static bool DeleteReturn(int? ReturnID)
         {
             return clsReturnData.DeleteReturn(ReturnID);
         }
 
-        public static bool DoesReturnExist(int ReturnID)
+        public static bool DoesReturnExist(int? ReturnID)
         {
             return clsReturnData.DoesReturnExist(ReturnID);
         }

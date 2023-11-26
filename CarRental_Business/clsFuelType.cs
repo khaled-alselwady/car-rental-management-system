@@ -13,18 +13,18 @@ namespace CarRental_Business
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
-        public int FuelTypeID { get; set; }
+        public int? FuelTypeID { get; set; }
         public string FuelTypeName { get; set; }
 
         public clsFuelType()
         {
-            this.FuelTypeID = -1;
+            this.FuelTypeID = null;
             this.FuelTypeName = string.Empty;
 
             Mode = enMode.AddNew;
         }
 
-        private clsFuelType(int FuelTypeID, string FuelTypeName)
+        private clsFuelType(int? FuelTypeID, string FuelTypeName)
         {
             this.FuelTypeID = FuelTypeID;
             this.FuelTypeName = FuelTypeName;
@@ -36,7 +36,7 @@ namespace CarRental_Business
         {
             this.FuelTypeID = clsFuelTypeData.AddNewFuelType(this.FuelTypeName);
 
-            return (this.FuelTypeID != -1);
+            return (this.FuelTypeID.HasValue);
         }
 
         private bool _UpdateFuelType()
@@ -66,7 +66,7 @@ namespace CarRental_Business
             return false;
         }
 
-        public static clsFuelType Find(int FuelTypeID)
+        public static clsFuelType Find(int? FuelTypeID)
         {
             string FuelTypeName = string.Empty;
 
@@ -84,7 +84,7 @@ namespace CarRental_Business
 
         public static clsFuelType Find(string FuelTypeName)
         {
-            int FuelTypeID = -1;
+            int? FuelTypeID = null;
 
             bool IsFound = clsFuelTypeData.GetFuelTypeInfoByName(FuelTypeName, ref FuelTypeID);
 
@@ -98,12 +98,12 @@ namespace CarRental_Business
             }
         }
 
-        public static bool DeleteFuelType(int FuelTypeID)
+        public static bool DeleteFuelType(int? FuelTypeID)
         {
             return clsFuelTypeData.DeleteFuelType(FuelTypeID);
         }
 
-        public static bool DoesFuelTypeExist(int FuelTypeID)
+        public static bool DoesFuelTypeExist(int? FuelTypeID)
         {
             return clsFuelTypeData.DoesFuelTypeExist(FuelTypeID);
         }
