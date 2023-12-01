@@ -11,9 +11,9 @@ namespace CarRental_DataAccess
     public class clsReturnData
     {
         public static bool GetReturnInfoByID(int? ReturenID, ref DateTime ActualReturnDate,
-            ref int? ActualRentalDays, ref short Mileage, ref int? ConsumedMileage,
+            ref int ActualRentalDays, ref int Mileage, ref int ConsumedMileage,
             ref string FinalCheckNotes, ref float AdditionalCharges,
-            ref float? ActualTotalDueAmount)
+            ref float ActualTotalDueAmount)
         {
             bool IsFound = false;
 
@@ -37,12 +37,12 @@ namespace CarRental_DataAccess
                                 IsFound = true;
 
                                 ActualReturnDate = (DateTime)reader["ActualReturnDate"];
-                                ActualRentalDays = (reader["ActualRentalDays"] != DBNull.Value) ? (int?)reader["ActualRentalDays"] : null;
-                                Mileage = (short)reader["Mileage"];
-                                ConsumedMileage = (reader["ConsumedMileage"] != DBNull.Value) ? (int?)reader["ConsumedMileage"] : null;
+                                ActualRentalDays = (int)reader["ActualRentalDays"];
+                                Mileage = (int)reader["Mileage"];
+                                ConsumedMileage = (int)reader["ConsumedMileage"];
                                 FinalCheckNotes = (string)reader["FinalCheckNotes"];
                                 AdditionalCharges = Convert.ToSingle(reader["AdditionalCharges"]);
-                                ActualTotalDueAmount = (reader["ActualTotalDueAmount"] != DBNull.Value) ? (float?)Convert.ToSingle(reader["ActualTotalDueAmount"]) : null;
+                                ActualTotalDueAmount = Convert.ToSingle(reader["ActualTotalDueAmount"]);
                             }
                             else
                             {
@@ -61,9 +61,10 @@ namespace CarRental_DataAccess
             return IsFound;
         }
 
-        public static int? AddNewReturn(DateTime ActualReturnDate, int? ActualRentalDays,
-            short Mileage, int? ConsumedMileage, string FinalCheckNotes,
-            float AdditionalCharges, float? ActualTotalDueAmount)
+        public static int? AddNewReturn(DateTime ActualReturnDate, int ActualRentalDays,
+            int Mileage, int ConsumedMileage, string FinalCheckNotes,
+            float AdditionalCharges, float ActualTotalDueAmount)
+
         {
             // This function will return the new person id if succeeded and null if not
             int? ReturenID = null;
@@ -81,12 +82,12 @@ select scope_identity()";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@ActualReturnDate", ActualReturnDate);
-                        command.Parameters.AddWithValue("@ActualRentalDays", (object)ActualRentalDays ?? DBNull.Value);
                         command.Parameters.AddWithValue("@Mileage", Mileage);
-                        command.Parameters.AddWithValue("@ConsumedMileage", (object)ConsumedMileage ?? DBNull.Value);
                         command.Parameters.AddWithValue("@FinalCheckNotes", FinalCheckNotes);
                         command.Parameters.AddWithValue("@AdditionalCharges", AdditionalCharges);
-                        command.Parameters.AddWithValue("@ActualTotalDueAmount", (object)ActualTotalDueAmount ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@ActualRentalDays", ActualRentalDays);
+                        command.Parameters.AddWithValue("@ConsumedMileage", ConsumedMileage);
+                        command.Parameters.AddWithValue("@ActualTotalDueAmount", ActualTotalDueAmount);
 
                         object result = command.ExecuteScalar();
 
@@ -106,9 +107,9 @@ select scope_identity()";
         }
 
         public static bool UpdateReturn(int? ReturenID, DateTime ActualReturnDate,
-            int? ActualRentalDays, short Mileage, int? ConsumedMileage,
-            string FinalCheckNotes, float AdditionalCharges,
-            float? ActualTotalDueAmount)
+            int ActualRentalDays,int Mileage, int ConsumedMileage,
+             string FinalCheckNotes,float AdditionalCharges, float ActualTotalDueAmount )
+
         {
             int RowAffected = 0;
 
@@ -120,11 +121,11 @@ select scope_identity()";
 
                     string query = @"Update VehicleReturns
 set ActualReturnDate = @ActualReturnDate,
-ActualRentalDays = @ActualRentalDays,
 Mileage = @Mileage,
-ConsumedMileage = @ConsumedMileage,
 FinalCheckNotes = @FinalCheckNotes,
 AdditionalCharges = @AdditionalCharges,
+ActualRentalDays = @ActualRentalDays,
+ConsumedMileage = @ConsumedMileage,
 ActualTotalDueAmount = @ActualTotalDueAmount
 where ReturenID = @ReturenID";
 
@@ -132,12 +133,12 @@ where ReturenID = @ReturenID";
                     {
                         command.Parameters.AddWithValue("@ReturenID", (object)ReturenID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@ActualReturnDate", ActualReturnDate);
-                        command.Parameters.AddWithValue("@ActualRentalDays", (object)ActualRentalDays ?? DBNull.Value);
                         command.Parameters.AddWithValue("@Mileage", Mileage);
-                        command.Parameters.AddWithValue("@ConsumedMileage", (object)ConsumedMileage ?? DBNull.Value);
                         command.Parameters.AddWithValue("@FinalCheckNotes", FinalCheckNotes);
                         command.Parameters.AddWithValue("@AdditionalCharges", AdditionalCharges);
-                        command.Parameters.AddWithValue("@ActualTotalDueAmount", (object)ActualTotalDueAmount ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@ActualRentalDays", ActualRentalDays);
+                        command.Parameters.AddWithValue("@ConsumedMileage", ConsumedMileage);
+                        command.Parameters.AddWithValue("@ActualTotalDueAmount", ActualTotalDueAmount);
 
                         RowAffected = command.ExecuteNonQuery();
                     }
@@ -150,7 +151,7 @@ where ReturenID = @ReturenID";
 
             return (RowAffected > 0);
         }
-
+           
         public static bool DeleteReturn(int? ReturenID)
         {
             int RowAffected = 0;
@@ -219,7 +220,7 @@ where ReturenID = @ReturenID";
                 {
                     connection.Open();
 
-                    string query = @"select * from VehicleReturns";
+                    string query = @"select * from ReturnDetails_View order by ActualReturnDate desc";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {

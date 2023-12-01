@@ -89,6 +89,18 @@
     <Compile Include="Booking\UserControls\ucBookingCard.Designer.cs">
       <DependentUpon>ucBookingCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Booking\UserControls\ucBookingCardWithCustomerAndVehicle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Booking\UserControls\ucBookingCardWithCustomerAndVehicle.Designer.cs">
+      <DependentUpon>ucBookingCardWithCustomerAndVehicle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Booking\UserControls\ucBookingCardWithFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Booking\UserControls\ucBookingCardWithFilter.Designer.cs">
+      <DependentUpon>ucBookingCardWithFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Booking\UserControls\ucCustomerBookingHistory.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -167,6 +179,36 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Return\frmListReturn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Return\frmListReturn.Designer.cs">
+      <DependentUpon>frmListReturn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Return\frmReturnVehicle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Return\frmReturnVehicle.Designer.cs">
+      <DependentUpon>frmReturnVehicle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Return\frmShowReturnDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Return\frmShowReturnDetails.Designer.cs">
+      <DependentUpon>frmShowReturnDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Return\UserControls\ucReturnCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Return\UserControls\ucReturnCard.Designer.cs">
+      <DependentUpon>ucReturnCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Return\UserControls\ucReturnCardWithCustomerAndVehicle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Return\UserControls\ucReturnCardWithCustomerAndVehicle.Designer.cs">
+      <DependentUpon>ucReturnCardWithCustomerAndVehicle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Users\frmAddEditUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -260,6 +302,12 @@
     <EmbeddedResource Include="Booking\UserControls\ucBookingCard.resx">
       <DependentUpon>ucBookingCard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Booking\UserControls\ucBookingCardWithCustomerAndVehicle.resx">
+      <DependentUpon>ucBookingCardWithCustomerAndVehicle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Booking\UserControls\ucBookingCardWithFilter.resx">
+      <DependentUpon>ucBookingCardWithFilter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Booking\UserControls\ucCustomerBookingHistory.resx">
       <DependentUpon>ucCustomerBookingHistory.cs</DependentUpon>
     </EmbeddedResource>
@@ -300,6 +348,21 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Return\frmListReturn.resx">
+      <DependentUpon>frmListReturn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Return\frmReturnVehicle.resx">
+      <DependentUpon>frmReturnVehicle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Return\frmShowReturnDetails.resx">
+      <DependentUpon>frmShowReturnDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Return\UserControls\ucReturnCard.resx">
+      <DependentUpon>ucReturnCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Return\UserControls\ucReturnCardWithCustomerAndVehicle.resx">
+      <DependentUpon>ucReturnCardWithCustomerAndVehicle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Users\frmAddEditUser.resx">
       <DependentUpon>frmAddEditUser.cs</DependentUpon>
@@ -586,6 +649,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\add-booking48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-booking32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search-booking32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\car_return48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

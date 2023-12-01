@@ -8,15 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CarRental.Booking
+namespace CarRental.Return
 {
-    public partial class frmShowBookingDetails : Form
+    public partial class frmShowReturnDetails : Form
     {
-        public frmShowBookingDetails(int? BookingID)
+        public frmShowReturnDetails(int? ReturnID)
         {
             InitializeComponent();
 
-            ucBookingCardWithCustomerAndVehicle1.LoadBookingWithCustomerAndVehicleInfo(BookingID);
+            ucReturnCardWithCustomerAndVehicle1.LoadReturnWithCustomerAndVehicleInfo(ReturnID);
         }
 
         private void btnClose_Click(object sender, EventArgs e)

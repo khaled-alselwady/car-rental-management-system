@@ -15,30 +15,32 @@ namespace CarRental_Business
 
         public int? ReturnID { get; set; }
         public DateTime ActualReturnDate { get; set; }
-        public int? ActualRentalDays { get; set; }
-        public short Mileage { get; set; }
-        public int? ConsumedMileage { get; set; }
+        public int ActualRentalDays { get; set; }
+        public int Mileage { get; set; }
+        public int ConsumedMileage { get; set; }
         public string FinalCheckNotes { get; set; }
         public float AdditionalCharges { get; set; }
-        public float? ActualTotalDueAmount { get; set; }
+        public float ActualTotalDueAmount { get; set; }
+
+        public clsTransaction TransactionInfo => clsTransaction.FindByReturnID(this.ReturnID);
 
         public clsReturn()
         {
             this.ReturnID = null;
             this.ActualReturnDate = DateTime.Now;
-            this.ActualRentalDays = null;
+            this.ActualRentalDays = 0;
             this.Mileage = -1;
-            this.ConsumedMileage = null;
+            this.ConsumedMileage = 0;
             this.FinalCheckNotes = string.Empty;
             this.AdditionalCharges = -1f;
-            this.ActualTotalDueAmount = null;
+            this.ActualTotalDueAmount = 0f;
 
             Mode = enMode.AddNew;
         }
 
-        private clsReturn(int? ReturnID, DateTime ActualReturnDate, int? ActualRentalDays, 
-            short Mileage, int? ConsumedMileage, string FinalCheckNotes, float AdditionalCharges,
-            float? ActualTotalDueAmount)
+        private clsReturn(int? ReturnID, DateTime ActualReturnDate, int ActualRentalDays,
+            int Mileage, int ConsumedMileage, string FinalCheckNotes, float AdditionalCharges,
+            float ActualTotalDueAmount)
         {
             this.ReturnID = ReturnID;
             this.ActualReturnDate = ActualReturnDate;
@@ -55,8 +57,8 @@ namespace CarRental_Business
         private bool _AddNewReturn()
         {
             this.ReturnID = clsReturnData.AddNewReturn(this.ActualReturnDate,
-                this.ActualRentalDays, this.Mileage, this.ConsumedMileage, this.FinalCheckNotes,
-                this.AdditionalCharges, this.ActualTotalDueAmount);
+                this.ActualRentalDays, this.Mileage, this.ConsumedMileage,
+                  this.FinalCheckNotes, this.AdditionalCharges, this.ActualTotalDueAmount);
 
             return (this.ReturnID.HasValue);
         }
@@ -64,8 +66,9 @@ namespace CarRental_Business
         private bool _UpdateReturn()
         {
             return clsReturnData.UpdateReturn(this.ReturnID, this.ActualReturnDate,
-                this.ActualRentalDays, this.Mileage, this.ConsumedMileage, this.FinalCheckNotes,
-                this.AdditionalCharges, this.ActualTotalDueAmount);
+                this.ActualRentalDays, this.Mileage, this.ConsumedMileage,
+                  this.FinalCheckNotes, this.AdditionalCharges, this.ActualTotalDueAmount);
+
         }
 
         public bool Save()
@@ -93,12 +96,12 @@ namespace CarRental_Business
         public static clsReturn Find(int? ReturnID)
         {
             DateTime ActualReturnDate = DateTime.Now;
-            int? ActualRentalDays = null;
-            short Mileage = -1;
-            int? ConsumedMileage = null;
+            int ActualRentalDays = 0;
+            int Mileage = -1;
+            int ConsumedMileage = 0;
             string FinalCheckNotes = string.Empty;
             float AdditionalCharges = -1f;
-            float? ActualTotalDueAmount = null;
+            float ActualTotalDueAmount = 0f;
 
             bool IsFound = clsReturnData.GetReturnInfoByID(ReturnID, ref ActualReturnDate,
                 ref ActualRentalDays, ref Mileage, ref ConsumedMileage, ref FinalCheckNotes,
@@ -134,6 +137,21 @@ namespace CarRental_Business
         public static int GetReturnCount()
         {
             return clsReturnData.GetReturnCount();
+        }
+
+        public bool UpdateTransaction(int? TransactionID)
+        {
+            clsTransaction Transaction = clsTransaction.FindByTransactionID(TransactionID);
+
+            if (Transaction == null)
+            {
+                return false;
+            }
+
+            Transaction.ReturnID = this.ReturnID;
+            Transaction.ActualTotalDueAmount = this.ActualTotalDueAmount;
+
+            return Transaction.Save();
         }
     }
 }

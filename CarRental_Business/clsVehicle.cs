@@ -188,7 +188,7 @@ namespace CarRental_Business
         }
 
         public int? Maintenance(string Description, DateTime MaintenanceDate, float Cost)
-        {        
+        {
             // this method will add Maintenance record to DB and return MaintenanceID
 
             clsMaintenance Maintenance = new clsMaintenance();
@@ -204,6 +204,21 @@ namespace CarRental_Business
             }
 
             return Maintenance.MaintenanceID;
+        }
+
+        public bool UpdateMileage(int NewMileage)
+        {
+            return clsVehicleData.UpdateMileage(this.VehicleID, NewMileage);
+        }
+
+        public bool SetAvailableForRent()
+        {
+            return clsVehicleData.UpdateAvailableForRent(this.VehicleID, true);
+        }
+
+        public bool SetUnAvailableForRent()
+        {
+            return clsVehicleData.UpdateAvailableForRent(this.VehicleID, false);
         }
 
     }

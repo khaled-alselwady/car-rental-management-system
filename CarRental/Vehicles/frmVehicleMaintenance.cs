@@ -56,10 +56,10 @@ namespace CarRental.Vehicles
             {
                 errorProvider1.SetError(txtCost, null);
 
-            };
+            }
 
 
-            if (!clsValidation.IsNumber(txtCost.Text))
+            if (!clsValidation.IsNumber(txtCost.Text.Trim()))
             {
                 e.Cancel = true;
                 errorProvider1.SetError(txtCost, "Invalid Number.");
@@ -67,7 +67,7 @@ namespace CarRental.Vehicles
             else
             {
                 errorProvider1.SetError(txtCost, null);
-            };
+            }
         }
 
         private void txtDescription_Validating(object sender, CancelEventArgs e)

@@ -19,13 +19,7 @@ namespace CarRental.Booking.UserControls
 
         public int? BookingID => _BookingID;
         public clsBooking BookingInfo => _Booking;
-
-        public int? CustomerID => ucSelectedCustomerAndVehicleCard1.CustomerID;
-        public clsCustomer CustomerInfo => ucSelectedCustomerAndVehicleCard1.SelectedCustomerInfo;
-
-        public int? VehicleID => ucSelectedCustomerAndVehicleCard1.VehicleID;
-        public clsVehicle VehicleInfo => ucSelectedCustomerAndVehicleCard1.SelectedVehicleInfo;
-
+        
         public ucBookingCard()
         {
             InitializeComponent();
@@ -33,12 +27,12 @@ namespace CarRental.Booking.UserControls
 
         private void _FillBookingInfo()
         {
-            ucSelectedCustomerAndVehicleCard1.LoadCustomerVehicleInfo(_Booking.CustomerID, _Booking.VehicleID);
-
-            lblBookingID.Text = _Booking.BookingID.ToString();
+            lblBookingID.Text = _Booking.BookingID?.ToString();
+            lblCustomerID.Text = _Booking.CustomerID?.ToString();
+            lblVehicleID.Text = _Booking.VehicleID?.ToString();
             lblStartDate.Text = clsFormat.DateToShort(_Booking.RentalStartDate);
             lblEndDate.Text = clsFormat.DateToShort(_Booking.RentalEndDate);
-            lblInitialRentalDays.Text = _Booking.InitialRentalDays.ToString();
+            lblInitialRentalDays.Text = _Booking.InitialRentalDays?.ToString();
             lblInitialTotalDueAmount.Text = _Booking.InitialTotalDueAmount?.ToString("N");
             lblPickUpLocation.Text = _Booking.PickupLocation;
             lblDropOffLocation.Text = _Booking.DropoffLocation;
@@ -51,6 +45,8 @@ namespace CarRental.Booking.UserControls
             _Booking = null;
 
             lblBookingID.Text = "[????]";
+            lblCustomerID.Text = "[????]";
+            lblVehicleID.Text = "[????]";
             lblStartDate.Text = "[????]";
             lblEndDate.Text = "[????]";
             lblInitialRentalDays.Text = "[????]";
@@ -71,12 +67,14 @@ namespace CarRental.Booking.UserControls
                 return;
             }
 
-            _Booking = clsBooking.Find(_BookingID);
+            _Booking = clsBooking.Find(_BookingID.Value);
 
             if (_Booking == null)
             {
                 MessageBox.Show($"There is no booking with ID = {BookingID}", "Missing Booking",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                _BookingID = null;
 
                 return;
             }

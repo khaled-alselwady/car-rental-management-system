@@ -160,6 +160,9 @@
   <data name="Man 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Man 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="add-booking48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add-booking48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="password32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\password32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -187,8 +190,8 @@
   <data name="Customers" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Customers.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="unavailable-car32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\unavailable-car32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Next 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Next 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Return" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Return.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -226,9 +229,6 @@
   <data name="car-fuel-type32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\car-fuel-type32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="AddPerson 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AddPerson 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Calendar 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Calendar 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -246,6 +246,9 @@
   </data>
   <data name="Person 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Person 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="car-name32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car-name32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SearchPerson" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SearchPerson.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -265,6 +268,9 @@
   <data name="car-door" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\car-door.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="add-booking32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add-booking32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="car-delete32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\car-delete32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -280,8 +286,8 @@
   <data name="year32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\year32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Save 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Save 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Add Person 40" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Add Person 40.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="edit 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\edit 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -298,14 +304,14 @@
   <data name="IssueDrivingLicense 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\IssueDrivingLicense 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Next 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Next 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Country 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Country 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="booking" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\booking.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="search-booking32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\search-booking32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Delete 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Delete 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -319,14 +325,17 @@
   <data name="Application Types 512" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Application Types 512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="car-name32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\car-name32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="AddPerson 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AddPerson 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="confirm-password" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\confirm-password.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Add Person 40" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Add Person 40.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="unavailable-car32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\unavailable-car32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Save 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Save 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Renew Driving License 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Renew Driving License 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -337,7 +346,7 @@
   <data name="Question 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Question 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="add-booking48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\add-booking48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="car_return48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car_return48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

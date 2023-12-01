@@ -73,6 +73,16 @@ namespace CarRental.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap add_booking32 {
+            get {
+                object obj = ResourceManager.GetObject("add-booking32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap add_booking48 {
             get {
                 object obj = ResourceManager.GetObject("add-booking48", resourceCulture);
@@ -266,6 +276,16 @@ namespace CarRental.Properties {
         internal static System.Drawing.Bitmap car_rent {
             get {
                 object obj = ResourceManager.GetObject("car-rent", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap car_return48 {
+            get {
+                object obj = ResourceManager.GetObject("car_return48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -656,6 +676,16 @@ namespace CarRental.Properties {
         internal static System.Drawing.Bitmap Save_32 {
             get {
                 object obj = ResourceManager.GetObject("Save 32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap search_booking32 {
+            get {
+                object obj = ResourceManager.GetObject("search-booking32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

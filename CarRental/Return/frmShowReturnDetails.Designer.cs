@@ -1,6 +1,6 @@
-﻿namespace CarRental.Booking
+﻿namespace CarRental.Return
 {
-    partial class frmShowBookingDetails
+    partial class frmShowReturnDetails
     {
         /// <summary>
         /// Required designer variable.
@@ -28,20 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.ucReturnCardWithCustomerAndVehicle1 = new CarRental.Return.UserControls.ucReturnCardWithCustomerAndVehicle();
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
-            this.ucBookingCardWithCustomerAndVehicle1 = new CarRental.Booking.UserControls.ucBookingCardWithCustomerAndVehicle();
             this.SuspendLayout();
+            // 
+            // ucReturnCardWithCustomerAndVehicle1
+            // 
+            this.ucReturnCardWithCustomerAndVehicle1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ucReturnCardWithCustomerAndVehicle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ucReturnCardWithCustomerAndVehicle1.Location = new System.Drawing.Point(0, 80);
+            this.ucReturnCardWithCustomerAndVehicle1.Name = "ucReturnCardWithCustomerAndVehicle1";
+            this.ucReturnCardWithCustomerAndVehicle1.Size = new System.Drawing.Size(797, 661);
+            this.ucReturnCardWithCustomerAndVehicle1.TabIndex = 0;
             // 
             // lblTitle
             // 
             this.lblTitle.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.Firebrick;
-            this.lblTitle.Location = new System.Drawing.Point(1, 5);
+            this.lblTitle.Location = new System.Drawing.Point(2, 9);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(795, 48);
             this.lblTitle.TabIndex = 176;
-            this.lblTitle.Text = "Booking Details";
+            this.lblTitle.Text = "Return Details";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnClose
@@ -51,7 +60,7 @@
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::CarRental.Properties.Resources.Close_32;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(640, 756);
+            this.btnClose.Location = new System.Drawing.Point(640, 745);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(156, 37);
@@ -60,35 +69,28 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // ucBookingCardWithCustomerAndVehicle1
-            // 
-            this.ucBookingCardWithCustomerAndVehicle1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucBookingCardWithCustomerAndVehicle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ucBookingCardWithCustomerAndVehicle1.Location = new System.Drawing.Point(0, 73);
-            this.ucBookingCardWithCustomerAndVehicle1.Name = "ucBookingCardWithCustomerAndVehicle1";
-            this.ucBookingCardWithCustomerAndVehicle1.Size = new System.Drawing.Size(799, 681);
-            this.ucBookingCardWithCustomerAndVehicle1.TabIndex = 199;
-            // 
-            // frmShowBookingDetails
+            // frmShowReturnDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(798, 797);
-            this.Controls.Add(this.ucBookingCardWithCustomerAndVehicle1);
+            this.ClientSize = new System.Drawing.Size(799, 785);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblTitle);
-            this.Name = "frmShowBookingDetails";
+            this.Controls.Add(this.ucReturnCardWithCustomerAndVehicle1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Name = "frmShowReturnDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Show Booking Details";
+            this.Text = "Show Return Details";
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private UserControls.ucReturnCardWithCustomerAndVehicle ucReturnCardWithCustomerAndVehicle1;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnClose;
-        private UserControls.ucBookingCardWithCustomerAndVehicle ucBookingCardWithCustomerAndVehicle1;
     }
 }

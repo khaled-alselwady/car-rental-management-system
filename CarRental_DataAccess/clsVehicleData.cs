@@ -331,5 +331,67 @@ where VehicleID = @VehicleID";
 
             return Count;
         }
+
+        public static bool UpdateMileage(int? VehicleID, int NewMileage)
+        {
+            int AffectedRows = 0;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    string query = @"update Vehicles
+                                     set Mileage = @NewMileage
+                                     where VehicleID = @VehicleID";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("NewMileage", NewMileage);
+                        command.Parameters.AddWithValue("VehicleID", (object)VehicleID ?? DBNull.Value);
+
+                        AffectedRows = command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+
+            }
+
+            return (AffectedRows > 0);
+        }
+
+        public static bool UpdateAvailableForRent(int? VehicleID, bool IsAvailable)
+        {
+            int AffectedRows = 0;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    string query = @"update Vehicles
+                                     set IsAvailableForRent = @IsAvailableForRent
+                                     where VehicleID = @VehicleID";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("IsAvailableForRent", IsAvailable);
+                        command.Parameters.AddWithValue("VehicleID", (object)VehicleID ?? DBNull.Value);
+
+                        AffectedRows = command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+
+            }
+
+            return (AffectedRows > 0);
+        }
     }
 }

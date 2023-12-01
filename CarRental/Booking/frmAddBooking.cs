@@ -7,12 +7,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Util;
 using System.Windows.Forms;
 
 namespace CarRental.Booking
 {
     public partial class frmAddBooking : Form
     {
+        public Action<int?> GetBookingIDByDelegate;
         public Action RefreshBookingInfo;
 
         public frmAddBooking()
@@ -109,48 +111,45 @@ namespace CarRental.Booking
             dtpEndDate.Enabled = false;
         }
 
-        private void _BookVehicle()
+        private void _MakeTransactionThenBooking()
         {
-            clsBooking Booking = new clsBooking();
+            clsTransaction Transaction = new clsTransaction();
 
-            Booking.CustomerID = ucSelectedCustomerAndVehicleWithFilter1.CustomerID;
-            Booking.VehicleID = ucSelectedCustomerAndVehicleWithFilter1.VehicleID;
-            Booking.RentalStartDate = dtpStartDate.Value;
-            Booking.RentalEndDate = dtpEndDate.Value;
-            Booking.PickupLocation = txtPickUpLocation.Text.Trim();
-            Booking.DropoffLocation = txtDropOffLocation.Text.Trim();
-            Booking.RentalPricePerDay = ucSelectedCustomerAndVehicleWithFilter1.SelectedVehicleInfo.RentalPricePerDay;
-            Booking.InitialCheckNotes = txtInitailCheckNotes.Text.Trim();
+            // Booking Info
+            Transaction.CustomerID = ucSelectedCustomerAndVehicleWithFilter1.CustomerID;
+            Transaction.VehicleID = ucSelectedCustomerAndVehicleWithFilter1.VehicleID;
+            Transaction.RentalStartDate = dtpStartDate.Value;
+            Transaction.RentalEndDate = dtpEndDate.Value;
+            Transaction.PickupLocation = txtPickUpLocation.Text.Trim();
+            Transaction.DropoffLocation = txtDropOffLocation.Text.Trim();
+            Transaction.RentalPricePerDay = ucSelectedCustomerAndVehicleWithFilter1.SelectedVehicleInfo.RentalPricePerDay;
+            Transaction.InitialCheckNotes = txtInitailCheckNotes.Text.Trim();
 
-            if (!Booking.Save())
+            // Transaction Info
+            Transaction.PaidInitialTotalDueAmount = Convert.ToSingle(lblInitialTotalDueAmount.Text);
+            Transaction.PaymentDetails = txtPaymentDetails.Text.Trim();
+
+
+            if (!Transaction.Save())
             {
                 MessageBox.Show("Vehicle Booked Failed", "Failed",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return;
-            }
-
-            int? TransactionID = Booking.Transaction(txtPaymentDetails.Text, Convert.ToSingle(lblInitialTotalDueAmount.Text));
-
-            if (!TransactionID.HasValue)
-            {
-                MessageBox.Show("Vehicle Booked Done but Transaction is not completed!", "Failed",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 _Reset();
 
                 return;
             }
 
-            MessageBox.Show($"Vehicle Booked Successfully with Transaction ID = {TransactionID.Value}", "Booked",
+            MessageBox.Show($"Vehicle Booked Successfully with Transaction ID = {Transaction.TransactionID.Value}", "Booked",
                    MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            lblBookingID.Text = Booking.BookingID.ToString();
+            lblBookingID.Text = Transaction.BookingID.Value.ToString();
 
             _Reset();
 
             RefreshBookingInfo?.Invoke();
-        }
+            GetBookingIDByDelegate?.Invoke(Transaction.BookingID.Value);
+        }       
 
         private void frmAddBooking_Activated(object sender, EventArgs e)
         {
@@ -181,7 +180,7 @@ namespace CarRental.Booking
                 return;
             }
 
-            _BookVehicle();
+            _MakeTransactionThenBooking();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

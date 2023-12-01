@@ -368,7 +368,7 @@
             this.dtpEndDate.AutoRoundedCorners = true;
             this.dtpEndDate.BorderRadius = 17;
             this.dtpEndDate.Checked = true;
-            this.dtpEndDate.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(42)))), ((int)(((byte)(57)))));
+            this.dtpEndDate.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.dtpEndDate.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.dtpEndDate.ForeColor = System.Drawing.Color.White;
             this.dtpEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -386,7 +386,7 @@
             this.dtpStartDate.AutoRoundedCorners = true;
             this.dtpStartDate.BorderRadius = 17;
             this.dtpStartDate.Checked = true;
-            this.dtpStartDate.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(42)))), ((int)(((byte)(57)))));
+            this.dtpStartDate.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.dtpStartDate.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.dtpStartDate.ForeColor = System.Drawing.Color.White;
             this.dtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;

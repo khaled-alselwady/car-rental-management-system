@@ -10,7 +10,7 @@ namespace CarRental_DataAccess
 {
     public class clsTransactionData
     {
-        public static bool GetTransactionInfoByID(int? TransactionID, ref int? BookingID,
+        public static bool GetTransactionInfoByTransactionID(int? TransactionID, ref int? BookingID,
             ref int? ReturnID, ref string PaymentDetails, ref float PaidInitialTotalDueAmount,
             ref float? ActualTotalDueAmount, ref float? TotalRemaining,
             ref float? TotalRefundedAmount, ref DateTime TransactionDate,
@@ -38,6 +38,114 @@ namespace CarRental_DataAccess
                                 IsFound = true;
 
                                 BookingID = (reader["BookingID"] != DBNull.Value) ? (int?)reader["BookingID"] : null;
+                                ReturnID = (reader["ReturnID"] != DBNull.Value) ? (int?)reader["ReturnID"] : null;
+                                PaymentDetails = (string)reader["PaymentDetails"];
+                                PaidInitialTotalDueAmount = Convert.ToSingle(reader["PaidInitialTotalDueAmount"]);
+                                ActualTotalDueAmount = (reader["ActualTotalDueAmount"] != DBNull.Value) ? (float?)Convert.ToSingle(reader["ActualTotalDueAmount"]) : null;
+                                TotalRemaining = (reader["TotalRemaining"] != DBNull.Value) ? (float?)Convert.ToSingle(reader["TotalRemaining"]) : null;
+                                TotalRefundedAmount = (reader["TotalRefundedAmount"] != DBNull.Value) ? (float?)Convert.ToSingle(reader["TotalRefundedAmount"]) : null;
+                                TransactionDate = (DateTime)reader["TransactionDate"];
+                                UpdatedTransactionDate = (reader["UpdatedTransactionDate"] != DBNull.Value) ? (DateTime?)reader["UpdatedTransactionDate"] : null;
+                            }
+                            else
+                            {
+                                // The record was not found
+                                IsFound = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                IsFound = false;
+            }
+
+            return IsFound;
+        }
+
+        public static bool GetTransactionInfoByReturnID(int? ReturnID, ref int? TransactionID,
+            ref int? BookingID, ref string PaymentDetails, ref float PaidInitialTotalDueAmount,
+            ref float? ActualTotalDueAmount, ref float? TotalRemaining,
+            ref float? TotalRefundedAmount, ref DateTime TransactionDate,
+            ref DateTime? UpdatedTransactionDate)
+        {
+            bool IsFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    string query = @"select * from RentalTransaction where ReturnID = @ReturnID";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@ReturnID", ReturnID);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                IsFound = true;
+
+                                TransactionID = (reader["TransactionID"] != DBNull.Value) ? (int?)reader["TransactionID"] : null;
+                                BookingID = (reader["BookingID"] != DBNull.Value) ? (int?)reader["BookingID"] : null;
+                                PaymentDetails = (string)reader["PaymentDetails"];
+                                PaidInitialTotalDueAmount = Convert.ToSingle(reader["PaidInitialTotalDueAmount"]);
+                                ActualTotalDueAmount = (reader["ActualTotalDueAmount"] != DBNull.Value) ? (float?)Convert.ToSingle(reader["ActualTotalDueAmount"]) : null;
+                                TotalRemaining = (reader["TotalRemaining"] != DBNull.Value) ? (float?)Convert.ToSingle(reader["TotalRemaining"]) : null;
+                                TotalRefundedAmount = (reader["TotalRefundedAmount"] != DBNull.Value) ? (float?)Convert.ToSingle(reader["TotalRefundedAmount"]) : null;
+                                TransactionDate = (DateTime)reader["TransactionDate"];
+                                UpdatedTransactionDate = (reader["UpdatedTransactionDate"] != DBNull.Value) ? (DateTime?)reader["UpdatedTransactionDate"] : null;
+                            }
+                            else
+                            {
+                                // The record was not found
+                                IsFound = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                IsFound = false;
+            }
+
+            return IsFound;
+        }
+
+        public static bool GetTransactionInfoByBookingID(int? BookingID, ref int? TransactionID,
+            ref int? ReturnID, ref string PaymentDetails, ref float PaidInitialTotalDueAmount,
+            ref float? ActualTotalDueAmount, ref float? TotalRemaining,
+            ref float? TotalRefundedAmount, ref DateTime TransactionDate,
+            ref DateTime? UpdatedTransactionDate)
+        {
+            bool IsFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    string query = @"select * from RentalTransaction where BookingID = @BookingID";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@BookingID", BookingID);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                IsFound = true;
+
+                                TransactionID = (reader["TransactionID"] != DBNull.Value) ? (int?)reader["TransactionID"] : null;
                                 ReturnID = (reader["ReturnID"] != DBNull.Value) ? (int?)reader["ReturnID"] : null;
                                 PaymentDetails = (string)reader["PaymentDetails"];
                                 PaidInitialTotalDueAmount = Convert.ToSingle(reader["PaidInitialTotalDueAmount"]);
@@ -264,5 +372,40 @@ where TransactionID = @TransactionID";
 
             return Count;
         }
+
+        public static int? GetReturnIDByBookingID(int? BookingID)
+        {
+            int? ReturnID = null;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    string query = @"select RentalTransaction.ReturnID from RentalTransaction
+                                     where RentalTransaction.BookingID = @BookingID";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@BookingID", (object)BookingID ?? DBNull.Value);
+
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && (int.TryParse(result.ToString(), out int Value)))
+                        {
+                            ReturnID = Value;
+                        }
+                    }
+                }
+            }
+            catch(SqlException ex)
+            {
+
+            }
+
+            return ReturnID;
+        }
+
     }
 }

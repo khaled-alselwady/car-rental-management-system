@@ -25,6 +25,12 @@ namespace CarRental_Business
         public float? InitialTotalDueAmount { get; set; }
         public string InitialCheckNotes { get; set; }
 
+        public clsCustomer CustomerInfo { get; set; }
+        public clsVehicle VehicleInfo { get; set; }
+        public clsTransaction TransactionInfo => clsTransaction.FindByBookingID(BookingID);
+
+        public bool IsBookingFinished => (clsTransaction.GetReturnIDByBookingID(BookingID).HasValue);
+
         public clsBooking()
         {
             this.BookingID = null;
@@ -58,6 +64,9 @@ namespace CarRental_Business
             this.RentalPricePerDay = RentalPricePerDay;
             this.InitialTotalDueAmount = InitialTotalDueAmount;
             this.InitialCheckNotes = InitialCheckNotes;
+
+            this.CustomerInfo = clsCustomer.Find(CustomerID);
+            this.VehicleInfo = clsVehicle.Find(VehicleID);
 
             Mode = enMode.Update;
         }
@@ -131,9 +140,9 @@ namespace CarRental_Business
             }
         }
 
-        public static bool DeleteBooking(int? BookingID)
+        public bool DeleteBooking()
         {
-            return clsBookingData.DeleteBooking(BookingID);
+            return clsBookingData.DeleteBooking(this.BookingID);
         }
 
         public static bool DoesBookingExist(int? BookingID)
@@ -149,22 +158,6 @@ namespace CarRental_Business
         public static int GetBookingCount()
         {
             return clsBookingData.GetBookingCount();
-        }
-
-        public int? Transaction(string PaymentDetails, float InitialTotalDueAmount)
-        {
-            clsTransaction Transaction = new clsTransaction();
-
-            Transaction.BookingID = this.BookingID;
-            Transaction.PaidInitialTotalDueAmount = InitialTotalDueAmount;
-            Transaction.PaymentDetails = PaymentDetails;
-
-            if (!Transaction.Save())
-            {
-                return null;
-            }
-
-            return Transaction.TransactionID;
         }
 
         public static DataTable GetBookingHistoryByCustomerID(int? CustomerID)
