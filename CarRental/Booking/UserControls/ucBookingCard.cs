@@ -1,4 +1,5 @@
 ﻿using CarRental.GlobalClasses;
+using CarRental.Transaction;
 using CarRental_Business;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,8 @@ namespace CarRental.Booking.UserControls
 
         private void _FillBookingInfo()
         {
+            llTransactionInfo.Enabled = true;
+
             lblBookingID.Text = _Booking.BookingID?.ToString();
             lblCustomerID.Text = _Booking.CustomerID?.ToString();
             lblVehicleID.Text = _Booking.VehicleID?.ToString();
@@ -53,6 +56,8 @@ namespace CarRental.Booking.UserControls
             lblInitialTotalDueAmount.Text = "[????]";
             lblPickUpLocation.Text = "[????]";
             lblDropOffLocation.Text = "[????]";
+
+            llTransactionInfo.Enabled = false;
         }
 
         public void LoadBookingInfo(int? BookingID)
@@ -82,5 +87,10 @@ namespace CarRental.Booking.UserControls
             _FillBookingInfo();
         }
 
+        private void llTransactionInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmShowTransactionDetails ShowTransactionDetails = new frmShowTransactionDetails(BookingInfo.TransactionInfo.TransactionID);
+            ShowTransactionDetails.ShowDialog();
+        }
     }
 }

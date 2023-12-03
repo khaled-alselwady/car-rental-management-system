@@ -150,6 +150,7 @@ namespace CarRental_Business
 
             Transaction.ReturnID = this.ReturnID;
             Transaction.ActualTotalDueAmount = this.ActualTotalDueAmount;
+            Transaction.TotalRemaining = Transaction.InitialTotalDueAmount - this.ActualTotalDueAmount;
 
             return Transaction.Save();
         }

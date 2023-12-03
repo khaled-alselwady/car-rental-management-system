@@ -4,6 +4,7 @@ using CarRental.Dashboard;
 using CarRental.GlobalClasses;
 using CarRental.Properties;
 using CarRental.Return;
+using CarRental.Transaction;
 using CarRental.Users;
 using CarRental.Vehicles;
 using CarRental_Business;
@@ -127,7 +128,7 @@ namespace CarRental.Main
 
         private void btnTransactions_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Form(), sender);
+            OpenChildForm(new frmListTransaction(), sender);
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)

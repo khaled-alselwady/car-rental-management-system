@@ -29,7 +29,7 @@ namespace CarRental_Business
         public clsVehicle VehicleInfo { get; set; }
         public clsTransaction TransactionInfo => clsTransaction.FindByBookingID(BookingID);
 
-        public bool IsBookingFinished => (clsTransaction.GetReturnIDByBookingID(BookingID).HasValue);
+        public bool IsBookingReturned => (clsTransaction.GetReturnIDByBookingID(BookingID).HasValue);
 
         public clsBooking()
         {

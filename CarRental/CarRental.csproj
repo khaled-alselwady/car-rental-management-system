@@ -77,6 +77,12 @@
     <Compile Include="Booking\frmShowBookingDetails.Designer.cs">
       <DependentUpon>frmShowBookingDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Booking\frmShowBookingDetailsWithCustomerAndVehicle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Booking\frmShowBookingDetailsWithCustomerAndVehicle.Designer.cs">
+      <DependentUpon>frmShowBookingDetailsWithCustomerAndVehicle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Booking\frmShowCustomerBookingHistory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +203,12 @@
     <Compile Include="Return\frmShowReturnDetails.Designer.cs">
       <DependentUpon>frmShowReturnDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Return\frmShowReturnDetailsWithCustomerAndVehicle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Return\frmShowReturnDetailsWithCustomerAndVehicle.Designer.cs">
+      <DependentUpon>frmShowReturnDetailsWithCustomerAndVehicle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Return\UserControls\ucReturnCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -208,6 +220,54 @@
     </Compile>
     <Compile Include="Return\UserControls\ucReturnCardWithCustomerAndVehicle.Designer.cs">
       <DependentUpon>ucReturnCardWithCustomerAndVehicle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transaction\frmListTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transaction\frmListTransaction.Designer.cs">
+      <DependentUpon>frmListTransaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transaction\frmShowCustomerTransactionHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transaction\frmShowCustomerTransactionHistory.Designer.cs">
+      <DependentUpon>frmShowCustomerTransactionHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transaction\frmShowTransactionDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transaction\frmShowTransactionDetails.Designer.cs">
+      <DependentUpon>frmShowTransactionDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transaction\frmShowTransactionDetailsWithBookingAndReturn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transaction\frmShowTransactionDetailsWithBookingAndReturn.Designer.cs">
+      <DependentUpon>frmShowTransactionDetailsWithBookingAndReturn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transaction\UserControls\ucBookingAndReturnCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Transaction\UserControls\ucBookingAndReturnCard.Designer.cs">
+      <DependentUpon>ucBookingAndReturnCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transaction\UserControls\ucCustomerTransactionHistory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Transaction\UserControls\ucCustomerTransactionHistory.Designer.cs">
+      <DependentUpon>ucCustomerTransactionHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transaction\UserControls\ucTransactionCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Transaction\UserControls\ucTransactionCard.Designer.cs">
+      <DependentUpon>ucTransactionCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transaction\UserControls\ucTransactionCardWithBookingAndReturn.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Transaction\UserControls\ucTransactionCardWithBookingAndReturn.Designer.cs">
+      <DependentUpon>ucTransactionCardWithBookingAndReturn.cs</DependentUpon>
     </Compile>
     <Compile Include="Users\frmAddEditUser.cs">
       <SubType>Form</SubType>
@@ -296,6 +356,9 @@
     <EmbeddedResource Include="Booking\frmShowBookingDetails.resx">
       <DependentUpon>frmShowBookingDetails.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Booking\frmShowBookingDetailsWithCustomerAndVehicle.resx">
+      <DependentUpon>frmShowBookingDetailsWithCustomerAndVehicle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Booking\frmShowCustomerBookingHistory.resx">
       <DependentUpon>frmShowCustomerBookingHistory.cs</DependentUpon>
     </EmbeddedResource>
@@ -358,11 +421,38 @@
     <EmbeddedResource Include="Return\frmShowReturnDetails.resx">
       <DependentUpon>frmShowReturnDetails.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Return\frmShowReturnDetailsWithCustomerAndVehicle.resx">
+      <DependentUpon>frmShowReturnDetailsWithCustomerAndVehicle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Return\UserControls\ucReturnCard.resx">
       <DependentUpon>ucReturnCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Return\UserControls\ucReturnCardWithCustomerAndVehicle.resx">
       <DependentUpon>ucReturnCardWithCustomerAndVehicle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transaction\frmListTransaction.resx">
+      <DependentUpon>frmListTransaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transaction\frmShowCustomerTransactionHistory.resx">
+      <DependentUpon>frmShowCustomerTransactionHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transaction\frmShowTransactionDetails.resx">
+      <DependentUpon>frmShowTransactionDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transaction\frmShowTransactionDetailsWithBookingAndReturn.resx">
+      <DependentUpon>frmShowTransactionDetailsWithBookingAndReturn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transaction\UserControls\ucBookingAndReturnCard.resx">
+      <DependentUpon>ucBookingAndReturnCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transaction\UserControls\ucCustomerTransactionHistory.resx">
+      <DependentUpon>ucCustomerTransactionHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transaction\UserControls\ucTransactionCard.resx">
+      <DependentUpon>ucTransactionCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transaction\UserControls\ucTransactionCardWithBookingAndReturn.resx">
+      <DependentUpon>ucTransactionCardWithBookingAndReturn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Users\frmAddEditUser.resx">
       <DependentUpon>frmAddEditUser.cs</DependentUpon>
@@ -658,6 +748,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\car_return48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Release Detained License 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money 321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money 32 - 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rental-price-per-day321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\car_return32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

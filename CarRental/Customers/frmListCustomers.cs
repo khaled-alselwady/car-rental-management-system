@@ -1,4 +1,5 @@
 ﻿using CarRental.Booking;
+using CarRental.Transaction;
 using CarRental_Business;
 using System;
 using System.Collections.Generic;
@@ -280,6 +281,16 @@ namespace CarRental.Customers
                 new frmShowCustomerBookingHistory(_GetCustomerIDFromDGV());
 
             ShowCustomerBookingHistory.ShowDialog();
+
+            _RefreshCustomersList();
+        }
+
+        private void ShowCustomerTransactionHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmShowCustomerTransactionHistory ShowCustomerTransactionHistory =
+                new frmShowCustomerTransactionHistory(_GetCustomerIDFromDGV());
+
+            ShowCustomerTransactionHistory.ShowDialog();
 
             _RefreshCustomersList();
         }

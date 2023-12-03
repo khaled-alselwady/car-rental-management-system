@@ -16,7 +16,7 @@ namespace CarRental.Return
         {
             InitializeComponent();
 
-            ucReturnCardWithCustomerAndVehicle1.LoadReturnWithCustomerAndVehicleInfo(ReturnID);
+            ucReturnCard1.LoadReturnInfo(ReturnID);
         }
 
         private void btnClose_Click(object sender, EventArgs e)

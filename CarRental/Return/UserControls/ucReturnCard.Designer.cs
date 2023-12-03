@@ -53,6 +53,8 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label22 = new System.Windows.Forms.Label();
             this.lblReturnID = new System.Windows.Forms.Label();
+            this.llShowTransactionInfo = new System.Windows.Forms.LinkLabel();
+            this.llShowBookingInfo = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -66,6 +68,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.llShowBookingInfo);
+            this.groupBox1.Controls.Add(this.llShowTransactionInfo);
             this.groupBox1.Controls.Add(this.lblActualRentalDays);
             this.groupBox1.Controls.Add(this.lblActualReturnDate);
             this.groupBox1.Controls.Add(this.lblActualTotalDueAmount);
@@ -93,7 +97,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(777, 190);
+            this.groupBox1.Size = new System.Drawing.Size(777, 217);
             this.groupBox1.TabIndex = 179;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Return Info";
@@ -354,6 +358,30 @@
             this.lblReturnID.TabIndex = 148;
             this.lblReturnID.Text = "[????]";
             // 
+            // llShowTransactionInfo
+            // 
+            this.llShowTransactionInfo.AutoSize = true;
+            this.llShowTransactionInfo.Enabled = false;
+            this.llShowTransactionInfo.Location = new System.Drawing.Point(433, 194);
+            this.llShowTransactionInfo.Name = "llShowTransactionInfo";
+            this.llShowTransactionInfo.Size = new System.Drawing.Size(168, 20);
+            this.llShowTransactionInfo.TabIndex = 214;
+            this.llShowTransactionInfo.TabStop = true;
+            this.llShowTransactionInfo.Text = "Show Transaction Info";
+            this.llShowTransactionInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llShowTransactionInfo_LinkClicked);
+            // 
+            // llShowBookingInfo
+            // 
+            this.llShowBookingInfo.AutoSize = true;
+            this.llShowBookingInfo.Enabled = false;
+            this.llShowBookingInfo.Location = new System.Drawing.Point(631, 194);
+            this.llShowBookingInfo.Name = "llShowBookingInfo";
+            this.llShowBookingInfo.Size = new System.Drawing.Size(143, 20);
+            this.llShowBookingInfo.TabIndex = 215;
+            this.llShowBookingInfo.TabStop = true;
+            this.llShowBookingInfo.Text = "Show Booking Info";
+            this.llShowBookingInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llShowBookingInfo_LinkClicked);
+            // 
             // ucReturnCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -362,7 +390,7 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Controls.Add(this.groupBox1);
             this.Name = "ucReturnCard";
-            this.Size = new System.Drawing.Size(784, 197);
+            this.Size = new System.Drawing.Size(784, 223);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
@@ -404,5 +432,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label lblReturnID;
+        private System.Windows.Forms.LinkLabel llShowBookingInfo;
+        private System.Windows.Forms.LinkLabel llShowTransactionInfo;
     }
 }

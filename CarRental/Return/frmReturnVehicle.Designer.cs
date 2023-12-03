@@ -59,6 +59,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.llShowReturnDetails = new System.Windows.Forms.LinkLabel();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.llShowUpdateTransactionDetails = new System.Windows.Forms.LinkLabel();
             this.ucBookingCardWithFilter1 = new CarRental.Booking.UserControls.ucBookingCardWithFilter();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -110,7 +111,7 @@
             this.groupBox1.Controls.Add(this.label22);
             this.groupBox1.Controls.Add(this.lblReturnID);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(7, 400);
+            this.groupBox1.Location = new System.Drawing.Point(7, 409);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(779, 266);
             this.groupBox1.TabIndex = 180;
@@ -201,7 +202,7 @@
             // 
             // pictureBox5
             // 
-            this.pictureBox5.Image = global::CarRental.Properties.Resources.money_32;
+            this.pictureBox5.Image = global::CarRental.Properties.Resources.Password_32;
             this.pictureBox5.Location = new System.Drawing.Point(172, 113);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(31, 26);
@@ -387,7 +388,7 @@
             this.btnReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReturn.Image = global::CarRental.Properties.Resources.Save_32;
             this.btnReturn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReturn.Location = new System.Drawing.Point(637, 686);
+            this.btnReturn.Location = new System.Drawing.Point(637, 693);
             this.btnReturn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(156, 37);
@@ -404,20 +405,22 @@
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::CarRental.Properties.Resources.Close_32;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(468, 686);
+            this.btnClose.Location = new System.Drawing.Point(468, 693);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(156, 37);
             this.btnClose.TabIndex = 199;
             this.btnClose.Text = "   Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // llShowReturnDetails
             // 
+            this.llShowReturnDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.llShowReturnDetails.AutoSize = true;
             this.llShowReturnDetails.Enabled = false;
             this.llShowReturnDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llShowReturnDetails.Location = new System.Drawing.Point(233, 703);
+            this.llShowReturnDetails.Location = new System.Drawing.Point(276, 710);
             this.llShowReturnDetails.Name = "llShowReturnDetails";
             this.llShowReturnDetails.Size = new System.Drawing.Size(155, 20);
             this.llShowReturnDetails.TabIndex = 201;
@@ -429,6 +432,20 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // llShowUpdateTransactionDetails
+            // 
+            this.llShowUpdateTransactionDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.llShowUpdateTransactionDetails.AutoSize = true;
+            this.llShowUpdateTransactionDetails.Enabled = false;
+            this.llShowUpdateTransactionDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.llShowUpdateTransactionDetails.Location = new System.Drawing.Point(2, 710);
+            this.llShowUpdateTransactionDetails.Name = "llShowUpdateTransactionDetails";
+            this.llShowUpdateTransactionDetails.Size = new System.Drawing.Size(246, 20);
+            this.llShowUpdateTransactionDetails.TabIndex = 202;
+            this.llShowUpdateTransactionDetails.TabStop = true;
+            this.llShowUpdateTransactionDetails.Text = "Show Update Transaction Details";
+            this.llShowUpdateTransactionDetails.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llShowUpdateTransactionDetails_LinkClicked);
+            // 
             // ucBookingCardWithFilter1
             // 
             this.ucBookingCardWithFilter1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
@@ -437,7 +454,7 @@
             this.ucBookingCardWithFilter1.Location = new System.Drawing.Point(5, 70);
             this.ucBookingCardWithFilter1.Name = "ucBookingCardWithFilter1";
             this.ucBookingCardWithFilter1.ShowAddBookingButton = true;
-            this.ucBookingCardWithFilter1.Size = new System.Drawing.Size(788, 317);
+            this.ucBookingCardWithFilter1.Size = new System.Drawing.Size(788, 332);
             this.ucBookingCardWithFilter1.TabIndex = 176;
             this.ucBookingCardWithFilter1.OnBookingSelected += new System.EventHandler<CarRental.Booking.UserControls.ucBookingCardWithFilter.BookingSelectedEventArgs>(this.ucBookingCardWithFilter1_OnBookingSelected);
             // 
@@ -447,7 +464,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(796, 728);
+            this.ClientSize = new System.Drawing.Size(796, 735);
+            this.Controls.Add(this.llShowUpdateTransactionDetails);
             this.Controls.Add(this.llShowReturnDetails);
             this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.btnClose);
@@ -508,5 +526,6 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.LinkLabel llShowReturnDetails;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.LinkLabel llShowUpdateTransactionDetails;
     }
 }

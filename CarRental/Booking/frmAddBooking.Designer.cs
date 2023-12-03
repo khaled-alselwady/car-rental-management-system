@@ -71,6 +71,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.ucSelectedCustomerAndVehicleWithFilter1 = new CarRental.Booking.UserControls.ucSelectedCustomerAndVehicleWithFilter();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.llTransactionInfo = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -584,6 +585,19 @@
             this.lblTitle.Text = "Vehicle Booking";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // llTransactionInfo
+            // 
+            this.llTransactionInfo.AutoSize = true;
+            this.llTransactionInfo.Enabled = false;
+            this.llTransactionInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.llTransactionInfo.Location = new System.Drawing.Point(6, 923);
+            this.llTransactionInfo.Name = "llTransactionInfo";
+            this.llTransactionInfo.Size = new System.Drawing.Size(168, 20);
+            this.llTransactionInfo.TabIndex = 214;
+            this.llTransactionInfo.TabStop = true;
+            this.llTransactionInfo.Text = "Show Transaction Info";
+            this.llTransactionInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llTransactionInfo_LinkClicked);
+            // 
             // frmAddBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -591,6 +605,7 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(799, 946);
+            this.Controls.Add(this.llTransactionInfo);
             this.Controls.Add(this.btnBook);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.groupBox1);
@@ -618,6 +633,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -664,5 +680,6 @@
         private System.Windows.Forms.PictureBox pictureBox12;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.LinkLabel llTransactionInfo;
     }
 }

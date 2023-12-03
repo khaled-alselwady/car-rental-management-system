@@ -16,7 +16,7 @@ namespace CarRental.Booking
         {
             InitializeComponent();
 
-            ucBookingCardWithCustomerAndVehicle1.LoadBookingWithCustomerAndVehicleInfo(BookingID);
+            ucBookingCard1.LoadBookingInfo(BookingID);
         }
 
         private void btnClose_Click(object sender, EventArgs e)

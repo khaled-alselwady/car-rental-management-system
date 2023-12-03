@@ -14,7 +14,7 @@ namespace CarRental_DataAccess
             ref int? ReturnID, ref string PaymentDetails, ref float PaidInitialTotalDueAmount,
             ref float? ActualTotalDueAmount, ref float? TotalRemaining,
             ref float? TotalRefundedAmount, ref DateTime TransactionDate,
-            ref DateTime? UpdatedTransactionDate)
+            ref DateTime? UpdatedTransactionDate, ref byte TransactionType)
         {
             bool IsFound = false;
 
@@ -46,6 +46,7 @@ namespace CarRental_DataAccess
                                 TotalRefundedAmount = (reader["TotalRefundedAmount"] != DBNull.Value) ? (float?)Convert.ToSingle(reader["TotalRefundedAmount"]) : null;
                                 TransactionDate = (DateTime)reader["TransactionDate"];
                                 UpdatedTransactionDate = (reader["UpdatedTransactionDate"] != DBNull.Value) ? (DateTime?)reader["UpdatedTransactionDate"] : null;
+                                TransactionType = Convert.ToByte(reader["TransactionType"]);
                             }
                             else
                             {
@@ -68,7 +69,7 @@ namespace CarRental_DataAccess
             ref int? BookingID, ref string PaymentDetails, ref float PaidInitialTotalDueAmount,
             ref float? ActualTotalDueAmount, ref float? TotalRemaining,
             ref float? TotalRefundedAmount, ref DateTime TransactionDate,
-            ref DateTime? UpdatedTransactionDate)
+            ref DateTime? UpdatedTransactionDate, ref byte TransactionType)
         {
             bool IsFound = false;
 
@@ -100,6 +101,7 @@ namespace CarRental_DataAccess
                                 TotalRefundedAmount = (reader["TotalRefundedAmount"] != DBNull.Value) ? (float?)Convert.ToSingle(reader["TotalRefundedAmount"]) : null;
                                 TransactionDate = (DateTime)reader["TransactionDate"];
                                 UpdatedTransactionDate = (reader["UpdatedTransactionDate"] != DBNull.Value) ? (DateTime?)reader["UpdatedTransactionDate"] : null;
+                                TransactionType = Convert.ToByte(reader["TransactionType"]);
                             }
                             else
                             {
@@ -122,7 +124,7 @@ namespace CarRental_DataAccess
             ref int? ReturnID, ref string PaymentDetails, ref float PaidInitialTotalDueAmount,
             ref float? ActualTotalDueAmount, ref float? TotalRemaining,
             ref float? TotalRefundedAmount, ref DateTime TransactionDate,
-            ref DateTime? UpdatedTransactionDate)
+            ref DateTime? UpdatedTransactionDate, ref byte TransactionType)
         {
             bool IsFound = false;
 
@@ -154,6 +156,7 @@ namespace CarRental_DataAccess
                                 TotalRefundedAmount = (reader["TotalRefundedAmount"] != DBNull.Value) ? (float?)Convert.ToSingle(reader["TotalRefundedAmount"]) : null;
                                 TransactionDate = (DateTime)reader["TransactionDate"];
                                 UpdatedTransactionDate = (reader["UpdatedTransactionDate"] != DBNull.Value) ? (DateTime?)reader["UpdatedTransactionDate"] : null;
+                                TransactionType = Convert.ToByte(reader["TransactionType"]);
                             }
                             else
                             {
@@ -214,7 +217,8 @@ select scope_identity()";
         }
 
         public static bool UpdateTransaction(int? TransactionID, int? ReturnID,
-            float? ActualTotalDueAmount, float? TotalRefundedAmount)
+            float? ActualTotalDueAmount, float? TotalRemaining,
+            float? TotalRefundedAmount)
         {
             int RowAffected = 0;
 
@@ -227,6 +231,7 @@ select scope_identity()";
                     string query = @"Update RentalTransaction
 set ReturnID = @ReturnID,
 ActualTotalDueAmount = @ActualTotalDueAmount,
+TotalRemaining = @TotalRemaining,
 TotalRefundedAmount = @TotalRefundedAmount,
 UpdatedTransactionDate = @UpdatedTransactionDate
 where TransactionID = @TransactionID";
@@ -236,9 +241,44 @@ where TransactionID = @TransactionID";
                     {
                         command.Parameters.AddWithValue("@TransactionID", (object)TransactionID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@ReturnID", (object)ReturnID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@TotalRemaining", (object)TotalRemaining ?? DBNull.Value);
                         command.Parameters.AddWithValue("@ActualTotalDueAmount", (object)ActualTotalDueAmount ?? DBNull.Value);
                         command.Parameters.AddWithValue("@TotalRefundedAmount", (object)TotalRefundedAmount ?? DBNull.Value);
                         command.Parameters.AddWithValue("@UpdatedTransactionDate", DateTime.Now);
+
+                        RowAffected = command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+
+            }
+
+            return (RowAffected > 0);
+        }
+
+        public static bool UpdateTotalRefundedAmount(int? TransactionID, float? TotalRemaining)
+
+        {
+            int RowAffected = 0;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    string query = @"Update RentalTransaction
+                                     set TotalRefundedAmount = ABS(@TotalRemaining),
+                                         TotalRemaining = 0
+                                     where TransactionID = @TransactionID";
+
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@TransactionID", (object)TransactionID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@TotalRemaining", (object)TotalRemaining ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
                     }
@@ -320,10 +360,44 @@ where TransactionID = @TransactionID";
                 {
                     connection.Open();
 
-                    string query = @"select * from RentalTransaction";
+                    string query = @"select * from TransactionDetails_View order by UpdatedTransactionDate desc";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+
+            }
+
+            return dt;
+        }
+
+        public static DataTable GetAllRentalTransactionByCustomerID(int? CustomerID)
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    string query = @"select * from TransactionDetails_View where CustomerID = @CustomerID order by TransactionID desc";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@CustomerID", (object)CustomerID ?? DBNull.Value);
+
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             if (reader.HasRows)
@@ -399,7 +473,7 @@ where TransactionID = @TransactionID";
                     }
                 }
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
 
             }

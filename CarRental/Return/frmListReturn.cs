@@ -186,7 +186,7 @@ namespace CarRental.Return
 
         private void ShowReturnDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmShowReturnDetails ShowReturnDetails = new frmShowReturnDetails(_GetReturnIDFromDGV());
+            frmShowReturnDetailsWithCustomerAndVehicle ShowReturnDetails = new frmShowReturnDetailsWithCustomerAndVehicle(_GetReturnIDFromDGV());
             ShowReturnDetails.ShowDialog();
 
             _RefreshReturnList();
@@ -194,7 +194,7 @@ namespace CarRental.Return
 
         private void ShowBookingDetailsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmShowBookingDetails ShowBookingDetails = new frmShowBookingDetails((int)dgvReturnList.CurrentRow.Cells["BookingID"].Value);
+            frmShowBookingDetailsWithCustomerAndVehicle ShowBookingDetails = new frmShowBookingDetailsWithCustomerAndVehicle((int)dgvReturnList.CurrentRow.Cells["BookingID"].Value);
             ShowBookingDetails.ShowDialog();
 
             _RefreshReturnList();
@@ -218,7 +218,7 @@ namespace CarRental.Return
 
         private void dgvReturnList_DoubleClick(object sender, EventArgs e)
         {
-            frmShowReturnDetails ShowReturnDetails = new frmShowReturnDetails(_GetReturnIDFromDGV());
+            frmShowReturnDetailsWithCustomerAndVehicle ShowReturnDetails = new frmShowReturnDetailsWithCustomerAndVehicle(_GetReturnIDFromDGV());
             ShowReturnDetails.ShowDialog();
 
             _RefreshReturnList();

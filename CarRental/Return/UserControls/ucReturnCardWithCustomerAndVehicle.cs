@@ -41,6 +41,5 @@ namespace CarRental.Return.UserControls
             int? VehicleID = ReturnInfo.TransactionInfo?.VehicleID ?? null;
             ucSelectedCustomerAndVehicleCard1.LoadCustomerVehicleInfo(CustomerID, VehicleID);                    
         }
-
     }
 }

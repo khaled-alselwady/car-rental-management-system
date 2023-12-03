@@ -1,5 +1,6 @@
 ﻿using CarRental.Booking.UserControls;
 using CarRental.GlobalClasses;
+using CarRental.Transaction;
 using CarRental_Business;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,14 @@ namespace CarRental.Return
         public frmReturnVehicle()
         {
             InitializeComponent();
+        }
+
+        public frmReturnVehicle(int? BookingID)
+        {
+            InitializeComponent();
+
+            ucBookingCardWithFilter1.LoadBookingInfo(BookingID);
+            ucBookingCardWithFilter1.FilterEnabled = false;
         }
 
         private bool _UpdateMileageOfTheVehicleInDB()
@@ -121,6 +130,8 @@ namespace CarRental.Return
             _ReturnID = _Return.ReturnID;
 
             llShowReturnDetails.Enabled = true;
+            llShowUpdateTransactionDetails.Enabled = true;
+            
 
             _Reset();
 
@@ -162,9 +173,9 @@ namespace CarRental.Return
                 return;
             }
 
-            if (ucBookingCardWithFilter1.SelectedBookingInfo.IsBookingFinished)
+            if (ucBookingCardWithFilter1.SelectedBookingInfo.IsBookingReturned)
             {
-                MessageBox.Show("This booking has finished!", "Not Allow",
+                MessageBox.Show("This booking has finished and the vehicle is already returned!", "Not Allow",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 btnReturn.Enabled = false;
@@ -270,8 +281,19 @@ namespace CarRental.Return
 
         private void llShowReturnDetails_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            frmShowReturnDetails ShowReturnDetails = new frmShowReturnDetails(_ReturnID);
+            frmShowReturnDetailsWithCustomerAndVehicle ShowReturnDetails = new frmShowReturnDetailsWithCustomerAndVehicle(_ReturnID);
             ShowReturnDetails.ShowDialog();
+        }
+
+        private void llShowUpdateTransactionDetails_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmShowTransactionDetails ShowTransactionDetails = new frmShowTransactionDetails(ucBookingCardWithFilter1.SelectedBookingInfo?.TransactionInfo?.TransactionID);
+            ShowTransactionDetails.ShowDialog();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

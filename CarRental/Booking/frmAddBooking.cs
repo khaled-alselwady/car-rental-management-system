@@ -1,4 +1,5 @@
-﻿using CarRental_Business;
+﻿using CarRental.Transaction;
+using CarRental_Business;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,8 @@ namespace CarRental.Booking
     {
         public Action<int?> GetBookingIDByDelegate;
         public Action RefreshBookingInfo;
+
+        private int? _TransactionID = null;
 
         public frmAddBooking()
         {
@@ -143,7 +146,11 @@ namespace CarRental.Booking
             MessageBox.Show($"Vehicle Booked Successfully with Transaction ID = {Transaction.TransactionID.Value}", "Booked",
                    MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            _TransactionID = Transaction.TransactionID;
+
             lblBookingID.Text = Transaction.BookingID.Value.ToString();
+
+            llTransactionInfo.Enabled = true;
 
             _Reset();
 
@@ -186,6 +193,12 @@ namespace CarRental.Booking
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void llTransactionInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmShowTransactionDetails ShowTransactionDetails = new frmShowTransactionDetails(_TransactionID); ;
+            ShowTransactionDetails.ShowDialog();
         }
     }
 }

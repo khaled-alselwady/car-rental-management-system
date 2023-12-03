@@ -13,6 +13,14 @@ namespace CarRental_Business
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
+        public enum enTransactionType
+        {
+            Pending = 0,
+            PaymentReceived = 1,
+            RefundIssued = 2,
+            NoActionTaken = 3
+        };
+
         public int? TransactionID { get; set; }
         public int? ReturnID { get; set; }
         public string PaymentDetails { get; set; }
@@ -22,6 +30,9 @@ namespace CarRental_Business
         public float? TotalRefundedAmount { get; set; }
         public DateTime TransactionDate { get; set; }
         public DateTime? UpdatedTransactionDate { get; set; }
+        public enTransactionType TransactionType { get; set; }
+
+        public string TransactionTypeName => TransactionTypeText(this.TransactionType);
 
         public clsReturn ReturnInfo { get; set; }
 
@@ -36,6 +47,7 @@ namespace CarRental_Business
             this.TotalRefundedAmount = null;
             this.TransactionDate = DateTime.Now;
             this.UpdatedTransactionDate = null;
+            this.TransactionType = enTransactionType.Pending;
 
             Mode = enMode.AddNew;
         }
@@ -46,7 +58,7 @@ namespace CarRental_Business
             string InitialCheckNotes, int? TransactionID, int? ReturnID, string PaymentDetails,
             float PaidInitialTotalDueAmount, float? ActualTotalDueAmount,
             float? TotalRemaining, float? TotalRefundedAmount, DateTime TransactionDate,
-            DateTime? UpdatedTransactionDate)
+            DateTime? UpdatedTransactionDate, enTransactionType TransactionType)
         {
             base.BookingID = BookingID;
             base.CustomerID = CustomerID;
@@ -69,10 +81,32 @@ namespace CarRental_Business
             this.TotalRefundedAmount = TotalRefundedAmount;
             this.TransactionDate = TransactionDate;
             this.UpdatedTransactionDate = UpdatedTransactionDate;
+            this.TransactionType = TransactionType;
 
             this.ReturnInfo = clsReturn.Find(ReturnID);
 
             Mode = enMode.Update;
+        }
+
+        private string TransactionTypeText(enTransactionType TransactionType)
+        {
+            switch (TransactionType)
+            {
+                case enTransactionType.Pending:
+                    return "Pending";
+
+                case enTransactionType.PaymentReceived:
+                    return "Payment Received";
+
+                case enTransactionType.RefundIssued:
+                    return "Refund Issued";
+
+                case enTransactionType.NoActionTaken:
+                    return "No Action Taken";
+
+                default:
+                    return "Unknown";
+            }
         }
 
         private bool _AddNewTransaction()
@@ -86,7 +120,8 @@ namespace CarRental_Business
         private bool _UpdateTransaction()
         {
             return clsTransactionData.UpdateTransaction(this.TransactionID,
-                this.ReturnID, this.ActualTotalDueAmount, this.TotalRefundedAmount);
+                this.ReturnID, this.ActualTotalDueAmount, this.TotalRemaining,
+                this.TotalRefundedAmount);
         }
 
         public bool Save()
@@ -129,11 +164,12 @@ namespace CarRental_Business
             float? TotalRefundedAmount = null;
             DateTime TransactionDate = DateTime.Now;
             DateTime? UpdatedTransactionDate = null;
+            byte TransactionType = 0;
 
             bool IsFound = clsTransactionData.GetTransactionInfoByTransactionID(TransactionID, ref BookingID,
                 ref ReturnID, ref PaymentDetails, ref PaidInitialTotalDueAmount,
                 ref ActualTotalDueAmount, ref TotalRemaining, ref TotalRefundedAmount,
-                ref TransactionDate, ref UpdatedTransactionDate);
+                ref TransactionDate, ref UpdatedTransactionDate, ref TransactionType);
 
             if (IsFound)
             {
@@ -151,7 +187,7 @@ namespace CarRental_Business
                     Booking.InitialTotalDueAmount, Booking.InitialCheckNotes,
                     TransactionID, ReturnID, PaymentDetails, PaidInitialTotalDueAmount,
                      ActualTotalDueAmount, TotalRemaining, TotalRefundedAmount,
-                     TransactionDate, UpdatedTransactionDate);
+                     TransactionDate, UpdatedTransactionDate, (enTransactionType)TransactionType);
             }
             else
             {
@@ -170,11 +206,12 @@ namespace CarRental_Business
             float? TotalRefundedAmount = null;
             DateTime TransactionDate = DateTime.Now;
             DateTime? UpdatedTransactionDate = null;
+            byte TransactionType = 0;
 
             bool IsFound = clsTransactionData.GetTransactionInfoByReturnID(ReturnID, ref TransactionID,
                 ref BookingID, ref PaymentDetails, ref PaidInitialTotalDueAmount,
                 ref ActualTotalDueAmount, ref TotalRemaining, ref TotalRefundedAmount,
-                ref TransactionDate, ref UpdatedTransactionDate);
+                ref TransactionDate, ref UpdatedTransactionDate, ref TransactionType);
 
             if (IsFound)
             {
@@ -192,7 +229,7 @@ namespace CarRental_Business
                     Booking.InitialTotalDueAmount, Booking.InitialCheckNotes,
                     TransactionID, ReturnID, PaymentDetails, PaidInitialTotalDueAmount,
                      ActualTotalDueAmount, TotalRemaining, TotalRefundedAmount,
-                     TransactionDate, UpdatedTransactionDate);
+                     TransactionDate, UpdatedTransactionDate, (enTransactionType)TransactionType);
             }
             else
             {
@@ -211,11 +248,12 @@ namespace CarRental_Business
             float? TotalRefundedAmount = null;
             DateTime TransactionDate = DateTime.Now;
             DateTime? UpdatedTransactionDate = null;
+            byte TransactionType = 0;
 
             bool IsFound = clsTransactionData.GetTransactionInfoByBookingID(BookingID, ref TransactionID,
                 ref ReturnID, ref PaymentDetails, ref PaidInitialTotalDueAmount,
                 ref ActualTotalDueAmount, ref TotalRemaining, ref TotalRefundedAmount,
-                ref TransactionDate, ref UpdatedTransactionDate);
+                ref TransactionDate, ref UpdatedTransactionDate, ref TransactionType);
 
             if (IsFound)
             {
@@ -233,7 +271,7 @@ namespace CarRental_Business
                     Booking.InitialTotalDueAmount, Booking.InitialCheckNotes,
                     TransactionID, ReturnID, PaymentDetails, PaidInitialTotalDueAmount,
                      ActualTotalDueAmount, TotalRemaining, TotalRefundedAmount,
-                     TransactionDate, UpdatedTransactionDate);
+                     TransactionDate, UpdatedTransactionDate, (enTransactionType)TransactionType);
             }
             else
             {
@@ -269,6 +307,21 @@ namespace CarRental_Business
         public static int? GetReturnIDByBookingID(int? BookingID)
         {
             return clsTransactionData.GetReturnIDByBookingID(BookingID);
+        }
+
+        public bool UpdateTotalRefundedAmount()
+        {
+            return clsTransactionData.UpdateTotalRefundedAmount(this.TransactionID, this.TotalRemaining);
+        }
+
+        public static bool UpdateTotalRefundedAmount(int? TransactionID, float? TotalRemaining)
+        {
+            return clsTransactionData.UpdateTotalRefundedAmount(TransactionID, TotalRemaining);
+        }
+
+        public static DataTable GetAllRentalTransactionByCustomerID(int? CustomerID)
+        {
+            return clsTransactionData.GetAllRentalTransactionByCustomerID(CustomerID);
         }
     }
 }

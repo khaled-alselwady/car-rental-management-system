@@ -1,4 +1,5 @@
-﻿using CarRental_Business;
+﻿using CarRental.Return;
+using CarRental_Business;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -213,7 +214,7 @@ namespace CarRental.Booking
 
         private void ShowBookingDetailsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmShowBookingDetails ShowBookingDetails = new frmShowBookingDetails(_GetBookingIDFromDGV());
+            frmShowBookingDetailsWithCustomerAndVehicle ShowBookingDetails = new frmShowBookingDetailsWithCustomerAndVehicle(_GetBookingIDFromDGV());
             ShowBookingDetails.ShowDialog();
 
             _RefreshBookingList();
@@ -228,7 +229,20 @@ namespace CarRental.Booking
 
         private void cmsEditProfile_Opening(object sender, CancelEventArgs e)
         {
-            ShowBookingDetailsToolStripMenuItem1.Enabled = (dgvBookingList.Rows.Count > 0);
+            if (dgvBookingList.Rows.Count == 0)
+            {
+                ShowBookingDetailsToolStripMenuItem1.Enabled = false;
+                return;
+            }
+
+            clsBooking Booking = clsBooking.Find((int)dgvBookingList.CurrentRow.Cells["BookingID"].Value);
+
+            if (Booking == null)
+            {
+                return;
+            }
+
+            ReturnToolStripMenuItem.Enabled = !Booking.IsBookingReturned;
         }
 
         private void dgvBookingList_DoubleClick(object sender, EventArgs e)
@@ -236,10 +250,17 @@ namespace CarRental.Booking
             if (dgvBookingList.Rows.Count == 0)
                 return;
 
-            frmShowBookingDetails ShowBookingDetails = new frmShowBookingDetails(_GetBookingIDFromDGV());
+            frmShowBookingDetailsWithCustomerAndVehicle ShowBookingDetails = new frmShowBookingDetailsWithCustomerAndVehicle(_GetBookingIDFromDGV());
             ShowBookingDetails.ShowDialog();
 
             _RefreshBookingList();
+        }
+
+        private void ReturnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReturnVehicle ReturnVehicle = new frmReturnVehicle((int)dgvBookingList.CurrentRow.Cells["BookingID"].Value);
+            ReturnVehicle.RefreshReturnInfo += _RefreshBookingList;
+            ReturnVehicle.Show();
         }
     }
 }

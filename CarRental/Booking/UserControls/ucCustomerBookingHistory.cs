@@ -84,7 +84,7 @@ namespace CarRental.Booking.UserControls
 
         private void ShowBookingDetailsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmShowBookingDetails ShowBookingDetails = new frmShowBookingDetails(_GetBookingIDFromDGV());
+            frmShowBookingDetailsWithCustomerAndVehicle ShowBookingDetails = new frmShowBookingDetailsWithCustomerAndVehicle(_GetBookingIDFromDGV());
             ShowBookingDetails.ShowDialog();
 
             _RefreshBookingHistoryList();
@@ -100,7 +100,7 @@ namespace CarRental.Booking.UserControls
             if (dgvBookingHistoryList.Rows.Count == 0)
                 return;
 
-            frmShowBookingDetails ShowBookingDetails = new frmShowBookingDetails(_GetBookingIDFromDGV());
+            frmShowBookingDetailsWithCustomerAndVehicle ShowBookingDetails = new frmShowBookingDetailsWithCustomerAndVehicle(_GetBookingIDFromDGV());
             ShowBookingDetails.ShowDialog();
 
             _RefreshBookingHistoryList();

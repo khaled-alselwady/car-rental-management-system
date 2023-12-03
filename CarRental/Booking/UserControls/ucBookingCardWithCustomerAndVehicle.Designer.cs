@@ -47,7 +47,7 @@
             this.ucBookingCard1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ucBookingCard1.Location = new System.Drawing.Point(5, 454);
             this.ucBookingCard1.Name = "ucBookingCard1";
-            this.ucBookingCard1.Size = new System.Drawing.Size(785, 228);
+            this.ucBookingCard1.Size = new System.Drawing.Size(785, 248);
             this.ucBookingCard1.TabIndex = 1;
             // 
             // ucBookingCardWithCustomerAndVehicle
@@ -59,7 +59,7 @@
             this.Controls.Add(this.ucBookingCard1);
             this.Controls.Add(this.ucSelectedCustomerAndVehicleCard1);
             this.Name = "ucBookingCardWithCustomerAndVehicle";
-            this.Size = new System.Drawing.Size(799, 681);
+            this.Size = new System.Drawing.Size(794, 702);
             this.ResumeLayout(false);
 
         }

@@ -107,7 +107,7 @@
             this.ucBookingCard1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ucBookingCard1.Location = new System.Drawing.Point(0, 86);
             this.ucBookingCard1.Name = "ucBookingCard1";
-            this.ucBookingCard1.Size = new System.Drawing.Size(785, 227);
+            this.ucBookingCard1.Size = new System.Drawing.Size(785, 247);
             this.ucBookingCard1.TabIndex = 20;
             // 
             // errorProvider1
@@ -123,7 +123,7 @@
             this.Controls.Add(this.ucBookingCard1);
             this.Controls.Add(this.gbFilters);
             this.Name = "ucBookingCardWithFilter";
-            this.Size = new System.Drawing.Size(788, 317);
+            this.Size = new System.Drawing.Size(788, 336);
             this.Load += new System.EventHandler(this.ucBookingCardWithFilter_Load);
             this.gbFilters.ResumeLayout(false);
             this.gbFilters.PerformLayout();

@@ -1,4 +1,6 @@
-﻿using CarRental.GlobalClasses;
+﻿using CarRental.Booking;
+using CarRental.GlobalClasses;
+using CarRental.Transaction;
 using CarRental_Business;
 using System;
 using System.Collections.Generic;
@@ -27,6 +29,9 @@ namespace CarRental.Return.UserControls
 
         private void _FillReturnInfo()
         {
+            llShowBookingInfo.Enabled = true;
+            llShowTransactionInfo.Enabled = true;
+
             lblReturnID.Text = _Return.ReturnID?.ToString();
             lblActualReturnDate.Text = clsFormat.DateToShort(_Return.ActualReturnDate);
             lblActualRentalDays.Text = _Return.ActualRentalDays.ToString();
@@ -50,6 +55,9 @@ namespace CarRental.Return.UserControls
             lblFinalCheckNotes.Text = "[????]";
             lblAdditionalCharges.Text = "[????]";
             lblActualTotalDueAmount.Text = "[????]";
+
+            llShowBookingInfo.Enabled = false;
+            llShowTransactionInfo.Enabled = false;
         }
 
         public void LoadReturnInfo(int? ReturnID)
@@ -81,5 +89,16 @@ namespace CarRental.Return.UserControls
             _FillReturnInfo();
         }
 
+        private void llShowBookingInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmShowBookingDetails ShowBookingDetails = new frmShowBookingDetails(ReturnInfo?.TransactionInfo?.BookingID);
+            ShowBookingDetails.ShowDialog();
+        }
+
+        private void llShowTransactionInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmShowTransactionDetails ShowTransactionDetails = new frmShowTransactionDetails(ReturnInfo?.TransactionInfo?.TransactionID);
+            ShowTransactionDetails.ShowDialog();
+        }
     }
 }

@@ -33,13 +33,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvBookingList = new System.Windows.Forms.DataGridView();
             this.cmsEditProfile = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
-            this.ShowBookingDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.lblNumberOfRecords = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cbFilter = new System.Windows.Forms.ComboBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
+            this.ShowBookingDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReturnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pbImage = new System.Windows.Forms.PictureBox();
             this.btnAddNewBooking = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBookingList)).BeginInit();
@@ -96,7 +97,8 @@
             this.cmsEditProfile.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cmsEditProfile.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmsEditProfile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ShowBookingDetailsToolStripMenuItem1});
+            this.ShowBookingDetailsToolStripMenuItem1,
+            this.ReturnToolStripMenuItem});
             this.cmsEditProfile.Name = "guna2ContextMenuStrip1";
             this.cmsEditProfile.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.cmsEditProfile.RenderStyle.BorderColor = System.Drawing.Color.Gainsboro;
@@ -107,18 +109,8 @@
             this.cmsEditProfile.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
             this.cmsEditProfile.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
             this.cmsEditProfile.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.cmsEditProfile.Size = new System.Drawing.Size(252, 42);
+            this.cmsEditProfile.Size = new System.Drawing.Size(252, 102);
             this.cmsEditProfile.Opening += new System.ComponentModel.CancelEventHandler(this.cmsEditProfile_Opening);
-            // 
-            // ShowBookingDetailsToolStripMenuItem1
-            // 
-            this.ShowBookingDetailsToolStripMenuItem1.ForeColor = System.Drawing.Color.Black;
-            this.ShowBookingDetailsToolStripMenuItem1.Image = global::CarRental.Properties.Resources.person_details32;
-            this.ShowBookingDetailsToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.ShowBookingDetailsToolStripMenuItem1.Name = "ShowBookingDetailsToolStripMenuItem1";
-            this.ShowBookingDetailsToolStripMenuItem1.Size = new System.Drawing.Size(251, 38);
-            this.ShowBookingDetailsToolStripMenuItem1.Text = "   Show Booking Details";
-            this.ShowBookingDetailsToolStripMenuItem1.Click += new System.EventHandler(this.ShowBookingDetailsToolStripMenuItem1_Click);
             // 
             // lblNumberOfRecords
             // 
@@ -194,6 +186,25 @@
             this.dtpDate.Visible = false;
             this.dtpDate.ValueChanged += new System.EventHandler(this.dtpDate_ValueChanged);
             // 
+            // ShowBookingDetailsToolStripMenuItem1
+            // 
+            this.ShowBookingDetailsToolStripMenuItem1.ForeColor = System.Drawing.Color.Black;
+            this.ShowBookingDetailsToolStripMenuItem1.Image = global::CarRental.Properties.Resources.person_details32;
+            this.ShowBookingDetailsToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ShowBookingDetailsToolStripMenuItem1.Name = "ShowBookingDetailsToolStripMenuItem1";
+            this.ShowBookingDetailsToolStripMenuItem1.Size = new System.Drawing.Size(251, 38);
+            this.ShowBookingDetailsToolStripMenuItem1.Text = "   Show Booking Details";
+            this.ShowBookingDetailsToolStripMenuItem1.Click += new System.EventHandler(this.ShowBookingDetailsToolStripMenuItem1_Click);
+            // 
+            // ReturnToolStripMenuItem
+            // 
+            this.ReturnToolStripMenuItem.Image = global::CarRental.Properties.Resources.car_return32;
+            this.ReturnToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ReturnToolStripMenuItem.Name = "ReturnToolStripMenuItem";
+            this.ReturnToolStripMenuItem.Size = new System.Drawing.Size(251, 38);
+            this.ReturnToolStripMenuItem.Text = "   Return";
+            this.ReturnToolStripMenuItem.Click += new System.EventHandler(this.ReturnToolStripMenuItem_Click);
+            // 
             // pbImage
             // 
             this.pbImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -261,5 +272,6 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dtpDate;
+        private System.Windows.Forms.ToolStripMenuItem ReturnToolStripMenuItem;
     }
 }
