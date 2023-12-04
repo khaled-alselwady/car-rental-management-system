@@ -131,7 +131,8 @@ namespace CarRental.Login
 
         private void lblForgotPassword_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This feature is not implemented yet!");
+            frmEnterUsername EnterUsername = new frmEnterUsername();
+            EnterUsername.ShowDialog();
         }
 
         private void llOpenMyProfile_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
