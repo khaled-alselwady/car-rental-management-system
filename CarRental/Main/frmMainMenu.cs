@@ -2,6 +2,7 @@
 using CarRental.Customers;
 using CarRental.Dashboard;
 using CarRental.GlobalClasses;
+using CarRental.Permissions;
 using CarRental.Properties;
 using CarRental.Return;
 using CarRental.Transaction;
@@ -28,6 +29,8 @@ namespace CarRental.Main
         private Form _ActiveForm;
 
         private Form _frmLoginForm;
+
+        public Form frmDeniedMassage = new frmAccessDeniedMessage();
 
         public frmMainMenu(Form frmLoginForm)
         {
@@ -103,31 +106,67 @@ namespace CarRental.Main
 
         private void btnCustomers_Click(object sender, EventArgs e)
         {
+            if (!clsGlobal.CheckAccessDenied(clsUser.enPermissions.ManageCustomers))
+            {
+                frmDeniedMassage.ShowDialog();
+                return;
+            }
+
             OpenChildForm(new frmListCustomers(), sender);
         }
 
         private void btnUsers_Click(object sender, EventArgs e)
         {
+            if (!clsGlobal.CheckAccessDenied(clsUser.enPermissions.ManageUsers))
+            {
+                frmDeniedMassage.ShowDialog();
+                return;
+            }
+
             OpenChildForm(new frmListUsers(), sender);
         }
 
         private void btnVehicles_Click(object sender, EventArgs e)
         {
+            if (!clsGlobal.CheckAccessDenied(clsUser.enPermissions.ManageVehicles))
+            {
+                frmDeniedMassage.ShowDialog();
+                return;
+            }
+
             OpenChildForm(new frmListVehicles(), sender);
         }
 
         private void btnBooking_Click(object sender, EventArgs e)
         {
+            if (!clsGlobal.CheckAccessDenied(clsUser.enPermissions.ManageBooking))
+            {
+                frmDeniedMassage.ShowDialog();
+                return;
+            }
+
             OpenChildForm(new frmListBooking(), sender);
         }
 
         private void btnReturn_Click(object sender, EventArgs e)
         {
+            if (!clsGlobal.CheckAccessDenied(clsUser.enPermissions.ManageReturn))
+            {
+                frmDeniedMassage.ShowDialog();
+                return;
+            }
+
             OpenChildForm(new frmListReturn(), sender);
         }
 
         private void btnTransactions_Click(object sender, EventArgs e)
         {
+            if (!clsGlobal.CheckAccessDenied(clsUser.enPermissions.ManageTransactions))
+            {
+                frmDeniedMassage.ShowDialog();
+                return;
+            }
+
             OpenChildForm(new frmListTransaction(), sender);
         }
 
