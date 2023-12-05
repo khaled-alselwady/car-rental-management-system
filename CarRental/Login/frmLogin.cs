@@ -86,8 +86,8 @@ namespace CarRental.Login
             }
             else
             {
-                //store empty username and password
-                clsGlobal.RememberUsernameAndPassword("", "");
+                //remove username and password
+                clsGlobal.RemoveStoredCredential();
             }
 
             if (!User.IsActive)

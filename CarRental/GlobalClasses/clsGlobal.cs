@@ -39,6 +39,39 @@ namespace CarRental.GlobalClasses
             }
         }
 
+        public static bool RemoveStoredCredential()
+        {
+            string keyPath = @"SOFTWARE\CarRental";
+
+            string UsernameName = "Username";
+            string PasswordName = "Password";
+
+            try
+            {
+                // Create or open the registry key
+                using (RegistryKey key = Registry.CurrentUser.CreateSubKey(keyPath))
+                {
+                    // Check if the key exists before attempting to delete values
+                    if (key == null)
+                    {
+                        MessageBox.Show($"Registry key not found: {keyPath}");
+                        return false;
+                    }
+
+                    // Remove only the data, leaving the value name intact
+                    key.DeleteValue(UsernameName, false);
+                    key.DeleteValue(PasswordName, false);
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}");
+                return false;
+            }
+        }
+
         public static bool GetStoredCredential(ref string Username, ref string Password)
         {
             string keyPath = @"HKEY_CURRENT_USER\SOFTWARE\CarRental";
