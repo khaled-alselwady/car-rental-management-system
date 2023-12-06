@@ -166,6 +166,7 @@
     </Compile>
     <Compile Include="GlobalClasses\clsFormat.cs" />
     <Compile Include="GlobalClasses\clsGlobal.cs" />
+    <Compile Include="GlobalClasses\clsLogError.cs" />
     <Compile Include="GlobalClasses\clsUtil.cs" />
     <Compile Include="GlobalClasses\clsValidation.cs" />
     <Compile Include="Login\frmChangePasswordUsingSecurityQuestion.cs">

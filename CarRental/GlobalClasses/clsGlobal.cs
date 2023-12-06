@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -34,7 +35,7 @@ namespace CarRental.GlobalClasses
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An Error occurred: {ex.Message}");
+                clsLogError.LogError("General Exception", ex);
                 return false;
             }
         }
@@ -68,16 +69,14 @@ namespace CarRental.GlobalClasses
                     }
                 }
             }
-            catch (UnauthorizedAccessException)
+            catch (UnauthorizedAccessException ex)
             {
-                MessageBox.Show("UnauthorizedAccessException: Run the program with" +
-                    " administrative privileges.", "Access Denied",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                clsLogError.LogError("Unauthorized Access Exception", ex);
                 return false;
             }
             catch (Exception ex)
             {
+                clsLogError.LogError("General Exception", ex);
                 return false;
             }
         }
@@ -95,11 +94,11 @@ namespace CarRental.GlobalClasses
                 Username = Registry.GetValue(keyPath, UsernameName, null) as string;
                 Password = Registry.GetValue(keyPath, PasswordName, null) as string;
 
-               return true;
+                return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An Error occurred: {ex.Message}");
+                clsLogError.LogError("General Exception", ex);
                 return false;
             }
         }

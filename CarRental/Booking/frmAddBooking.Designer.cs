@@ -607,8 +607,8 @@
             this.Controls.Add(this.btnBook);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.ucSelectedCustomerAndVehicleWithFilter1);
             this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.ucSelectedCustomerAndVehicleWithFilter1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmAddBooking";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

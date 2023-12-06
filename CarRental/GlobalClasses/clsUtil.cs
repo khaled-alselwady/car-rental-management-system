@@ -35,7 +35,7 @@ namespace CarRental.GlobalClasses
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error creating folder: " + ex.Message);
+                    clsLogError.LogError("General Exception", ex);
                     return false;
                 }
             }
@@ -74,7 +74,12 @@ namespace CarRental.GlobalClasses
             }
             catch (IOException iox)
             {
-                MessageBox.Show(iox.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                clsLogError.LogError("IO Exception", iox);
+                return false;
+            }
+            catch(Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
                 return false;
             }
 
