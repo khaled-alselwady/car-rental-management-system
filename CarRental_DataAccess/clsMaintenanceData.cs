@@ -51,6 +51,14 @@ namespace CarRental_DataAccess
             catch (SqlException ex)
             {
                 IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
             }
 
             return IsFound;
@@ -90,7 +98,11 @@ select scope_identity()";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
             return MaintenanceID;
         }
@@ -127,7 +139,11 @@ where MaintenanceID = @MaintenanceID";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return (RowAffected > 0);
@@ -155,7 +171,11 @@ where MaintenanceID = @MaintenanceID";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return (RowAffected > 0);
@@ -186,6 +206,14 @@ where MaintenanceID = @MaintenanceID";
             catch (SqlException ex)
             {
                 IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
             }
 
             return IsFound;
@@ -217,7 +245,11 @@ where MaintenanceID = @MaintenanceID";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return dt;
@@ -255,7 +287,11 @@ where MaintenanceID = @MaintenanceID";
             }
             catch (SqlException ex)
             {
-                
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return dt;

@@ -57,6 +57,14 @@ namespace CarRental_DataAccess
             catch (SqlException ex)
             {
                 IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
             }
 
             return IsFound;
@@ -103,7 +111,11 @@ select scope_identity()";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return PersonID;
@@ -153,7 +165,11 @@ where PersonID = @PersonID";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return (RowAffected > 0);
@@ -181,7 +197,11 @@ where PersonID = @PersonID";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return (RowAffected > 0);
@@ -212,6 +232,14 @@ where PersonID = @PersonID";
             catch (SqlException ex)
             {
                 IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
             }
 
             return IsFound;
@@ -243,7 +271,11 @@ where PersonID = @PersonID";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return dt;

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace CarRental_DataAccess
 {
@@ -60,6 +57,14 @@ namespace CarRental_DataAccess
             catch (SqlException ex)
             {
                 IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
             }
 
             return IsFound;
@@ -115,6 +120,14 @@ namespace CarRental_DataAccess
             catch (SqlException ex)
             {
                 IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
             }
 
             return IsFound;
@@ -170,6 +183,14 @@ namespace CarRental_DataAccess
             catch (SqlException ex)
             {
                 IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
             }
 
             return IsFound;
@@ -210,7 +231,11 @@ select scope_identity()";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return TransactionID;
@@ -252,7 +277,11 @@ where TransactionID = @TransactionID";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return (RowAffected > 0);
@@ -286,7 +315,11 @@ where TransactionID = @TransactionID";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return (RowAffected > 0);
@@ -314,7 +347,11 @@ where TransactionID = @TransactionID";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return (RowAffected > 0);
@@ -345,6 +382,14 @@ where TransactionID = @TransactionID";
             catch (SqlException ex)
             {
                 IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
             }
 
             return IsFound;
@@ -376,7 +421,11 @@ where TransactionID = @TransactionID";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return dt;
@@ -410,7 +459,11 @@ where TransactionID = @TransactionID";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return dt;
@@ -441,7 +494,11 @@ where TransactionID = @TransactionID";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return Count;
@@ -475,7 +532,11 @@ where TransactionID = @TransactionID";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return ReturnID;

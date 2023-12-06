@@ -47,6 +47,14 @@ namespace CarRental_DataAccess
             catch (SqlException ex)
             {
                 IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
             }
 
             return IsFound;
@@ -54,7 +62,7 @@ namespace CarRental_DataAccess
 
         public static bool GetDriveTypeInfoByName(string driveTypeName, ref int? driveTypeID)
         {
-            bool isFound = false;
+            bool IsFound = false;
 
             try
             {
@@ -73,13 +81,13 @@ namespace CarRental_DataAccess
                             if (reader.Read())
                             {
                                 // The record was found
-                                isFound = true;
+                                IsFound = true;
                                 driveTypeID = (reader["DriveTypeID"] != DBNull.Value) ? (int?)reader["DriveTypeID"] : null;
                             }
                             else
                             {
                                 // The record was not found
-                                isFound = false;
+                                IsFound = false;
                             }
                         }
                     }
@@ -87,10 +95,18 @@ namespace CarRental_DataAccess
             }
             catch (SqlException ex)
             {
-                isFound = false;
+                IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
             }
 
-            return isFound;
+            return IsFound;
         }
 
         public static int? AddNewDriveType(string DriveTypeName)
@@ -123,8 +139,13 @@ select scope_identity()";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
             }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
+            }
+
             return DriveTypeID;
         }
 
@@ -153,7 +174,11 @@ where DriveTypeID = @DriveTypeID";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return (RowAffected > 0);
@@ -181,7 +206,11 @@ where DriveTypeID = @DriveTypeID";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return (RowAffected > 0);
@@ -211,7 +240,11 @@ where DriveTypeID = @DriveTypeID";
             }
             catch (SqlException ex)
             {
-                IsFound = false;
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return IsFound;
@@ -243,7 +276,11 @@ where DriveTypeID = @DriveTypeID";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return dt;
@@ -275,8 +312,12 @@ where DriveTypeID = @DriveTypeID";
             }
             catch (SqlException ex)
             {
-                
-            }          
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
+            }
 
             return dt;
         }

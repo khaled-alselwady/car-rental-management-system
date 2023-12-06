@@ -38,7 +38,7 @@ namespace CarRental.Transaction.UserControls
         {
             ucTransactionCard1.LoadTransactionInfo(TransactionID);
 
-            ucBookingAndReturnCard1.LoadBookingAndReturnInfo(TransactionInfo.BookingID, TransactionInfo.ReturnID);
+            ucBookingAndReturnCard1.LoadBookingAndReturnInfo(TransactionInfo?.BookingID, TransactionInfo?.ReturnID);
         }
 
     }

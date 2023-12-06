@@ -49,6 +49,14 @@ namespace CarRental_DataAccess
             catch (SqlException ex)
             {
                 IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
             }
 
             return IsFound;
@@ -85,8 +93,13 @@ select scope_identity()";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
             }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
+            }
+
             return CustomerID;
         }
 
@@ -117,7 +130,11 @@ where CustomerID = @CustomerID";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return (RowAffected > 0);
@@ -145,7 +162,11 @@ where CustomerID = @CustomerID";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return (RowAffected > 0);
@@ -176,6 +197,14 @@ where CustomerID = @CustomerID";
             catch (SqlException ex)
             {
                 IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
             }
 
             return IsFound;
@@ -206,6 +235,14 @@ where CustomerID = @CustomerID";
             catch (SqlException ex)
             {
                 IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
             }
 
             return IsFound;
@@ -237,7 +274,11 @@ where CustomerID = @CustomerID";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return dt;
@@ -268,7 +309,11 @@ where CustomerID = @CustomerID";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return Count;
@@ -301,7 +346,11 @@ where CustomerID = @CustomerID";
             }
             catch (SqlException ex)
             {
-
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
             }
 
             return PersonID;

@@ -47,6 +47,7 @@
     <Compile Include="clsDataAccessSettings.cs" />
     <Compile Include="clsDriveTypeData.cs" />
     <Compile Include="clsFuelTypeData.cs" />
+    <Compile Include="clsLogError.cs" />
     <Compile Include="clsMaintenanceData.cs" />
     <Compile Include="clsMakeData.cs" />
     <Compile Include="clsModelData.cs" />
