@@ -16,7 +16,6 @@ namespace CarRental.Customers
     public partial class frmAddEditCustomer : Form
     {
         public Action<int?> GetCustomerIDByDelegate;
-        public Action RefreshCustomerInfo;
 
         public enum enMode { AddNew, Update };
         private enMode _Mode = enMode.AddNew;
@@ -146,7 +145,6 @@ namespace CarRental.Customers
 
                 // Trigger the event to send data back to the caller form
                 GetCustomerIDByDelegate?.Invoke(_Customer.CustomerID);
-                RefreshCustomerInfo?.Invoke();
             }
             else
             {

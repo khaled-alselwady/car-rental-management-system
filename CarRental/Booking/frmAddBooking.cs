@@ -16,7 +16,6 @@ namespace CarRental.Booking
     public partial class frmAddBooking : Form
     {
         public Action<int?> GetBookingIDByDelegate;
-        public Action RefreshBookingInfo;
 
         private int? _TransactionID = null;
 
@@ -154,7 +153,6 @@ namespace CarRental.Booking
 
             _Reset();
 
-            RefreshBookingInfo?.Invoke();
             GetBookingIDByDelegate?.Invoke(Transaction.BookingID.Value);
         }       
 

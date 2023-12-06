@@ -16,7 +16,6 @@ namespace CarRental.Vehicles
 {
     public partial class frmVehicleMaintenance : Form
     {
-        public Action RefreshInfoInDGV;
 
         private int? _MaintenanceID = null;
 
@@ -141,8 +140,6 @@ namespace CarRental.Vehicles
             ucVehicleCardWithFilter1.FilterEnabled = false;
             txtCost.Enabled = false;
             txtDescription.Enabled = false;
-
-            RefreshInfoInDGV?.Invoke();
         }
 
         private void frmVehicleMaintenance_Activated(object sender, EventArgs e)

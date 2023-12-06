@@ -253,8 +253,9 @@ namespace CarRental.Users
         private void EditUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmAddEditUser EditUser = new frmAddEditUser(_GetUserIDFromDGV());
-            EditUser.RefreshUserInfo += _RefreshUsersList;
             EditUser.ShowDialog();
+
+            _RefreshUsersList();
         }
 
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -288,8 +289,9 @@ namespace CarRental.Users
         private void btnAddNewUser_Click(object sender, EventArgs e)
         {
             frmAddEditUser EditUser = new frmAddEditUser();
-            EditUser.RefreshUserInfo += _RefreshUsersList;
             EditUser.ShowDialog();
+
+            _RefreshUsersList();
         }
 
         private void dgvUsersList_DoubleClick(object sender, EventArgs e)

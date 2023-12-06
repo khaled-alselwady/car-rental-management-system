@@ -17,7 +17,6 @@ namespace CarRental.Vehicles
     public partial class frmAddEditVehicle : Form
     {
         public Action<int?> GetVehicleIDByDelegate;
-        public Action RefreshVehicleInfo;
 
         public enum enMode { AddNew, Update };
         private enMode _Mode = enMode.AddNew;
@@ -214,7 +213,6 @@ namespace CarRental.Vehicles
 
                 // Trigger the event to send data back to the caller form
                 GetVehicleIDByDelegate?.Invoke(_Vehicle.VehicleID);
-                RefreshVehicleInfo?.Invoke();
             }
             else
             {

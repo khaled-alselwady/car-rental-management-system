@@ -19,7 +19,6 @@ namespace CarRental.Return
     public partial class frmReturnVehicle : Form
     {
         public Action<int?> GetReturnByDelegate;
-        public Action RefreshReturnInfo;
 
         private int? _SelectedBookingID = null;
 
@@ -139,7 +138,6 @@ namespace CarRental.Return
             _SetVehicleAvailableForRent();
 
             GetReturnByDelegate?.Invoke(_Return.ReturnID.Value);
-            RefreshReturnInfo?.Invoke();
         }
 
         private void txtFinalCheckNotes_Validating(object sender, CancelEventArgs e)

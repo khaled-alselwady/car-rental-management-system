@@ -81,8 +81,9 @@ namespace CarRental.Vehicles.UserControls
         private void MaintenanceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmVehicleMaintenance Maintenance = new frmVehicleMaintenance((int)dgvVehicleMaintenanceHistoryList.CurrentRow.Cells["VehicleID"].Value);
-            Maintenance.RefreshInfoInDGV += _RefreshMaintenanceHistoryList;
             Maintenance.ShowDialog();
+
+            _RefreshMaintenanceHistoryList();
         }
 
         private void dgvVehicleMaintenanceHistoryList_DoubleClick(object sender, EventArgs e)

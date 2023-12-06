@@ -17,7 +17,6 @@ namespace CarRental.Users
     public partial class frmAddEditUser : Form
     {
         public Action<int?> GetUserIDByDelegate;
-        public Action RefreshUserInfo;
 
         public enum enMode { AddNew, Update };
         private enMode _Mode = enMode.AddNew;
@@ -321,7 +320,6 @@ namespace CarRental.Users
 
                 // Trigger the event to send data back to the caller form
                 GetUserIDByDelegate?.Invoke(_User.UserID);
-                RefreshUserInfo?.Invoke();
             }
             else
             {

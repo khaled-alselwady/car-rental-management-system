@@ -223,8 +223,9 @@ namespace CarRental.Booking
         private void btnAddNewBooking_Click(object sender, EventArgs e)
         {
             frmAddBooking AddBooking = new frmAddBooking();
-            AddBooking.RefreshBookingInfo += _RefreshBookingList;
             AddBooking.ShowDialog();
+
+            _RefreshBookingList();
         }
 
         private void cmsEditProfile_Opening(object sender, CancelEventArgs e)
@@ -259,8 +260,9 @@ namespace CarRental.Booking
         private void ReturnToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmReturnVehicle ReturnVehicle = new frmReturnVehicle((int)dgvBookingList.CurrentRow.Cells["BookingID"].Value);
-            ReturnVehicle.RefreshReturnInfo += _RefreshBookingList;
             ReturnVehicle.ShowDialog();
+
+            _RefreshBookingList();
         }
     }
 }

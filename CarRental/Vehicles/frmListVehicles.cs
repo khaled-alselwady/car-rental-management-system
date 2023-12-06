@@ -410,8 +410,9 @@ namespace CarRental.Vehicles
         private void EditVehicleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmAddEditVehicle EditVehicle = new frmAddEditVehicle(_GetVehicleIDFromDGV());
-            EditVehicle.RefreshVehicleInfo += _RefreshVehiclesList;
             EditVehicle.ShowDialog();
+
+            _RefreshVehiclesList();
         }
 
         private void DeleteVehicleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -437,8 +438,9 @@ namespace CarRental.Vehicles
         private void btnAddNewVehicle_Click(object sender, EventArgs e)
         {
             frmAddEditVehicle AddVehicle = new frmAddEditVehicle();
-            AddVehicle.RefreshVehicleInfo += _RefreshVehiclesList;
             AddVehicle.ShowDialog();
+
+            _RefreshVehiclesList();
         }
 
         private void cmsEditProfile_Opening(object sender, CancelEventArgs e)
