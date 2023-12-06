@@ -121,7 +121,7 @@ namespace CarRental.Users.UserControls
         {
             frmAddEditUser EditUser = new frmAddEditUser(_UserID);
             EditUser.GetUserIDByDelegate += LoadUserInfo;
-            EditUser.Show();
+            EditUser.ShowDialog();
         }
     }
 }

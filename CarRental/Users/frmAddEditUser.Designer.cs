@@ -244,7 +244,7 @@
             this.txtConfirmPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtConfirmPassword.Location = new System.Drawing.Point(637, 207);
             this.txtConfirmPassword.Name = "txtConfirmPassword";
-            this.txtConfirmPassword.Size = new System.Drawing.Size(222, 29);
+            this.txtConfirmPassword.Size = new System.Drawing.Size(230, 29);
             this.txtConfirmPassword.TabIndex = 234;
             this.txtConfirmPassword.TextChanged += new System.EventHandler(this.txtConfirmPassword_TextChanged);
             this.txtConfirmPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtConfirmPassword_Validating);
@@ -285,7 +285,7 @@
             this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsername.Location = new System.Drawing.Point(637, 131);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(222, 29);
+            this.txtUsername.Size = new System.Drawing.Size(230, 29);
             this.txtUsername.TabIndex = 231;
             this.txtUsername.Validating += new System.ComponentModel.CancelEventHandler(this.txtUsername_Validating);
             // 
@@ -355,7 +355,7 @@
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.Location = new System.Drawing.Point(637, 169);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(222, 29);
+            this.txtPassword.Size = new System.Drawing.Size(230, 29);
             this.txtPassword.TabIndex = 222;
             this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             this.txtPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtPassword_Validating);
@@ -568,7 +568,7 @@
             this.txtSecurityQuestion.Location = new System.Drawing.Point(637, 245);
             this.txtSecurityQuestion.Multiline = true;
             this.txtSecurityQuestion.Name = "txtSecurityQuestion";
-            this.txtSecurityQuestion.Size = new System.Drawing.Size(222, 67);
+            this.txtSecurityQuestion.Size = new System.Drawing.Size(230, 67);
             this.txtSecurityQuestion.TabIndex = 249;
             this.txtSecurityQuestion.Validating += new System.ComponentModel.CancelEventHandler(this.txtSecurityQuestion_Validating);
             // 
@@ -589,7 +589,7 @@
             this.txtSecurityAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSecurityAnswer.Location = new System.Drawing.Point(637, 321);
             this.txtSecurityAnswer.Name = "txtSecurityAnswer";
-            this.txtSecurityAnswer.Size = new System.Drawing.Size(222, 29);
+            this.txtSecurityAnswer.Size = new System.Drawing.Size(230, 29);
             this.txtSecurityAnswer.TabIndex = 252;
             this.txtSecurityAnswer.Validating += new System.ComponentModel.CancelEventHandler(this.txtSecurityAnswer_Validating);
             // 

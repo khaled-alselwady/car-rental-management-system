@@ -254,7 +254,7 @@ namespace CarRental.Users
         {
             frmAddEditUser EditUser = new frmAddEditUser(_GetUserIDFromDGV());
             EditUser.RefreshUserInfo += _RefreshUsersList;
-            EditUser.Show();
+            EditUser.ShowDialog();
         }
 
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -280,7 +280,7 @@ namespace CarRental.Users
         private void ChangePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmChangePassword ChangePassword = new frmChangePassword(_GetUserIDFromDGV());
-            ChangePassword.Show();
+            ChangePassword.ShowDialog();
 
             _RefreshUsersList();
         }
@@ -289,7 +289,7 @@ namespace CarRental.Users
         {
             frmAddEditUser EditUser = new frmAddEditUser();
             EditUser.RefreshUserInfo += _RefreshUsersList;
-            EditUser.Show();
+            EditUser.ShowDialog();
         }
 
         private void dgvUsersList_DoubleClick(object sender, EventArgs e)

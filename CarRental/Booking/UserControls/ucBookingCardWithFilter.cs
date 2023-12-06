@@ -118,7 +118,7 @@ namespace CarRental.Booking.UserControls
         {
             frmAddBooking AddNewBooking = new frmAddBooking();
             AddNewBooking.GetBookingIDByDelegate += LoadBookingInfo;
-            AddNewBooking.Show();
+            AddNewBooking.ShowDialog();
         }
 
         public void FilterFocus()

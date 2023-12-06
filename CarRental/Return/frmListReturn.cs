@@ -181,7 +181,7 @@ namespace CarRental.Return
         {
             frmReturnVehicle ReturnVehicle = new frmReturnVehicle();
             ReturnVehicle.RefreshReturnInfo += _RefreshReturnList;
-            ReturnVehicle.Show();
+            ReturnVehicle.ShowDialog();
         }
 
         private void ShowReturnDetailsToolStripMenuItem_Click(object sender, EventArgs e)

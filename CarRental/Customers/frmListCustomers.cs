@@ -235,14 +235,14 @@ namespace CarRental.Customers
         {
             frmAddEditCustomer EditCustomer = new frmAddEditCustomer(_GetCustomerIDFromDGV());
             EditCustomer.RefreshCustomerInfo += _RefreshCustomersList;
-            EditCustomer.Show();
+            EditCustomer.ShowDialog();
         }
 
         private void btnAddNewCustomer_Click(object sender, EventArgs e)
         {
             frmAddEditCustomer AddCustomer = new frmAddEditCustomer();
             AddCustomer.RefreshCustomerInfo += _RefreshCustomersList;
-            AddCustomer.Show();
+            AddCustomer.ShowDialog();
         }
 
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)

@@ -141,7 +141,7 @@ namespace CarRental.Vehicles.UserControls
         {
             frmAddEditVehicle AddNewVehicle = new frmAddEditVehicle();
             AddNewVehicle.GetVehicleIDByDelegate += LoadVehicleInfo;
-            AddNewVehicle.Show();
+            AddNewVehicle.ShowDialog();
         }
     }
 }

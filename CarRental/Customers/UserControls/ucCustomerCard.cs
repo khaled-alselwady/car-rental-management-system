@@ -82,7 +82,7 @@ namespace CarRental.Customers.UserControls
         {
             frmAddEditCustomer EditCustomer = new frmAddEditCustomer(_CustomerID);
             EditCustomer.GetCustomerIDByDelegate += LoadCustomerInfo;
-            EditCustomer.Show();
+            EditCustomer.ShowDialog();
         }
     }
 }

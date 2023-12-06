@@ -11,13 +11,7 @@ using CarRental.Vehicles;
 using CarRental_Business;
 using FontAwesome.Sharp;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CarRental.Main
@@ -211,7 +205,7 @@ namespace CarRental.Main
 
             OpenChildForm(new frmDashboard(), _CurrentButton);
 
-            if (clsGlobal.CurrentUser.ImagePath != "")
+            if (clsGlobal.CurrentUser.ImagePath != null)
             {
                 pbUserImage.ImageLocation = clsGlobal.CurrentUser.ImagePath;
             }
@@ -229,7 +223,7 @@ namespace CarRental.Main
         private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             clsGlobal.CurrentUser = null;
-            _frmLoginForm.Show();
+            _frmLoginForm.ShowDialog();
             this.Close();
         }
     }

@@ -216,7 +216,7 @@ namespace CarRental.Users
             if (_User.ImagePath != pbUserImage.ImageLocation)
             {
 
-                if (_User.ImagePath != "")
+                if (_User.ImagePath != null)
                 {
                     // first we delete the old image from the folder in case there is any.
                     try
@@ -300,7 +300,7 @@ namespace CarRental.Users
             if (pbUserImage.ImageLocation != null)
                 _User.ImagePath = pbUserImage.ImageLocation;
             else
-                _User.ImagePath = "";
+                _User.ImagePath = null;
         }
 
         private void _SaveUser()
@@ -594,7 +594,7 @@ namespace CarRental.Users
 
         private void txtConfirmPassword_TextChanged(object sender, EventArgs e)
         {
-            txtPassword.UseSystemPasswordChar = true;
+            txtConfirmPassword.UseSystemPasswordChar = true;
         }
     }
 }

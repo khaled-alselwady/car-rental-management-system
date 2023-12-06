@@ -129,7 +129,7 @@ namespace CarRental.Customers.UserControls
         {
             frmAddEditCustomer AddNewCustomer = new frmAddEditCustomer();
             AddNewCustomer.GetCustomerIDByDelegate += LoadCustomerInfo;
-            AddNewCustomer.Show();
+            AddNewCustomer.ShowDialog();
         }
 
         public void FilterFocus()

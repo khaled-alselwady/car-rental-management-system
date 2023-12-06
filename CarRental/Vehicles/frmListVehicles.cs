@@ -411,7 +411,7 @@ namespace CarRental.Vehicles
         {
             frmAddEditVehicle EditVehicle = new frmAddEditVehicle(_GetVehicleIDFromDGV());
             EditVehicle.RefreshVehicleInfo += _RefreshVehiclesList;
-            EditVehicle.Show();
+            EditVehicle.ShowDialog();
         }
 
         private void DeleteVehicleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -438,7 +438,7 @@ namespace CarRental.Vehicles
         {
             frmAddEditVehicle AddVehicle = new frmAddEditVehicle();
             AddVehicle.RefreshVehicleInfo += _RefreshVehiclesList;
-            AddVehicle.Show();
+            AddVehicle.ShowDialog();
         }
 
         private void cmsEditProfile_Opening(object sender, CancelEventArgs e)
@@ -457,19 +457,19 @@ namespace CarRental.Vehicles
         private void btnMaintenance_Click(object sender, EventArgs e)
         {
             frmVehicleMaintenance Maintenance = new frmVehicleMaintenance();
-            Maintenance.Show();
+            Maintenance.ShowDialog();
         }
 
         private void MaintenanceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmVehicleMaintenance Maintenance = new frmVehicleMaintenance((int)dgvVehiclesList.CurrentRow.Cells["VehicleID"].Value);
-            Maintenance.Show();
+            Maintenance.ShowDialog();
         }
 
         private void ShowMaintenanceHistoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmShowVehicleMaintenanceHistory ShowVehicleMaintenanceHistory = new frmShowVehicleMaintenanceHistory(_GetVehicleIDFromDGV());
-            ShowVehicleMaintenanceHistory.Show();
+            ShowVehicleMaintenanceHistory.ShowDialog();
 
             _RefreshVehiclesList();
         }

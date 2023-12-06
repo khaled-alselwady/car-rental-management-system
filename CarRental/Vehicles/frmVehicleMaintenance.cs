@@ -153,7 +153,7 @@ namespace CarRental.Vehicles
         private void llShowVehicleMaintenanceHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             frmShowVehicleMaintenanceHistory ShowVehicleMaintenanceHistory = new frmShowVehicleMaintenanceHistory(_SelectedVehicleID);
-            ShowVehicleMaintenanceHistory.Show();
+            ShowVehicleMaintenanceHistory.ShowDialog();
         }
     }
 }

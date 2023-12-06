@@ -73,7 +73,7 @@ namespace CarRental.Vehicles.UserControls
         private void ShowVehicleDetailsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             frmShowVehicleDetails ShowVehicleDetails = new frmShowVehicleDetails((int)dgvVehicleMaintenanceHistoryList.CurrentRow.Cells["VehicleID"].Value);
-            ShowVehicleDetails.Show();
+            ShowVehicleDetails.ShowDialog();
 
             _RefreshMaintenanceHistoryList();
         }
@@ -82,13 +82,13 @@ namespace CarRental.Vehicles.UserControls
         {
             frmVehicleMaintenance Maintenance = new frmVehicleMaintenance((int)dgvVehicleMaintenanceHistoryList.CurrentRow.Cells["VehicleID"].Value);
             Maintenance.RefreshInfoInDGV += _RefreshMaintenanceHistoryList;
-            Maintenance.Show();
+            Maintenance.ShowDialog();
         }
 
         private void dgvVehicleMaintenanceHistoryList_DoubleClick(object sender, EventArgs e)
         {
             frmShowVehicleDetails ShowVehicleDetails = new frmShowVehicleDetails((int)dgvVehicleMaintenanceHistoryList.CurrentRow.Cells["VehicleID"].Value);
-            ShowVehicleDetails.Show();
+            ShowVehicleDetails.ShowDialog();
 
             _RefreshMaintenanceHistoryList();
         }
