@@ -532,7 +532,7 @@
             // lblTitle
             // 
             this.lblTitle.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(81)))), ((int)(((byte)(4)))));
+            this.lblTitle.ForeColor = System.Drawing.Color.Firebrick;
             this.lblTitle.Location = new System.Drawing.Point(0, 16);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(1298, 48);
