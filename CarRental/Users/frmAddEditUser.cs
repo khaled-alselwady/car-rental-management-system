@@ -109,13 +109,13 @@ namespace CarRental.Users
                 this.Text = "Update User";
             }
 
-            //set default image for the member
+            //set default image for the customer
             if (rbMale.Checked)
                 pbUserImage.Image = Resources.DefaultMale;
             else
                 pbUserImage.Image = Resources.DefaultFemale;
 
-            //hide/show the remove link in case there is no image for the member
+            //hide/show the remove link in case there is no image for the customer
             llRemoveImage.Visible = (pbUserImage.ImageLocation != null);
 
             //should not allow adding age less than 6 years
@@ -158,10 +158,8 @@ namespace CarRental.Users
             txtPhone.Text = _User.Phone;
             dtpDateOfBirth.Value = _User.DateOfBirth;
             txtUsername.Text = _User.Username;
-            txtPassword.Text = _User.Password;
-            txtConfirmPassword.Text = _User.Password;
             txtSecurityQuestion.Text = _User.SecurityQuestion;
-            txtSecurityAnswer.Text = _User.SecurityAnswer;
+            txtSecurityAnswer.Text = clsGlobal.Decrypt(_User.SecurityAnswer);
             cbCountry.SelectedIndex = cbCountry.FindString(_User.CountryInfo.CountryName);
 
             if (_User.Gender == (byte)clsPerson.enGender.Male)
@@ -197,11 +195,17 @@ namespace CarRental.Users
             _FillFieldsWithUserInfo();
 
             //load person image in case it was set.
-            if (_User.ImagePath != "")
+            if (_User.ImagePath != null)
                 pbUserImage.ImageLocation = _User.ImagePath;
 
             //hide/show the remove link in case there is no image for the person
-            llRemoveImage.Visible = (_User.ImagePath != "");
+            llRemoveImage.Visible = (_User.ImagePath != null);
+
+            // in update mode, I show the change password link label to allow the user to change his password
+            panelPassword.Visible = false;
+            chkIsActive.Location = new System.Drawing.Point(623, 283);
+            llChangePassword.Location = new System.Drawing.Point(676, 321);
+            llChangePassword.Visible = true;
         }
 
         private bool _HandleUserImage()
@@ -292,14 +296,19 @@ namespace CarRental.Users
             _User.Email = txtEmail.Text.Trim();
             _User.Address = txtAddress.Text.Trim();
             _User.Phone = txtPhone.Text.Trim();
-            _User.Password = txtPassword.Text.Trim();
+            _User.NationalityCountryID = clsCountry.Find(cbCountry.Text).CountryID;            
             _User.Gender = (rbMale.Checked) ? clsPerson.enGender.Male : clsPerson.enGender.Female;
             _User.DateOfBirth = dtpDateOfBirth.Value;
             _User.Username = txtUsername.Text.Trim();
             _User.IsActive = chkIsActive.Checked;
             _User.Permissions = _CountPermissions();
             _User.SecurityQuestion = txtSecurityQuestion.Text.Trim();
-            _User.SecurityAnswer = txtSecurityAnswer.Text.Trim();
+            _User.SecurityAnswer = clsGlobal.Encrypt(txtSecurityAnswer.Text.Trim());
+
+            if (_Mode == enMode.AddNew)
+            {
+                _User.Password = clsGlobal.ComputeHash(txtPassword.Text.Trim());
+            }
 
             if (pbUserImage.ImageLocation != null)
                 _User.ImagePath = pbUserImage.ImageLocation;
@@ -475,6 +484,11 @@ namespace CarRental.Users
 
         private void txtPassword_Validating(object sender, CancelEventArgs e)
         {
+            if (!panelPassword.Visible)
+            {
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(txtPassword.Text.Trim()))
             {
                 e.Cancel = true;
@@ -488,6 +502,11 @@ namespace CarRental.Users
 
         private void txtConfirmPassword_Validating(object sender, CancelEventArgs e)
         {
+            if (!panelPassword.Visible)
+            {
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(txtConfirmPassword.Text.Trim()))
             {
                 e.Cancel = true;
@@ -598,6 +617,12 @@ namespace CarRental.Users
         private void txtConfirmPassword_TextChanged(object sender, EventArgs e)
         {
             txtConfirmPassword.UseSystemPasswordChar = true;
+        }
+
+        private void llChangePassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmChangePassword ChangePassword = new frmChangePassword(_UserID, false);
+            ChangePassword.ShowDialog();
         }
     }
 }

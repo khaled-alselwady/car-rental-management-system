@@ -12,7 +12,7 @@ namespace CarRental_DataAccess
     {
         public static bool GetPersonInfoByID(int? PersonID, ref string Name, ref string Address,
             ref string Phone, ref string Email, ref DateTime DateOfBirth, ref byte Gender,
-            ref int NationalityCountryID, ref DateTime CreatedAt, ref DateTime? UpdatedAt)
+            ref int? NationalityCountryID, ref DateTime CreatedAt, ref DateTime? UpdatedAt)
         {
             bool IsFound = false;
 
@@ -41,7 +41,7 @@ namespace CarRental_DataAccess
                                 Email = (string)reader["Email"];
                                 DateOfBirth = (DateTime)reader["DateOfBirth"];
                                 Gender = (byte)reader["Gender"];
-                                NationalityCountryID = (int)reader["NationalityCountryID"];
+                                NationalityCountryID = (reader["NationalityCountryID"] != DBNull.Value) ? (int?)reader["NationalityCountryID"] : null;
                                 CreatedAt = (DateTime)reader["CreatedAt"];
                                 UpdatedAt = (reader["UpdatedAt"] != DBNull.Value) ? (DateTime?)reader["UpdatedAt"] : null;
                             }
@@ -71,7 +71,7 @@ namespace CarRental_DataAccess
         }
 
         public static int? AddNewPerson(string Name, string Address, string Phone, string Email,
-            DateTime DateOfBirth, byte Gender, int NationalityCountryID)
+            DateTime DateOfBirth, byte Gender, int? NationalityCountryID)
 
         {
             // This function will return the new person id if succeeded and null if not
@@ -95,10 +95,10 @@ select scope_identity()";
                         command.Parameters.AddWithValue("@Email", Email);
                         command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
                         command.Parameters.AddWithValue("@Gender", Gender);
-                        command.Parameters.AddWithValue("@NationalityCountryID", NationalityCountryID);
+                        command.Parameters.AddWithValue("@NationalityCountryID", (object)NationalityCountryID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@CreatedAt", DateTime.Now);
                         command.Parameters.AddWithValue("@UpdatedAt", DateTime.Now);
-                       
+
 
                         object result = command.ExecuteScalar();
 
@@ -122,7 +122,7 @@ select scope_identity()";
         }
 
         public static bool UpdatePerson(int? PersonID, string Name, string Address, string Phone,
-            string Email, DateTime DateOfBirth, byte Gender, int NationalityCountryID,
+            string Email, DateTime DateOfBirth, byte Gender, int? NationalityCountryID,
             DateTime CreatedAt)
         {
             int RowAffected = 0;
@@ -154,7 +154,7 @@ where PersonID = @PersonID";
                         command.Parameters.AddWithValue("@Email", Email);
                         command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
                         command.Parameters.AddWithValue("@Gender", Gender);
-                        command.Parameters.AddWithValue("@NationalityCountryID", NationalityCountryID);
+                        command.Parameters.AddWithValue("@NationalityCountryID", (object)NationalityCountryID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@CreatedAt", CreatedAt);
                         command.Parameters.AddWithValue("@UpdatedAt", DateTime.Now);
 

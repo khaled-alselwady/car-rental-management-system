@@ -94,7 +94,7 @@ namespace CarRental.Users.UserControls
 
             if (!_UserID.HasValue)
             {
-                MessageBox.Show("There is no user", "Missing Member",
+                MessageBox.Show("There is no user", "Missing Customer",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 Reset();

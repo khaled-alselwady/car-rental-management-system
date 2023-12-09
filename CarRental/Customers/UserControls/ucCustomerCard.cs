@@ -55,7 +55,7 @@ namespace CarRental.Customers.UserControls
 
             if (!_CustomerID.HasValue)
             {
-                MessageBox.Show("There is no member", "Missing Member",
+                MessageBox.Show("There is no customer", "Missing Customer",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 Reset();
@@ -67,7 +67,7 @@ namespace CarRental.Customers.UserControls
 
             if (_Customer == null)
             {
-                MessageBox.Show($"There is no member with id = {CustomerID}", "Missing Member",
+                MessageBox.Show($"There is no customer with id = {CustomerID}", "Missing Customer",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 Reset();

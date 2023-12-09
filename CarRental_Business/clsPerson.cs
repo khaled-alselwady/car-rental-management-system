@@ -22,7 +22,7 @@ namespace CarRental_Business
         public string Email { get; set; }
         public DateTime DateOfBirth { get; set; }
         public enGender Gender { get; set; }
-        public int NationalityCountryID { get; set; }
+        public int? NationalityCountryID { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
 
@@ -38,7 +38,7 @@ namespace CarRental_Business
             this.Email = string.Empty;
             this.DateOfBirth = DateTime.Now;
             this.Gender = 0;
-            this.NationalityCountryID = -1;
+            this.NationalityCountryID = null;
             this.CreatedAt = DateTime.Now;
             this.UpdatedAt = null;
 
@@ -46,7 +46,7 @@ namespace CarRental_Business
         }
 
         private clsPerson(int? PersonID, string Name, string Address, string Phone,
-            string Email, DateTime DateOfBirth, enGender Gender, int NationalityCountryID,
+            string Email, DateTime DateOfBirth, enGender Gender, int? NationalityCountryID,
             DateTime CreatedAt, DateTime? UpdatedAt)
         {
             this.PersonID = PersonID;
@@ -109,7 +109,7 @@ namespace CarRental_Business
             string Email = string.Empty;
             DateTime DateOfBirth = DateTime.Now;
             byte Gender = 0;
-            int NationalityCountryID = -1;
+            int? NationalityCountryID = null;
             DateTime CreatedAt = DateTime.Now;
             DateTime? UpdatedAt = null;
 

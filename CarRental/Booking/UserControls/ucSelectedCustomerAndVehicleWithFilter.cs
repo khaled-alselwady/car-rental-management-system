@@ -45,7 +45,7 @@ namespace CarRental.Booking.UserControls
             InitializeComponent();
         }
 
-        private bool _IsMemberCorrect()
+        private bool _IsCustomerCorrect()
         {
             if (!_SelectedCustomerID.HasValue)
             {
@@ -65,7 +65,7 @@ namespace CarRental.Booking.UserControls
             ucCustomerCardWithFilter1.FilterFocus();
         }
 
-        public void LoadCustomerInfo(int CustomerID)
+        public void LoadCustomerInfo(int? CustomerID)
         {
             ucCustomerCardWithFilter1.LoadCustomerInfo(CustomerID);
             ucCustomerCardWithFilter1.FilterEnabled = false;
@@ -73,7 +73,7 @@ namespace CarRental.Booking.UserControls
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            if (_IsMemberCorrect())
+            if (_IsCustomerCorrect())
             {
                 tcSelectCustomerVehicle.SelectedTab = tpSelectVehicle;
                 ucVehicleCardWithFilter1.FilterFocus();
@@ -88,7 +88,7 @@ namespace CarRental.Booking.UserControls
             {
                 tcSelectCustomerVehicle.SelectedTab = tpSelectCustomer;
 
-                if (_IsMemberCorrect())
+                if (_IsCustomerCorrect())
                 {
                     ucVehicleCardWithFilter1.FilterFocus();
                     tcSelectCustomerVehicle.SelectedTab = tpSelectVehicle;

@@ -1,4 +1,5 @@
-﻿using CarRental_Business;
+﻿using CarRental.GlobalClasses;
+using CarRental_Business;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,7 +37,7 @@ namespace CarRental.Login
                 return;
             }
 
-            if (User.ChangePassword(txtNewPassword.Text.Trim()))
+            if (User.ChangePassword(clsGlobal.ComputeHash(txtNewPassword.Text.Trim())))
             {
                 MessageBox.Show("Password Changed Successfully,\nyou can log in now.", "Success",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -1,4 +1,5 @@
-﻿using CarRental_Business;
+﻿using CarRental.GlobalClasses;
+using CarRental_Business;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -52,7 +53,7 @@ namespace CarRental.Login
 
         private bool _CheckAnswer()
         {
-            return (_User.SecurityAnswer.ToLower() == txtAnswer.Text.Trim().ToLower());
+            return (clsGlobal.Decrypt(_User.SecurityAnswer).ToLower() == txtAnswer.Text.Trim().ToLower());
         }
 
         private void btnClose_Click(object sender, EventArgs e)

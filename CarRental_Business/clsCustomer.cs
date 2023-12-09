@@ -26,7 +26,7 @@ namespace CarRental_Business
         }
 
         private clsCustomer(int? PersonID, string Name, string Address, string Phone,
-            string Email, DateTime DateOfBirth, enGender Gender, int NationalityCountryID,
+            string Email, DateTime DateOfBirth, enGender Gender, int? NationalityCountryID,
             DateTime CreatedAt, DateTime? UpdatedAt, int? CustomerID, string DriverLicenseNumber)
         {
             base.PersonID = PersonID;

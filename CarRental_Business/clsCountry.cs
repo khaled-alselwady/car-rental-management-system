@@ -32,7 +32,7 @@ namespace CarRental_Business
             Mode = enMode.Update;
         }
        
-        public static clsCountry Find(int CountryID)
+        public static clsCountry Find(int? CountryID)
         {
             string CountryName = string.Empty;
 

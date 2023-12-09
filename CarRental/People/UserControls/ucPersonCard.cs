@@ -64,7 +64,7 @@ namespace CarRental.People.UserControls
 
             if (!PersonID.HasValue)
             {
-                MessageBox.Show("There is no person", "Missing Member",
+                MessageBox.Show("There is no person", "Missing Customer",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 Reset();
@@ -76,7 +76,7 @@ namespace CarRental.People.UserControls
 
             if (_Person == null)
             {
-                MessageBox.Show($"There is no person with id = {PersonID}", "Missing Member",
+                MessageBox.Show($"There is no person with id = {PersonID}", "Missing Customer",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 Reset();

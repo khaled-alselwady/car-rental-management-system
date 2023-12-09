@@ -48,7 +48,7 @@ namespace CarRental_Business
         }
 
         private clsUser(int? PersonID, string Name, string Address, string Phone,
-            string Email, DateTime DateOfBirth, enGender Gender, int NationalityCountryID,
+            string Email, DateTime DateOfBirth, enGender Gender, int? NationalityCountryID,
             DateTime CreatedAt, DateTime? UpdatedAt, int? UserID, string Username, string Password,
             int Permissions, string SecurityQuestion, string SecurityAnswer,
             string ImagePath, bool IsActive)
