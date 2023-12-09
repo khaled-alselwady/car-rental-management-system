@@ -1,4 +1,5 @@
-﻿using CarRental_Business;
+﻿using CarRental.GlobalClasses;
+using CarRental_Business;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -300,6 +301,11 @@ namespace CarRental.Users
             ShowUserDetails.ShowDialog();
 
             _RefreshUsersList();
+        }
+
+        private void cmsEditProfile_Opening(object sender, CancelEventArgs e)
+        {
+            DeleteToolStripMenuItem.Enabled = ((int)dgvUsersList.CurrentRow.Cells["UserID"].Value != clsGlobal.CurrentUser.UserID);
         }
     }
 }

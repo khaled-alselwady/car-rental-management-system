@@ -33,6 +33,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvUsersList = new System.Windows.Forms.DataGridView();
             this.cmsEditProfile = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
+            this.ShowUserDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ChangePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cbCountry = new System.Windows.Forms.ComboBox();
             this.lblNumberOfRecords = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,10 +45,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbGender = new System.Windows.Forms.ComboBox();
             this.cbIsActive = new System.Windows.Forms.ComboBox();
-            this.ShowUserDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.EditUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ChangePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pbImage = new System.Windows.Forms.PictureBox();
             this.btnAddNewUser = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsersList)).BeginInit();
@@ -115,7 +115,46 @@
             this.cmsEditProfile.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
             this.cmsEditProfile.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
             this.cmsEditProfile.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.cmsEditProfile.Size = new System.Drawing.Size(226, 156);
+            this.cmsEditProfile.Size = new System.Drawing.Size(226, 178);
+            this.cmsEditProfile.Opening += new System.ComponentModel.CancelEventHandler(this.cmsEditProfile_Opening);
+            // 
+            // ShowUserDetailsToolStripMenuItem1
+            // 
+            this.ShowUserDetailsToolStripMenuItem1.ForeColor = System.Drawing.Color.Black;
+            this.ShowUserDetailsToolStripMenuItem1.Image = global::CarRental.Properties.Resources.person_details32;
+            this.ShowUserDetailsToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ShowUserDetailsToolStripMenuItem1.Name = "ShowUserDetailsToolStripMenuItem1";
+            this.ShowUserDetailsToolStripMenuItem1.Size = new System.Drawing.Size(225, 38);
+            this.ShowUserDetailsToolStripMenuItem1.Text = "   Show User Details";
+            this.ShowUserDetailsToolStripMenuItem1.Click += new System.EventHandler(this.ShowUserDetailsToolStripMenuItem1_Click);
+            // 
+            // EditUserToolStripMenuItem
+            // 
+            this.EditUserToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
+            this.EditUserToolStripMenuItem.Image = global::CarRental.Properties.Resources.edit_32;
+            this.EditUserToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.EditUserToolStripMenuItem.Name = "EditUserToolStripMenuItem";
+            this.EditUserToolStripMenuItem.Size = new System.Drawing.Size(225, 38);
+            this.EditUserToolStripMenuItem.Text = "   Edit";
+            this.EditUserToolStripMenuItem.Click += new System.EventHandler(this.EditUserToolStripMenuItem_Click);
+            // 
+            // DeleteToolStripMenuItem
+            // 
+            this.DeleteToolStripMenuItem.Image = global::CarRental.Properties.Resources.Delete_32;
+            this.DeleteToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem";
+            this.DeleteToolStripMenuItem.Size = new System.Drawing.Size(225, 38);
+            this.DeleteToolStripMenuItem.Text = "   Delete";
+            this.DeleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
+            // 
+            // ChangePasswordToolStripMenuItem
+            // 
+            this.ChangePasswordToolStripMenuItem.Image = global::CarRental.Properties.Resources.Password_32;
+            this.ChangePasswordToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ChangePasswordToolStripMenuItem.Name = "ChangePasswordToolStripMenuItem";
+            this.ChangePasswordToolStripMenuItem.Size = new System.Drawing.Size(225, 38);
+            this.ChangePasswordToolStripMenuItem.Text = "   Change Password";
+            this.ChangePasswordToolStripMenuItem.Click += new System.EventHandler(this.ChangePasswordToolStripMenuItem_Click);
             // 
             // cbCountry
             // 
@@ -218,44 +257,6 @@
             this.cbIsActive.Size = new System.Drawing.Size(113, 28);
             this.cbIsActive.TabIndex = 182;
             this.cbIsActive.SelectedIndexChanged += new System.EventHandler(this.cbIsActive_SelectedIndexChanged);
-            // 
-            // ShowUserDetailsToolStripMenuItem1
-            // 
-            this.ShowUserDetailsToolStripMenuItem1.ForeColor = System.Drawing.Color.Black;
-            this.ShowUserDetailsToolStripMenuItem1.Image = global::CarRental.Properties.Resources.person_details32;
-            this.ShowUserDetailsToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.ShowUserDetailsToolStripMenuItem1.Name = "ShowUserDetailsToolStripMenuItem1";
-            this.ShowUserDetailsToolStripMenuItem1.Size = new System.Drawing.Size(225, 38);
-            this.ShowUserDetailsToolStripMenuItem1.Text = "   Show User Details";
-            this.ShowUserDetailsToolStripMenuItem1.Click += new System.EventHandler(this.ShowUserDetailsToolStripMenuItem1_Click);
-            // 
-            // EditUserToolStripMenuItem
-            // 
-            this.EditUserToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
-            this.EditUserToolStripMenuItem.Image = global::CarRental.Properties.Resources.edit_32;
-            this.EditUserToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.EditUserToolStripMenuItem.Name = "EditUserToolStripMenuItem";
-            this.EditUserToolStripMenuItem.Size = new System.Drawing.Size(225, 38);
-            this.EditUserToolStripMenuItem.Text = "   Edit";
-            this.EditUserToolStripMenuItem.Click += new System.EventHandler(this.EditUserToolStripMenuItem_Click);
-            // 
-            // DeleteToolStripMenuItem
-            // 
-            this.DeleteToolStripMenuItem.Image = global::CarRental.Properties.Resources.Delete_32;
-            this.DeleteToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem";
-            this.DeleteToolStripMenuItem.Size = new System.Drawing.Size(225, 38);
-            this.DeleteToolStripMenuItem.Text = "   Delete";
-            this.DeleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
-            // 
-            // ChangePasswordToolStripMenuItem
-            // 
-            this.ChangePasswordToolStripMenuItem.Image = global::CarRental.Properties.Resources.Password_32;
-            this.ChangePasswordToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.ChangePasswordToolStripMenuItem.Name = "ChangePasswordToolStripMenuItem";
-            this.ChangePasswordToolStripMenuItem.Size = new System.Drawing.Size(225, 38);
-            this.ChangePasswordToolStripMenuItem.Text = "   Change Password";
-            this.ChangePasswordToolStripMenuItem.Click += new System.EventHandler(this.ChangePasswordToolStripMenuItem_Click);
             // 
             // pbImage
             // 
