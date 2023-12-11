@@ -292,11 +292,17 @@ namespace CarRental.Users
 
         private void _FillUserObjectWithFieldsData()
         {
+            // refresh user password in case I change it in the frmChangePassword form in Update mode
+            if (_Mode == enMode.Update)
+            {
+                _User = clsUser.Find(_UserID);
+            }
+
             _User.Name = txtName.Text.Trim();
             _User.Email = txtEmail.Text.Trim();
             _User.Address = txtAddress.Text.Trim();
             _User.Phone = txtPhone.Text.Trim();
-            _User.NationalityCountryID = clsCountry.Find(cbCountry.Text).CountryID;            
+            _User.NationalityCountryID = clsCountry.Find(cbCountry.Text).CountryID;
             _User.Gender = (rbMale.Checked) ? clsPerson.enGender.Male : clsPerson.enGender.Female;
             _User.DateOfBirth = dtpDateOfBirth.Value;
             _User.Username = txtUsername.Text.Trim();
