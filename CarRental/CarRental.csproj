@@ -50,6 +50,7 @@
     <Reference Include="System.Design" />
     <Reference Include="System.Management" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -808,6 +809,69 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\failed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Dashboard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\New Project %283%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DashboardWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DashboardWhite2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DashbordWhite100px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DashboardBlue100px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CustomersBlue100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CustomersWhite100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CustomersWhite-96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UsersBlue125-.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UsersWhite-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VehiclesBlue-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VehilcesWhite-90.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BookingBlue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BookingWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ReturnCar-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ReturnCarWhite-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TransactionBlue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TransactionWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoutWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logout_Blue.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -182,9 +182,9 @@ namespace CarRental_Business
             return clsVehicleData.GetAllVehicles();
         }
 
-        public static int GetVehiclesCount()
+        public static int GetAllVehiclesCount()
         {
-            return clsVehicleData.GetVehiclesCount();
+            return clsVehicleData.GetAllVehiclesCount();
         }
 
         public int? Maintenance(string Description, DateTime MaintenanceDate, float Cost)
@@ -221,5 +221,9 @@ namespace CarRental_Business
             return clsVehicleData.UpdateAvailableForRent(this.VehicleID, false);
         }
 
+        public static int GetAvailableVehiclesCount()
+        {
+            return clsVehicleData.GetAvailableVehiclesCount();
+        }
     }
 }

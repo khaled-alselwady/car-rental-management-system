@@ -48,7 +48,7 @@
             // ucCustomerCard1
             // 
             this.ucCustomerCard1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucCustomerCard1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ucCustomerCard1.BackColor = System.Drawing.Color.White;
             this.ucCustomerCard1.Location = new System.Drawing.Point(29, 70);
             this.ucCustomerCard1.Name = "ucCustomerCard1";
             this.ucCustomerCard1.Size = new System.Drawing.Size(723, 397);
@@ -57,7 +57,7 @@
             // ucCustomerBookingHistory1
             // 
             this.ucCustomerBookingHistory1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucCustomerBookingHistory1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ucCustomerBookingHistory1.BackColor = System.Drawing.Color.White;
             this.ucCustomerBookingHistory1.Location = new System.Drawing.Point(3, 473);
             this.ucCustomerBookingHistory1.Name = "ucCustomerBookingHistory1";
             this.ucCustomerBookingHistory1.Size = new System.Drawing.Size(774, 354);
@@ -83,7 +83,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(782, 870);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.ucCustomerBookingHistory1);

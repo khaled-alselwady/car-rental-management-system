@@ -62,7 +62,7 @@
             // ucTransactionCard1
             // 
             this.ucTransactionCard1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucTransactionCard1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ucTransactionCard1.BackColor = System.Drawing.Color.White;
             this.ucTransactionCard1.Location = new System.Drawing.Point(3, 74);
             this.ucTransactionCard1.Name = "ucTransactionCard1";
             this.ucTransactionCard1.Size = new System.Drawing.Size(785, 260);
@@ -73,7 +73,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(789, 382);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.ucTransactionCard1);

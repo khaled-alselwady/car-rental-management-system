@@ -201,11 +201,11 @@ namespace CarRental_DataAccess
                     connection.Open();
 
                     string query = @"if not Exists (select found = 1 from Users where Username = @Username)
-begin
-insert into Users (PersonID, Username, Password, Permissions, SecurityQuestion, SecurityAnswer, ImagePath, IsActive)
-values (@PersonID, @Username, @Password, @Permissions, @SecurityQuestion, @SecurityAnswer, @ImagePath, @IsActive)
-select scope_identity()
-end";
+    begin
+    insert into Users (PersonID, Username, Password, Permissions, SecurityQuestion, SecurityAnswer, ImagePath, IsActive)
+    values (@PersonID, @Username, @Password, @Permissions, @SecurityQuestion, @SecurityAnswer, @ImagePath, @IsActive)
+    select scope_identity()
+    end";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -252,15 +252,15 @@ end";
                     connection.Open();
 
                     string query = @"Update Users
-set PersonID = @PersonID,
-Username = @Username,
-Password = @Password,
-Permissions = @Permissions,
-SecurityQuestion = @SecurityQuestion,
-SecurityAnswer = @SecurityAnswer,
-ImagePath = @ImagePath,
-IsActive = @IsActive
-where UserID = @UserID";
+    set PersonID = @PersonID,
+    Username = @Username,
+    Password = @Password,
+    Permissions = @Permissions,
+    SecurityQuestion = @SecurityQuestion,
+    SecurityAnswer = @SecurityAnswer,
+    ImagePath = @ImagePath,
+    IsActive = @IsActive
+    where UserID = @UserID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -552,8 +552,8 @@ where UserID = @UserID";
                     connection.Open();
 
                     string query = @"update users 
-                     set Password = @Password
-                     where UserID = @UserID";
+                         set Password = @Password
+                         where UserID = @UserID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {

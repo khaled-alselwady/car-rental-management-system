@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.llTransactionInfo = new System.Windows.Forms.LinkLabel();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.lblVehicleID = new System.Windows.Forms.Label();
@@ -59,7 +60,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label22 = new System.Windows.Forms.Label();
             this.lblBookingID = new System.Windows.Forms.Label();
-            this.llTransactionInfo = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -113,6 +113,18 @@
             this.groupBox1.TabIndex = 178;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Booking Info";
+            // 
+            // llTransactionInfo
+            // 
+            this.llTransactionInfo.AutoSize = true;
+            this.llTransactionInfo.Enabled = false;
+            this.llTransactionInfo.Location = new System.Drawing.Point(605, 216);
+            this.llTransactionInfo.Name = "llTransactionInfo";
+            this.llTransactionInfo.Size = new System.Drawing.Size(168, 20);
+            this.llTransactionInfo.TabIndex = 213;
+            this.llTransactionInfo.TabStop = true;
+            this.llTransactionInfo.Text = "Show Transaction Info";
+            this.llTransactionInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llTransactionInfo_LinkClicked);
             // 
             // pictureBox8
             // 
@@ -434,24 +446,12 @@
             this.lblBookingID.TabIndex = 148;
             this.lblBookingID.Text = "[????]";
             // 
-            // llTransactionInfo
-            // 
-            this.llTransactionInfo.AutoSize = true;
-            this.llTransactionInfo.Enabled = false;
-            this.llTransactionInfo.Location = new System.Drawing.Point(605, 216);
-            this.llTransactionInfo.Name = "llTransactionInfo";
-            this.llTransactionInfo.Size = new System.Drawing.Size(168, 20);
-            this.llTransactionInfo.TabIndex = 213;
-            this.llTransactionInfo.TabStop = true;
-            this.llTransactionInfo.Text = "Show Transaction Info";
-            this.llTransactionInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llTransactionInfo_LinkClicked);
-            // 
             // ucBookingCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.groupBox1);
             this.Name = "ucBookingCard";
             this.Size = new System.Drawing.Size(785, 245);

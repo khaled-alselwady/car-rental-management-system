@@ -30,8 +30,8 @@
         {
             this.tcSelectCustomerVehicle = new Guna.UI2.WinForms.Guna2TabControl();
             this.tpSelectCustomer = new System.Windows.Forms.TabPage();
-            this.tpSelectVehicle = new System.Windows.Forms.TabPage();
             this.ucCustomerCard1 = new CarRental.Customers.UserControls.ucCustomerCard();
+            this.tpSelectVehicle = new System.Windows.Forms.TabPage();
             this.ucVehicleCard1 = new CarRental.Vehicles.UserControls.ucVehicleCard();
             this.tcSelectCustomerVehicle.SuspendLayout();
             this.tpSelectCustomer.SuspendLayout();
@@ -70,7 +70,7 @@
             // 
             // tpSelectCustomer
             // 
-            this.tpSelectCustomer.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tpSelectCustomer.BackColor = System.Drawing.Color.White;
             this.tpSelectCustomer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tpSelectCustomer.Controls.Add(this.ucCustomerCard1);
             this.tpSelectCustomer.Location = new System.Drawing.Point(4, 44);
@@ -81,9 +81,18 @@
             this.tpSelectCustomer.TabIndex = 0;
             this.tpSelectCustomer.Text = "Customer Info";
             // 
+            // ucCustomerCard1
+            // 
+            this.ucCustomerCard1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ucCustomerCard1.BackColor = System.Drawing.Color.White;
+            this.ucCustomerCard1.Location = new System.Drawing.Point(20, 2);
+            this.ucCustomerCard1.Name = "ucCustomerCard1";
+            this.ucCustomerCard1.Size = new System.Drawing.Size(723, 397);
+            this.ucCustomerCard1.TabIndex = 0;
+            // 
             // tpSelectVehicle
             // 
-            this.tpSelectVehicle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tpSelectVehicle.BackColor = System.Drawing.Color.White;
             this.tpSelectVehicle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tpSelectVehicle.Controls.Add(this.ucVehicleCard1);
             this.tpSelectVehicle.Location = new System.Drawing.Point(4, 44);
@@ -94,19 +103,10 @@
             this.tpSelectVehicle.TabIndex = 1;
             this.tpSelectVehicle.Text = "Vehicle Info";
             // 
-            // ucCustomerCard1
-            // 
-            this.ucCustomerCard1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucCustomerCard1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ucCustomerCard1.Location = new System.Drawing.Point(20, 2);
-            this.ucCustomerCard1.Name = "ucCustomerCard1";
-            this.ucCustomerCard1.Size = new System.Drawing.Size(723, 397);
-            this.ucCustomerCard1.TabIndex = 0;
-            // 
             // ucVehicleCard1
             // 
             this.ucVehicleCard1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucVehicleCard1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ucVehicleCard1.BackColor = System.Drawing.Color.White;
             this.ucVehicleCard1.Location = new System.Drawing.Point(10, 5);
             this.ucVehicleCard1.Name = "ucVehicleCard1";
             this.ucVehicleCard1.Size = new System.Drawing.Size(772, 359);
@@ -117,7 +117,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tcSelectCustomerVehicle);
             this.Name = "ucSelectedCustomerAndVehicleCard";
             this.Size = new System.Drawing.Size(796, 456);

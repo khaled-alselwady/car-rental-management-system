@@ -36,7 +36,7 @@
             // ucTransactionCardWithBookingAndReturn1
             // 
             this.ucTransactionCardWithBookingAndReturn1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucTransactionCardWithBookingAndReturn1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ucTransactionCardWithBookingAndReturn1.BackColor = System.Drawing.Color.White;
             this.ucTransactionCardWithBookingAndReturn1.Location = new System.Drawing.Point(0, 72);
             this.ucTransactionCardWithBookingAndReturn1.Name = "ucTransactionCardWithBookingAndReturn1";
             this.ucTransactionCardWithBookingAndReturn1.Size = new System.Drawing.Size(800, 560);
@@ -74,7 +74,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(799, 680);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblTitle);

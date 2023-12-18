@@ -10,6 +10,7 @@ using CarRental.Users;
 using CarRental.Vehicles;
 using CarRental_Business;
 using FontAwesome.Sharp;
+using Guna.UI2.WinForms;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -18,7 +19,7 @@ namespace CarRental.Main
 {
     public partial class frmMainMenu : Form
     {
-        private IconButton _CurrentButton;
+        private Guna2Button _CurrentButton;
 
         private Form _ActiveForm;
 
@@ -37,13 +38,13 @@ namespace CarRental.Main
         {
             if (btnSender != null)
             {
-                if (_CurrentButton != (IconButton)btnSender)
+                if (_CurrentButton != (Guna2Button)btnSender)
                 {
                     DisableMenuButton();
                     //Color color = SelectThemeColor();
-                    _CurrentButton = (IconButton)btnSender;
+                    _CurrentButton = (Guna2Button)btnSender;
                     _CurrentButton.BackColor = Color.WhiteSmoke;
-                    _CurrentButton.IconColor = Color.FromArgb(60, 60, 60);
+                    //_CurrentButton.IconColor = Color.FromArgb(60, 60, 60);
                     _CurrentButton.ForeColor = Color.FromArgb(60, 60, 60);
                     _CurrentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 }
@@ -52,17 +53,17 @@ namespace CarRental.Main
 
         private void DisableMenuButton()
         {
-            IconButton iconbutton = new IconButton();
+            Guna2Button iconbutton = new Guna2Button();
 
             foreach (Control previousBtn in panelMenu.Controls)
             {
-                if (previousBtn.GetType() == typeof(IconButton))
+                if (previousBtn.GetType() == typeof(Guna2Button))
                 {
-                    iconbutton = (IconButton)previousBtn;
+                    iconbutton = (Guna2Button)previousBtn;
 
                     previousBtn.BackColor = Color.FromArgb(0, 122, 204);
                     previousBtn.ForeColor = Color.Gainsboro;
-                    iconbutton.IconColor = Color.Gainsboro;
+                    //iconbutton.IconColor = Color.Gainsboro;
                     previousBtn.Font = new System.Drawing.Font("Tahoma", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 }
             }
@@ -199,7 +200,7 @@ namespace CarRental.Main
             _CurrentButton = btnDashboard;
 
             _CurrentButton.BackColor = Color.WhiteSmoke;
-            _CurrentButton.IconColor = Color.FromArgb(60, 60, 60);
+            //_CurrentButton.IconColor = Color.FromArgb(60, 60, 60);
             _CurrentButton.ForeColor = Color.FromArgb(60, 60, 60);
             _CurrentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 
@@ -223,8 +224,21 @@ namespace CarRental.Main
         private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             clsGlobal.CurrentUser = null;
-            _frmLoginForm.ShowDialog();
+            _frmLoginForm.Show();
             this.Close();
+        }
+
+        private void MoveImageSlide(object sender)
+        {
+            Guna2Button Button1 = (Guna2Button)sender;
+
+            pbImgaeSlide.Location = new Point(Button1.Location.X + 130, Button1.Location.Y - 30);
+            pbImgaeSlide.SendToBack();
+        }
+
+        private void btnLogOut_CheckedChanged(object sender, EventArgs e)
+        {
+            MoveImageSlide(sender);
         }
     }
 }

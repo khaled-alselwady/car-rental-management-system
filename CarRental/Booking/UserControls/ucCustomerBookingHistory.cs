@@ -1,4 +1,5 @@
-﻿using CarRental_Business;
+﻿using CarRental.Return;
+using CarRental_Business;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -92,7 +93,20 @@ namespace CarRental.Booking.UserControls
 
         private void cmsEditProfile_Opening(object sender, CancelEventArgs e)
         {
-            ShowBookingDetailsToolStripMenuItem1.Enabled = (dgvBookingHistoryList.Rows.Count > 0);
+            if (dgvBookingHistoryList.Rows.Count == 0)
+            {
+                cmsEditProfile.Enabled = false;
+                return;
+            }
+
+            clsBooking Booking = clsBooking.Find((int)dgvBookingHistoryList.CurrentRow.Cells["BookingID"].Value);
+
+            if (Booking == null)
+            {
+                return;
+            }
+
+            ReturnToolStripMenuItem.Enabled = !Booking.IsBookingReturned;
         }
 
         private void dgvBookingHistoryList_DoubleClick(object sender, EventArgs e)
@@ -102,6 +116,14 @@ namespace CarRental.Booking.UserControls
 
             frmShowBookingDetailsWithCustomerAndVehicle ShowBookingDetails = new frmShowBookingDetailsWithCustomerAndVehicle(_GetBookingIDFromDGV());
             ShowBookingDetails.ShowDialog();
+
+            _RefreshBookingHistoryList();
+        }
+
+        private void ReturnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReturnVehicle ReturnVehicle = new frmReturnVehicle((int)dgvBookingHistoryList.CurrentRow.Cells["BookingID"].Value);
+            ReturnVehicle.ShowDialog();
 
             _RefreshBookingHistoryList();
         }

@@ -36,7 +36,7 @@
             // ucUserCard1
             // 
             this.ucUserCard1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucUserCard1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ucUserCard1.BackColor = System.Drawing.Color.White;
             this.ucUserCard1.EditEnabled = false;
             this.ucUserCard1.Location = new System.Drawing.Point(1, 73);
             this.ucUserCard1.Name = "ucUserCard1";
@@ -75,7 +75,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(719, 584);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.label1);

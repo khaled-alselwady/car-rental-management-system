@@ -31,7 +31,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dgvTransactionList = new System.Windows.Forms.DataGridView();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cmsEditProfile = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
             this.ShowTransactionToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ShowCustomerDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,58 +48,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pbImage = new System.Windows.Forms.PictureBox();
             this.cbTransactionType = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionList)).BeginInit();
+            this.dgvTransactionList = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.cmsEditProfile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionList)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dgvTransactionList
-            // 
-            this.dgvTransactionList.AllowUserToAddRows = false;
-            this.dgvTransactionList.AllowUserToDeleteRows = false;
-            this.dgvTransactionList.AllowUserToResizeRows = false;
-            this.dgvTransactionList.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTransactionList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvTransactionList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTransactionList.ContextMenuStrip = this.cmsEditProfile;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTransactionList.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvTransactionList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvTransactionList.Location = new System.Drawing.Point(15, 277);
-            this.dgvTransactionList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dgvTransactionList.MultiSelect = false;
-            this.dgvTransactionList.Name = "dgvTransactionList";
-            this.dgvTransactionList.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTransactionList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvTransactionList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTransactionList.Size = new System.Drawing.Size(1340, 467);
-            this.dgvTransactionList.TabIndex = 189;
-            this.dgvTransactionList.TabStop = false;
-            this.dgvTransactionList.DoubleClick += new System.EventHandler(this.dgvTransactionList_DoubleClick);
             // 
             // cmsEditProfile
             // 
-            this.cmsEditProfile.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cmsEditProfile.BackColor = System.Drawing.Color.White;
             this.cmsEditProfile.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmsEditProfile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ShowTransactionToolStripMenuItem1,
@@ -106,18 +65,19 @@
             this.ShowVehicleDetailsToolStripMenuItem,
             this.ShowBookingDetailsToolStripMenuItem1,
             this.ShowReturnDetailsToolStripMenuItem,
+            this.toolStripSeparator1,
             this.TakeOrPayRefundToolStripMenuItem});
             this.cmsEditProfile.Name = "guna2ContextMenuStrip1";
             this.cmsEditProfile.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
-            this.cmsEditProfile.RenderStyle.BorderColor = System.Drawing.Color.Gainsboro;
+            this.cmsEditProfile.RenderStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(212)))));
             this.cmsEditProfile.RenderStyle.ColorTable = null;
             this.cmsEditProfile.RenderStyle.RoundedEdges = true;
             this.cmsEditProfile.RenderStyle.SelectionArrowColor = System.Drawing.Color.White;
             this.cmsEditProfile.RenderStyle.SelectionBackColor = System.Drawing.Color.Gray;
             this.cmsEditProfile.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
-            this.cmsEditProfile.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
+            this.cmsEditProfile.RenderStyle.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(212)))));
             this.cmsEditProfile.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.cmsEditProfile.Size = new System.Drawing.Size(272, 254);
+            this.cmsEditProfile.Size = new System.Drawing.Size(272, 260);
             this.cmsEditProfile.Opening += new System.ComponentModel.CancelEventHandler(this.cmsEditProfile_Opening);
             // 
             // ShowTransactionToolStripMenuItem1
@@ -255,7 +215,7 @@
             this.pbImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbImage.Image = global::CarRental.Properties.Resources.rental_price_per_day321;
             this.pbImage.InitialImage = null;
-            this.pbImage.Location = new System.Drawing.Point(506, 31);
+            this.pbImage.Location = new System.Drawing.Point(521, 16);
             this.pbImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pbImage.Name = "pbImage";
             this.pbImage.Size = new System.Drawing.Size(306, 189);
@@ -280,15 +240,92 @@
             this.cbTransactionType.TabIndex = 192;
             this.cbTransactionType.SelectedIndexChanged += new System.EventHandler(this.cbTransactionType_SelectedIndexChanged);
             // 
+            // dgvTransactionList
+            // 
+            this.dgvTransactionList.AllowUserToAddRows = false;
+            this.dgvTransactionList.AllowUserToDeleteRows = false;
+            this.dgvTransactionList.AllowUserToOrderColumns = true;
+            this.dgvTransactionList.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvTransactionList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvTransactionList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgvTransactionList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.dgvTransactionList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvTransactionList.ColumnHeadersHeight = 40;
+            this.dgvTransactionList.ContextMenuStrip = this.cmsEditProfile;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(223)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(133)))), ((int)(((byte)(147)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTransactionList.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvTransactionList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvTransactionList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(199)))), ((int)(((byte)(206)))));
+            this.dgvTransactionList.Location = new System.Drawing.Point(12, 276);
+            this.dgvTransactionList.Name = "dgvTransactionList";
+            this.dgvTransactionList.ReadOnly = true;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTransactionList.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvTransactionList.RowHeadersVisible = false;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvTransactionList.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvTransactionList.RowTemplate.Height = 33;
+            this.dgvTransactionList.ShowCellToolTips = false;
+            this.dgvTransactionList.Size = new System.Drawing.Size(1344, 469);
+            this.dgvTransactionList.TabIndex = 193;
+            this.dgvTransactionList.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.WetAsphalt;
+            this.dgvTransactionList.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
+            this.dgvTransactionList.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvTransactionList.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.dgvTransactionList.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.dgvTransactionList.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.dgvTransactionList.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.dgvTransactionList.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(199)))), ((int)(((byte)(206)))));
+            this.dgvTransactionList.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+            this.dgvTransactionList.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvTransactionList.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvTransactionList.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.dgvTransactionList.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvTransactionList.ThemeStyle.HeaderStyle.Height = 40;
+            this.dgvTransactionList.ThemeStyle.ReadOnly = true;
+            this.dgvTransactionList.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(223)))));
+            this.dgvTransactionList.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvTransactionList.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvTransactionList.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
+            this.dgvTransactionList.ThemeStyle.RowsStyle.Height = 33;
+            this.dgvTransactionList.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(133)))), ((int)(((byte)(147)))));
+            this.dgvTransactionList.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvTransactionList.DoubleClick += new System.EventHandler(this.dgvTransactionList_DoubleClick);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(268, 6);
+            // 
             // frmListTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1366, 800);
-            this.Controls.Add(this.cbTransactionType);
             this.Controls.Add(this.dgvTransactionList);
+            this.Controls.Add(this.cbTransactionType);
             this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.pbImage);
             this.Controls.Add(this.lblNumberOfRecords);
@@ -302,17 +339,15 @@
             this.Tag = "Manage Transaction";
             this.Text = "frmListTransaction";
             this.Load += new System.EventHandler(this.frmListTransaction_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionList)).EndInit();
             this.cmsEditProfile.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dgvTransactionList;
         private System.Windows.Forms.DateTimePicker dtpDate;
         private System.Windows.Forms.PictureBox pbImage;
         private System.Windows.Forms.Label lblNumberOfRecords;
@@ -328,5 +363,7 @@
         private System.Windows.Forms.ToolStripMenuItem ShowTransactionToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem TakeOrPayRefundToolStripMenuItem;
         private System.Windows.Forms.ComboBox cbTransactionType;
+        private Guna.UI2.WinForms.Guna2DataGridView dgvTransactionList;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

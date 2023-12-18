@@ -94,7 +94,7 @@ namespace CarRental.Transaction.UserControls
 
         private void cmsEditProfile_Opening(object sender, CancelEventArgs e)
         {
-            ShowTransactionDetailsToolStripMenuItem1.Enabled = (dgvTransactionHistoryList.Rows.Count > 0);
+            cmsEditProfile.Enabled = (dgvTransactionHistoryList.Rows.Count > 0);
         }
 
         private void dgvTransactionHistoryList_DoubleClick(object sender, EventArgs e)

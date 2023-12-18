@@ -63,7 +63,7 @@
             // ucReturnCard1
             // 
             this.ucReturnCard1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucReturnCard1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ucReturnCard1.BackColor = System.Drawing.Color.White;
             this.ucReturnCard1.Location = new System.Drawing.Point(4, 66);
             this.ucReturnCard1.Name = "ucReturnCard1";
             this.ucReturnCard1.Size = new System.Drawing.Size(784, 223);
@@ -74,7 +74,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(790, 339);
             this.Controls.Add(this.ucReturnCard1);
             this.Controls.Add(this.btnClose);

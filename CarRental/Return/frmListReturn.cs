@@ -62,31 +62,31 @@ namespace CarRental.Return
             if (dgvReturnList.Rows.Count > 0)
             {
                 dgvReturnList.Columns[0].HeaderText = "Return ID";
-                dgvReturnList.Columns[0].Width = 115;
+                dgvReturnList.Columns[0].Width = 135;
 
                 dgvReturnList.Columns[1].HeaderText = "Customer Name";
                 dgvReturnList.Columns[1].Width = 190;
 
                 dgvReturnList.Columns[2].HeaderText = "Customer ID";
-                dgvReturnList.Columns[2].Width = 130;
+                dgvReturnList.Columns[2].Width = 150;
 
                 dgvReturnList.Columns[3].HeaderText = "Vehicle ID";
-                dgvReturnList.Columns[3].Width = 125;
+                dgvReturnList.Columns[3].Width = 140;
 
                 dgvReturnList.Columns[4].HeaderText = "Booking ID";
-                dgvReturnList.Columns[4].Width = 125;
+                dgvReturnList.Columns[4].Width = 150;
 
                 dgvReturnList.Columns[5].HeaderText = "Transaction ID";
-                dgvReturnList.Columns[5].Width = 140;
+                dgvReturnList.Columns[5].Width = 160;
 
                 dgvReturnList.Columns[6].HeaderText = "Actual Return Date";
-                dgvReturnList.Columns[6].Width = 180;
+                dgvReturnList.Columns[6].Width = 130;
 
                 dgvReturnList.Columns[7].HeaderText = "Actual Rental Days";
-                dgvReturnList.Columns[7].Width = 180;
+                dgvReturnList.Columns[7].Width = 130;
 
                 dgvReturnList.Columns[8].HeaderText = "Additional Charges";
-                dgvReturnList.Columns[8].Width = 180;
+                dgvReturnList.Columns[8].Width = 150;
 
                 dgvReturnList.Columns[9].HeaderText = "Actual Total Due Amount";
                 dgvReturnList.Columns[9].Width = 220;

@@ -35,7 +35,7 @@
             // ucReturnCard1
             // 
             this.ucReturnCard1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucReturnCard1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ucReturnCard1.BackColor = System.Drawing.Color.White;
             this.ucReturnCard1.Location = new System.Drawing.Point(7, 457);
             this.ucReturnCard1.Name = "ucReturnCard1";
             this.ucReturnCard1.Size = new System.Drawing.Size(784, 224);
@@ -44,7 +44,7 @@
             // ucSelectedCustomerAndVehicleCard1
             // 
             this.ucSelectedCustomerAndVehicleCard1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucSelectedCustomerAndVehicleCard1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ucSelectedCustomerAndVehicleCard1.BackColor = System.Drawing.Color.White;
             this.ucSelectedCustomerAndVehicleCard1.Location = new System.Drawing.Point(0, 0);
             this.ucSelectedCustomerAndVehicleCard1.Name = "ucSelectedCustomerAndVehicleCard1";
             this.ucSelectedCustomerAndVehicleCard1.Size = new System.Drawing.Size(796, 456);
@@ -55,7 +55,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.ucReturnCard1);
             this.Controls.Add(this.ucSelectedCustomerAndVehicleCard1);
             this.Name = "ucReturnCardWithCustomerAndVehicle";

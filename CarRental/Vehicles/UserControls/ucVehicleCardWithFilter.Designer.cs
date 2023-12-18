@@ -43,7 +43,7 @@
             // ucVehicleCard1
             // 
             this.ucVehicleCard1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucVehicleCard1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ucVehicleCard1.BackColor = System.Drawing.Color.White;
             this.ucVehicleCard1.Location = new System.Drawing.Point(0, 87);
             this.ucVehicleCard1.Name = "ucVehicleCard1";
             this.ucVehicleCard1.Size = new System.Drawing.Size(772, 359);
@@ -119,7 +119,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.gbFilters);
             this.Controls.Add(this.ucVehicleCard1);
             this.Name = "ucVehicleCardWithFilter";

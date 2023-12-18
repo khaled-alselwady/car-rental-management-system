@@ -72,7 +72,7 @@
             // 
             // tpSelectCustomer
             // 
-            this.tpSelectCustomer.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tpSelectCustomer.BackColor = System.Drawing.Color.White;
             this.tpSelectCustomer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tpSelectCustomer.Controls.Add(this.btnNext);
             this.tpSelectCustomer.Controls.Add(this.ucCustomerCardWithFilter1);
@@ -104,7 +104,7 @@
             // ucCustomerCardWithFilter1
             // 
             this.ucCustomerCardWithFilter1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucCustomerCardWithFilter1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ucCustomerCardWithFilter1.BackColor = System.Drawing.Color.White;
             this.ucCustomerCardWithFilter1.FilterEnabled = true;
             this.ucCustomerCardWithFilter1.Location = new System.Drawing.Point(18, 4);
             this.ucCustomerCardWithFilter1.Name = "ucCustomerCardWithFilter1";
@@ -115,21 +115,21 @@
             // 
             // tpSelectVehicle
             // 
-            this.tpSelectVehicle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tpSelectVehicle.BackColor = System.Drawing.Color.White;
             this.tpSelectVehicle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tpSelectVehicle.Controls.Add(this.ucVehicleCardWithFilter1);
             this.tpSelectVehicle.Location = new System.Drawing.Point(4, 44);
             this.tpSelectVehicle.Margin = new System.Windows.Forms.Padding(2);
             this.tpSelectVehicle.Name = "tpSelectVehicle";
             this.tpSelectVehicle.Padding = new System.Windows.Forms.Padding(2);
-            this.tpSelectVehicle.Size = new System.Drawing.Size(785, 544);
+            this.tpSelectVehicle.Size = new System.Drawing.Size(785, 525);
             this.tpSelectVehicle.TabIndex = 1;
             this.tpSelectVehicle.Text = "Select Vehicle";
             // 
             // ucVehicleCardWithFilter1
             // 
             this.ucVehicleCardWithFilter1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucVehicleCardWithFilter1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ucVehicleCardWithFilter1.BackColor = System.Drawing.Color.White;
             this.ucVehicleCardWithFilter1.FilterEnabled = true;
             this.ucVehicleCardWithFilter1.Location = new System.Drawing.Point(5, 6);
             this.ucVehicleCardWithFilter1.Name = "ucVehicleCardWithFilter1";
@@ -143,7 +143,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tcSelectCustomerVehicle);
             this.Name = "ucSelectedCustomerAndVehicleWithFilter";
             this.Size = new System.Drawing.Size(795, 574);

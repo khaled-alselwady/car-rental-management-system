@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.llShowBookingInfo = new System.Windows.Forms.LinkLabel();
+            this.llShowTransactionInfo = new System.Windows.Forms.LinkLabel();
             this.lblActualRentalDays = new System.Windows.Forms.Label();
             this.lblActualReturnDate = new System.Windows.Forms.Label();
             this.lblActualTotalDueAmount = new System.Windows.Forms.Label();
@@ -53,8 +55,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label22 = new System.Windows.Forms.Label();
             this.lblReturnID = new System.Windows.Forms.Label();
-            this.llShowTransactionInfo = new System.Windows.Forms.LinkLabel();
-            this.llShowBookingInfo = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -101,6 +101,30 @@
             this.groupBox1.TabIndex = 179;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Return Info";
+            // 
+            // llShowBookingInfo
+            // 
+            this.llShowBookingInfo.AutoSize = true;
+            this.llShowBookingInfo.Enabled = false;
+            this.llShowBookingInfo.Location = new System.Drawing.Point(631, 194);
+            this.llShowBookingInfo.Name = "llShowBookingInfo";
+            this.llShowBookingInfo.Size = new System.Drawing.Size(143, 20);
+            this.llShowBookingInfo.TabIndex = 215;
+            this.llShowBookingInfo.TabStop = true;
+            this.llShowBookingInfo.Text = "Show Booking Info";
+            this.llShowBookingInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llShowBookingInfo_LinkClicked);
+            // 
+            // llShowTransactionInfo
+            // 
+            this.llShowTransactionInfo.AutoSize = true;
+            this.llShowTransactionInfo.Enabled = false;
+            this.llShowTransactionInfo.Location = new System.Drawing.Point(433, 194);
+            this.llShowTransactionInfo.Name = "llShowTransactionInfo";
+            this.llShowTransactionInfo.Size = new System.Drawing.Size(168, 20);
+            this.llShowTransactionInfo.TabIndex = 214;
+            this.llShowTransactionInfo.TabStop = true;
+            this.llShowTransactionInfo.Text = "Show Transaction Info";
+            this.llShowTransactionInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llShowTransactionInfo_LinkClicked);
             // 
             // lblActualRentalDays
             // 
@@ -358,36 +382,12 @@
             this.lblReturnID.TabIndex = 148;
             this.lblReturnID.Text = "[????]";
             // 
-            // llShowTransactionInfo
-            // 
-            this.llShowTransactionInfo.AutoSize = true;
-            this.llShowTransactionInfo.Enabled = false;
-            this.llShowTransactionInfo.Location = new System.Drawing.Point(433, 194);
-            this.llShowTransactionInfo.Name = "llShowTransactionInfo";
-            this.llShowTransactionInfo.Size = new System.Drawing.Size(168, 20);
-            this.llShowTransactionInfo.TabIndex = 214;
-            this.llShowTransactionInfo.TabStop = true;
-            this.llShowTransactionInfo.Text = "Show Transaction Info";
-            this.llShowTransactionInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llShowTransactionInfo_LinkClicked);
-            // 
-            // llShowBookingInfo
-            // 
-            this.llShowBookingInfo.AutoSize = true;
-            this.llShowBookingInfo.Enabled = false;
-            this.llShowBookingInfo.Location = new System.Drawing.Point(631, 194);
-            this.llShowBookingInfo.Name = "llShowBookingInfo";
-            this.llShowBookingInfo.Size = new System.Drawing.Size(143, 20);
-            this.llShowBookingInfo.TabIndex = 215;
-            this.llShowBookingInfo.TabStop = true;
-            this.llShowBookingInfo.Text = "Show Booking Info";
-            this.llShowBookingInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llShowBookingInfo_LinkClicked);
-            // 
             // ucReturnCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.groupBox1);
             this.Name = "ucReturnCard";
             this.Size = new System.Drawing.Size(784, 223);

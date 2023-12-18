@@ -95,7 +95,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox1.BackColor = System.Drawing.Color.White;
             this.groupBox1.Controls.Add(this.llEditVehicleInfo);
             this.groupBox1.Controls.Add(this.lblEngine);
             this.groupBox1.Controls.Add(this.pictureBox14);
@@ -650,7 +650,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.groupBox1);
             this.Name = "ucVehicleCard";
             this.Size = new System.Drawing.Size(772, 359);

@@ -29,13 +29,16 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.guna2TabControl1 = new Guna.UI2.WinForms.Guna2TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.lblNumberOfRecords = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dgvTransactionHistoryList = new System.Windows.Forms.DataGridView();
+            this.dgvTransactionHistoryList = new Guna.UI2.WinForms.Guna2DataGridView();
             this.cmsEditProfile = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
             this.ShowTransactionDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblNumberOfRecords = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.guna2TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionHistoryList)).BeginInit();
@@ -73,17 +76,110 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage1.BackColor = System.Drawing.Color.White;
             this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabPage1.Controls.Add(this.dgvTransactionHistoryList);
             this.tabPage1.Controls.Add(this.lblNumberOfRecords);
             this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.dgvTransactionHistoryList);
             this.tabPage1.Location = new System.Drawing.Point(4, 44);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(764, 304);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Booking History";
+            // 
+            // dgvTransactionHistoryList
+            // 
+            this.dgvTransactionHistoryList.AllowUserToAddRows = false;
+            this.dgvTransactionHistoryList.AllowUserToDeleteRows = false;
+            this.dgvTransactionHistoryList.AllowUserToOrderColumns = true;
+            this.dgvTransactionHistoryList.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvTransactionHistoryList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvTransactionHistoryList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgvTransactionHistoryList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.dgvTransactionHistoryList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvTransactionHistoryList.ColumnHeadersHeight = 40;
+            this.dgvTransactionHistoryList.ContextMenuStrip = this.cmsEditProfile;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(223)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTransactionHistoryList.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvTransactionHistoryList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvTransactionHistoryList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(199)))), ((int)(((byte)(206)))));
+            this.dgvTransactionHistoryList.Location = new System.Drawing.Point(6, 5);
+            this.dgvTransactionHistoryList.Name = "dgvTransactionHistoryList";
+            this.dgvTransactionHistoryList.ReadOnly = true;
+            this.dgvTransactionHistoryList.RowHeadersVisible = false;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvTransactionHistoryList.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvTransactionHistoryList.RowTemplate.Height = 33;
+            this.dgvTransactionHistoryList.ShowCellToolTips = false;
+            this.dgvTransactionHistoryList.Size = new System.Drawing.Size(750, 270);
+            this.dgvTransactionHistoryList.TabIndex = 194;
+            this.dgvTransactionHistoryList.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.WetAsphalt;
+            this.dgvTransactionHistoryList.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
+            this.dgvTransactionHistoryList.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvTransactionHistoryList.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.dgvTransactionHistoryList.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.dgvTransactionHistoryList.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.dgvTransactionHistoryList.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.dgvTransactionHistoryList.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(199)))), ((int)(((byte)(206)))));
+            this.dgvTransactionHistoryList.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+            this.dgvTransactionHistoryList.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvTransactionHistoryList.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvTransactionHistoryList.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.dgvTransactionHistoryList.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvTransactionHistoryList.ThemeStyle.HeaderStyle.Height = 40;
+            this.dgvTransactionHistoryList.ThemeStyle.ReadOnly = true;
+            this.dgvTransactionHistoryList.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(223)))));
+            this.dgvTransactionHistoryList.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvTransactionHistoryList.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvTransactionHistoryList.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
+            this.dgvTransactionHistoryList.ThemeStyle.RowsStyle.Height = 33;
+            this.dgvTransactionHistoryList.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
+            this.dgvTransactionHistoryList.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvTransactionHistoryList.DoubleClick += new System.EventHandler(this.dgvTransactionHistoryList_DoubleClick);
+            // 
+            // cmsEditProfile
+            // 
+            this.cmsEditProfile.BackColor = System.Drawing.Color.White;
+            this.cmsEditProfile.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmsEditProfile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ShowTransactionDetailsToolStripMenuItem1});
+            this.cmsEditProfile.Name = "guna2ContextMenuStrip1";
+            this.cmsEditProfile.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
+            this.cmsEditProfile.RenderStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(212)))));
+            this.cmsEditProfile.RenderStyle.ColorTable = null;
+            this.cmsEditProfile.RenderStyle.RoundedEdges = true;
+            this.cmsEditProfile.RenderStyle.SelectionArrowColor = System.Drawing.Color.White;
+            this.cmsEditProfile.RenderStyle.SelectionBackColor = System.Drawing.Color.Gray;
+            this.cmsEditProfile.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
+            this.cmsEditProfile.RenderStyle.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(212)))));
+            this.cmsEditProfile.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.cmsEditProfile.Size = new System.Drawing.Size(272, 64);
+            this.cmsEditProfile.Opening += new System.ComponentModel.CancelEventHandler(this.cmsEditProfile_Opening);
+            // 
+            // ShowTransactionDetailsToolStripMenuItem1
+            // 
+            this.ShowTransactionDetailsToolStripMenuItem1.ForeColor = System.Drawing.Color.Black;
+            this.ShowTransactionDetailsToolStripMenuItem1.Image = global::CarRental.Properties.Resources.person_details32;
+            this.ShowTransactionDetailsToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ShowTransactionDetailsToolStripMenuItem1.Name = "ShowTransactionDetailsToolStripMenuItem1";
+            this.ShowTransactionDetailsToolStripMenuItem1.Size = new System.Drawing.Size(271, 38);
+            this.ShowTransactionDetailsToolStripMenuItem1.Text = "   Show Transaction Details";
+            this.ShowTransactionDetailsToolStripMenuItem1.Click += new System.EventHandler(this.ShowTransactionDetailsToolStripMenuItem1_Click);
             // 
             // lblNumberOfRecords
             // 
@@ -105,69 +201,12 @@
             this.label2.TabIndex = 166;
             this.label2.Text = "# Records:";
             // 
-            // dgvTransactionHistoryList
-            // 
-            this.dgvTransactionHistoryList.AllowUserToAddRows = false;
-            this.dgvTransactionHistoryList.AllowUserToDeleteRows = false;
-            this.dgvTransactionHistoryList.AllowUserToResizeRows = false;
-            this.dgvTransactionHistoryList.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvTransactionHistoryList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTransactionHistoryList.ContextMenuStrip = this.cmsEditProfile;
-            this.dgvTransactionHistoryList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvTransactionHistoryList.Location = new System.Drawing.Point(4, 4);
-            this.dgvTransactionHistoryList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dgvTransactionHistoryList.MultiSelect = false;
-            this.dgvTransactionHistoryList.Name = "dgvTransactionHistoryList";
-            this.dgvTransactionHistoryList.ReadOnly = true;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTransactionHistoryList.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvTransactionHistoryList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTransactionHistoryList.Size = new System.Drawing.Size(754, 269);
-            this.dgvTransactionHistoryList.TabIndex = 159;
-            this.dgvTransactionHistoryList.TabStop = false;
-            this.dgvTransactionHistoryList.DoubleClick += new System.EventHandler(this.dgvTransactionHistoryList_DoubleClick);
-            // 
-            // cmsEditProfile
-            // 
-            this.cmsEditProfile.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cmsEditProfile.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmsEditProfile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ShowTransactionDetailsToolStripMenuItem1});
-            this.cmsEditProfile.Name = "guna2ContextMenuStrip1";
-            this.cmsEditProfile.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
-            this.cmsEditProfile.RenderStyle.BorderColor = System.Drawing.Color.Gainsboro;
-            this.cmsEditProfile.RenderStyle.ColorTable = null;
-            this.cmsEditProfile.RenderStyle.RoundedEdges = true;
-            this.cmsEditProfile.RenderStyle.SelectionArrowColor = System.Drawing.Color.White;
-            this.cmsEditProfile.RenderStyle.SelectionBackColor = System.Drawing.Color.Gray;
-            this.cmsEditProfile.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
-            this.cmsEditProfile.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
-            this.cmsEditProfile.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.cmsEditProfile.Size = new System.Drawing.Size(272, 42);
-            this.cmsEditProfile.Opening += new System.ComponentModel.CancelEventHandler(this.cmsEditProfile_Opening);
-            // 
-            // ShowTransactionDetailsToolStripMenuItem1
-            // 
-            this.ShowTransactionDetailsToolStripMenuItem1.ForeColor = System.Drawing.Color.Black;
-            this.ShowTransactionDetailsToolStripMenuItem1.Image = global::CarRental.Properties.Resources.person_details32;
-            this.ShowTransactionDetailsToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.ShowTransactionDetailsToolStripMenuItem1.Name = "ShowTransactionDetailsToolStripMenuItem1";
-            this.ShowTransactionDetailsToolStripMenuItem1.Size = new System.Drawing.Size(271, 38);
-            this.ShowTransactionDetailsToolStripMenuItem1.Text = "   Show Transaction Details";
-            this.ShowTransactionDetailsToolStripMenuItem1.Click += new System.EventHandler(this.ShowTransactionDetailsToolStripMenuItem1_Click);
-            // 
             // ucCustomerTransactionHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.guna2TabControl1);
             this.Name = "ucCustomerTransactionHistory";
             this.Size = new System.Drawing.Size(777, 355);
@@ -186,8 +225,8 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label lblNumberOfRecords;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dgvTransactionHistoryList;
         private Guna.UI2.WinForms.Guna2ContextMenuStrip cmsEditProfile;
         private System.Windows.Forms.ToolStripMenuItem ShowTransactionDetailsToolStripMenuItem1;
+        private Guna.UI2.WinForms.Guna2DataGridView dgvTransactionHistoryList;
     }
 }

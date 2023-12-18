@@ -35,6 +35,8 @@
             this.txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtUsername = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.label4 = new System.Windows.Forms.Label();
@@ -45,14 +47,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblSignUp = new System.Windows.Forms.Label();
             this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
+            this.guna2Elipse2 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2CustomGradientPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            this.guna2GradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.guna2GradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,6 +78,7 @@
             this.btnLogin.BackColor = System.Drawing.Color.White;
             this.btnLogin.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(174)))), ((int)(((byte)(75)))));
             this.btnLogin.BorderRadius = 21;
+            this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogin.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnLogin.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnLogin.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -176,6 +179,28 @@
             this.guna2CustomGradientPanel1.Size = new System.Drawing.Size(402, 310);
             this.guna2CustomGradientPanel1.TabIndex = 145;
             // 
+            // pictureBox7
+            // 
+            this.pictureBox7.BackColor = System.Drawing.Color.White;
+            this.pictureBox7.Image = global::CarRental.Properties.Resources.password_login;
+            this.pictureBox7.Location = new System.Drawing.Point(16, 113);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox7.TabIndex = 137;
+            this.pictureBox7.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.White;
+            this.pictureBox2.Image = global::CarRental.Properties.Resources.username_login;
+            this.pictureBox2.Location = new System.Drawing.Point(16, 41);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 136;
+            this.pictureBox2.TabStop = false;
+            // 
             // btnClose
             // 
             this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
@@ -184,7 +209,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.Transparent;
-            this.btnClose.Location = new System.Drawing.Point(824, 2);
+            this.btnClose.Location = new System.Drawing.Point(825, 2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(40, 39);
             this.btnClose.TabIndex = 144;
@@ -246,13 +271,13 @@
             // 
             this.guna2HtmlLabel1.AutoSize = false;
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel1.Font = new System.Drawing.Font("Comic Sans MS", 21.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel1.Font = new System.Drawing.Font("Comic Sans MS", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel1.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(25, 294);
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(12, 301);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(317, 169);
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(332, 131);
             this.guna2HtmlLabel1.TabIndex = 2;
-            this.guna2HtmlLabel1.Text = "People who code with no strings attached are eventually the ones that succeed.";
+            this.guna2HtmlLabel1.Text = "Start your engines and let the adventure begin.";
             // 
             // label1
             // 
@@ -292,28 +317,6 @@
             this.guna2GradientPanel1.Size = new System.Drawing.Size(354, 651);
             this.guna2GradientPanel1.TabIndex = 140;
             // 
-            // pictureBox7
-            // 
-            this.pictureBox7.BackColor = System.Drawing.Color.White;
-            this.pictureBox7.Image = global::CarRental.Properties.Resources.password_login;
-            this.pictureBox7.Location = new System.Drawing.Point(16, 113);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox7.TabIndex = 137;
-            this.pictureBox7.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.White;
-            this.pictureBox2.Image = global::CarRental.Properties.Resources.username_login;
-            this.pictureBox2.Location = new System.Drawing.Point(16, 41);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 136;
-            this.pictureBox2.TabStop = false;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::CarRental.Properties.Resources.car_rent;
@@ -324,12 +327,22 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // guna2Elipse1
+            // 
+            this.guna2Elipse1.BorderRadius = 15;
+            this.guna2Elipse1.TargetControl = this;
+            // 
+            // guna2Elipse2
+            // 
+            this.guna2Elipse2.BorderRadius = 22;
+            this.guna2Elipse2.TargetControl = this.btnClose;
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(866, 651);
             this.Controls.Add(this.guna2CustomGradientPanel1);
             this.Controls.Add(this.btnClose);
@@ -344,11 +357,11 @@
             this.Load += new System.EventHandler(this.frmLogin_Load);
             this.guna2CustomGradientPanel1.ResumeLayout(false);
             this.guna2CustomGradientPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.guna2GradientPanel1.ResumeLayout(false);
             this.guna2GradientPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -376,5 +389,7 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
+        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse2;
     }
 }

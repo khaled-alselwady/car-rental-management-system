@@ -1,15 +1,9 @@
 ﻿using CarRental.Return;
 using CarRental_Business;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static CarRental_Business.clsPerson;
 
 namespace CarRental.Booking
 {
@@ -64,28 +58,28 @@ namespace CarRental.Booking
             if (dgvBookingList.Rows.Count > 0)
             {
                 dgvBookingList.Columns[0].HeaderText = "Booking ID";
-                dgvBookingList.Columns[0].Width = 125;
+                dgvBookingList.Columns[0].Width = 140;
 
                 dgvBookingList.Columns[1].HeaderText = "Customer Name";
                 dgvBookingList.Columns[1].Width = 190;
 
                 dgvBookingList.Columns[2].HeaderText = "Customer ID";
-                dgvBookingList.Columns[2].Width = 125;
+                dgvBookingList.Columns[2].Width = 150;
 
                 dgvBookingList.Columns[3].HeaderText = "Vehicle ID";
                 dgvBookingList.Columns[3].Width = 125;
 
                 dgvBookingList.Columns[4].HeaderText = "Rental Start Date";
-                dgvBookingList.Columns[4].Width = 160;
+                dgvBookingList.Columns[4].Width = 150;
 
                 dgvBookingList.Columns[5].HeaderText = "Rental End Date";
-                dgvBookingList.Columns[5].Width = 160;
+                dgvBookingList.Columns[5].Width = 150;
 
                 dgvBookingList.Columns[6].HeaderText = "Pickup Location";
-                dgvBookingList.Columns[6].Width = 160;
+                dgvBookingList.Columns[6].Width = 150;
 
                 dgvBookingList.Columns[7].HeaderText = "Dropoff Location";
-                dgvBookingList.Columns[7].Width = 160;
+                dgvBookingList.Columns[7].Width = 150;
 
                 dgvBookingList.Columns[8].HeaderText = "Rental Price/Day";
                 dgvBookingList.Columns[8].Width = 180;

@@ -48,7 +48,7 @@
             // ucCustomerCard1
             // 
             this.ucCustomerCard1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucCustomerCard1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ucCustomerCard1.BackColor = System.Drawing.Color.White;
             this.ucCustomerCard1.Location = new System.Drawing.Point(29, 69);
             this.ucCustomerCard1.Name = "ucCustomerCard1";
             this.ucCustomerCard1.Size = new System.Drawing.Size(723, 397);
@@ -57,7 +57,7 @@
             // ucCustomerTransactionHistory1
             // 
             this.ucCustomerTransactionHistory1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucCustomerTransactionHistory1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ucCustomerTransactionHistory1.BackColor = System.Drawing.Color.White;
             this.ucCustomerTransactionHistory1.Location = new System.Drawing.Point(5, 472);
             this.ucCustomerTransactionHistory1.Name = "ucCustomerTransactionHistory1";
             this.ucCustomerTransactionHistory1.Size = new System.Drawing.Size(777, 355);
@@ -83,7 +83,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(784, 879);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.ucCustomerTransactionHistory1);

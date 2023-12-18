@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblTransactionType = new System.Windows.Forms.Label();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.lblActualTotalDueAmount = new System.Windows.Forms.Label();
@@ -59,10 +62,8 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label22 = new System.Windows.Forms.Label();
             this.lblTransactionID = new System.Windows.Forms.Label();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblTransactionType = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -73,7 +74,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -118,6 +118,38 @@
             this.groupBox1.TabIndex = 179;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Transaction Info";
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.Image = global::CarRental.Properties.Resources.Notes_32;
+            this.pictureBox11.Location = new System.Drawing.Point(164, 221);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox11.TabIndex = 215;
+            this.pictureBox11.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 221);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(151, 20);
+            this.label2.TabIndex = 213;
+            this.label2.Text = "Transaction Type:";
+            // 
+            // lblTransactionType
+            // 
+            this.lblTransactionType.AutoSize = true;
+            this.lblTransactionType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTransactionType.Location = new System.Drawing.Point(202, 221);
+            this.lblTransactionType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTransactionType.Name = "lblTransactionType";
+            this.lblTransactionType.Size = new System.Drawing.Size(53, 20);
+            this.lblTransactionType.TabIndex = 214;
+            this.lblTransactionType.Text = "[????]";
             // 
             // pictureBox8
             // 
@@ -439,49 +471,18 @@
             this.lblTransactionID.TabIndex = 148;
             this.lblTransactionID.Text = "[????]";
             // 
-            // pictureBox11
-            // 
-            this.pictureBox11.Image = global::CarRental.Properties.Resources.Notes_32;
-            this.pictureBox11.Location = new System.Drawing.Point(164, 221);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox11.TabIndex = 215;
-            this.pictureBox11.TabStop = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 221);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(151, 20);
-            this.label2.TabIndex = 213;
-            this.label2.Text = "Transaction Type:";
-            // 
-            // lblTransactionType
-            // 
-            this.lblTransactionType.AutoSize = true;
-            this.lblTransactionType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTransactionType.Location = new System.Drawing.Point(202, 221);
-            this.lblTransactionType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblTransactionType.Name = "lblTransactionType";
-            this.lblTransactionType.Size = new System.Drawing.Size(53, 20);
-            this.lblTransactionType.TabIndex = 214;
-            this.lblTransactionType.Text = "[????]";
-            // 
             // ucTransactionCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.groupBox1);
             this.Name = "ucTransactionCard";
             this.Size = new System.Drawing.Size(785, 257);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
@@ -492,7 +493,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             this.ResumeLayout(false);
 
         }

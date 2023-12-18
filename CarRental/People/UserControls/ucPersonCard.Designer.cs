@@ -29,6 +29,16 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblUpdatedAt = new System.Windows.Forms.Label();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblCreatedAt = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblCountry = new System.Windows.Forms.Label();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblPhone = new System.Windows.Forms.Label();
             this.lblGender = new System.Windows.Forms.Label();
             this.lblAddress = new System.Windows.Forms.Label();
@@ -38,27 +48,17 @@
             this.label22 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lblPersonID = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblCountry = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.lblCreatedAt = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lblUpdatedAt = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pbGender = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -74,7 +74,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox1.BackColor = System.Drawing.Color.White;
             this.groupBox1.Controls.Add(this.lblUpdatedAt);
             this.groupBox1.Controls.Add(this.pictureBox9);
             this.groupBox1.Controls.Add(this.label9);
@@ -114,6 +114,112 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Personal Information";
+            // 
+            // lblUpdatedAt
+            // 
+            this.lblUpdatedAt.AutoSize = true;
+            this.lblUpdatedAt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUpdatedAt.Location = new System.Drawing.Point(518, 177);
+            this.lblUpdatedAt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUpdatedAt.Name = "lblUpdatedAt";
+            this.lblUpdatedAt.Size = new System.Drawing.Size(53, 20);
+            this.lblUpdatedAt.TabIndex = 156;
+            this.lblUpdatedAt.Text = "[????]";
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Image = global::CarRental.Properties.Resources.Renew_Driving_License_32;
+            this.pictureBox9.Location = new System.Drawing.Point(477, 177);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox9.TabIndex = 155;
+            this.pictureBox9.TabStop = false;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(369, 177);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(106, 20);
+            this.label9.TabIndex = 154;
+            this.label9.Text = "Updated At:";
+            // 
+            // lblCreatedAt
+            // 
+            this.lblCreatedAt.AutoSize = true;
+            this.lblCreatedAt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCreatedAt.Location = new System.Drawing.Point(518, 142);
+            this.lblCreatedAt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCreatedAt.Name = "lblCreatedAt";
+            this.lblCreatedAt.Size = new System.Drawing.Size(53, 20);
+            this.lblCreatedAt.TabIndex = 153;
+            this.lblCreatedAt.Text = "[????]";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::CarRental.Properties.Resources.License_Type_32;
+            this.pictureBox4.Location = new System.Drawing.Point(477, 142);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 152;
+            this.pictureBox4.TabStop = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(369, 142);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(101, 20);
+            this.label7.TabIndex = 151;
+            this.label7.Text = "Created At:";
+            // 
+            // lblCountry
+            // 
+            this.lblCountry.AutoSize = true;
+            this.lblCountry.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCountry.Location = new System.Drawing.Point(518, 107);
+            this.lblCountry.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCountry.Name = "lblCountry";
+            this.lblCountry.Size = new System.Drawing.Size(53, 20);
+            this.lblCountry.TabIndex = 150;
+            this.lblCountry.Text = "[????]";
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = global::CarRental.Properties.Resources.Country_32;
+            this.pictureBox6.Location = new System.Drawing.Point(477, 107);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox6.TabIndex = 149;
+            this.pictureBox6.TabStop = false;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(369, 107);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(76, 20);
+            this.label15.TabIndex = 148;
+            this.label15.Text = "Country:";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::CarRental.Properties.Resources.id;
+            this.pictureBox1.Location = new System.Drawing.Point(129, 37);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 147;
+            this.pictureBox1.TabStop = false;
             // 
             // lblPhone
             // 
@@ -215,167 +321,6 @@
             this.lblPersonID.TabIndex = 127;
             this.lblPersonID.Text = "[????]";
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(8, 247);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(80, 20);
-            this.label12.TabIndex = 119;
-            this.label12.Text = "Address:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(8, 177);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(58, 20);
-            this.label6.TabIndex = 118;
-            this.label6.Text = "Email:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(8, 212);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 20);
-            this.label4.TabIndex = 117;
-            this.label4.Text = "Phone:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(8, 107);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 20);
-            this.label2.TabIndex = 115;
-            this.label2.Text = "Date Of Birth:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(8, 72);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 20);
-            this.label1.TabIndex = 114;
-            this.label1.Text = "Name:";
-            // 
-            // lblCountry
-            // 
-            this.lblCountry.AutoSize = true;
-            this.lblCountry.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCountry.Location = new System.Drawing.Point(518, 107);
-            this.lblCountry.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCountry.Name = "lblCountry";
-            this.lblCountry.Size = new System.Drawing.Size(53, 20);
-            this.lblCountry.TabIndex = 150;
-            this.lblCountry.Text = "[????]";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(369, 107);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(76, 20);
-            this.label15.TabIndex = 148;
-            this.label15.Text = "Country:";
-            // 
-            // lblCreatedAt
-            // 
-            this.lblCreatedAt.AutoSize = true;
-            this.lblCreatedAt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCreatedAt.Location = new System.Drawing.Point(518, 142);
-            this.lblCreatedAt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCreatedAt.Name = "lblCreatedAt";
-            this.lblCreatedAt.Size = new System.Drawing.Size(53, 20);
-            this.lblCreatedAt.TabIndex = 153;
-            this.lblCreatedAt.Text = "[????]";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(369, 142);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(101, 20);
-            this.label7.TabIndex = 151;
-            this.label7.Text = "Created At:";
-            // 
-            // lblUpdatedAt
-            // 
-            this.lblUpdatedAt.AutoSize = true;
-            this.lblUpdatedAt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUpdatedAt.Location = new System.Drawing.Point(518, 177);
-            this.lblUpdatedAt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblUpdatedAt.Name = "lblUpdatedAt";
-            this.lblUpdatedAt.Size = new System.Drawing.Size(53, 20);
-            this.lblUpdatedAt.TabIndex = 156;
-            this.lblUpdatedAt.Text = "[????]";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(369, 177);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(106, 20);
-            this.label9.TabIndex = 154;
-            this.label9.Text = "Updated At:";
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.Image = global::CarRental.Properties.Resources.Renew_Driving_License_32;
-            this.pictureBox9.Location = new System.Drawing.Point(477, 177);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox9.TabIndex = 155;
-            this.pictureBox9.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::CarRental.Properties.Resources.License_Type_32;
-            this.pictureBox4.Location = new System.Drawing.Point(477, 142);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 152;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Image = global::CarRental.Properties.Resources.Country_32;
-            this.pictureBox6.Location = new System.Drawing.Point(477, 107);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox6.TabIndex = 149;
-            this.pictureBox6.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::CarRental.Properties.Resources.id;
-            this.pictureBox1.Location = new System.Drawing.Point(129, 37);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 147;
-            this.pictureBox1.TabStop = false;
-            // 
             // pbGender
             // 
             this.pbGender.Image = global::CarRental.Properties.Resources.Man_32;
@@ -436,12 +381,67 @@
             this.pictureBox2.TabIndex = 121;
             this.pictureBox2.TabStop = false;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(8, 247);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(80, 20);
+            this.label12.TabIndex = 119;
+            this.label12.Text = "Address:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(8, 177);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(58, 20);
+            this.label6.TabIndex = 118;
+            this.label6.Text = "Email:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(8, 212);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 20);
+            this.label4.TabIndex = 117;
+            this.label4.Text = "Phone:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(8, 107);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(120, 20);
+            this.label2.TabIndex = 115;
+            this.label2.Text = "Date Of Birth:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(8, 72);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 20);
+            this.label1.TabIndex = 114;
+            this.label1.Text = "Name:";
+            // 
             // ucPersonCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.groupBox1);
             this.Name = "ucPersonCard";
             this.Size = new System.Drawing.Size(718, 290);

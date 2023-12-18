@@ -37,6 +37,7 @@
             this.chkManageCustomers = new Guna.UI2.WinForms.Guna2CheckBox();
             this.chkAllPermissions = new Guna.UI2.WinForms.Guna2CheckBox();
             this.gbPermissions = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.llRemoveImage = new System.Windows.Forms.LinkLabel();
@@ -243,7 +244,10 @@
             // 
             // gbPermissions
             // 
-            this.gbPermissions.BorderColor = System.Drawing.Color.Goldenrod;
+            this.gbPermissions.BackColor = System.Drawing.Color.Transparent;
+            this.gbPermissions.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(212)))));
+            this.gbPermissions.BorderRadius = 20;
+            this.gbPermissions.Controls.Add(this.label13);
             this.gbPermissions.Controls.Add(this.chkManageTransactions);
             this.gbPermissions.Controls.Add(this.chkManageReturn);
             this.gbPermissions.Controls.Add(this.chkManageBooking);
@@ -251,14 +255,24 @@
             this.gbPermissions.Controls.Add(this.chkManageUsers);
             this.gbPermissions.Controls.Add(this.chkManageCustomers);
             this.gbPermissions.Controls.Add(this.chkAllPermissions);
-            this.gbPermissions.CustomBorderColor = System.Drawing.Color.Peru;
+            this.gbPermissions.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(212)))));
             this.gbPermissions.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbPermissions.ForeColor = System.Drawing.Color.Black;
             this.gbPermissions.Location = new System.Drawing.Point(888, 128);
             this.gbPermissions.Name = "gbPermissions";
             this.gbPermissions.Size = new System.Drawing.Size(202, 259);
             this.gbPermissions.TabIndex = 232;
-            this.gbPermissions.Text = "Permissions";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Location = new System.Drawing.Point(5, 9);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(93, 21);
+            this.label13.TabIndex = 7;
+            this.label13.Text = "Permissions";
             // 
             // txtUsername
             // 
@@ -817,7 +831,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1298, 534);
             this.Controls.Add(this.llChangePassword);
             this.Controls.Add(this.pictureBox12);
@@ -837,7 +851,6 @@
             this.Controls.Add(this.pictureBox8);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.gbPermissions);
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnSave);
@@ -863,6 +876,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.panelPassword);
+            this.Controls.Add(this.gbPermissions);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmAddEditUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -952,5 +966,6 @@
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.Panel panelPassword;
+        private System.Windows.Forms.Label label13;
     }
 }

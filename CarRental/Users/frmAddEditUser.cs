@@ -51,15 +51,19 @@ namespace CarRental.Users
 
         private bool _IsAllItemIsChecked()
         {
-            foreach (CheckBox item in gbPermissions.Controls)
+            foreach (var item in gbPermissions.Controls)
             {
-                if (item.Tag.ToString() != "-1")
+                if (item is CheckBox)
                 {
-                    if (!item.Checked)
+                    if (((CheckBox)item).Tag.ToString() != "-1")
                     {
-                        return false;
+                        if (!((CheckBox)item).Checked)
+                        {
+                            return false;
+                        }
                     }
                 }
+
             }
 
             return true;
@@ -69,10 +73,13 @@ namespace CarRental.Users
         {
             // return true if there is no permissions selected, otherwise false
 
-            foreach (CheckBox item in gbPermissions.Controls)
+            foreach (var item in gbPermissions.Controls)
             {
-                if (item.Checked)
-                    return false;
+                if (item is CheckBox)
+                {
+                    if (((CheckBox)item).Checked)
+                        return false;
+                }
             }
 
             return true;
@@ -136,13 +143,19 @@ namespace CarRental.Users
                 return;
             }
 
-            foreach (CheckBox item in gbPermissions.Controls)
+            CheckBox tempCheckBox;
+            foreach (var item in gbPermissions.Controls)
             {
-                if (item.Tag.ToString() != "-1")
+                if (item is CheckBox)
                 {
-                    if (((Convert.ToInt32(item.Tag)) & _User.Permissions) == (Convert.ToInt32(item.Tag)))
+                    tempCheckBox = (CheckBox)item;
+
+                    if (tempCheckBox.Tag.ToString() != "-1")
                     {
-                        item.Checked = true;
+                        if (((Convert.ToInt32(tempCheckBox.Tag)) & _User.Permissions) == (Convert.ToInt32(tempCheckBox.Tag)))
+                        {
+                            tempCheckBox.Checked = true;
+                        }
                     }
                 }
             }
@@ -363,9 +376,12 @@ namespace CarRental.Users
         {
             if (chkAllPermissions.Checked)
             {
-                foreach (CheckBox item in gbPermissions.Controls)
+                foreach (var item in gbPermissions.Controls)
                 {
-                    item.Checked = true;
+                    if (item is CheckBox)
+                    {
+                        ((CheckBox)item).Checked = true;
+                    }
                 }
             }
         }

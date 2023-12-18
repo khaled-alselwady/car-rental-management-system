@@ -62,7 +62,7 @@
             // ucBookingCardWithCustomerAndVehicle1
             // 
             this.ucBookingCardWithCustomerAndVehicle1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucBookingCardWithCustomerAndVehicle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ucBookingCardWithCustomerAndVehicle1.BackColor = System.Drawing.Color.White;
             this.ucBookingCardWithCustomerAndVehicle1.Location = new System.Drawing.Point(0, 76);
             this.ucBookingCardWithCustomerAndVehicle1.Name = "ucBookingCardWithCustomerAndVehicle1";
             this.ucBookingCardWithCustomerAndVehicle1.Size = new System.Drawing.Size(794, 702);
@@ -73,7 +73,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(798, 824);
             this.Controls.Add(this.ucBookingCardWithCustomerAndVehicle1);
             this.Controls.Add(this.btnClose);

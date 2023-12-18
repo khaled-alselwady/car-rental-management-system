@@ -70,7 +70,7 @@
             // 
             // tpBooking
             // 
-            this.tpBooking.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tpBooking.BackColor = System.Drawing.Color.White;
             this.tpBooking.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tpBooking.Controls.Add(this.ucBookingCard1);
             this.tpBooking.Location = new System.Drawing.Point(4, 44);
@@ -84,7 +84,7 @@
             // ucBookingCard1
             // 
             this.ucBookingCard1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucBookingCard1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ucBookingCard1.BackColor = System.Drawing.Color.White;
             this.ucBookingCard1.Location = new System.Drawing.Point(0, 0);
             this.ucBookingCard1.Name = "ucBookingCard1";
             this.ucBookingCard1.Size = new System.Drawing.Size(785, 249);
@@ -92,7 +92,7 @@
             // 
             // tpReturn
             // 
-            this.tpReturn.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tpReturn.BackColor = System.Drawing.Color.White;
             this.tpReturn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tpReturn.Controls.Add(this.ucReturnCard1);
             this.tpReturn.Location = new System.Drawing.Point(4, 44);
@@ -106,7 +106,7 @@
             // ucReturnCard1
             // 
             this.ucReturnCard1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucReturnCard1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ucReturnCard1.BackColor = System.Drawing.Color.White;
             this.ucReturnCard1.Location = new System.Drawing.Point(0, 0);
             this.ucReturnCard1.Name = "ucReturnCard1";
             this.ucReturnCard1.Size = new System.Drawing.Size(784, 230);
@@ -117,7 +117,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tcSelectCustomerVehicle);
             this.Name = "ucBookingAndReturnCard";
             this.Size = new System.Drawing.Size(799, 300);

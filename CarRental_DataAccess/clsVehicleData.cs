@@ -341,7 +341,7 @@ where VehicleID = @VehicleID";
             return dt;
         }
 
-        public static int GetVehiclesCount()
+        public static int GetAllVehiclesCount()
         {
             int Count = 0;
 
@@ -444,6 +444,41 @@ where VehicleID = @VehicleID";
             }
 
             return (AffectedRows > 0);
+        }
+
+        public static int GetAvailableVehiclesCount()
+        {
+            int Count = 0;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    string query = @"select count (*) from Vehicles where IsAvailableForRent = 1;";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int Value))
+                        {
+                            Count = Value;
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return Count;
         }
     }
 }
