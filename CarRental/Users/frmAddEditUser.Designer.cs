@@ -258,7 +258,7 @@
             this.gbPermissions.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(212)))));
             this.gbPermissions.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbPermissions.ForeColor = System.Drawing.Color.Black;
-            this.gbPermissions.Location = new System.Drawing.Point(888, 128);
+            this.gbPermissions.Location = new System.Drawing.Point(904, 128);
             this.gbPermissions.Name = "gbPermissions";
             this.gbPermissions.Size = new System.Drawing.Size(202, 259);
             this.gbPermissions.TabIndex = 232;
@@ -280,7 +280,7 @@
             this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsername.Location = new System.Drawing.Point(637, 131);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(230, 29);
+            this.txtUsername.Size = new System.Drawing.Size(245, 29);
             this.txtUsername.TabIndex = 231;
             this.txtUsername.Validating += new System.ComponentModel.CancelEventHandler(this.txtUsername_Validating);
             // 
@@ -299,7 +299,7 @@
             // 
             this.llRemoveImage.AutoSize = true;
             this.llRemoveImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llRemoveImage.Location = new System.Drawing.Point(1169, 362);
+            this.llRemoveImage.Location = new System.Drawing.Point(1179, 362);
             this.llRemoveImage.Name = "llRemoveImage";
             this.llRemoveImage.Size = new System.Drawing.Size(68, 20);
             this.llRemoveImage.TabIndex = 227;
@@ -311,7 +311,7 @@
             // 
             this.llSetImage.AutoSize = true;
             this.llSetImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llSetImage.Location = new System.Drawing.Point(1160, 333);
+            this.llSetImage.Location = new System.Drawing.Point(1170, 333);
             this.llSetImage.Name = "llSetImage";
             this.llSetImage.Size = new System.Drawing.Size(83, 20);
             this.llSetImage.TabIndex = 225;
@@ -541,7 +541,7 @@
             this.txtSecurityQuestion.Location = new System.Drawing.Point(637, 169);
             this.txtSecurityQuestion.Multiline = true;
             this.txtSecurityQuestion.Name = "txtSecurityQuestion";
-            this.txtSecurityQuestion.Size = new System.Drawing.Size(230, 67);
+            this.txtSecurityQuestion.Size = new System.Drawing.Size(245, 67);
             this.txtSecurityQuestion.TabIndex = 249;
             this.txtSecurityQuestion.Validating += new System.ComponentModel.CancelEventHandler(this.txtSecurityQuestion_Validating);
             // 
@@ -562,7 +562,7 @@
             this.txtSecurityAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSecurityAnswer.Location = new System.Drawing.Point(637, 245);
             this.txtSecurityAnswer.Name = "txtSecurityAnswer";
-            this.txtSecurityAnswer.Size = new System.Drawing.Size(230, 29);
+            this.txtSecurityAnswer.Size = new System.Drawing.Size(245, 29);
             this.txtSecurityAnswer.TabIndex = 252;
             this.txtSecurityAnswer.Validating += new System.ComponentModel.CancelEventHandler(this.txtSecurityAnswer_Validating);
             // 
@@ -690,7 +690,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::CarRental.Properties.Resources.Save_32;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -706,7 +706,7 @@
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::CarRental.Properties.Resources.Close_32;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -724,7 +724,7 @@
             this.pbUserImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbUserImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbUserImage.InitialImage = null;
-            this.pbUserImage.Location = new System.Drawing.Point(1114, 161);
+            this.pbUserImage.Location = new System.Drawing.Point(1124, 161);
             this.pbUserImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pbUserImage.Name = "pbUserImage";
             this.pbUserImage.Size = new System.Drawing.Size(169, 167);
@@ -753,7 +753,7 @@
             this.txtConfirmPassword.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtConfirmPassword.MaxLength = 50;
             this.txtConfirmPassword.Name = "txtConfirmPassword";
-            this.txtConfirmPassword.Size = new System.Drawing.Size(229, 29);
+            this.txtConfirmPassword.Size = new System.Drawing.Size(244, 29);
             this.txtConfirmPassword.TabIndex = 256;
             this.txtConfirmPassword.TextChanged += new System.EventHandler(this.txtConfirmPassword_TextChanged);
             this.txtConfirmPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtConfirmPassword_Validating);
@@ -788,7 +788,7 @@
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPassword.MaxLength = 50;
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(229, 29);
+            this.txtPassword.Size = new System.Drawing.Size(244, 29);
             this.txtPassword.TabIndex = 255;
             this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             this.txtPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtPassword_Validating);
@@ -823,7 +823,7 @@
             this.panelPassword.Controls.Add(this.txtPassword);
             this.panelPassword.Location = new System.Drawing.Point(429, 277);
             this.panelPassword.Name = "panelPassword";
-            this.panelPassword.Size = new System.Drawing.Size(453, 76);
+            this.panelPassword.Size = new System.Drawing.Size(473, 76);
             this.panelPassword.TabIndex = 261;
             // 
             // frmAddEditUser

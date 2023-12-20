@@ -249,6 +249,7 @@ namespace CarRental.Users
             ShowUserDetails.ShowDialog();
 
             _RefreshUsersList();
+            txtSearch.Clear();
         }
 
         private void EditUserToolStripMenuItem_Click(object sender, EventArgs e)

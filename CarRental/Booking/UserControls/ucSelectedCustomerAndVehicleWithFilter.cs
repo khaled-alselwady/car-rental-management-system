@@ -129,6 +129,7 @@ namespace CarRental.Booking.UserControls
                 MessageBox.Show("This car in NOT available for rent now!", "Not Allowed",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+                SendVehicleID?.Invoke(null); // to disable btnBook in the frmAddBooking
                 return;
             }
 

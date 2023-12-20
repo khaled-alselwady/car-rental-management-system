@@ -59,7 +59,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.llShowReturnDetails = new System.Windows.Forms.LinkLabel();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.llShowUpdateTransactionDetails = new System.Windows.Forms.LinkLabel();
+            this.llShowUpdatedTransactionDetails = new System.Windows.Forms.LinkLabel();
             this.ucBookingCardWithFilter1 = new CarRental.Booking.UserControls.ucBookingCardWithFilter();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -185,9 +185,9 @@
             this.lblActualTotalDueAmount.Location = new System.Drawing.Point(561, 30);
             this.lblActualTotalDueAmount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblActualTotalDueAmount.Name = "lblActualTotalDueAmount";
-            this.lblActualTotalDueAmount.Size = new System.Drawing.Size(53, 20);
+            this.lblActualTotalDueAmount.Size = new System.Drawing.Size(35, 20);
             this.lblActualTotalDueAmount.TabIndex = 204;
-            this.lblActualTotalDueAmount.Text = "[????]";
+            this.lblActualTotalDueAmount.Text = "N/A";
             // 
             // lblConsumedMileage
             // 
@@ -196,9 +196,9 @@
             this.lblConsumedMileage.Location = new System.Drawing.Point(214, 113);
             this.lblConsumedMileage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblConsumedMileage.Name = "lblConsumedMileage";
-            this.lblConsumedMileage.Size = new System.Drawing.Size(53, 20);
+            this.lblConsumedMileage.Size = new System.Drawing.Size(35, 20);
             this.lblConsumedMileage.TabIndex = 201;
-            this.lblConsumedMileage.Text = "[????]";
+            this.lblConsumedMileage.Text = "N/A";
             // 
             // pictureBox5
             // 
@@ -383,7 +383,7 @@
             // 
             this.btnReturn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnReturn.Enabled = false;
-            this.btnReturn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReturn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReturn.Image = global::CarRental.Properties.Resources.Save_32;
             this.btnReturn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -399,7 +399,7 @@
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::CarRental.Properties.Resources.Close_32;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -430,19 +430,19 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // llShowUpdateTransactionDetails
+            // llShowUpdatedTransactionDetails
             // 
-            this.llShowUpdateTransactionDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.llShowUpdateTransactionDetails.AutoSize = true;
-            this.llShowUpdateTransactionDetails.Enabled = false;
-            this.llShowUpdateTransactionDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llShowUpdateTransactionDetails.Location = new System.Drawing.Point(2, 710);
-            this.llShowUpdateTransactionDetails.Name = "llShowUpdateTransactionDetails";
-            this.llShowUpdateTransactionDetails.Size = new System.Drawing.Size(246, 20);
-            this.llShowUpdateTransactionDetails.TabIndex = 202;
-            this.llShowUpdateTransactionDetails.TabStop = true;
-            this.llShowUpdateTransactionDetails.Text = "Show Update Transaction Details";
-            this.llShowUpdateTransactionDetails.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llShowUpdateTransactionDetails_LinkClicked);
+            this.llShowUpdatedTransactionDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.llShowUpdatedTransactionDetails.AutoSize = true;
+            this.llShowUpdatedTransactionDetails.Enabled = false;
+            this.llShowUpdatedTransactionDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.llShowUpdatedTransactionDetails.Location = new System.Drawing.Point(2, 710);
+            this.llShowUpdatedTransactionDetails.Name = "llShowUpdatedTransactionDetails";
+            this.llShowUpdatedTransactionDetails.Size = new System.Drawing.Size(255, 20);
+            this.llShowUpdatedTransactionDetails.TabIndex = 202;
+            this.llShowUpdatedTransactionDetails.TabStop = true;
+            this.llShowUpdatedTransactionDetails.Text = "Show Updated Transaction Details";
+            this.llShowUpdatedTransactionDetails.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llShowUpdateTransactionDetails_LinkClicked);
             // 
             // ucBookingCardWithFilter1
             // 
@@ -463,7 +463,7 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(796, 735);
-            this.Controls.Add(this.llShowUpdateTransactionDetails);
+            this.Controls.Add(this.llShowUpdatedTransactionDetails);
             this.Controls.Add(this.llShowReturnDetails);
             this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.btnClose);
@@ -524,6 +524,6 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.LinkLabel llShowReturnDetails;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.LinkLabel llShowUpdateTransactionDetails;
+        private System.Windows.Forms.LinkLabel llShowUpdatedTransactionDetails;
     }
 }

@@ -29,14 +29,14 @@ namespace CarRental.Transaction.UserControls
         {
             lblTransactionID.Text = _Transaction.TransactionID?.ToString();
             lblBookingID.Text = _Transaction.BookingID?.ToString();
-            lblReturnID.Text = _Transaction.ReturnID?.ToString() ?? "[????]";
+            lblReturnID.Text = _Transaction.ReturnID?.ToString() ?? "Not returned yet";
             lblPaymentDetails.Text = _Transaction.PaymentDetails;
             lblTransactionDate.Text = clsFormat.DateToShort(_Transaction.TransactionDate);
-            lblInitialTotalDueAmount.Text = _Transaction.InitialTotalDueAmount?.ToString("N") ?? "[????]";
-            lblActualTotalDueAmount.Text = _Transaction.ActualTotalDueAmount?.ToString("N") ?? "[????]";
-            lblTotalRemaining.Text = _Transaction.TotalRemaining?.ToString("N") ?? "[????]";
-            lblTotalRefundedAmount.Text = _Transaction.TotalRefundedAmount?.ToString("N") ?? "[????]";
-            lblUpdatedTransactionDate.Text = (_Transaction.UpdatedTransactionDate.HasValue) ? clsFormat.DateToShort((DateTime)_Transaction.UpdatedTransactionDate) : "[????]";
+            lblInitialTotalDueAmount.Text = _Transaction.InitialTotalDueAmount?.ToString("N") ?? "N/A";
+            lblActualTotalDueAmount.Text = _Transaction.ActualTotalDueAmount?.ToString("N") ?? "N/A";
+            lblTotalRemaining.Text = _Transaction.TotalRemaining?.ToString("N") ?? "N/A";
+            lblTotalRefundedAmount.Text = _Transaction.TotalRefundedAmount?.ToString("N") ?? "N/A";
+            lblUpdatedTransactionDate.Text = (_Transaction.UpdatedTransactionDate.HasValue) ? clsFormat.DateToShort((DateTime)_Transaction.UpdatedTransactionDate) : "N/A";
             lblTransactionType.Text = _Transaction.TransactionTypeName;
         }
 

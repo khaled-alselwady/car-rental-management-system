@@ -212,6 +212,7 @@ namespace CarRental.Booking
             ShowBookingDetails.ShowDialog();
 
             _RefreshBookingList();
+            txtSearch.Clear();
         }
 
         private void btnAddNewBooking_Click(object sender, EventArgs e)

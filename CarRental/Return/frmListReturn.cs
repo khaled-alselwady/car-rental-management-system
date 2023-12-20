@@ -191,6 +191,7 @@ namespace CarRental.Return
             ShowReturnDetails.ShowDialog();
 
             _RefreshReturnList();
+            txtSearch.Clear();
         }
 
         private void ShowBookingDetailsToolStripMenuItem1_Click(object sender, EventArgs e)

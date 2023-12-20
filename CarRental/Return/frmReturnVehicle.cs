@@ -129,7 +129,7 @@ namespace CarRental.Return
             _ReturnID = _Return.ReturnID;
 
             llShowReturnDetails.Enabled = true;
-            llShowUpdateTransactionDetails.Enabled = true;
+            llShowUpdatedTransactionDetails.Enabled = true;
             
 
             _Reset();

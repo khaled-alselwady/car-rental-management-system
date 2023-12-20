@@ -232,6 +232,7 @@ namespace CarRental.Transaction
             ShowTransactionDetails.ShowDialog();
 
             _RefreshTransactionList();
+            txtSearch.Clear();
         }
 
         private void ShowCustomerDetailsToolStripMenuItem_Click(object sender, EventArgs e)

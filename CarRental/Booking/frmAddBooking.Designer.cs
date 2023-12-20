@@ -69,9 +69,9 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnBook = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.ucSelectedCustomerAndVehicleWithFilter1 = new CarRental.Booking.UserControls.ucSelectedCustomerAndVehicleWithFilter();
             this.lblTitle = new System.Windows.Forms.Label();
             this.llTransactionInfo = new System.Windows.Forms.LinkLabel();
+            this.ucSelectedCustomerAndVehicleWithFilter1 = new CarRental.Booking.UserControls.ucSelectedCustomerAndVehicleWithFilter();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -534,7 +534,7 @@
             // btnBook
             // 
             this.btnBook.Enabled = false;
-            this.btnBook.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnBook.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBook.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBook.Image = global::CarRental.Properties.Resources.Save_32;
             this.btnBook.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -549,7 +549,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::CarRental.Properties.Resources.Close_32;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -561,16 +561,6 @@
             this.btnClose.Text = "   Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // ucSelectedCustomerAndVehicleWithFilter1
-            // 
-            this.ucSelectedCustomerAndVehicleWithFilter1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucSelectedCustomerAndVehicleWithFilter1.BackColor = System.Drawing.Color.White;
-            this.ucSelectedCustomerAndVehicleWithFilter1.FilterEnable = true;
-            this.ucSelectedCustomerAndVehicleWithFilter1.Location = new System.Drawing.Point(2, 63);
-            this.ucSelectedCustomerAndVehicleWithFilter1.Name = "ucSelectedCustomerAndVehicleWithFilter1";
-            this.ucSelectedCustomerAndVehicleWithFilter1.Size = new System.Drawing.Size(795, 594);
-            this.ucSelectedCustomerAndVehicleWithFilter1.TabIndex = 176;
             // 
             // lblTitle
             // 
@@ -595,6 +585,16 @@
             this.llTransactionInfo.TabStop = true;
             this.llTransactionInfo.Text = "Show Transaction Info";
             this.llTransactionInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llTransactionInfo_LinkClicked);
+            // 
+            // ucSelectedCustomerAndVehicleWithFilter1
+            // 
+            this.ucSelectedCustomerAndVehicleWithFilter1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ucSelectedCustomerAndVehicleWithFilter1.BackColor = System.Drawing.Color.White;
+            this.ucSelectedCustomerAndVehicleWithFilter1.FilterEnable = true;
+            this.ucSelectedCustomerAndVehicleWithFilter1.Location = new System.Drawing.Point(2, 63);
+            this.ucSelectedCustomerAndVehicleWithFilter1.Name = "ucSelectedCustomerAndVehicleWithFilter1";
+            this.ucSelectedCustomerAndVehicleWithFilter1.Size = new System.Drawing.Size(795, 594);
+            this.ucSelectedCustomerAndVehicleWithFilter1.TabIndex = 176;
             // 
             // frmAddBooking
             // 
