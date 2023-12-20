@@ -39,8 +39,9 @@ namespace CarRental.Vehicles
             _Mode = enMode.Update;
         }
 
-        private void _FillMakesComboBox()
+        private async Task _FillMakesComboBoxAsync()
         {
+            await Task.Delay(100);
             DataTable dtMakes = clsMake.GetAllMakesName();
 
             foreach (DataRow Make in dtMakes.Rows)
@@ -49,9 +50,10 @@ namespace CarRental.Vehicles
             }
         }
 
-        private void _FillModelsComboBox()
+        private async Task _FillModelsComboBoxAsync()
         {
-            DataTable dtModels = clsModel.GetAllModelsName();
+            await Task.Delay(100);
+            DataTable dtModels = clsModel.GetAllModelsNameAsync();
 
             foreach (DataRow Model in dtModels.Rows)
             {
@@ -59,8 +61,9 @@ namespace CarRental.Vehicles
             }
         }
 
-        private void _FillSubModelsComboBox()
+        private async Task _FillSubModelsComboBoxAsync()
         {
+            await Task.Delay(100);
             DataTable dtSubModels = clsSubModel.GetAllSubModelsName();
 
             foreach (DataRow SubModel in dtSubModels.Rows)
@@ -69,8 +72,9 @@ namespace CarRental.Vehicles
             }
         }
 
-        private void _FillBodiesComboBox()
+        private async Task _FillBodiesComboBoxAsync()
         {
+            await Task.Delay(100);
             DataTable dtBodies = clsBody.GetAllBodiesName();
 
             foreach (DataRow Body in dtBodies.Rows)
@@ -79,9 +83,10 @@ namespace CarRental.Vehicles
             }
         }
 
-        private void _FillDriveTypesComboBox()
+        private async Task _FillDriveTypesComboBoxAsync()
         {
-            DataTable dtDriveTypes = clsDriveType.GetAllDriveTypesName();
+            await Task.Delay(100);
+            DataTable dtDriveTypes = clsDriveType.GetAllDriveTypesNameAsync();
 
             foreach (DataRow DriveType in dtDriveTypes.Rows)
             {
@@ -89,8 +94,9 @@ namespace CarRental.Vehicles
             }
         }
 
-        private void _FillFuelTypesComboBox()
+        private async Task _FillFuelTypesComboBoxAsync()
         {
+            await Task.Delay(100);
             DataTable dtFuelTypes = clsFuelType.GetAllFuelTypesName();
 
             foreach (DataRow FuelType in dtFuelTypes.Rows)
@@ -117,27 +123,34 @@ namespace CarRental.Vehicles
             numaricNumberDoors.Value = 1;
         }
 
-        private void _ResetDefaultValues()
+        private async Task _ResetDefaultValues()
         {
-            _FillMakesComboBox();
-            _FillModelsComboBox();
-            _FillSubModelsComboBox();
-            _FillBodiesComboBox();
-            _FillDriveTypesComboBox();
-            _FillFuelTypesComboBox();
+            Task[] arrTasks = new Task[6];
+
+            arrTasks[0] = _FillMakesComboBoxAsync();
+            arrTasks[1] = _FillModelsComboBoxAsync();
+            arrTasks[2] = _FillSubModelsComboBoxAsync();
+            arrTasks[3] = _FillBodiesComboBoxAsync();
+            arrTasks[4] = _FillDriveTypesComboBoxAsync();
+            arrTasks[5] = _FillFuelTypesComboBoxAsync();          
 
             if (_Mode == enMode.AddNew)
             {
                 lblTitle.Text = "Add New Vehicle";
                 this.Text = lblTitle.Text;
                 _Vehicle = new clsVehicle();
+
+                await Task.WhenAll(arrTasks);
+
                 _ResetFields();
             }
             else
             {
                 lblTitle.Text = "Update Vehicle";
                 this.Text = lblTitle.Text;
-            }
+
+                await Task.WhenAll(arrTasks);
+            }            
         }
 
         private void _FillFieldsWithCustomerInfo()
@@ -256,9 +269,11 @@ namespace CarRental.Vehicles
             _SaveCustomer();
         }
 
-        private void frmAddEditVehicle_Load(object sender, EventArgs e)
+        private async void frmAddEditVehicle_Load(object sender, EventArgs e)
         {
-            _ResetDefaultValues();
+           Task Task1 = _ResetDefaultValues();
+
+           await Task1;
 
             if (_Mode == enMode.Update)
             {

@@ -118,7 +118,7 @@ namespace CarRental_Business
             return clsModelData.GetAllModels();
         }
 
-        public static DataTable GetAllModelsName()
+        public static DataTable GetAllModelsNameAsync()
         {
             return clsModelData.GetAllModelsName();
         }

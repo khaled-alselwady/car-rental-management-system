@@ -13,6 +13,8 @@ using FontAwesome.Sharp;
 using Guna.UI2.WinForms;
 using System;
 using System.Drawing;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CarRental.Main
@@ -34,13 +36,13 @@ namespace CarRental.Main
             this._frmLoginForm = frmLoginForm;
         }
 
-        private void ActivateButton(object btnSender)
+        private void _ActivateButton(object btnSender)
         {
             if (btnSender != null)
             {
                 if (_CurrentButton != (Guna2Button)btnSender)
                 {
-                    DisableMenuButton();
+                    _DisableMenuButton();
                     //Color color = SelectThemeColor();
                     _CurrentButton = (Guna2Button)btnSender;
                     _CurrentButton.BackColor = Color.WhiteSmoke;
@@ -51,7 +53,7 @@ namespace CarRental.Main
             }
         }
 
-        private void DisableMenuButton()
+        private void _DisableMenuButton()
         {
             Guna2Button iconbutton = new Guna2Button();
 
@@ -69,12 +71,14 @@ namespace CarRental.Main
             }
         }
 
-        private void OpenChildForm(Form childForm, object btnSender)
+        private async void _OpenChildForm(Form childForm, object btnSender)
         {
+            await Task.Delay(100);
+
             if (_ActiveForm != null)
                 _ActiveForm.Close();
 
-            ActivateButton(btnSender);
+            _ActivateButton(btnSender);
             _ActiveForm = childForm;
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
@@ -94,9 +98,24 @@ namespace CarRental.Main
             }
         }
 
+        private void _HandleUserImage()
+        {
+            if (clsGlobal.CurrentUser.ImagePath != null)
+            {
+                pbUserImage.ImageLocation = clsGlobal.CurrentUser.ImagePath;
+            }
+            else
+            {
+                if (clsGlobal.CurrentUser.Gender == clsPerson.enGender.Male)
+                    pbUserImage.Image = Resources.DefaultMale;
+                else
+                    pbUserImage.Image = Resources.DefaultFemale;
+            }
+        }
+
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmDashboard(), sender);
+            _OpenChildForm(new frmDashboard(), sender);
         }
 
         private void btnCustomers_Click(object sender, EventArgs e)
@@ -107,7 +126,7 @@ namespace CarRental.Main
                 return;
             }
 
-            OpenChildForm(new frmListCustomers(), sender);
+            _OpenChildForm(new frmListCustomers(), sender);
         }
 
         private void btnUsers_Click(object sender, EventArgs e)
@@ -118,7 +137,7 @@ namespace CarRental.Main
                 return;
             }
 
-            OpenChildForm(new frmListUsers(), sender);
+            _OpenChildForm(new frmListUsers(), sender);
         }
 
         private void btnVehicles_Click(object sender, EventArgs e)
@@ -129,7 +148,7 @@ namespace CarRental.Main
                 return;
             }
 
-            OpenChildForm(new frmListVehicles(), sender);
+            _OpenChildForm(new frmListVehicles(), sender);
         }
 
         private void btnBooking_Click(object sender, EventArgs e)
@@ -140,7 +159,7 @@ namespace CarRental.Main
                 return;
             }
 
-            OpenChildForm(new frmListBooking(), sender);
+            _OpenChildForm(new frmListBooking(), sender);
         }
 
         private void btnReturn_Click(object sender, EventArgs e)
@@ -151,7 +170,7 @@ namespace CarRental.Main
                 return;
             }
 
-            OpenChildForm(new frmListReturn(), sender);
+            _OpenChildForm(new frmListReturn(), sender);
         }
 
         private void btnTransactions_Click(object sender, EventArgs e)
@@ -162,7 +181,7 @@ namespace CarRental.Main
                 return;
             }
 
-            OpenChildForm(new frmListTransaction(), sender);
+            _OpenChildForm(new frmListTransaction(), sender);
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)
@@ -197,26 +216,9 @@ namespace CarRental.Main
 
         private void frmMainMenu_Load(object sender, EventArgs e)
         {
-            _CurrentButton = btnDashboard;
+            btnDashboard.PerformClick();
 
-            _CurrentButton.BackColor = Color.WhiteSmoke;
-            //_CurrentButton.IconColor = Color.FromArgb(60, 60, 60);
-            _CurrentButton.ForeColor = Color.FromArgb(60, 60, 60);
-            _CurrentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-
-            OpenChildForm(new frmDashboard(), _CurrentButton);
-
-            if (clsGlobal.CurrentUser.ImagePath != null)
-            {
-                pbUserImage.ImageLocation = clsGlobal.CurrentUser.ImagePath;
-            }
-            else
-            {
-                if (clsGlobal.CurrentUser.Gender == clsPerson.enGender.Male)
-                    pbUserImage.Image = Resources.DefaultMale;
-                else
-                    pbUserImage.Image = Resources.DefaultFemale;
-            }
+            _HandleUserImage();
 
             lblUsername.Text = clsGlobal.CurrentUser.Username;
         }

@@ -113,7 +113,7 @@ namespace CarRental_Business
             return clsDriveTypeData.GetAllDriveTypes();
         }
 
-        public static DataTable GetAllDriveTypesName()
+        public static DataTable GetAllDriveTypesNameAsync()
         {
             return clsDriveTypeData.GetAllDriveTypesName();
         }

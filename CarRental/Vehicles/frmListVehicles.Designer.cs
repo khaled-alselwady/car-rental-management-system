@@ -35,8 +35,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cmsEditProfile = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
             this.ShowVehicleDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.EditVehicleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DeleteVehicleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.MaintenanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ShowMaintenanceHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblNumberOfRecords = new System.Windows.Forms.Label();
@@ -54,8 +56,6 @@
             this.pbImage = new System.Windows.Forms.PictureBox();
             this.btnAddNewVehicle = new System.Windows.Forms.Button();
             this.dgvVehiclesList = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.cmsEditProfile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVehiclesList)).BeginInit();
@@ -83,7 +83,7 @@
             this.cmsEditProfile.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
             this.cmsEditProfile.RenderStyle.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(212)))));
             this.cmsEditProfile.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.cmsEditProfile.Size = new System.Drawing.Size(283, 228);
+            this.cmsEditProfile.Size = new System.Drawing.Size(283, 206);
             this.cmsEditProfile.Opening += new System.ComponentModel.CancelEventHandler(this.cmsEditProfile_Opening);
             // 
             // ShowVehicleDetailsToolStripMenuItem1
@@ -95,6 +95,11 @@
             this.ShowVehicleDetailsToolStripMenuItem1.Size = new System.Drawing.Size(282, 38);
             this.ShowVehicleDetailsToolStripMenuItem1.Text = "   Show Vehicle Details";
             this.ShowVehicleDetailsToolStripMenuItem1.Click += new System.EventHandler(this.ShowVehicleDetailsToolStripMenuItem1_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(279, 6);
             // 
             // EditVehicleToolStripMenuItem
             // 
@@ -114,6 +119,11 @@
             this.DeleteVehicleToolStripMenuItem.Size = new System.Drawing.Size(282, 38);
             this.DeleteVehicleToolStripMenuItem.Text = "   Delete";
             this.DeleteVehicleToolStripMenuItem.Click += new System.EventHandler(this.DeleteVehicleToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(279, 6);
             // 
             // MaintenanceToolStripMenuItem
             // 
@@ -373,16 +383,6 @@
             this.dgvVehiclesList.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(133)))), ((int)(((byte)(147)))));
             this.dgvVehiclesList.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvVehiclesList.DoubleClick += new System.EventHandler(this.dgvVehiclesList_DoubleClick);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(279, 6);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(279, 6);
             // 
             // frmListVehicles
             // 

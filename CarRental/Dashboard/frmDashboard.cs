@@ -1,5 +1,6 @@
 ﻿using CarRental.GlobalClasses;
 using CarRental_Business;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -7,22 +8,16 @@ namespace CarRental.Dashboard
 {
     public partial class frmDashboard : Form
     {
+        private int _AllVehicles = 0;
+
         public frmDashboard()
         {
             InitializeComponent();
 
-            int AllVehicles = clsVehicle.GetAllVehiclesCount();
-
-            lblNumberOfCustomers.Text = clsCustomer.GetCustomersCount().ToString();
-            lblNumberOfUsers.Text = clsUser.GetUsersCount().ToString();
-            lblNumberOfVehicles.Text = AllVehicles.ToString();
-            lblNumberOfBooking.Text = clsBooking.GetBookingCount().ToString();
-            lblNumberOfReturn.Text = clsReturn.GetReturnCount().ToString();
-            lblNumberOfTransaction.Text = clsTransaction.GetTransactionsCount().ToString();
-
+            CountElements();
 
             int AvailableVehiclesCount = clsVehicle.GetAvailableVehiclesCount();
-            int RentedVehiclesCount = AllVehicles - AvailableVehiclesCount;
+            int RentedVehiclesCount = _AllVehicles - AvailableVehiclesCount;
 
             chartVehiclesStatus.Titles.Add("");
             chartVehiclesStatus.Series["s1"].IsValueShownAsLabel = true;
@@ -39,6 +34,18 @@ namespace CarRental.Dashboard
             chartVehiclesStatus.Series["s1"].Points.Add(rentedDataPoint);
 
             lblHiUsername.Text = $"Hi {clsGlobal.CurrentUser.Username}";
+        }
+
+        private  void CountElements()
+        {           
+            _AllVehicles = clsVehicle.GetAllVehiclesCount();
+
+            lblNumberOfCustomers.Text = clsCustomer.GetCustomersCount().ToString();
+            lblNumberOfUsers.Text = clsUser.GetUsersCount().ToString();
+            lblNumberOfVehicles.Text = _AllVehicles.ToString();
+            lblNumberOfBooking.Text = clsBooking.GetBookingCount().ToString();
+            lblNumberOfReturn.Text = clsReturn.GetReturnCount().ToString();
+            lblNumberOfTransaction.Text = clsTransaction.GetTransactionsCount().ToString();
         }
     }
 }

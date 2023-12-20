@@ -67,7 +67,7 @@
             // 
             // btnAddNew
             // 
-            this.btnAddNew.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAddNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddNew.Image = global::CarRental.Properties.Resources.add_booking32;
             this.btnAddNew.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;

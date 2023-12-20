@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Data;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CarRental.Vehicles
@@ -16,8 +17,9 @@ namespace CarRental.Vehicles
             InitializeComponent();
         }
 
-        private void _FillMakesComboBox()
+        private async void _FillMakesComboBoxAsync()
         {
+            await Task.Delay(100);
             cbMake.Items.Add("All");
 
             DataTable dtMakes = clsMake.GetAllMakesName();
@@ -28,11 +30,12 @@ namespace CarRental.Vehicles
             }
         }
 
-        private void _FillModelsComboBox()
+        private async void _FillModelsComboBoxAsync()
         {
+            await Task.Delay(100);
             cbModel.Items.Add("All");
 
-            DataTable dtModels = clsModel.GetAllModelsName();
+            DataTable dtModels = clsModel.GetAllModelsNameAsync();
 
             foreach (DataRow Model in dtModels.Rows)
             {
@@ -40,11 +43,12 @@ namespace CarRental.Vehicles
             }
         }
 
-        private void _FillDriveTypesComboBox()
+        private async void _FillDriveTypesComboBoxAsync()
         {
+            await Task.Delay(100);
             cbDriverType.Items.Add("All");
 
-            DataTable dtDriveTypes = clsDriveType.GetAllDriveTypesName();
+            DataTable dtDriveTypes = clsDriveType.GetAllDriveTypesNameAsync();
 
             foreach (DataRow DriveType in dtDriveTypes.Rows)
             {
@@ -52,8 +56,9 @@ namespace CarRental.Vehicles
             }
         }
 
-        private void _FillFuelTypesComboBox()
+        private async void _FillFuelTypesComboBoxAsync()
         {
+            await Task.Delay(100);
             cbFuelType.Items.Add("All");
 
             DataTable dtFuelTypes = clsFuelType.GetAllFuelTypesName();
@@ -110,10 +115,12 @@ namespace CarRental.Vehicles
             }
         }
 
-        private void _RefreshVehiclesList()
+        private void _RefreshVehiclesListAsync()
         {
             _dtAllVehicles = clsVehicle.GetAllVehicles();
+
             dgvVehiclesList.DataSource = _dtAllVehicles;
+
             lblNumberOfRecords.Text = dgvVehiclesList.Rows.Count.ToString();
 
             if (dgvVehiclesList.Rows.Count > 0)
@@ -151,7 +158,6 @@ namespace CarRental.Vehicles
                 dgvVehiclesList.Columns[10].HeaderText = "Is Available";
                 dgvVehiclesList.Columns[10].Width = 110;
             }
-
         }
 
         private int _GetVehicleIDFromDGV()
@@ -161,12 +167,13 @@ namespace CarRental.Vehicles
 
         private void frmListVehicles_Load(object sender, EventArgs e)
         {
-            _RefreshVehiclesList();
+            _RefreshVehiclesListAsync();
 
-            _FillMakesComboBox();
-            _FillModelsComboBox();
-            _FillDriveTypesComboBox();
-            _FillFuelTypesComboBox();
+            _FillMakesComboBoxAsync();
+            _FillModelsComboBoxAsync();
+            _FillDriveTypesComboBoxAsync();
+            _FillFuelTypesComboBoxAsync();
+
             _FillYearComboBox();
 
             cbFilter.SelectedIndex = 0;
@@ -399,7 +406,7 @@ namespace CarRental.Vehicles
             frmShowVehicleDetails ShowVehicleDetails = new frmShowVehicleDetails(_GetVehicleIDFromDGV());
             ShowVehicleDetails.ShowDialog();
 
-            _RefreshVehiclesList();
+            _RefreshVehiclesListAsync();
         }
 
         private void EditVehicleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -407,7 +414,7 @@ namespace CarRental.Vehicles
             frmAddEditVehicle EditVehicle = new frmAddEditVehicle(_GetVehicleIDFromDGV());
             EditVehicle.ShowDialog();
 
-            _RefreshVehiclesList();
+            _RefreshVehiclesListAsync();
         }
 
         private void DeleteVehicleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -420,7 +427,7 @@ namespace CarRental.Vehicles
                     MessageBox.Show("Deleted Done Successfully", "Deleted",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    _RefreshVehiclesList();
+                    _RefreshVehiclesListAsync();
                 }
                 else
                 {
@@ -435,7 +442,7 @@ namespace CarRental.Vehicles
             frmAddEditVehicle AddVehicle = new frmAddEditVehicle();
             AddVehicle.ShowDialog();
 
-            _RefreshVehiclesList();
+            _RefreshVehiclesListAsync();
         }
 
         private void cmsEditProfile_Opening(object sender, CancelEventArgs e)
@@ -448,7 +455,7 @@ namespace CarRental.Vehicles
             frmShowVehicleDetails ShowVehicleDetails = new frmShowVehicleDetails(_GetVehicleIDFromDGV());
             ShowVehicleDetails.ShowDialog();
 
-            _RefreshVehiclesList();
+            _RefreshVehiclesListAsync();
         }
 
         private void btnMaintenance_Click(object sender, EventArgs e)
@@ -468,7 +475,7 @@ namespace CarRental.Vehicles
             frmShowVehicleMaintenanceHistory ShowVehicleMaintenanceHistory = new frmShowVehicleMaintenanceHistory(_GetVehicleIDFromDGV());
             ShowVehicleMaintenanceHistory.ShowDialog();
 
-            _RefreshVehiclesList();
+            _RefreshVehiclesListAsync();
         }
     }
 }
