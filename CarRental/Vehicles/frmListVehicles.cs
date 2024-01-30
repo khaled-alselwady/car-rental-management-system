@@ -11,10 +11,28 @@ namespace CarRental.Vehicles
     public partial class frmListVehicles : Form
     {
         private DataTable _dtAllVehicles;
+        private int _AllVehicleCount = 0;
+        private short _RowsPerPage = 20;
 
         public frmListVehicles()
         {
             InitializeComponent();
+        }
+
+        private void _FillPagesComboBox()
+        {
+            cbPages.Items.Clear();
+
+            _AllVehicleCount = clsVehicle.GetAllVehiclesCount();
+            short NumberOfPages = (short)(_AllVehicleCount / _RowsPerPage);
+
+            for (short i = 1; i <= NumberOfPages; i++)
+            {
+                cbPages.Items.Add(i.ToString());
+            }
+
+            if (cbPages.Items.Count > 0)
+                cbPages.SelectedIndex = 0;
         }
 
         private async void _FillMakesComboBoxAsync()
@@ -117,7 +135,7 @@ namespace CarRental.Vehicles
 
         private void _RefreshVehiclesList()
         {
-            _dtAllVehicles = clsVehicle.GetAllVehicles();
+            _dtAllVehicles = clsVehicle.GetAllVehiclesInPages(short.Parse(cbPages.Text), _RowsPerPage);
 
             dgvVehiclesList.DataSource = _dtAllVehicles;
 
@@ -167,6 +185,7 @@ namespace CarRental.Vehicles
 
         private void frmListVehicles_Load(object sender, EventArgs e)
         {
+            _FillPagesComboBox();
             _RefreshVehiclesList();
 
             _FillMakesComboBoxAsync();
@@ -428,7 +447,7 @@ namespace CarRental.Vehicles
                     MessageBox.Show("Deleted Done Successfully", "Deleted",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    _RefreshVehiclesList();
+                    frmListVehicles_Load(null, null);
                 }
                 else
                 {
@@ -443,7 +462,7 @@ namespace CarRental.Vehicles
             frmAddEditVehicle AddVehicle = new frmAddEditVehicle();
             AddVehicle.ShowDialog();
 
-            _RefreshVehiclesList();
+            frmListVehicles_Load(null, null);
         }
 
         private void cmsEditProfile_Opening(object sender, CancelEventArgs e)
@@ -481,6 +500,11 @@ namespace CarRental.Vehicles
 
             _RefreshVehiclesList();
             txtSearch.Clear();
+        }
+
+        private void cbPages_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _RefreshVehiclesList();
         }
     }
 }

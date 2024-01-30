@@ -341,6 +341,48 @@ where VehicleID = @VehicleID";
             return dt;
         }
 
+        public static DataTable GetAllVehiclesInPages(short PageNumber, short RowsPerPage)
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    string query = @"select * from VehiclesDetails_View
+                                     order by VehicleID
+                                     OFFSET (@PageNumber - 1) * @RowsPerPage ROWS
+                                     FETCH NEXT @RowsPerPage ROWS ONLY";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("PageNumber", PageNumber);
+                        command.Parameters.AddWithValue("RowsPerPage", RowsPerPage);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return dt;
+        }
+
         public static int GetAllVehiclesCount()
         {
             int Count = 0;

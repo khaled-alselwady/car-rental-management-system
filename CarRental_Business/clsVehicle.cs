@@ -182,6 +182,11 @@ namespace CarRental_Business
             return clsVehicleData.GetAllVehicles();
         }
 
+        public static DataTable GetAllVehiclesInPages(short PageNumber, short RowsPerPage)
+        {
+            return clsVehicleData.GetAllVehiclesInPages(PageNumber, RowsPerPage);
+        }
+
         public static int GetAllVehiclesCount()
         {
             return clsVehicleData.GetAllVehiclesCount();
