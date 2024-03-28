@@ -24,7 +24,7 @@ namespace CarRental.Vehicles
             cbPages.Items.Clear();
 
             _AllVehicleCount = clsVehicle.GetAllVehiclesCount();
-            short NumberOfPages = (short)(_AllVehicleCount / _RowsPerPage);
+            short NumberOfPages = (short)(_AllVehicleCount / _RowsPerPage + 1);
 
             for (short i = 1; i <= NumberOfPages; i++)
             {
