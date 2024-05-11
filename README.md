@@ -12,6 +12,9 @@ The **Car Rental System** is a robust desktop application designed for efficient
 ### 2. Vehicles Information:
 - **Vehicle Catalog:** Maintain an up-to-date catalog of available vehicles, including make, model, submodel, year, mileage, fuel type, plate number, drive type, and vehicle category (4x4, Sedan, etc.).
 - **Fuel Types:** Support multiple fuel types, including Gasoline (Petrol), Diesel, Electric, and Hybrid.
+- **Drive Types:** Record different drive types such as Front-wheel drive, Rear-wheel drive, and All-wheel drive.
+- **Body Types:** Manage various body types of vehicles, including Sedan, SUV, Truck, Coupe, etc.
+- **Makes and Models:** Keep track of vehicle makes and models for better categorization.
 
 ### 3. Vehicle Booking:
 - **Booking Information:** Record essential details when a customer rents a vehicle, such as customer details, rental start and end dates, pickup and drop-off locations, initial rental days, initial total due amount, and initial vehicle check notes.
@@ -20,6 +23,7 @@ The **Car Rental System** is a robust desktop application designed for efficient
 ### 4. Rental Transaction:
 - **Payment Processing:** Manage customer payments for rent, logging transaction details such as payment information and initial paid amounts.
 - **Transaction History:** Keep a comprehensive history of rental transactions for reference.
+- **Maintenance:** Track maintenance activities of vehicles, including descriptions, maintenance dates, and costs.
 
 ### 5. Vehicle Return:
 - **Return Processing:** Calculate and record actual return dates, actual rental days, final vehicle check notes, and any additional charges upon vehicle return.
@@ -27,10 +31,11 @@ The **Car Rental System** is a robust desktop application designed for efficient
 - **Mileage Tracking:** Save current mileage and calculate consumed mileage during the rental period.
 
 ## Technologies Used:
-- **Framework:** .NET Windows Forms (C#)
+- **Framework:** .NET Framework (C#)
 - **Database:** Microsoft SQL Server with ADO.NET
 - **User Interface:** Windows Forms (WinForms)
 - **Authentication:** Custom user authentication system
+- **Architecture:** 3-tier architecture
 - **Deployment:** Standalone desktop application
 
 ## Getting Started:
