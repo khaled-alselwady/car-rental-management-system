@@ -37,6 +37,7 @@ The **Car Rental System** is a robust desktop application designed for efficient
 - **Authentication:** Custom user authentication system
 - **Architecture:** 3-tier architecture
 - **Deployment:** Standalone desktop application
+- **Asynchronous Programming:** Implemented asynchronous programming to improve the responsiveness of the UI, reducing the form load time for adding vehicles from 3 seconds to nearly instantaneous.
 
 ## Getting Started:
 1. Clone the repository: `git clone https://github.com/dev-khaled-yousef/car-rental-management-system`
